@@ -9,7 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/common_tab"
         android:orientation="horizontal">
 
         <com.sskj.common.tab.TabLayout
@@ -17,38 +16,37 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:indicator_color="@color/common_tip"
+            app:indicator_color="@color/common_action_text"
             app:selctTextSize="12sp"
-            app:textSelectColor="@color/common_tip"
-            app:textUnselectColor="@color/common_hint"
+            app:textSelectColor="@color/common_action_text"
+            app:textUnselectColor="@color/common_kline_num"
             app:textsize="12sp" />
 
         <LinearLayout
             android:id="@+id/chart_norm"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            >
-        <TextView
+            android:orientation="horizontal">
 
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="2dp"
-            android:background="@color/common_tab"
-            android:gravity="center"
-            android:text="@string/market_norm"
-            android:textColor="@color/common_hint"
-            android:textSize="12sp" />
+            <TextView
 
-        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:text="@string/market_norm"
+                android:textColor="@color/common_kline_num"
+                android:textSize="12sp" />
 
-            android:layout_width="7dp"
-            android:layout_height="7dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="10dp"
-            android:src="@mipmap/market_icon_triangle" />
+            <ImageView
+
+                android:layout_width="7dp"
+                android:layout_height="7dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="10dp"
+                android:src="@mipmap/market_icon_triangle" />
         </LinearLayout>
     </LinearLayout>
 

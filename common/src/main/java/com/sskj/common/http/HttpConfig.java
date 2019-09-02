@@ -11,7 +11,6 @@ public class HttpConfig {
     public static final String SHARE_DETAIL = "/Home/Users/my_broker";
 
 
-
     public static String BASE_URL = BuildConfig.IP;
 
 
@@ -189,4 +188,26 @@ public class HttpConfig {
     public static final String GET_DEEP = "/Home/Ajax/get_shendu";
 
     public static final String GET_ALL_TRADE ="/home/ajax/RealTimeDeal" ;
+
+
+    public static String WS_PANKOU ="ws://47.244.230.29:7275";
+    public static final String GET_LEVER = "/Home/api/get_lever";
+
+    public static final String GET_DEAL_ORDER = "/Home/Order/chengjiao";
+    public static final String CONTACT_CREATE_ORDER = "/Home/Order/add_order";
+
+    public static final String CONTACT_SET_POINT = "/Home/Order/set_poit";
+    public static final String GET_ENTRUST_ORDER = "/Home/Order/weituo";
+    public static final String CONTACT_CANCEL_ORDER = "/Home/Order/cancellations";
+
+    public static final String GET_HOLD_ORDER = "/Home/Order/chicang";
+    public static final String CONTACT_CLOSE_ORDER = "/Home/Order/pingcang";
+
+    public static final String CONTACT_POINT_INFO = "/Home/Order/set_poit_pre";
+
+    public static final String GET_TONGJI = "/Home/Order/tongji";
+
+
+    //=================Depth======================================
+    public static final String GET_PANKOU = "/Home/Ajax/getdepth_hy";
 }

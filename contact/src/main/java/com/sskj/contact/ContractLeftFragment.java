@@ -1,0 +1,455 @@
+package com.sskj.contact;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import com.binaryfork.spanny.Spanny;
+import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.hey.lib.HeySpinner;
+import com.hjq.toast.ToastUtils;
+import com.sskj.common.base.BaseFragment;
+import com.sskj.common.data.CoinBean;
+import com.sskj.common.rxbus.RxBus;
+import com.sskj.common.rxbus.Subscribe;
+import com.sskj.common.rxbus.ThreadMode;
+import com.sskj.common.simple.SimpleTextWatcher;
+import com.sskj.common.utils.ClickUtil;
+import com.sskj.common.utils.DigitUtils;
+import com.sskj.common.utils.MoneyValueFilter;
+import com.sskj.common.utils.NumberUtils;
+import com.sskj.contact.data.CoinInfo;
+import com.sskj.contact.data.CreateOrder;
+import com.sskj.contact.dialog.ContactCreateDialog;
+import com.sskj.common.event.ContactChangeCoin;
+import com.sskj.contact.type.Price;
+import com.sskj.contact.type.Trade;
+import com.sskj.contact.view.NoTopCornerTabLayout;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import butterknife.BindView;
+
+/**
+ * @author Hey
+ * Create at  2019/08/22 17:44:22
+ */
+public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
+    @BindView(R2.id.radio_up)
+    RadioButton radioUp;
+    @BindView(R2.id.radio_down)
+    RadioButton radioDown;
+    @BindView(R2.id.trade_type_group)
+    RadioGroup tradeTypeGroup;
+    @BindView(R2.id.price_type_spinner)
+    HeySpinner priceTypeSpinner;
+    @BindView(R2.id.decrease_price)
+    Button decreasePrice;
+    @BindView(R2.id.edt_price)
+    EditText edtPrice;
+    @BindView(R2.id.increase_price)
+    Button increasePrice;
+    @BindView(R2.id.limit_price_layout)
+    LinearLayout limitPriceLayout;
+    @BindView(R2.id.tv_market_price)
+    TextView tvMarketPrice;
+    @BindView(R2.id.edt_num)
+    EditText edtNum;
+    @BindView(R2.id.point_tabLayout)
+    NoTopCornerTabLayout pointTabLayout;
+    @BindView(R2.id.level_spinner)
+    HeySpinner levelSpinner;
+    @BindView(R2.id.tv_total_money)
+    TextView tvTotalMoney;
+    @BindView(R2.id.tv_total_unit)
+    TextView tvTotalUnit;
+    @BindView(R2.id.btn_submit)
+    Button btnSubmit;
+
+    private Price priceType = Price.MARKET;
+    private Trade tradeType = Trade.UP;
+
+    private ArrayList<String> priceItems = new ArrayList<>();
+    private String[] levers;
+
+    /**
+     * 数量
+     */
+    private BigDecimal num = new BigDecimal(0);
+    /**
+     * 杠杆
+     */
+    private BigDecimal lever = new BigDecimal(1);
+    /**
+     * 价格
+     */
+    private BigDecimal price = new BigDecimal(0);
+    /**
+     * 点差
+     */
+    private BigDecimal spread = new BigDecimal(0);
+    /**
+     * 最小变动价
+     */
+    private BigDecimal minChangePrice = new BigDecimal(0);
+
+    /**
+     * 合约面值
+     */
+    private BigDecimal unitNum = new BigDecimal(1);
+
+    /**
+     * 手续费
+     */
+    private BigDecimal fee = new BigDecimal(0);
+
+    /**
+     * 余额
+     */
+    private BigDecimal balance = new BigDecimal(0);
+
+    /**
+     * 最大交易量
+     */
+    private BigDecimal maxNum = new BigDecimal(0);
+
+    //是否选择仓位
+    private boolean changeByPosition;
+
+    private String code;
+
+    private NumberFormat percentFormat = NumberFormat.getPercentInstance();
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (getArguments() != null) {
+            code = getArguments().getString("code");
+        }
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.contact_fragment_contract_left;
+    }
+
+    @Override
+    public ContractLeftPresenter getPresenter() {
+        return new ContractLeftPresenter();
+    }
+
+    @Override
+    public void initView() {
+        initPriceType();
+        initTradeType();
+        initPoint();
+
+        edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
+
+        ClickUtil.click(btnSubmit, view -> {
+            if (priceType == Price.LIMIT) {
+                if (isEmpty(edtPrice)) {
+                    ToastUtils.show(getString(R.string.contact_contractLeftFragment1));
+                    return;
+                }
+            }
+            if (isEmpty(edtNum)) {
+                ToastUtils.show(getString(R.string.contact_contractLeftFragment2));
+                return;
+            }
+
+            if (num.floatValue() == 0) {
+                ToastUtils.show(getString(R.string.contact_contractLeftFragment3));
+                return;
+            }
+            if (num.floatValue() == 0) {
+                ToastUtils.show(getString(R.string.contact_contractLeftFragment4));
+                return;
+            }
+            CreateOrder orderBean = new CreateOrder();
+            orderBean.setCode(code);
+            orderBean.setLever(lever.toString());
+            orderBean.setNum(num.toString());
+            orderBean.setPrice(NumberUtils.keepDown(price, DigitUtils.getDigit(code)));
+            orderBean.setPriceType(priceType);
+            orderBean.setTradeType(tradeType);
+            orderBean.setTotal(getText(tvTotalMoney));
+            ContactCreateDialog createDialog = new ContactCreateDialog();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("data", orderBean);
+            createDialog.setArguments(bundle);
+            createDialog.show(getFragmentManager(), "CreateOrder");
+        });
+
+    }
+
+    private void initPoint() {
+        String[] pointTabs = new String[]{"25%", "50%", "75%", "100%"};
+        pointTabLayout.setTabData(pointTabs);
+        pointTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelect(int position) {
+                if (position != -1) {
+                    try {
+                        changeByPosition = true;
+                        BigDecimal p = new BigDecimal(percentFormat.parse(pointTabs[position]).floatValue());
+                        edtNum.setText(NumberUtils.keepDown(maxNum.multiply(p), 0));
+                        edtNum.setSelection(edtNum.getText().length());
+                        changeByPosition = false;
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                }
+            }
+
+            @Override
+            public void onTabReselect(int position) {
+
+            }
+        });
+        pointTabLayout.setCurrentTab(-1);
+    }
+
+
+    private void initPriceType() {
+        priceItems.add(getString(R.string.contact_contractLeftFragment5));
+        priceItems.add(getString(R.string.contact_contractLeftFragment6));
+        priceTypeSpinner.setOnSelectListener(position -> {
+            if (position == 0) {
+                priceType = Price.MARKET;
+                limitPriceLayout.setVisibility(View.GONE);
+                tvMarketPrice.setVisibility(View.VISIBLE);
+            } else {
+                priceType = Price.LIMIT;
+                limitPriceLayout.setVisibility(View.VISIBLE);
+                edtPrice.setText(NumberUtils.keep(price, DigitUtils.getDigit(code)));
+                tvMarketPrice.setVisibility(View.GONE);
+            }
+        });
+        priceTypeSpinner.attachData(priceItems);
+    }
+
+    private void initTradeType() {
+        tradeTypeGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.radio_up) {
+                tradeType = Trade.UP;
+                btnSubmit.setBackgroundResource(R.drawable.contact_green_bg_50);
+            } else {
+                tradeType = Trade.DOWN;
+                btnSubmit.setBackgroundResource(R.drawable.contact_red_bg_50);
+            }
+            btnSubmit.setText(tradeType.name);
+        });
+    }
+
+    private void initLevel() {
+        if (levers != null) {
+            levelSpinner.setOnSelectListener(position -> {
+                lever = new BigDecimal(levers[position]);
+                Spanny spanny = new Spanny(getString(R.string.contact_contractLeftFragment7))
+                        .append(" " + levers[position], new ForegroundColorSpan(color(R.color.common_text)));
+                calculateTotalMoney();
+                calculateMaxTrade();
+                levelSpinner.setText(spanny);
+            });
+            levelSpinner.attachData(Arrays.asList(levers));
+        }
+    }
+
+    @Override
+    public void initData() {
+        /**
+         * 数量变动监听
+         */
+        edtNum.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s)) {
+                    num = new BigDecimal("0");
+                } else {
+                    num = new BigDecimal(s.toString());
+                }
+                if (!changeByPosition) {
+                    pointTabLayout.setCurrentTab(-1);
+                }
+                calculateTotalMoney();
+            }
+        });
+
+        /**
+         * 价格变动监听
+         */
+        edtPrice.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s)) {
+                    price = new BigDecimal("0");
+                } else {
+                    price = new BigDecimal(s.toString());
+                }
+                calculateTotalMoney();
+                calculateMaxTrade();
+            }
+        });
+        increasePrice.setOnClickListener(v -> {
+            changeNum(edtPrice, true);
+        });
+        decreasePrice.setOnClickListener(v -> {
+            changeNum(edtPrice, false);
+        });
+    }
+
+    @Override
+    public void loadData() {
+        mPresenter.getCoinInfo(code);
+    }
+
+
+    /**
+     * 计算保证金
+     * 市价做多：建仓价=买入价*（1+点差比例）*合约面值
+     * 市价做空：建仓价=买入价*（1-点差比例）*合约面值
+     * 保证金=建仓价*买入手数*合约面值/杠杆
+     * 手续费=建仓价*买入手数*合约面值*手续费比例
+     * 交易金额=保证金+手续费
+     */
+    public void calculateTotalMoney() {
+        BigDecimal createPrice;
+        BigDecimal spreadPrice = spread.multiply(minChangePrice);
+        if (tradeType == Trade.UP) {
+            createPrice = price.add(price.multiply(spreadPrice));
+        } else {
+            createPrice = price.subtract(price.multiply(spreadPrice));
+        }
+        BigDecimal feeMoney = createPrice.multiply(num).multiply(unitNum).multiply(fee);
+        BigDecimal total = num.multiply(createPrice).multiply(unitNum).divide(lever, 8, RoundingMode.DOWN).add(feeMoney);
+        setText(tvTotalMoney, NumberUtils.keepDown(total, 4));
+    }
+
+
+    /**
+     * 计算最大交易额
+     * 交易额= （价格/杠杆+手续费*价格）*数量*面值
+     */
+    public void calculateMaxTrade() {
+        BigDecimal createPrice;
+        BigDecimal spreadPrice = spread.multiply(minChangePrice);
+        if (tradeType == Trade.UP) {
+            createPrice = price.add(price.multiply(spreadPrice));
+        } else {
+            createPrice = price.subtract(price.multiply(spreadPrice));
+        }
+        BigDecimal realPrice = createPrice.divide(lever, 8, RoundingMode.DOWN).add(fee.multiply(createPrice));
+        if (realPrice.floatValue() != 0) {
+            maxNum = balance.divide(realPrice.multiply(unitNum), 8, RoundingMode.DOWN);
+        }
+    }
+
+
+    public void changeNum(EditText editText, boolean increase) {
+        String text = editText.getText().toString();
+        int digit = 0;
+        double num;
+        double minChange = 0.1;
+        int digitIndex = 0;
+        if (TextUtils.isEmpty(text)) {
+            num = 0;
+        } else {
+            num = Double.parseDouble(text);
+        }
+        if (text.contains(".")) {
+            digitIndex = editText.getText().toString().indexOf(".");
+            int length = text.length() - digitIndex;
+            digitIndex = length - 1;
+            for (int i = 0; i < digitIndex - 1; i++) {
+                minChange = 0.1 * minChange;
+            }
+            digit = digitIndex;
+        } else {
+            minChange = 1;
+        }
+        if (increase) {
+            num = num + minChange;
+        } else {
+            num = num - minChange;
+        }
+        if (num < 0) {
+            num = 0;
+        }
+        editText.setText(NumberUtils.keep(num, digit));
+        editText.setSelection(editText.getText().length());
+    }
+
+
+    public static ContractLeftFragment newInstance(String code) {
+        ContractLeftFragment fragment = new ContractLeftFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("code", code);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+
+    public void setCoinInfo(CoinInfo data) {
+        if (data != null) {
+            levers = data.getLeverage().split(",");
+            spread = new BigDecimal(data.getSpread());
+            minChangePrice = new BigDecimal(data.getVar_price());
+            if (!TextUtils.isEmpty(data.getPcs_price())) {
+                unitNum = new BigDecimal(data.getPcs_price());
+            }
+            if (!data.getTrans_fee().startsWith("%")) {
+                fee = new BigDecimal(Float.parseFloat(data.getTrans_fee().substring(0, data.getTrans_fee().indexOf("%"))) / 100);
+            }
+            initLevel();
+        }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        RxBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        RxBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updatePrice(CoinBean coinBean) {
+        if (code.equals(coinBean.getCode())) {
+            price = new BigDecimal(coinBean.getPrice());
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void changeCoin(ContactChangeCoin coinBean) {
+        code = coinBean.getCode();
+        edtNum.getText().clear();
+        edtPrice.getText().clear();
+        pointTabLayout.setCurrentTab(-1);
+        mPresenter.getCoinInfo(code);
+        edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
+    }
+
+
+}

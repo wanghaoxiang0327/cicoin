@@ -78,19 +78,19 @@ public class ChartFragment extends BaseFragment<ChartPresenter> {
         chartView.showLoading();
         chartView.setDrawTabView(true);
         // 设置k线颜色 涨
-        chartView.setMainUpColor(R.color.market_green);
+        chartView.setMainUpColor(R.color.market_red);
         // 设置k线颜色 跌
-        chartView.setMainDownColor(R.color.market_red);
+        chartView.setMainDownColor(R.color.market_green);
         chartView.setGridRows(4);
-        chartView.setGridLineColor(color(R.color.common_divider));
-        chartView.getmCurrentPricePaint().setTextSize(ScreenUtil.dp2px(getContext(),14));
+        chartView.setGridLineColor(color(R.color.common_item_divider));
+        chartView.getmCurrentPricePaint().setTextSize(ScreenUtil.dp2px(getContext(), 14));
         chartView.getmCurrentPricePaint().setColor(color(R.color.common_text));
         chartView.getmCurrentLinePaint().setColor(color(R.color.common_tip));
         chartView.setGridColumns(4);
         chartView.setVolumeMaGone(true);
         chartView.setDrawMinuteStyle(mIsMinute);
         chartView.setDrawDown(true);
-        chartView.setShader(color(R.color.market_shader_top),color(R.color.market_shader_middle), color(R.color.market_shader_bottom), 1000);
+        chartView.setShader(color(R.color.market_shader_top), color(R.color.market_shader_middle), color(R.color.market_shader_bottom), 1000);
         if (goodsType.equals("day")) {
             chartView.setDateTimeFormatter(date -> TimeFormatUtil.SF_FORMAT_K.format(date));
         } else {
@@ -216,7 +216,7 @@ public class ChartFragment extends BaseFragment<ChartPresenter> {
      * @param isMinute  是否是分时线
      * @return
      */
-    public static ChartFragment newInstance(String code,String goodsType, boolean isMinute) {
+    public static ChartFragment newInstance(String code, String goodsType, boolean isMinute) {
         ChartFragment chartFragment = new ChartFragment();
         Bundle bundle = new Bundle();
         bundle.putString("code", code);
@@ -245,9 +245,9 @@ public class ChartFragment extends BaseFragment<ChartPresenter> {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (chartView!=null){
+        if (chartView != null) {
             chartView.closeObservable();
-            chartView=null;
+            chartView = null;
         }
         RxBus.getDefault().unregister(this);
     }

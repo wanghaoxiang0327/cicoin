@@ -53,15 +53,25 @@
     <color name="common_action_bar">#FFFFFF</color>
     <color name="common_action_text">#255bfc</color>
     <color name="common_background">#80f1f3f6</color>
+    <color name="common_background_dark">#0f1826</color>
+    <color name="common_background_sun">#ffffff</color>
     <color name="common_button_text">#74cffc</color>
     <color name="common_dark">#5c5c5d</color>
+    <color name="common_dark_sun">#eeeeee</color>
     <color name="common_dialog">#022637</color>
     <color name="common_divider">#e9ebed</color>
+    <color name="common_divider_sun">#f1f3f6</color>
+    <color name="common_green">#32b28f</color>
     <color name="common_hint">#c0c1c2</color>
+    <color name="common_item_divider">#1f2e44</color>
+    <color name="common_kline_num">#8e94a3</color>
+    <color name="common_mine_background">#ffffff</color>
     <color name="common_normal_text">#b1b8ca</color>
+    <color name="common_red">#ff5755</color>
     <color name="common_status_bar">@color/common_action_bar</color>
     <color name="common_tab">#FFFFFF</color>
     <color name="common_text">#25272d</color>
+    <color name="common_text_sun">#000000</color>
     <color name="common_tip">#6185e5</color>
     <color name="common_toolbar_title">#FFFFFF</color>
     <color name="common_white">#FFFFFF</color>
@@ -175,6 +185,19 @@
         <attr format="color" name="bar_color"/>
         <attr format="color" name="bar_stroke_color"/>
         <attr format="dimension" name="bar_stroke_width"/>
+    </declare-styleable>
+    <declare-styleable name="SkinHeySpinner">
+        <attr format="color" name="itemTextColor"/>
+        <attr format="boolean" name="showArrow"/>
+        <attr format="reference" name="arrowSrc"/>
+        <attr format="reference" name="itemBackground"/>
+        <attr format="reference" name="popupBackground"/>
+        <attr format="integer" name="itemGravity"/>
+        <attr format="reference" name="arrowColor"/>
+        <attr format="reference" name="dividerColor"/>
+        <attr format="dimension" name="dividerHeight"/>
+        <attr format="boolean" name="tintColor"/>
+        <attr format="float" name="popupHeight"/>
     </declare-styleable>
     <declare-styleable name="SlidingTabLayout">
         <attr name="indicator_color"/>

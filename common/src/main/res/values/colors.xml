@@ -15,5 +15,14 @@
     <color name="common_button_text">#74cffc</color>
     <color name="common_text">#25272d</color>
     <color name="common_dark">#5c5c5d</color>
-
+    <color name="common_divider_sun">#f1f3f6</color>
+    <color name="common_background_sun">#ffffff</color>
+    <color name="common_text_sun">#000000</color>
+    <color name="common_green">#32b28f</color>
+    <color name="common_dark_sun">#eeeeee</color>
+    <color name="common_red">#ff5755</color>
+    <color name="common_mine_background">#ffffff</color>
+    <color name="common_item_divider">#1f2e44</color>
+    <color name="common_background_dark">#0f1826</color>
+    <color name="common_kline_num">#8e94a3</color>
 </resources>

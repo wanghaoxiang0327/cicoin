@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+apply from: "../common/config.gradle"
+android {
+    compileSdkVersion rootProject.ext.version["targetVerison"]
+    buildToolsVersion "28.0.3"
+    defaultConfig {
+        minSdkVersion rootProject.ext.version["minSdkVersion"]
+        targetSdkVersion rootProject.ext.version["targetVerison"]
+        versionCode rootProject.ext.version["versionCode"]
+        versionName rootProject.ext.version["versionName"]
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res-sun']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions{
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    resourcePrefix "contact_"
+
+}
+
+dependencies {
+    implementation project(path: ':common')
+}

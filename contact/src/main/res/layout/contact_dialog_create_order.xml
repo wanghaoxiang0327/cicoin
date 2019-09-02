@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:background="@color/common_background" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:padding="@dimen/common_margin">
+
+
+    <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_width="wrap_content" android:text="@string/contact_contact_dialog_create_order20" android:textColor="@color/common_white" android:textSize="17sp" android:textStyle="bold"/>
+
+    <TableLayout android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_width="match_parent">
+
+        <TableRow android:paddingBottom="5dp" android:paddingTop="5dp">
+
+            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_width="wrap_content" android:text="@string/contact_contact_dialog_create_order80" android:textColor="@color/common_hint" android:textSize="12sp"/>
+
+            <TextView android:gravity="center_vertical" android:id="@+id/tv_trade_type" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_white" android:textSize="12sp" tools:text="@string/contact_contact_dialog_create_order100"/>
+
+            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_width="wrap_content" android:text="@string/contact_contact_dialog_close_order80" android:textColor="@color/common_hint" android:textSize="12sp"/>
+
+            <TextView android:gravity="center_vertical" android:id="@+id/tv_price_type" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_white" android:textSize="12sp" tools:text="@string/contact_dealFragment8"/>
+        </TableRow>
+
+        <TableRow android:paddingBottom="5dp" android:paddingTop="5dp">
+
+            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_width="wrap_content" android:text="@string/contact_contact_dialog_create_order190" android:textColor="@color/common_hint" android:textSize="12sp"/>
+
+            <TextView android:gravity="center_vertical" android:id="@+id/tv_price" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_white" android:textSize="12sp" tools:text="100.00"/>
+
+            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_width="wrap_content" android:text="@string/contact_contact_dialog_create_order230" android:textColor="@color/common_hint" android:textSize="12sp"/>
+
+            <TextView android:gravity="center_vertical" android:id="@+id/tv_num" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_white" android:textSize="12sp" tools:text="100"/>
+        </TableRow>
+
+        <TableRow android:paddingBottom="5dp" android:paddingTop="5dp">
+
+            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_width="wrap_content" android:text="@string/contact_contact_dialog_create_order300" android:textColor="@color/common_hint" android:textSize="12sp"/>
+
+            <TextView android:gravity="center_vertical" android:id="@+id/tv_total" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_white" android:textSize="12sp" tools:text="100.00"/>
+
+            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_width="wrap_content" android:text="@string/contact_contact_dialog_create_order340" android:textColor="@color/common_hint" android:textSize="12sp"/>
+
+            <TextView android:gravity="center_vertical" android:id="@+id/tv_lever" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_white" android:textSize="12sp" tools:text="30"/>
+        </TableRow>
+
+
+    </TableLayout>
+
+    <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="match_parent" android:orientation="horizontal">
+
+        <Button android:background="@drawable/common_tip_border_50" android:id="@+id/btn_cancel" android:layout_height="40dp" android:layout_weight="1" android:layout_width="0dp" android:text="@string/contact_contact_dialog_close_order390" android:textColor="@color/common_tip"/>
+
+        <Button android:background="@drawable/common_tip_50" android:id="@+id/btn_confirm" android:layout_height="40dp" android:layout_marginLeft="20dp" android:layout_weight="1" android:layout_width="0dp" android:text="@string/contact_contact_dialog_close_order410" android:textColor="@color/common_white"/>
+
+    </LinearLayout>
+</LinearLayout>

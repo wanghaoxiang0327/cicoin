@@ -269,7 +269,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                             String text = data.getRes().get(position).getTitle();
                             tvNotice.setText(text);
                             ClickUtil.click(tvNotice, view -> {
-//                                NewsDetailActivity.start(getContext(), data.getRes().get(position), 1);
+                                NewsDetailActivity.start(getContext(), data.getRes().get(position), 1);
                             });
                         }
                     }, throwable -> {
@@ -291,11 +291,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     public void updateUI(String data) {
         if (data != null) {
             type = SpUtil.getInt("skip", 2);
-            if (data.equals("1")) {
-//                tvMode.setText(getString(R.string.app_sun));
-            } else {
-//                tvMode.setText(getString(R.string.app_night));
-            }
             initTextnotice();
         }
     }

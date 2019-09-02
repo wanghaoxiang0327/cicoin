@@ -28,4 +28,5 @@ android {
 dependencies {
     implementation project(path: ':common')
     implementation project(path: ':market')
+    implementation project(path: ':contact')
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:paddingBottom="3dp" android:paddingTop="3dp">
+
+    <TextView android:id="@+id/tv_no" android:layout_height="wrap_content" android:layout_weight="0.3" android:layout_width="0dp" android:text="@string/contact_contact_fragment_pankou40" android:textColor="@color/common_hint" android:textSize="12sp"/>
+
+    <TextView android:gravity="center" android:id="@+id/tv_price" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="0dp" android:text="@string/contact_contact_dialog_create_order190" android:textColor="@color/common_hint"/>
+
+    <TextView android:gravity="right" android:id="@+id/tv_num" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="0dp" android:text="@string/contact_contact_dialog_create_order230" android:textColor="@color/common_hint"/>
+
+
+</LinearLayout>

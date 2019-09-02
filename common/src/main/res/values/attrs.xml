@@ -17,4 +17,18 @@
     <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
         <item name="behavior_peekHeight">500dp</item>
     </style>
+
+    <declare-styleable name="SkinHeySpinner">
+        <attr format="color" name="itemTextColor"/>
+        <attr format="boolean" name="showArrow"/>
+        <attr format="reference" name="arrowSrc"/>
+        <attr format="reference" name="itemBackground"/>
+        <attr format="reference" name="popupBackground"/>
+        <attr format="integer" name="itemGravity"/>
+        <attr format="reference" name="arrowColor"/>
+        <attr format="reference" name="dividerColor"/>
+        <attr format="dimension" name="dividerHeight"/>
+        <attr format="boolean" name="tintColor"/>
+        <attr format="float" name="popupHeight"/>
+    </declare-styleable>
 </resources>

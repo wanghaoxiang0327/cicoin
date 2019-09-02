@@ -32,4 +32,5 @@ public class RoutePath {
     public static final String ABOUT ="/app/about" ;
 
     public static final String NEWS ="/app/news" ;
+    public static final String DEPTH_FRAGMENT ="/depth/depthFragment" ;
 }
