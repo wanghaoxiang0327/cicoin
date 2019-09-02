@@ -27,7 +27,7 @@ public class GlideImageLoader extends ImageLoader {
                 .error(R.mipmap.common_banner_default)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .transform(new GlideRoundTransformCenterCrop(20));
-        GlideApp.with(context)
+        Glide.with(context)
                 .load(path)
                 .apply(options)
                 .into(imageView);

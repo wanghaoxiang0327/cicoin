@@ -1,12 +1,11 @@
 package com.sskj.common.glide;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import com.bumptech.glide.Glide;
@@ -32,24 +31,24 @@ public final class GlideApp {
    * @see Glide#getPhotoCacheDir(Context)
    */
   @Nullable
-  public static File getPhotoCacheDir(@NonNull Context arg0) {
-    return Glide.getPhotoCacheDir(arg0);
+  public static File getPhotoCacheDir(@NonNull Context context) {
+    return Glide.getPhotoCacheDir(context);
   }
 
   /**
    * @see Glide#getPhotoCacheDir(Context, String)
    */
   @Nullable
-  public static File getPhotoCacheDir(@NonNull Context arg0, @NonNull String arg1) {
-    return Glide.getPhotoCacheDir(arg0, arg1);
+  public static File getPhotoCacheDir(@NonNull Context context, @NonNull String string) {
+    return Glide.getPhotoCacheDir(context, string);
   }
 
   /**
    * @see Glide#get(Context)
    */
   @NonNull
-  public static Glide get(@NonNull Context arg0) {
-    return Glide.get(arg0);
+  public static Glide get(@NonNull Context context) {
+    return Glide.get(context);
   }
 
   /**
@@ -57,7 +56,6 @@ public final class GlideApp {
    */
   @Deprecated
   @VisibleForTesting
-  @SuppressLint("VisibleForTests")
   public static void init(Glide glide) {
     Glide.init(glide);
   }
@@ -66,16 +64,14 @@ public final class GlideApp {
    * @see Glide#init(Context, GlideBuilder)
    */
   @VisibleForTesting
-  @SuppressLint("VisibleForTests")
-  public static void init(@NonNull Context arg0, @NonNull GlideBuilder arg1) {
-    Glide.init(arg0, arg1);
+  public static void init(@NonNull Context context, @NonNull GlideBuilder builder) {
+    Glide.init(context, builder);
   }
 
   /**
    * @see Glide#tearDown()
    */
   @VisibleForTesting
-  @SuppressLint("VisibleForTests")
   public static void tearDown() {
     Glide.tearDown();
   }
@@ -84,47 +80,48 @@ public final class GlideApp {
    * @see Glide#with(Context)
    */
   @NonNull
-  public static GlideRequests with(@NonNull Context arg0) {
-    return (GlideRequests) Glide.with(arg0);
+  public static GlideRequests with(@NonNull Context context) {
+    return (GlideRequests) Glide.with(context);
   }
 
   /**
    * @see Glide#with(Activity)
    */
   @NonNull
-  public static GlideRequests with(@NonNull Activity arg0) {
-    return (GlideRequests) Glide.with(arg0);
+  public static GlideRequests with(@NonNull Activity activity) {
+    return (GlideRequests) Glide.with(activity);
   }
 
   /**
    * @see Glide#with(FragmentActivity)
    */
   @NonNull
-  public static GlideRequests with(@NonNull FragmentActivity arg0) {
-    return (GlideRequests) Glide.with(arg0);
+  public static GlideRequests with(@NonNull FragmentActivity activity) {
+    return (GlideRequests) Glide.with(activity);
   }
 
   /**
    * @see Glide#with(Fragment)
    */
   @NonNull
-  public static GlideRequests with(@NonNull Fragment arg0) {
-    return (GlideRequests) Glide.with(arg0);
+  public static GlideRequests with(@NonNull Fragment fragment) {
+    return (GlideRequests) Glide.with(fragment);
   }
 
   /**
    * @see Glide#with(Fragment)
    */
+  @Deprecated
   @NonNull
-  public static GlideRequests with(@NonNull android.support.v4.app.Fragment arg0) {
-    return (GlideRequests) Glide.with(arg0);
+  public static GlideRequests with(@NonNull android.app.Fragment fragment) {
+    return (GlideRequests) Glide.with(fragment);
   }
 
   /**
    * @see Glide#with(View)
    */
   @NonNull
-  public static GlideRequests with(@NonNull View arg0) {
-    return (GlideRequests) Glide.with(arg0);
+  public static GlideRequests with(@NonNull View view) {
+    return (GlideRequests) Glide.with(view);
   }
 }
