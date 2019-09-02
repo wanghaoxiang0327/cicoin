@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CICOIN</string>
+    <string name="app_mainActivity1">首页</string>
+    <string name="app_mainActivity2">合约</string>
+    <string name="app_mainActivity3">挖矿</string>
+    <string name="app_mainActivity4">我的</string>
+</resources>

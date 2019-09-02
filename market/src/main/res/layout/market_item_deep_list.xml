@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/common_tab"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/common_margin"
+    android:paddingTop="8dp"
+    android:paddingRight="@dimen/common_margin"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/buy_position"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="买盘"
+        android:textColor="@color/common_text"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/buy_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="数量(btc)"
+        android:textColor="@color/common_text"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/buy_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:gravity="right"
+        android:text="价格(USDT)"
+        android:textColor="@color/common_text"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/sell_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:layout_marginLeft="10dp"
+        android:gravity="left"
+        android:text="价格(USDT)"
+        android:textColor="@color/common_text"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/sell_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="数量(btc)"
+        android:textColor="@color/common_text"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/sell_position"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="right"
+        android:text="卖盘"
+        android:textColor="@color/common_text"
+        android:textSize="12sp" />
+</LinearLayout>

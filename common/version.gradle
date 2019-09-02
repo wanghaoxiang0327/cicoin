@@ -1,0 +1,8 @@
+ext{
+    version = [
+            versionCode: 1,
+            versionName: "1.0.0",
+            minSdkVersion:19,
+            targetVerison:28
+    ]
+}

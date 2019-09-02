@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DepthShaderView">
+        <attr name="depth_sv_color" format="color" />
+        <attr name="depth_sv_progress" format="float" />
+        <attr name="depth_sv_max_progress" format="float" />
+        <attr name="depth_sv_direction" format="enum">
+            <enum name="depth_sv_left" value="0" />
+            <enum name="depth_sv_right" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <!--深度图DepthMapView-->
+    <declare-styleable name="DepthMapView">
+        <!--买入颜色-->
+        <attr name="depth_mv_buy_line_color" format="color|reference" />
+        <!--买入区域内部颜色-->
+        <attr name="depth_mv_buy_path_color" format="color|reference" />
+        <!--卖出颜色-->
+        <attr name="depth_mv_sell_line_color" format="color|reference" />
+        <!--卖出区域内部颜色-->
+        <attr name="depth_mv_sell_path_color" format="color|reference" />
+        <!--线条宽度-->
+        <attr name="depth_mv_line_width" format="dimension" />
+        <!--文字颜色-->
+        <attr name="depth_mv_text_color" format="color|reference" />
+        <!--背景颜色-->
+        <attr name="depth_mv_background_color" format="color|reference" />
+        <!--选中后文字背景颜色-->
+        <attr name="depth_mv_selector_background_color" format="color|reference" />
+        <!--右侧价格行数-->
+        <attr name="depth_mv_line_count" format="integer" />
+        <!--文字大小-->
+        <attr name="depth_mv_text_size" format="dimension" />
+        <!--圆圈半径-->
+        <attr name="depth_mv_circle_radius" format="dimension" />
+        <!--点的半径-->
+        <attr name="depth_mv_dot_radius" format="dimension" />
+    </declare-styleable>
+</resources>

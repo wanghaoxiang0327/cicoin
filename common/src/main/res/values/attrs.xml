@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+    <declare-styleable name="ToolBarLayout" tools:ignore="ResourceName">
+        <attr format="reference" name="left_img"/>
+        <attr format="reference" name="right_img"/>
+        <attr format="string" name="title"/>
+        <attr format="string" name="left_text"/>
+        <attr format="color" name="title_color"/>
+        <attr format="string" name="right_text"/>
+        <attr format="color" name="right_text_color"/>
+        <attr format="color" name="background_color"/>
+    </declare-styleable>
+    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+    </style>
+
+    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="behavior_peekHeight">500dp</item>
+    </style>
+</resources>

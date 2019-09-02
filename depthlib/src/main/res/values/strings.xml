@@ -1,0 +1,4 @@
+<resources>
+    <string name="trust_price">委托价</string>
+    <string name="trust_quantity">委托量</string>
+</resources>

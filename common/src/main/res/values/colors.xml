@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <color name="common_dialog">#022637</color>
+    <color name="common_status_bar">@color/common_action_bar</color>
+    <color name="common_action_bar">#131e30</color>
+    <color name="common_action_text">#d8dcf3</color>
+    <color name="common_tab">#001925</color>
+    <color name="common_hint">#417289</color>
+    <color name="common_tip">#74cffc</color>
+    <color name="common_white">#FFFFFF</color>
+    <color name="common_toolbar_title">#FFFFFF</color>
+    <color name="common_background">#001925</color>
+    <color name="common_normal_text">#d8dcf3</color>
+    <color name="common_divider">#3a3547</color>
+    <color name="common_button_text">#74cffc</color>
+    <color name="common_text">#ffffff</color>
+    <color name="common_dark">#071724</color>
+
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <color name="market_green">#32b28f</color>
+    <color name="market_red">#ff5755</color>
+    <color name="market_shader_top">#1d2f5b</color>
+    <color name="market_shader_middle">#1b2740</color>
+    <color name="market_shader_bottom">#1a2231</color>
+    <color name="market_chart_background">#191f29</color>
+</resources>
