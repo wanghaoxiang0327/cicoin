@@ -54,4 +54,7 @@
     <string name="xmlfragment_summary118">官网</string>
     <string name="xmlfragment_summary136">区块查询</string>
     <string name="xmlfragment_summary150">简介</string>
+    <string name="market_coins_name">名称</string>
+    <string name="market_news_price">最新价</string>
+    <string name="market_quote_change">涨跌幅</string>
 </resources>

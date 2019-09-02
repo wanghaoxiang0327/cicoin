@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.sskj.common.DividerLineItemDecoration;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
@@ -53,23 +52,21 @@ public class MarketListFragment extends BaseFragment<MarketListPresenter> {
         RxBus.getDefault().register(this);
         marketList.setLayoutManager(new LinearLayoutManager(getContext()));
         marketList.getItemAnimator().setChangeDuration(0);
-        marketList.addItemDecoration(new DividerLineItemDecoration(getContext())
-                .setLastDraw(false)
-                .setFirstDraw(false)
-                .setDividerColor(color(R.color.common_divider))
-        );
         adapter = new BaseAdapter<CoinBean>(R.layout.market_item_coin_list, null, marketList) {
             @Override
             public void bind(ViewHolder holder, CoinBean item) {
-                if (item.getName().contains("_")) {
-                    holder.setText(R.id.coin_name, item.getName().split("_")[0]);
+                if (holder.getPosition() == 0) {
+                    holder.setVisible(R.id.ll_coins_des, true);
+                }
+                if (item.getName().contains("/")) {
+                    holder.setText(R.id.coin_name, item.getName().split("/")[0]);
                 } else {
                     holder.setText(R.id.coin_name, item.getName());
                 }
-                holder.setText(R.id.coin_cny_price, "¥" + NumberUtils.keepDown(item.getCnyPrice(), 2));
+                holder.setText(R.id.coin_cny_price, "≈" + NumberUtils.keepDown(item.getCnyPrice(), 2) + "CNY");
                 holder.setText(R.id.coin_price, NumberUtils.keepDown(item.getPrice(), DigitUtils.getDigit(item.getCode())))
                         .setText(R.id.coin_change_rate, item.getChange() > 0 ? "+" + item.getChangeRate() : item.getChangeRate());
-                if (item.isUp()) {
+                if (!item.isUp()) {
                     holder.setTextColor(R.id.coin_price, color(R.color.market_green));
                     holder.setBackgroundRes(R.id.coin_change_rate, R.drawable.market_green_bg_50);
                 } else {

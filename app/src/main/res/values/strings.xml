@@ -4,4 +4,10 @@
     <string name="app_mainActivity2">合约</string>
     <string name="app_mainActivity3">挖矿</string>
     <string name="app_mainActivity4">我的</string>
+    <string name="app_invitation_to_return">邀请返佣</string>
+    <string name="app_invitation_to_return_des">邀请好友，获得更多佣金</string>
+    <string name="app_trading_guide">交易指南</string>
+    <string name="app_trading_guide_des">分分钟了解合约交易</string>
+    <string name="app_usdt_mining">USDT天天挖矿</string>
+    <string name="app_usdt_mining_des">天天挖矿收取海量USDT，原力越高增长越快</string>
 </resources>

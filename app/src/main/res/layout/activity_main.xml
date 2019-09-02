@@ -22,5 +22,5 @@
         android:background="@color/common_tab"
         app:indicator_height="0dp"
         app:textSelectColor="@color/common_tip"
-        app:textUnselectColor="@color/common_hint" />
+        app:textUnselectColor="@color/common_normal_text" />
 </LinearLayout>

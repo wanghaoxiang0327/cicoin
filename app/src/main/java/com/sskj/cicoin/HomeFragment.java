@@ -108,7 +108,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                         .setText(R.id.coin_price, NumberUtils.keepDown(item.getPrice(), DigitUtils.getDigit(item.getCode())))
                         .setText(R.id.coin_cny_price, "≈" + item.getCnyPrice() + " CNY")
                         .setText(R.id.coin_change_rate, item.getChange() > 0 ? "+" + item.getChangeRate() : item.getChangeRate());
-                if (item.isUp()) {
+                if (!item.isUp()) {
                     holder.setTextColor(R.id.coin_price, color(R.color.market_green));
                     holder.setTextColor(R.id.coin_change_rate, color(R.color.market_green));
                 } else {
