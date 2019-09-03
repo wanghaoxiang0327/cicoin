@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_background"
+    android:background="@color/common_white"
     android:orientation="vertical">
 
     <FrameLayout
@@ -21,9 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <View
                 android:layout_width="10dp"
@@ -36,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:text="做多"
-                android:textColor="@color/common_text"
+                android:textColor="@color/common_normal_text"
                 android:textSize="12sp" />
 
             <View
@@ -49,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="做空"
-                android:textColor="@color/common_text"
+                android:textColor="@color/common_normal_text"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -58,26 +57,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/common_background_dark"
         android:orientation="horizontal"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         android:paddingLeft="@dimen/common_margin"
-        android:paddingRight="@dimen/common_margin">
+        android:paddingTop="10dp"
+        android:paddingRight="@dimen/common_margin"
+        android:paddingBottom="10dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="买盘"
-            android:textColor="@color/common_text"
+            android:text="@string/market_buy"
+            android:textColor="@color/common_hint"
             android:textSize="12sp" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="数量(btc)"
-            android:textColor="@color/common_text"
+            android:text="@string/market_count"
+            android:textColor="@color/common_hint"
             android:textSize="12sp" />
 
         <TextView
@@ -85,8 +85,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="价格(USDT)"
-            android:textColor="@color/common_text"
+            android:text="@string/market_price"
+            android:textColor="@color/common_hint"
             android:textSize="12sp" />
 
         <TextView
@@ -94,8 +94,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="数量(btc)"
-            android:textColor="@color/common_text"
+            android:text="@string/market_count"
+            android:textColor="@color/common_hint"
             android:textSize="12sp" />
 
         <TextView
@@ -103,8 +103,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="right"
-            android:text="卖盘"
-            android:textColor="@color/common_text"
+            android:text="@string/market_sale"
+            android:textColor="@color/common_hint"
             android:textSize="12sp" />
     </LinearLayout>
 

@@ -4900,292 +4900,304 @@ public final class R2 {
     public static final int common_btn_bg = 0x7f080067;
 
     @DrawableRes
-    public static final int common_dialog_bg_5 = 0x7f080068;
+    public static final int common_buy_pankou_progress = 0x7f080068;
 
     @DrawableRes
-    public static final int common_edt_border_bg = 0x7f080069;
+    public static final int common_dialog_bg_5 = 0x7f080069;
 
     @DrawableRes
-    public static final int common_edt_line_bg = 0x7f08006a;
+    public static final int common_edt_border_bg = 0x7f08006a;
 
     @DrawableRes
-    public static final int common_green_bg_5 = 0x7f08006b;
+    public static final int common_edt_line_bg = 0x7f08006b;
 
     @DrawableRes
-    public static final int common_green_select = 0x7f08006c;
+    public static final int common_green_bg_5 = 0x7f08006c;
 
     @DrawableRes
-    public static final int common_hint_50 = 0x7f08006d;
+    public static final int common_green_select = 0x7f08006d;
 
     @DrawableRes
-    public static final int common_hint_border_50 = 0x7f08006e;
+    public static final int common_hint_50 = 0x7f08006e;
 
     @DrawableRes
-    public static final int common_red_bg_5 = 0x7f08006f;
+    public static final int common_hint_border_50 = 0x7f08006f;
 
     @DrawableRes
-    public static final int common_red_select = 0x7f080070;
+    public static final int common_progress_green = 0x7f080070;
 
     @DrawableRes
-    public static final int common_splash = 0x7f080071;
+    public static final int common_progress_red = 0x7f080071;
 
     @DrawableRes
-    public static final int common_tip_15 = 0x7f080072;
+    public static final int common_red_bg_5 = 0x7f080072;
 
     @DrawableRes
-    public static final int common_tip_50 = 0x7f080073;
+    public static final int common_red_select = 0x7f080073;
 
     @DrawableRes
-    public static final int common_tip_border = 0x7f080074;
+    public static final int common_sell_pankou_progress = 0x7f080074;
 
     @DrawableRes
-    public static final int common_tip_border_50 = 0x7f080075;
+    public static final int common_splash = 0x7f080075;
 
     @DrawableRes
-    public static final int common_white_corner5 = 0x7f080076;
+    public static final int common_tip_15 = 0x7f080076;
 
     @DrawableRes
-    public static final int def = 0x7f080077;
+    public static final int common_tip_50 = 0x7f080077;
 
     @DrawableRes
-    public static final int def_qq = 0x7f080078;
+    public static final int common_tip_border = 0x7f080078;
 
     @DrawableRes
-    public static final int design_bottom_navigation_item_background = 0x7f080079;
+    public static final int common_tip_border_50 = 0x7f080079;
 
     @DrawableRes
-    public static final int design_fab_background = 0x7f08007a;
+    public static final int common_white_corner5 = 0x7f08007a;
 
     @DrawableRes
-    public static final int design_ic_visibility = 0x7f08007b;
+    public static final int def = 0x7f08007b;
 
     @DrawableRes
-    public static final int design_ic_visibility_off = 0x7f08007c;
+    public static final int def_qq = 0x7f08007c;
 
     @DrawableRes
-    public static final int design_password_eye = 0x7f08007d;
+    public static final int design_bottom_navigation_item_background = 0x7f08007d;
 
     @DrawableRes
-    public static final int design_snackbar_background = 0x7f08007e;
+    public static final int design_fab_background = 0x7f08007e;
 
     @DrawableRes
-    public static final int dialog_custom_bg = 0x7f08007f;
+    public static final int design_ic_visibility = 0x7f08007f;
 
     @DrawableRes
-    public static final int dialog_shadow = 0x7f080080;
+    public static final int design_ic_visibility_off = 0x7f080080;
 
     @DrawableRes
-    public static final int gif_tag = 0x7f080081;
+    public static final int design_password_eye = 0x7f080081;
 
     @DrawableRes
-    public static final int gray_radius = 0x7f080082;
+    public static final int design_snackbar_background = 0x7f080082;
 
     @DrawableRes
-    public static final int ic_arrow = 0x7f080083;
+    public static final int dialog_custom_bg = 0x7f080083;
 
     @DrawableRes
-    public static final int ic_camera = 0x7f080084;
+    public static final int dialog_shadow = 0x7f080084;
 
     @DrawableRes
-    public static final int ic_check = 0x7f080085;
+    public static final int gif_tag = 0x7f080085;
 
     @DrawableRes
-    public static final int ic_checked = 0x7f080086;
+    public static final int gray_radius = 0x7f080086;
 
     @DrawableRes
-    public static final int ic_delete_photo = 0x7f080087;
+    public static final int ic_arrow = 0x7f080087;
 
     @DrawableRes
-    public static final int ic_dialog_close = 0x7f080088;
+    public static final int ic_camera = 0x7f080088;
 
     @DrawableRes
-    public static final int ic_dialog_default = 0x7f080089;
+    public static final int ic_check = 0x7f080089;
 
     @DrawableRes
-    public static final int ic_mtrl_chip_checked_black = 0x7f08008a;
+    public static final int ic_checked = 0x7f08008a;
 
     @DrawableRes
-    public static final int ic_mtrl_chip_checked_circle = 0x7f08008b;
+    public static final int ic_delete_photo = 0x7f08008b;
 
     @DrawableRes
-    public static final int ic_mtrl_chip_close_circle = 0x7f08008c;
+    public static final int ic_dialog_close = 0x7f08008c;
 
     @DrawableRes
-    public static final int ic_placeholder = 0x7f08008d;
+    public static final int ic_dialog_default = 0x7f08008d;
 
     @DrawableRes
-    public static final int ic_video_play = 0x7f08008e;
+    public static final int ic_mtrl_chip_checked_black = 0x7f08008e;
 
     @DrawableRes
-    public static final int icon_audio = 0x7f08008f;
+    public static final int ic_mtrl_chip_checked_circle = 0x7f08008f;
 
     @DrawableRes
-    public static final int image_placeholder = 0x7f080090;
+    public static final int ic_mtrl_chip_close_circle = 0x7f080090;
 
     @DrawableRes
-    public static final int item_select_bg = 0x7f080091;
+    public static final int ic_placeholder = 0x7f080091;
 
     @DrawableRes
-    public static final int kprogresshud_spinner = 0x7f080092;
+    public static final int ic_video_play = 0x7f080092;
 
     @DrawableRes
-    public static final int leak_canary_icon_foreground = 0x7f080093;
+    public static final int icon_audio = 0x7f080093;
 
     @DrawableRes
-    public static final int leak_canary_notification = 0x7f080094;
+    public static final int image_placeholder = 0x7f080094;
 
     @DrawableRes
-    public static final int leak_canary_toast_background = 0x7f080095;
+    public static final int item_select_bg = 0x7f080095;
 
     @DrawableRes
-    public static final int more_1x = 0x7f080096;
+    public static final int kprogresshud_spinner = 0x7f080096;
 
     @DrawableRes
-    public static final int mtrl_snackbar_background = 0x7f080097;
+    public static final int leak_canary_icon_foreground = 0x7f080097;
 
     @DrawableRes
-    public static final int mtrl_tabs_default_indicator = 0x7f080098;
+    public static final int leak_canary_notification = 0x7f080098;
 
     @DrawableRes
-    public static final int navigation_empty_icon = 0x7f080099;
+    public static final int leak_canary_toast_background = 0x7f080099;
 
     @DrawableRes
-    public static final int no_banner = 0x7f08009a;
+    public static final int more_1x = 0x7f08009a;
 
     @DrawableRes
-    public static final int notification_action_background = 0x7f08009b;
+    public static final int mtrl_snackbar_background = 0x7f08009b;
 
     @DrawableRes
-    public static final int notification_bg = 0x7f08009c;
+    public static final int mtrl_tabs_default_indicator = 0x7f08009c;
 
     @DrawableRes
-    public static final int notification_bg_low = 0x7f08009d;
+    public static final int navigation_empty_icon = 0x7f08009d;
 
     @DrawableRes
-    public static final int notification_bg_low_normal = 0x7f08009e;
+    public static final int no_banner = 0x7f08009e;
 
     @DrawableRes
-    public static final int notification_bg_low_pressed = 0x7f08009f;
+    public static final int notification_action_background = 0x7f08009f;
 
     @DrawableRes
-    public static final int notification_bg_normal = 0x7f0800a0;
+    public static final int notification_bg = 0x7f0800a0;
 
     @DrawableRes
-    public static final int notification_bg_normal_pressed = 0x7f0800a1;
+    public static final int notification_bg_low = 0x7f0800a1;
 
     @DrawableRes
-    public static final int notification_icon_background = 0x7f0800a2;
+    public static final int notification_bg_low_normal = 0x7f0800a2;
 
     @DrawableRes
-    public static final int notification_template_icon_bg = 0x7f0800a3;
+    public static final int notification_bg_low_pressed = 0x7f0800a3;
 
     @DrawableRes
-    public static final int notification_template_icon_low_bg = 0x7f0800a4;
+    public static final int notification_bg_normal = 0x7f0800a4;
 
     @DrawableRes
-    public static final int notification_tile_bg = 0x7f0800a5;
+    public static final int notification_bg_normal_pressed = 0x7f0800a5;
 
     @DrawableRes
-    public static final int notify_panel_notification_icon_bg = 0x7f0800a6;
+    public static final int notification_icon_background = 0x7f0800a6;
 
     @DrawableRes
-    public static final int num_oval = 0x7f0800a7;
+    public static final int notification_template_icon_bg = 0x7f0800a7;
 
     @DrawableRes
-    public static final int orange_oval = 0x7f0800a8;
+    public static final int notification_template_icon_low_bg = 0x7f0800a8;
 
     @DrawableRes
-    public static final int p_seekbar_thumb_normal = 0x7f0800a9;
+    public static final int notification_tile_bg = 0x7f0800a9;
 
     @DrawableRes
-    public static final int p_seekbar_thumb_pressed = 0x7f0800aa;
+    public static final int notify_panel_notification_icon_bg = 0x7f0800aa;
 
     @DrawableRes
-    public static final int picture_audio = 0x7f0800ab;
+    public static final int num_oval = 0x7f0800ab;
 
     @DrawableRes
-    public static final int picture_back = 0x7f0800ac;
+    public static final int orange_oval = 0x7f0800ac;
 
     @DrawableRes
-    public static final int picture_btn_music_shape = 0x7f0800ad;
+    public static final int p_seekbar_thumb_normal = 0x7f0800ad;
 
     @DrawableRes
-    public static final int picture_checkbox_selector = 0x7f0800ae;
+    public static final int p_seekbar_thumb_pressed = 0x7f0800ae;
 
     @DrawableRes
-    public static final int picture_layer_progress = 0x7f0800af;
+    public static final int picture_audio = 0x7f0800af;
 
     @DrawableRes
-    public static final int picture_sb_thumb = 0x7f0800b0;
+    public static final int picture_back = 0x7f0800b0;
 
     @DrawableRes
-    public static final int picture_warning = 0x7f0800b1;
+    public static final int picture_btn_music_shape = 0x7f0800b1;
 
     @DrawableRes
-    public static final int progress = 0x7f0800b2;
+    public static final int picture_checkbox_selector = 0x7f0800b2;
 
     @DrawableRes
-    public static final int sel = 0x7f0800b3;
+    public static final int picture_layer_progress = 0x7f0800b3;
 
     @DrawableRes
-    public static final int sel_qq = 0x7f0800b4;
+    public static final int picture_sb_thumb = 0x7f0800b4;
 
     @DrawableRes
-    public static final int selector_white = 0x7f0800b5;
+    public static final int picture_warning = 0x7f0800b5;
 
     @DrawableRes
-    public static final int tooltip_frame_dark = 0x7f0800b6;
+    public static final int progress = 0x7f0800b6;
 
     @DrawableRes
-    public static final int tooltip_frame_light = 0x7f0800b7;
+    public static final int sel = 0x7f0800b7;
 
     @DrawableRes
-    public static final int ucrop_ic_angle = 0x7f0800b8;
+    public static final int sel_qq = 0x7f0800b8;
 
     @DrawableRes
-    public static final int ucrop_ic_crop = 0x7f0800b9;
+    public static final int selector_white = 0x7f0800b9;
 
     @DrawableRes
-    public static final int ucrop_ic_cross = 0x7f0800ba;
+    public static final int tooltip_frame_dark = 0x7f0800ba;
 
     @DrawableRes
-    public static final int ucrop_ic_delete_photo = 0x7f0800bb;
+    public static final int tooltip_frame_light = 0x7f0800bb;
 
     @DrawableRes
-    public static final int ucrop_ic_done = 0x7f0800bc;
+    public static final int ucrop_ic_angle = 0x7f0800bc;
 
     @DrawableRes
-    public static final int ucrop_ic_next = 0x7f0800bd;
+    public static final int ucrop_ic_crop = 0x7f0800bd;
 
     @DrawableRes
-    public static final int ucrop_ic_reset = 0x7f0800be;
+    public static final int ucrop_ic_cross = 0x7f0800be;
 
     @DrawableRes
-    public static final int ucrop_ic_rotate = 0x7f0800bf;
+    public static final int ucrop_ic_delete_photo = 0x7f0800bf;
 
     @DrawableRes
-    public static final int ucrop_ic_scale = 0x7f0800c0;
+    public static final int ucrop_ic_done = 0x7f0800c0;
 
     @DrawableRes
-    public static final int ucrop_oval_true = 0x7f0800c1;
+    public static final int ucrop_ic_next = 0x7f0800c1;
 
     @DrawableRes
-    public static final int ucrop_shadow_upside = 0x7f0800c2;
+    public static final int ucrop_ic_reset = 0x7f0800c2;
 
     @DrawableRes
-    public static final int ucrop_vector_ic_crop = 0x7f0800c3;
+    public static final int ucrop_ic_rotate = 0x7f0800c3;
 
     @DrawableRes
-    public static final int ucrop_vector_loader = 0x7f0800c4;
+    public static final int ucrop_ic_scale = 0x7f0800c4;
 
     @DrawableRes
-    public static final int ucrop_vector_loader_animated = 0x7f0800c5;
+    public static final int ucrop_oval_true = 0x7f0800c5;
 
     @DrawableRes
-    public static final int video_icon = 0x7f0800c6;
+    public static final int ucrop_shadow_upside = 0x7f0800c6;
 
     @DrawableRes
-    public static final int white_radius = 0x7f0800c7;
+    public static final int ucrop_vector_ic_crop = 0x7f0800c7;
+
+    @DrawableRes
+    public static final int ucrop_vector_loader = 0x7f0800c8;
+
+    @DrawableRes
+    public static final int ucrop_vector_loader_animated = 0x7f0800c9;
+
+    @DrawableRes
+    public static final int video_icon = 0x7f0800ca;
+
+    @DrawableRes
+    public static final int white_radius = 0x7f0800cb;
   }
 
   public static final class id {
@@ -7151,397 +7163,403 @@ public final class R2 {
     public static final int common_jsonCallBack1 = 0x7f14005e;
 
     @StringRes
-    public static final int common_no_data = 0x7f14005f;
+    public static final int common_make_empty = 0x7f14005f;
 
     @StringRes
-    public static final int common_patternUtils1 = 0x7f140060;
+    public static final int common_make_more = 0x7f140060;
 
     @StringRes
-    public static final int common_patternUtils2 = 0x7f140061;
+    public static final int common_no_data = 0x7f140061;
 
     @StringRes
-    public static final int common_patternUtils3 = 0x7f140062;
+    public static final int common_patternUtils1 = 0x7f140062;
 
     @StringRes
-    public static final int common_patternUtils4 = 0x7f140063;
+    public static final int common_patternUtils2 = 0x7f140063;
 
     @StringRes
-    public static final int common_refreshActivity1 = 0x7f140064;
+    public static final int common_patternUtils3 = 0x7f140064;
 
     @StringRes
-    public static final int common_scanActivity1 = 0x7f140065;
+    public static final int common_patternUtils4 = 0x7f140065;
 
     @StringRes
-    public static final int common_scanActivity2 = 0x7f140066;
+    public static final int common_refreshActivity1 = 0x7f140066;
 
     @StringRes
-    public static final int common_webActivity1 = 0x7f140067;
+    public static final int common_scanActivity1 = 0x7f140067;
 
     @StringRes
-    public static final int continue_downloading = 0x7f140068;
+    public static final int common_scanActivity2 = 0x7f140068;
 
     @StringRes
-    public static final int dialog_new = 0x7f140069;
+    public static final int common_webActivity1 = 0x7f140069;
 
     @StringRes
-    public static final int dialog_new_size = 0x7f14006a;
+    public static final int continue_downloading = 0x7f14006a;
 
     @StringRes
-    public static final int download_completed = 0x7f14006b;
+    public static final int dialog_new = 0x7f14006b;
 
     @StringRes
-    public static final int download_error = 0x7f14006c;
+    public static final int dialog_new_size = 0x7f14006c;
 
     @StringRes
-    public static final int error_config = 0x7f14006d;
+    public static final int download_completed = 0x7f14006d;
 
     @StringRes
-    public static final int fab_transformation_scrim_behavior = 0x7f14006e;
+    public static final int download_error = 0x7f14006e;
 
     @StringRes
-    public static final int fab_transformation_sheet_behavior = 0x7f14006f;
+    public static final int error_config = 0x7f14006f;
 
     @StringRes
-    public static final int gif_tag = 0x7f140070;
+    public static final int fab_transformation_scrim_behavior = 0x7f140070;
 
     @StringRes
-    public static final int hide_bottom_view_on_scroll_behavior = 0x7f140071;
+    public static final int fab_transformation_sheet_behavior = 0x7f140071;
 
     @StringRes
-    public static final int isUp = 0x7f140072;
+    public static final int gif_tag = 0x7f140072;
 
     @StringRes
-    public static final int latest_version = 0x7f140073;
+    public static final int hide_bottom_view_on_scroll_behavior = 0x7f140073;
 
     @StringRes
-    public static final int leak_canary_analysis_failed = 0x7f140074;
+    public static final int isUp = 0x7f140074;
 
     @StringRes
-    public static final int leak_canary_class_has_leaked = 0x7f140075;
+    public static final int latest_version = 0x7f140075;
 
     @StringRes
-    public static final int leak_canary_class_has_leaked_retaining = 0x7f140076;
+    public static final int leak_canary_analysis_failed = 0x7f140076;
 
     @StringRes
-    public static final int leak_canary_class_no_leak = 0x7f140077;
+    public static final int leak_canary_class_has_leaked = 0x7f140077;
 
     @StringRes
-    public static final int leak_canary_could_not_save_text = 0x7f140078;
+    public static final int leak_canary_class_has_leaked_retaining = 0x7f140078;
 
     @StringRes
-    public static final int leak_canary_delete = 0x7f140079;
+    public static final int leak_canary_class_no_leak = 0x7f140079;
 
     @StringRes
-    public static final int leak_canary_delete_all = 0x7f14007a;
+    public static final int leak_canary_could_not_save_text = 0x7f14007a;
 
     @StringRes
-    public static final int leak_canary_delete_all_leaks_title = 0x7f14007b;
+    public static final int leak_canary_delete = 0x7f14007b;
 
     @StringRes
-    public static final int leak_canary_display_activity_label = 0x7f14007c;
+    public static final int leak_canary_delete_all = 0x7f14007c;
 
     @StringRes
-    public static final int leak_canary_download_dump = 0x7f14007d;
+    public static final int leak_canary_delete_all_leaks_title = 0x7f14007d;
 
     @StringRes
-    public static final int leak_canary_excluded_row = 0x7f14007e;
+    public static final int leak_canary_display_activity_label = 0x7f14007e;
 
     @StringRes
-    public static final int leak_canary_failure_report = 0x7f14007f;
+    public static final int leak_canary_download_dump = 0x7f14007f;
 
     @StringRes
-    public static final int leak_canary_help_detail = 0x7f140080;
+    public static final int leak_canary_excluded_row = 0x7f140080;
 
     @StringRes
-    public static final int leak_canary_help_title = 0x7f140081;
+    public static final int leak_canary_failure_report = 0x7f140081;
 
     @StringRes
-    public static final int leak_canary_leak_excluded = 0x7f140082;
+    public static final int leak_canary_help_detail = 0x7f140082;
 
     @StringRes
-    public static final int leak_canary_leak_excluded_retaining = 0x7f140083;
+    public static final int leak_canary_help_title = 0x7f140083;
 
     @StringRes
-    public static final int leak_canary_leak_list_title = 0x7f140084;
+    public static final int leak_canary_leak_excluded = 0x7f140084;
 
     @StringRes
-    public static final int leak_canary_no_leak_details = 0x7f140085;
+    public static final int leak_canary_leak_excluded_retaining = 0x7f140085;
 
     @StringRes
-    public static final int leak_canary_notification_analysing = 0x7f140086;
+    public static final int leak_canary_leak_list_title = 0x7f140086;
 
     @StringRes
-    public static final int leak_canary_notification_channel = 0x7f140087;
+    public static final int leak_canary_no_leak_details = 0x7f140087;
 
     @StringRes
-    public static final int leak_canary_notification_dumping = 0x7f140088;
+    public static final int leak_canary_notification_analysing = 0x7f140088;
 
     @StringRes
-    public static final int leak_canary_notification_foreground_text = 0x7f140089;
+    public static final int leak_canary_notification_channel = 0x7f140089;
 
     @StringRes
-    public static final int leak_canary_notification_message = 0x7f14008a;
+    public static final int leak_canary_notification_dumping = 0x7f14008a;
 
     @StringRes
-    public static final int leak_canary_notification_reporting = 0x7f14008b;
+    public static final int leak_canary_notification_foreground_text = 0x7f14008b;
 
     @StringRes
-    public static final int leak_canary_permission_not_granted = 0x7f14008c;
+    public static final int leak_canary_notification_message = 0x7f14008c;
 
     @StringRes
-    public static final int leak_canary_permission_notification_text = 0x7f14008d;
+    public static final int leak_canary_notification_reporting = 0x7f14008d;
 
     @StringRes
-    public static final int leak_canary_permission_notification_title = 0x7f14008e;
+    public static final int leak_canary_permission_not_granted = 0x7f14008e;
 
     @StringRes
-    public static final int leak_canary_result_failure_no_disk_space = 0x7f14008f;
+    public static final int leak_canary_permission_notification_text = 0x7f14008f;
 
     @StringRes
-    public static final int leak_canary_result_failure_no_file = 0x7f140090;
+    public static final int leak_canary_permission_notification_title = 0x7f140090;
 
     @StringRes
-    public static final int leak_canary_result_failure_title = 0x7f140091;
+    public static final int leak_canary_result_failure_no_disk_space = 0x7f140091;
 
     @StringRes
-    public static final int leak_canary_share_heap_dump = 0x7f140092;
+    public static final int leak_canary_result_failure_no_file = 0x7f140092;
 
     @StringRes
-    public static final int leak_canary_share_leak = 0x7f140093;
+    public static final int leak_canary_result_failure_title = 0x7f140093;
 
     @StringRes
-    public static final int leak_canary_share_with = 0x7f140094;
+    public static final int leak_canary_share_heap_dump = 0x7f140094;
 
     @StringRes
-    public static final int leak_canary_storage_permission_activity_label = 0x7f140095;
+    public static final int leak_canary_share_leak = 0x7f140095;
 
     @StringRes
-    public static final int leak_canary_toast_heap_dump = 0x7f140096;
+    public static final int leak_canary_share_with = 0x7f140096;
 
     @StringRes
-    public static final int mtrl_chip_close_icon_content_description = 0x7f140097;
+    public static final int leak_canary_storage_permission_activity_label = 0x7f140097;
 
     @StringRes
-    public static final int original_y = 0x7f140098;
+    public static final int leak_canary_toast_heap_dump = 0x7f140098;
 
     @StringRes
-    public static final int password_toggle_content_description = 0x7f140099;
+    public static final int mtrl_chip_close_icon_content_description = 0x7f140099;
 
     @StringRes
-    public static final int path_password_eye = 0x7f14009a;
+    public static final int original_y = 0x7f14009a;
 
     @StringRes
-    public static final int path_password_eye_mask_strike_through = 0x7f14009b;
+    public static final int password_toggle_content_description = 0x7f14009b;
 
     @StringRes
-    public static final int path_password_eye_mask_visible = 0x7f14009c;
+    public static final int path_password_eye = 0x7f14009c;
 
     @StringRes
-    public static final int path_password_strike_through = 0x7f14009d;
+    public static final int path_password_eye_mask_strike_through = 0x7f14009d;
 
     @StringRes
-    public static final int permission_hint = 0x7f14009e;
+    public static final int path_password_eye_mask_visible = 0x7f14009e;
 
     @StringRes
-    public static final int picture_all_audio = 0x7f14009f;
+    public static final int path_password_strike_through = 0x7f14009f;
 
     @StringRes
-    public static final int picture_audio = 0x7f1400a0;
+    public static final int permission_hint = 0x7f1400a0;
 
     @StringRes
-    public static final int picture_audio_empty = 0x7f1400a1;
+    public static final int picture_all_audio = 0x7f1400a1;
 
     @StringRes
-    public static final int picture_audio_error = 0x7f1400a2;
+    public static final int picture_audio = 0x7f1400a2;
 
     @StringRes
-    public static final int picture_camera = 0x7f1400a3;
+    public static final int picture_audio_empty = 0x7f1400a3;
 
     @StringRes
-    public static final int picture_camera_roll = 0x7f1400a4;
+    public static final int picture_audio_error = 0x7f1400a4;
 
     @StringRes
-    public static final int picture_cancel = 0x7f1400a5;
+    public static final int picture_camera = 0x7f1400a5;
 
     @StringRes
-    public static final int picture_completed = 0x7f1400a6;
+    public static final int picture_camera_roll = 0x7f1400a6;
 
     @StringRes
-    public static final int picture_confirm = 0x7f1400a7;
+    public static final int picture_cancel = 0x7f1400a7;
 
     @StringRes
-    public static final int picture_done = 0x7f1400a8;
+    public static final int picture_completed = 0x7f1400a8;
 
     @StringRes
-    public static final int picture_done_front_num = 0x7f1400a9;
+    public static final int picture_confirm = 0x7f1400a9;
 
     @StringRes
-    public static final int picture_empty = 0x7f1400aa;
+    public static final int picture_done = 0x7f1400aa;
 
     @StringRes
-    public static final int picture_empty_audio_title = 0x7f1400ab;
+    public static final int picture_done_front_num = 0x7f1400ab;
 
     @StringRes
-    public static final int picture_empty_title = 0x7f1400ac;
+    public static final int picture_empty = 0x7f1400ac;
 
     @StringRes
-    public static final int picture_error = 0x7f1400ad;
+    public static final int picture_empty_audio_title = 0x7f1400ad;
 
     @StringRes
-    public static final int picture_jurisdiction = 0x7f1400ae;
+    public static final int picture_empty_title = 0x7f1400ae;
 
     @StringRes
-    public static final int picture_long_chart = 0x7f1400af;
+    public static final int picture_error = 0x7f1400af;
 
     @StringRes
-    public static final int picture_message_max_num = 0x7f1400b0;
+    public static final int picture_jurisdiction = 0x7f1400b0;
 
     @StringRes
-    public static final int picture_message_video_max_num = 0x7f1400b1;
+    public static final int picture_long_chart = 0x7f1400b1;
 
     @StringRes
-    public static final int picture_min_img_num = 0x7f1400b2;
+    public static final int picture_message_max_num = 0x7f1400b2;
 
     @StringRes
-    public static final int picture_min_video_num = 0x7f1400b3;
+    public static final int picture_message_video_max_num = 0x7f1400b3;
 
     @StringRes
-    public static final int picture_pause_audio = 0x7f1400b4;
+    public static final int picture_min_img_num = 0x7f1400b4;
 
     @StringRes
-    public static final int picture_photograph = 0x7f1400b5;
+    public static final int picture_min_video_num = 0x7f1400b5;
 
     @StringRes
-    public static final int picture_play_audio = 0x7f1400b6;
+    public static final int picture_pause_audio = 0x7f1400b6;
 
     @StringRes
-    public static final int picture_please = 0x7f1400b7;
+    public static final int picture_photograph = 0x7f1400b7;
 
     @StringRes
-    public static final int picture_please_select = 0x7f1400b8;
+    public static final int picture_play_audio = 0x7f1400b8;
 
     @StringRes
-    public static final int picture_preview = 0x7f1400b9;
+    public static final int picture_please = 0x7f1400b9;
 
     @StringRes
-    public static final int picture_prompt = 0x7f1400ba;
+    public static final int picture_please_select = 0x7f1400ba;
 
     @StringRes
-    public static final int picture_prompt_content = 0x7f1400bb;
+    public static final int picture_preview = 0x7f1400bb;
 
     @StringRes
-    public static final int picture_quit_audio = 0x7f1400bc;
+    public static final int picture_prompt = 0x7f1400bc;
 
     @StringRes
-    public static final int picture_record_video = 0x7f1400bd;
+    public static final int picture_prompt_content = 0x7f1400bd;
 
     @StringRes
-    public static final int picture_rule = 0x7f1400be;
+    public static final int picture_quit_audio = 0x7f1400be;
 
     @StringRes
-    public static final int picture_save_error = 0x7f1400bf;
+    public static final int picture_record_video = 0x7f1400bf;
 
     @StringRes
-    public static final int picture_save_success = 0x7f1400c0;
+    public static final int picture_rule = 0x7f1400c0;
 
     @StringRes
-    public static final int picture_stop_audio = 0x7f1400c1;
+    public static final int picture_save_error = 0x7f1400c1;
 
     @StringRes
-    public static final int picture_take_picture = 0x7f1400c2;
+    public static final int picture_save_success = 0x7f1400c2;
 
     @StringRes
-    public static final int picture_tape = 0x7f1400c3;
+    public static final int picture_stop_audio = 0x7f1400c3;
 
     @StringRes
-    public static final int picture_video_error = 0x7f1400c4;
+    public static final int picture_take_picture = 0x7f1400c4;
 
     @StringRes
-    public static final int picture_video_toast = 0x7f1400c5;
+    public static final int picture_tape = 0x7f1400c5;
 
     @StringRes
-    public static final int picture_warning = 0x7f1400c6;
+    public static final int picture_video_error = 0x7f1400c6;
 
     @StringRes
-    public static final int read_readme = 0x7f1400c7;
+    public static final int picture_video_toast = 0x7f1400c7;
 
     @StringRes
-    public static final int search_menu_title = 0x7f1400c8;
+    public static final int picture_warning = 0x7f1400c8;
 
     @StringRes
-    public static final int spd = 0x7f1400c9;
+    public static final int read_readme = 0x7f1400c9;
 
     @StringRes
-    public static final int srl_component_falsify = 0x7f1400ca;
+    public static final int search_menu_title = 0x7f1400ca;
 
     @StringRes
-    public static final int srl_content_empty = 0x7f1400cb;
+    public static final int spd = 0x7f1400cb;
 
     @StringRes
-    public static final int start_download = 0x7f1400cc;
+    public static final int srl_component_falsify = 0x7f1400cc;
 
     @StringRes
-    public static final int start_download_hint = 0x7f1400cd;
+    public static final int srl_content_empty = 0x7f1400cd;
 
     @StringRes
-    public static final int start_downloading = 0x7f1400ce;
+    public static final int start_download = 0x7f1400ce;
 
     @StringRes
-    public static final int status_bar_notification_info_overflow = 0x7f1400cf;
+    public static final int start_download_hint = 0x7f1400cf;
 
     @StringRes
-    public static final int strLoadViewFactory200 = 0x7f1400d0;
+    public static final int start_downloading = 0x7f1400d0;
 
     @StringRes
-    public static final int strLoadViewFactory201 = 0x7f1400d1;
+    public static final int status_bar_notification_info_overflow = 0x7f1400d1;
 
     @StringRes
-    public static final int strLoadViewFactory202 = 0x7f1400d2;
+    public static final int strLoadViewFactory200 = 0x7f1400d2;
 
     @StringRes
-    public static final int strLoadViewFactory203 = 0x7f1400d3;
+    public static final int strLoadViewFactory201 = 0x7f1400d3;
 
     @StringRes
-    public static final int strLoadViewFactory204 = 0x7f1400d4;
+    public static final int strLoadViewFactory202 = 0x7f1400d4;
 
     @StringRes
-    public static final int strLoadViewFactory205 = 0x7f1400d5;
+    public static final int strLoadViewFactory203 = 0x7f1400d5;
 
     @StringRes
-    public static final int strLoadViewFactory206 = 0x7f1400d6;
+    public static final int strLoadViewFactory204 = 0x7f1400d6;
 
     @StringRes
-    public static final int strLoadViewFactory207 = 0x7f1400d7;
+    public static final int strLoadViewFactory205 = 0x7f1400d7;
 
     @StringRes
-    public static final int strLoadViewFactory208 = 0x7f1400d8;
+    public static final int strLoadViewFactory206 = 0x7f1400d8;
 
     @StringRes
-    public static final int strLoadViewFactory209 = 0x7f1400d9;
+    public static final int strLoadViewFactory207 = 0x7f1400d9;
 
     @StringRes
-    public static final int text_empty = 0x7f1400da;
+    public static final int strLoadViewFactory208 = 0x7f1400da;
 
     @StringRes
-    public static final int text_retry = 0x7f1400db;
+    public static final int strLoadViewFactory209 = 0x7f1400db;
 
     @StringRes
-    public static final int ucrop_error_input_data_is_absent = 0x7f1400dc;
+    public static final int text_empty = 0x7f1400dc;
 
     @StringRes
-    public static final int ucrop_label_edit_photo = 0x7f1400dd;
+    public static final int text_retry = 0x7f1400dd;
 
     @StringRes
-    public static final int ucrop_label_original = 0x7f1400de;
+    public static final int ucrop_error_input_data_is_absent = 0x7f1400de;
 
     @StringRes
-    public static final int ucrop_menu_crop = 0x7f1400df;
+    public static final int ucrop_label_edit_photo = 0x7f1400df;
 
     @StringRes
-    public static final int ucrop_mutate_exception_hint = 0x7f1400e0;
+    public static final int ucrop_label_original = 0x7f1400e0;
 
     @StringRes
-    public static final int update = 0x7f1400e1;
+    public static final int ucrop_menu_crop = 0x7f1400e1;
+
+    @StringRes
+    public static final int ucrop_mutate_exception_hint = 0x7f1400e2;
+
+    @StringRes
+    public static final int update = 0x7f1400e3;
   }
 
   public static final class style {
@@ -9283,34 +9301,40 @@ public final class R2 {
     public static final int commonSplash = 0x7f150243;
 
     @StyleRes
-    public static final int common_custom_dialog = 0x7f150244;
+    public static final int common_buy_pankou_progress = 0x7f150244;
 
     @StyleRes
-    public static final int leak_canary_LeakCanary_Base = 0x7f150245;
+    public static final int common_custom_dialog = 0x7f150245;
 
     @StyleRes
-    public static final int leak_canary_Theme_Transparent = 0x7f150246;
+    public static final int common_pankou_progress = 0x7f150246;
 
     @StyleRes
-    public static final int picture_alert_dialog = 0x7f150247;
+    public static final int leak_canary_LeakCanary_Base = 0x7f150247;
 
     @StyleRes
-    public static final int picture_default_style = 0x7f150248;
+    public static final int leak_canary_Theme_Transparent = 0x7f150248;
 
     @StyleRes
-    public static final int ucrop_ImageViewWidgetIcon = 0x7f150249;
+    public static final int picture_alert_dialog = 0x7f150249;
 
     @StyleRes
-    public static final int ucrop_TextViewCropAspectRatio = 0x7f15024a;
+    public static final int picture_default_style = 0x7f15024a;
 
     @StyleRes
-    public static final int ucrop_TextViewWidgetText = 0x7f15024b;
+    public static final int ucrop_ImageViewWidgetIcon = 0x7f15024b;
 
     @StyleRes
-    public static final int ucrop_WrapperIconState = 0x7f15024c;
+    public static final int ucrop_TextViewCropAspectRatio = 0x7f15024c;
 
     @StyleRes
-    public static final int ucrop_WrapperRotateButton = 0x7f15024d;
+    public static final int ucrop_TextViewWidgetText = 0x7f15024d;
+
+    @StyleRes
+    public static final int ucrop_WrapperIconState = 0x7f15024e;
+
+    @StyleRes
+    public static final int ucrop_WrapperRotateButton = 0x7f15024f;
   }
 
   public static final class styleable {

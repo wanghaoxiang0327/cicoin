@@ -4,7 +4,7 @@ import com.sskj.common.App;
 import com.sskj.contact.R;
 
 public enum Trade {
-    UP( App.INSTANCE.getString(R.string.contact_dealFragment5), 1), DOWN( App.INSTANCE.getString(R.string.contact_dealFragment6), 2);
+    UP(App.INSTANCE.getString(R.string.common_make_more), 1), DOWN(App.INSTANCE.getString(R.string.common_make_empty), 2);
 
     public int value;
     public String name;

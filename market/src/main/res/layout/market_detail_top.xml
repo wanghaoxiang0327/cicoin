@@ -60,6 +60,16 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_price"
         app:layout_constraintVertical_bias="0.0" />
 
+    <ImageView
+        android:id="@+id/iv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="18dp"
+        android:src="@mipmap/market_rise"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_change_rate" />
+
     <TextView
         android:id="@+id/tvCny"
         android:layout_width="0dp"
@@ -75,23 +85,49 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:text="@string/market_low"
         android:textColor="@color/common_hint"
         android:textSize="8sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_low"
-        app:layout_constraintEnd_toStartOf="@+id/tv_low" />
+        app:layout_constraintEnd_toStartOf="@+id/tv_low"
+        app:layout_constraintTop_toBottomOf="@+id/tv_high" />
 
     <TextView
         android:id="@+id/tv_low"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:gravity="end"
         android:text="0.0000"
         android:textColor="@color/common_hint"
         android:textSize="8sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_change_rate"
         app:layout_constraintEnd_toEndOf="@+id/tv_high"
-        app:layout_constraintStart_toStartOf="@+id/tv_high" />
+        app:layout_constraintStart_toStartOf="@+id/tv_high"
+        app:layout_constraintTop_toBottomOf="@+id/tv_high" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/market_amount"
+        android:textColor="@color/common_hint"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_low"
+        app:layout_constraintTop_toBottomOf="@+id/tv_low" />
+
+    <TextView
+        android:id="@+id/tv_the_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="end"
+        android:text="0.0000"
+        android:textColor="@color/common_hint"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_high"
+        app:layout_constraintStart_toStartOf="@+id/tv_high"
+        app:layout_constraintTop_toBottomOf="@+id/tv_low" />
 
 </android.support.constraint.ConstraintLayout>

@@ -86,7 +86,7 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
                         .setText(R.id.tv_hold_num, item.getBuynum())
                         .setText(R.id.tv_total_money, item.getTotalprice())
                         .setText(R.id.tv_fee, item.getSxfee())
-                        .setText(R.id.tv_night_fee, item.getDayfee())
+//                        .setText(R.id.tv_night_fee, item.getDayfee())
                         .setText(R.id.tv_win_price, item.getPoit_win())
                         .setText(R.id.tv_loss_price, item.getPoit_loss())
                         .setText(R.id.tv_profit, getString(R.string.contact_holdFragment5) + item.getFdyk());

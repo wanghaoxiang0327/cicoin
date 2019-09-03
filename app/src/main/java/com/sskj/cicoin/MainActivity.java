@@ -120,7 +120,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
 
     @Override
     public void loadData() {
-        mPresenter.checkVersion(BuildConfig.VERSION_NAME);
+//        mPresenter.checkVersion(BuildConfig.VERSION_NAME);
     }
 
     @Override

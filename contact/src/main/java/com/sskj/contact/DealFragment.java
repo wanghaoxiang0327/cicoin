@@ -69,7 +69,7 @@ public class DealFragment extends BaseFragment<DealPresenter> {
             @Override
             public void bind(ViewHolder holder, DealOrder item) {
                 holder.setText(R.id.tv_order_type, item.getType() == 1 ? getString(R.string.contact_dealFragment5) : getString(R.string.contact_dealFragment6))
-                        .setText(R.id.tv_price_type, item.getOtype() == 1 ? getString(R.string.contact_dealFragment7) : getString(R.string.contact_dealFragment8))
+//                        .setText(R.id.tv_opening_time, item.getOtype() == 1 ? getString(R.string.contact_dealFragment7) : getString(R.string.contact_dealFragment8))
                         .setText(R.id.tv_coin_name, item.getPname())
                         .setText(R.id.tv_create_time, TimeFormatUtil.SF_FORMAT_J.format(item.getSelltime() * 1000))
                         .setText(R.id.tv_order_lever, item.getLeverage())
@@ -78,11 +78,11 @@ public class DealFragment extends BaseFragment<DealPresenter> {
                         .setText(R.id.tv_hold_num, item.getBuynum())
                         .setText(R.id.tv_total_money, item.getTotalprice())
                         .setText(R.id.tv_fee, item.getSxfee())
-                        .setText(R.id.tv_night_fee, item.getDayfee())
+//                        .setText(R.id.tv_night_fee, item.getDayfee())
                         .setText(R.id.tv_win_price, item.getPoit_win())
                         .setText(R.id.tv_loss_price, item.getPoit_loss())
                         .setText(R.id.tv_profit, getString(R.string.contact_dealFragment9) + item.getProfit())
-                        .setText(R.id.tv_state, typeMap.get(item.getPc_type()));
+                        .setText(R.id.tv_state, getString(R.string.contact_contact_dialog_close_order80) +typeMap.get(item.getPc_type()));
 
                 if (item.getProfit().contains("-")){
                     holder.setBackgroundRes(R.id.tv_profit, R.color.common_red);

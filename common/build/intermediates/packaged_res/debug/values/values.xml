@@ -101,6 +101,8 @@
     <string name="common_imgUtil1">保存成功,请到相册中查看</string>
     <string name="common_invite_rules">邀请规则</string>
     <string name="common_jsonCallBack1">数据解析失败</string>
+    <string name="common_make_empty">卖出开空</string>
+    <string name="common_make_more">买入开多</string>
     <string name="common_no_data">暂无数据</string>
     <string name="common_patternUtils1">密码格式不正确</string>
     <string name="common_patternUtils2">手机号码格式不正确</string>
@@ -136,6 +138,9 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
+    <style name="common_buy_pankou_progress" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/common_buy_pankou_progress</item>
+    </style>
     <style name="common_custom_dialog" parent="@style/Theme.AppCompat.Dialog">
         <item name="android:windowFrame">@null</item>
         //Dialog的windowFrame框为无
@@ -151,6 +156,9 @@
         <item name="android:backgroundDimAmount">0.8</item>
         //就是用来控制灰度的值，当为1时，界面除了我们的dialog内容是高亮显示的，dialog以外的区域是黑色的，完全看不到其他内容
         <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="common_pankou_progress" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/common_sell_pankou_progress</item>
     </style>
     <declare-styleable name="MsgView">
         <attr format="color" name="mv_backgroundColor"/>

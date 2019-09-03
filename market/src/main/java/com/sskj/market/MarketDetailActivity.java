@@ -34,7 +34,6 @@ import butterknife.BindView;
  * @author Hey
  * Create at  2019/05/22
  */
-@Route(path = RoutePath.MARKET_DETAIL)
 public class MarketDetailActivity extends BaseActivity<MarketDetailPresenter> {
 
     @BindView(R2.id.tv_price)

@@ -81,6 +81,7 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
                         .setText(R.id.tv_create_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
                         .setText(R.id.tv_order_num, item.getBuynum())
                         .setText(R.id.tv_create_price, item.getBuyprice())
+                        .setText(R.id.tv_leverage_multiple, item.getLeverage())
                         .setText(R.id.tv_total_money, item.getTotalprice())
                         .setText(R.id.tv_fee, item.getSxfee());
                 holder.setTextColor(R.id.tv_order_type, item.getOtype() == 1 ? color(R.color.common_green) : color(R.color.common_red));

@@ -1,98 +1,339 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:padding="@dimen/common_margin" tools:background="@color/common_background">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/common_margin"
+    tools:background="@color/common_white">
 
-    <LinearLayout android:gravity="center_vertical" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <TextView android:gravity="center_vertical" android:id="@+id/tv_order_type" android:layout_height="match_parent" android:layout_width="wrap_content" android:textColor="@color/common_green" tools:text="@string/contact_dealFragment5"/>
+        <TextView
+            android:id="@+id/tv_order_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@color/common_green"
+            tools:text="@string/common_make_more" />
 
 
-        <TextView android:gravity="center_vertical" android:id="@+id/tv_coin_name" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_width="wrap_content" android:textColor="@color/common_text" tools:text="ETH/USDT"/>
+        <TextView
+            android:id="@+id/tv_coin_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/common_text"
+            tools:text="ETH/USDT" />
 
 
-        <TextView android:gravity="right|center_vertical" android:id="@+id/tv_create_time" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_text" android:textSize="12sp" tools:text="11-05 15:25"/>
+        <TextView
+            android:id="@+id/tv_create_time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:textColor="@color/common_text"
+            android:textSize="12sp"
+            tools:text="11-05 15:25" />
 
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/common_divider" />
 
-    <TableLayout android:layout_height="wrap_content" android:layout_width="match_parent">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
-        <TableRow android:paddingBottom="5dp" android:paddingTop="5dp">
+        <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:visibility="gone">
 
-            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_width="wrap_content" android:text="@string/contact_contact_dialog_close_order80" android:textColor="@color/common_hint" android:textSize="12sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_dialog_close_order80"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
 
-            <TextView android:gravity="center_vertical" android:id="@+id/tv_price_type" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_text" android:textSize="12sp" tools:text="@string/contact_dealFragment7"/>
+            <TextView
+                android:id="@+id/tv_price_type"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="@string/contact_dealFragment7" />
 
-            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_width="wrap_content" android:text="@string/contact_contact_dialog_create_order340" android:textColor="@color/common_hint" android:textSize="12sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_dialog_create_order340"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
 
-            <TextView android:gravity="center_vertical" android:id="@+id/tv_order_lever" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_text" android:textSize="12sp" tools:text="100"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="100" />
         </TableRow>
 
-        <TableRow android:paddingBottom="5dp" android:paddingTop="5dp">
+        <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
 
-            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_width="wrap_content" android:text="@string/contact_contact_item_deal260" android:textColor="@color/common_hint" android:textSize="12sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_item_deal260"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
 
-            <TextView android:gravity="center_vertical" android:id="@+id/tv_hold_price" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_text" android:textSize="12sp" tools:text="56.00"/>
+            <TextView
+                android:id="@+id/tv_hold_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="56.00" />
 
 
-            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_width="wrap_content" android:text="@string/contact_contact_dialog_close_order150" android:textColor="@color/common_hint" android:textSize="12sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_dialog_close_order150"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
 
-            <TextView android:gravity="center_vertical" android:id="@+id/tv_new_price" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_text" android:textSize="12sp" tools:text="1000.00"/>
+            <TextView
+                android:id="@+id/tv_new_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="1000.00" />
 
 
         </TableRow>
 
-        <TableRow android:paddingBottom="5dp" android:paddingTop="5dp">
+        <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
 
-            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_width="wrap_content" android:text="@string/contact_contact_item_hold370" android:textColor="@color/common_hint" android:textSize="12sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_item_hold370"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
 
-            <TextView android:gravity="center_vertical" android:id="@+id/tv_hold_num" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_text" android:textSize="12sp" tools:text="56.00"/>
+            <TextView
+                android:id="@+id/tv_hold_num"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="56.00" />
 
 
-            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_width="wrap_content" android:text="@string/contact_contact_dialog_create_order300" android:textColor="@color/common_hint" android:textSize="12sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_dialog_create_order340"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
 
-            <TextView android:gravity="center_vertical" android:id="@+id/tv_total_money" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_text" android:textSize="12sp" tools:text="100"/>
+            <TextView
+                android:id="@+id/tv_order_lever"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="100" />
 
 
         </TableRow>
 
-        <TableRow android:paddingBottom="5dp" android:paddingTop="5dp">
+        <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
 
 
-            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_width="wrap_content" android:text="@string/contact_contact_item_deal480" android:textColor="@color/common_hint" android:textSize="12sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_item_deal480"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
 
-            <TextView android:gravity="center_vertical" android:id="@+id/tv_fee" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_text" android:textSize="12sp" tools:text="30"/>
+            <TextView
+                android:id="@+id/tv_fee"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="30" />
 
-            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_width="wrap_content" android:text="@string/contact_contact_item_deal520" android:textColor="@color/common_hint" android:textSize="12sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_dialog_create_order300"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
 
-            <TextView android:gravity="center_vertical" android:id="@+id/tv_night_fee" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_text" android:textSize="12sp" tools:text="30"/>
+            <TextView
+                android:id="@+id/tv_total_money"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="100" />
+
         </TableRow>
 
-        <TableRow android:paddingBottom="5dp" android:paddingTop="5dp">
+        <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
 
 
-            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_width="wrap_content" android:text="@string/contact_contact_item_entrust390" android:textColor="@color/common_hint" android:textSize="12sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_item_entrust390"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
 
-            <TextView android:gravity="center_vertical" android:id="@+id/tv_win_price" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_text" android:textSize="12sp" tools:text="100.00"/>
+            <TextView
+                android:id="@+id/tv_win_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="100.00" />
 
-            <TextView android:gravity="center_vertical" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_width="wrap_content" android:text="@string/contact_contact_item_entrust430" android:textColor="@color/common_hint" android:textSize="12sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_item_entrust430"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
 
-            <TextView android:gravity="center_vertical" android:id="@+id/tv_loss_price" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_weight="1" android:layout_width="0dp" android:textColor="@color/common_text" android:textSize="12sp" tools:text="100.00"/>
+            <TextView
+                android:id="@+id/tv_loss_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="100.00" />
 
         </TableRow>
     </TableLayout>
 
-    <View android:background="@color/common_divider" android:layout_height="1dp" android:layout_width="match_parent"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_divider" />
 
-    <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_width="match_parent" android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
 
-        <TextView android:background="@color/common_green" android:gravity="center" android:id="@+id/tv_profit" android:layout_height="28dp" android:layout_width="wrap_content" android:paddingLeft="16dp" android:paddingRight="16dp" android:textColor="@color/common_white" android:textSize="12sp" tools:text="@string/contact_contact_item_deal730"/>
+        <TextView
+            android:id="@+id/tv_profit"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:background="@color/common_green"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/common_white"
+            android:textSize="12sp"
+            tools:text="@string/contact_contact_item_deal730" />
 
-        <View android:layout_height="match_parent" android:layout_weight="1" android:layout_width="0dp"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
-        <Button android:background="@drawable/common_tip_border_50" android:id="@+id/btn_reset" android:layout_height="28dp" android:layout_width="66dp" android:text="@string/contact_contact_item_hold770" android:textColor="@color/common_tip"/>
 
-        <Button android:background="@drawable/common_tip_border_50" android:id="@+id/btn_close" android:layout_height="28dp" android:layout_marginLeft="8dp" android:layout_width="66dp" android:text="@string/contact_contact_item_hold790" android:textColor="@color/common_tip"/>
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="66dp"
+            android:layout_height="28dp"
+            android:background="@drawable/common_tip_border_50"
+            android:text="@string/contact_contact_item_hold790"
+            android:textColor="@color/common_hint" />
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="66dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/common_tip_border_50"
+            android:text="@string/contact_contact_item_hold770"
+            android:textColor="@color/common_hint" />
 
     </LinearLayout>
 

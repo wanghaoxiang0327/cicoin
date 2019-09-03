@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.just.agentweb.AgentWeb;
 import com.sskj.common.base.BaseActivity;
+import com.sskj.common.view.ToolBarLayout;
 import com.zzhoujay.richtext.RichText;
 
 import butterknife.BindView;
@@ -17,8 +18,8 @@ import butterknife.BindView;
  * Create at  2019/06/26
  */
 public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
-
-
+    @BindView(R.id.toolbar)
+    ToolBarLayout toolbar;
     @BindView(R.id.title_tv)
     TextView titleTv;
     @BindView(R.id.time_tv)
@@ -29,12 +30,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
     LinearLayout linearLayout;
     @BindView(R.id.top_layout)
     LinearLayout topLayout;
-
-    private AgentWeb agentWeb;
-
-
     private int type;
-
     private NewsBean newsBean;
 
     @Override
@@ -61,7 +57,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
             topLayout.setVisibility(View.VISIBLE);
         } else {
             linearLayout.setVisibility(View.VISIBLE);
-            agentWeb = AgentWeb.with(this)
+            AgentWeb.with(this)
                     .setAgentWebParent(linearLayout, new LinearLayout.LayoutParams(-1, -1))
                     .useDefaultIndicator()
                     .createAgentWeb()
@@ -80,6 +76,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
 
 
     public void setNoticeDetail(NewsBean data) {
+        toolbar.setTitle(data.getTitle());
         setText(titleTv, data.getTitle());
         setText(timeTv, data.getDate());
         RichText.fromHtml(data.getContent()).into(contentTv);

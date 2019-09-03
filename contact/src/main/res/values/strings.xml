@@ -13,16 +13,16 @@
     <string name="contact_contact_dialog_close_order340">张</string>
     <string name="contact_contact_item_deal730">浮动盈亏 16.00</string>
     <string name="contact_contractLeftFragment1">请输入价格</string>
-    <string name="contact_contact_item_hold370">张数</string>
+    <string name="contact_contact_item_hold370">数量</string>
     <string name="contact_contractLeftFragment2">请输入数量</string>
     <string name="contact_contactCreateDialog1">传入订单信息</string>
     <string name="contact_contractLeftFragment3">价格不能为0</string>
     <string name="contact_contact_dialog_close_order300">平仓张数</string>
     <string name="contact_contact_item_deal370">成交量</string>
-    <string name="contact_contact_item_entrust390">止盈价</string>
+    <string name="contact_contact_item_entrust390">止盈价格</string>
     <string name="contact_contact_item_deal770">系统强平</string>
     <string name="contact_contact_fragment_contract290">当前委托</string>
-    <string name="contact_contact_item_entrust430">止损价</string>
+    <string name="contact_contact_item_entrust430">止损价格</string>
     <string name="contact_contact_dialog_close_order150">最新价</string>
     <string name="contact_orderRecordsActivity3">成交</string>
     <string name="contact_contact_activity_order_records170">可用USDT</string>
@@ -56,7 +56,7 @@
     <string name="contact_contact_dialog_create_order300">保证金</string>
     <string name="contact_contact_activity_order_records20">全部订单</string>
     <string name="contact_contact_item_entrust210">委托量</string>
-    <string name="contact_contact_item_deal300">平仓价格</string>
+    <string name="contact_contact_item_deal300">平仓价</string>
     <string name="contact_contact_fragment_contract_left240">可用</string>
     <string name="contact_contact_dialog_create_order190">价格</string>
     <string name="contact_contact_fragment_contract_left440">占用保证金:</string>
@@ -73,4 +73,9 @@
     <string name="contact_contact_dialog_setting_order170">止盈价格</string>
     <string name="contact_contact_dialog_create_order80">方向</string>
     <string name="contact_contract_list">合约列表</string>
+    <string name="contact_input_count">输入数量</string>
+    <string name="contact_opening_time">建仓时间</string>
+    <string name="contact_closeing_time">平仓时间</string>
+    <string name="contact_leverage_multiple">杠杆倍数</string>
+    <string name="contact_share">分享</string>
 </resources>

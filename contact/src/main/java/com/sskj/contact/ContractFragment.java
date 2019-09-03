@@ -14,8 +14,11 @@ import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.CoinBean;
-import com.sskj.common.dialog.SelectCoinDialog;
+import com.sskj.common.event.ContactChangeCoin;
 import com.sskj.common.router.RoutePath;
+import com.sskj.common.rxbus.RxBus;
+import com.sskj.common.rxbus.Subscribe;
+import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.CoinIcon;
 import com.sskj.common.utils.DigitUtils;
@@ -47,9 +50,8 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
     @BindView(R2.id.img_market)
     ImageView imgMarket;
     BaseAdapter<CoinBean> adapter;
-    private String code = "BTC/USDT";
-
-    private SelectCoinDialog selectCoinDialog;
+    private String code = "eth_usdt";
+    CoinBean coinBean;
 
     @Override
     public int getLayoutId() {
@@ -63,6 +65,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
 
     @Override
     public void initView() {
+        RxBus.getDefault().register(this);
         //设置菜单内容之外其他区域的背景色
         drawLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//禁止滑动开启
         getChildFragmentManager().beginTransaction()
@@ -80,8 +83,8 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
         adapter = new BaseAdapter<CoinBean>(R.layout.contact_item_coin_list, null, recyclerView) {
             @Override
             public void bind(ViewHolder holder, CoinBean item) {
-                if (item.getName().contains("/")) {
-                    holder.setText(R.id.coin_name, item.getName().split("/")[0]);
+                if (item.getName().contains("_")) {
+                    holder.setText(R.id.coin_name, item.getName().split("_")[0]);
                 } else {
                     holder.setText(R.id.coin_name, item.getName());
                 }
@@ -96,8 +99,13 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
                 holder.setImageResource(R.id.coin_img, CoinIcon.getIcon(item.getCode()));
                 ClickUtil.click(holder.itemView, view -> {
                     code = item.getCode();
-//                    contractFragment1.setCode(code);
-//                    RxBus.getDefault().post(new ChangePriceData(item.getPrice() + "", item.getCnyPrice(), code));
+                    coinBean = item;
+                    tvSelectCoin.setText(item.getName());
+                    ContactChangeCoin contactChangeCoin = new ContactChangeCoin(item.getName());
+                    contactChangeCoin.setPrice(item.getPrice() + "");
+                    contactChangeCoin.setCnyPrice(item.getCnyPrice());
+                    contactChangeCoin.setCode(code);
+                    RxBus.getDefault().post(contactChangeCoin);
                     //关闭抽屉
                     drawLayout.closeDrawer(Gravity.LEFT);
                 });
@@ -122,9 +130,8 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
             drawLayout.closeDrawer(Gravity.LEFT);
         });
 
-
         ClickUtil.click(imgMarket, view -> {
-            ARouter.getInstance().build(RoutePath.MARKET_DETAIL).withString("code", code).navigation();
+            ARouter.getInstance().build(RoutePath.MARKET_DETAIL).withSerializable("coinBean", coinBean).navigation();
         });
     }
 
@@ -134,8 +141,27 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RxBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updateCoin(CoinBean coinBean) {
+        if (adapter != null) {
+            for (int i = 0; i < adapter.getData().size(); i++) {
+                if (adapter.getData().get(i).getCode().equals(coinBean.getCode())) {
+                    coinBean.setPid(adapter.getData().get(i).getPid());
+                    adapter.getData().set(i, coinBean);
+                    adapter.notifyItemChanged(i);
+                }
+            }
+        }
+    }
+
+    @Override
     public void lazyLoad() {
-        mPresenter.getMarketList(false);
+        mPresenter.getMarketList();
     }
 
     public static ContractFragment newInstance() {
@@ -146,22 +172,14 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
     }
 
 
-    public void setCoinList(List<CoinBean> data, boolean showDialog) {
+    public void setCoinList(List<CoinBean> data) {
         //选择币种
         if (data != null && data.size() > 0) {
-//            coinAssets.clear();
             code = data.get(0).getCode();
-            tvSelectCoin.setText(code);
+            coinBean = data.get(0);
+            tvSelectCoin.setText(coinBean.getName() + "_USDT");
             adapter.setNewData(data);
-//            for (CoinBean bean : data) {
-//                CoinAsset coinAsset = new CoinAsset();
-//                coinAsset.setName(bean.getCode());
-//                coinAsset.setPname(bean.getCode());
-//                coinAsset.setPid(bean.getPid());
-//                coinAsset.setPrice(bean.getPrice() + "");
-//                coinAsset.setCnyPrice(bean.getCnyPrice());
-//                coinAssets.add(coinAsset);
-//            }
+            RxBus.getDefault().post(data.get(0));
         }
     }
 

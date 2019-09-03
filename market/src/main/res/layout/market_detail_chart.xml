@@ -19,7 +19,7 @@
             app:indicator_color="@color/common_action_text"
             app:selctTextSize="12sp"
             app:textSelectColor="@color/common_action_text"
-            app:textUnselectColor="@color/common_kline_num"
+            app:textUnselectColor="@color/common_hint"
             app:textsize="12sp" />
 
         <LinearLayout
@@ -35,7 +35,7 @@
                 android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:text="@string/market_norm"
-                android:textColor="@color/common_kline_num"
+                android:textColor="@color/common_hint"
                 android:textSize="12sp" />
 
             <ImageView

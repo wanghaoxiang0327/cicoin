@@ -74,7 +74,11 @@ public class MarketDetailAdapter extends BaseMultiItemQuickAdapter<MarketDetail,
             case MarketDetail.TOP:
                 code = item.getTopData().getCode();
                 helper.setText(R.id.tv_price, item.getTopData().getPrice() + "")
+                        .setText(R.id.tv_the_amount, item.getTopData().getVolume() + "")
+                        .setTextColor(R.id.tv_price, item.getTopData().getChangeRate().contains("-") ? mContext.getResources().getColor(R.color.market_green) : mContext.getResources().getColor(R.color.market_red))
                         .setText(R.id.tv_change_rate, item.getTopData().getChangeRate())
+                        .setTextColor(R.id.tv_change_rate, item.getTopData().getChangeRate().contains("-") ? mContext.getResources().getColor(R.color.market_green) : mContext.getResources().getColor(R.color.market_red))
+                        .setImageResource(R.id.iv_status, item.getTopData().getChangeRate().contains("-") ? R.mipmap.market_fall : R.mipmap.market_rise)
                         .setText(R.id.tvCny, "≈" + NumberUtils.keepDown(item.getTopData().getCnyPrice(), 2))
                         .setText(R.id.tv_high, item.getTopData().getHigh() + "")
                         .setText(R.id.tv_low, item.getTopData().getLow() + "");
@@ -82,7 +86,7 @@ public class MarketDetailAdapter extends BaseMultiItemQuickAdapter<MarketDetail,
             case MarketDetail.CHART:
                 if (chartTabLayout == null) {
                     initTab();
-                    chartNorm=helper.getView(R.id.chart_norm);
+                    chartNorm = helper.getView(R.id.chart_norm);
                     chartTabLayout = helper.getView(R.id.chart_tabLayout);
                     chartTabLayout.setTabData(chartTabs, mFragmentManager, R.id.chart_content, fragmentList);
                     initPoint();
@@ -126,7 +130,6 @@ public class MarketDetailAdapter extends BaseMultiItemQuickAdapter<MarketDetail,
         bottomFragments.add(TradeFragment.newInstance(code));
         bottomFragments.add(SummaryFragment.newInstance(code));
     }
-
 
 
     private void initPoint() {

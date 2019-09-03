@@ -20,6 +20,7 @@ import com.hey.lib.HeySpinner;
 import com.hjq.toast.ToastUtils;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.CoinBean;
+import com.sskj.common.event.ContactChangeCoin;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
@@ -31,7 +32,6 @@ import com.sskj.common.utils.NumberUtils;
 import com.sskj.contact.data.CoinInfo;
 import com.sskj.contact.data.CreateOrder;
 import com.sskj.contact.dialog.ContactCreateDialog;
-import com.sskj.common.event.ContactChangeCoin;
 import com.sskj.contact.type.Price;
 import com.sskj.contact.type.Trade;
 import com.sskj.contact.view.NoTopCornerTabLayout;
@@ -68,6 +68,8 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     LinearLayout limitPriceLayout;
     @BindView(R2.id.tv_market_price)
     TextView tvMarketPrice;
+    @BindView(R2.id.tv_unit)
+    TextView tvUnit;
     @BindView(R2.id.edt_num)
     EditText edtNum;
     @BindView(R2.id.point_tabLayout)
@@ -158,7 +160,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         initPriceType();
         initTradeType();
         initPoint();
-
+        tvUnit.setText(code.split("_")[0]);
         edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
 
         ClickUtil.click(btnSubmit, view -> {
@@ -249,10 +251,12 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         tradeTypeGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.radio_up) {
                 tradeType = Trade.UP;
-                btnSubmit.setBackgroundResource(R.drawable.contact_green_bg_50);
+                btnSubmit.setBackgroundResource(R.drawable.contact_red_bg_50);
+                pointTabLayout.setIndicatorColor(getResources().getColor(R.color.common_red));
             } else {
                 tradeType = Trade.DOWN;
-                btnSubmit.setBackgroundResource(R.drawable.contact_red_bg_50);
+                btnSubmit.setBackgroundResource(R.drawable.contact_green_bg_50);
+                pointTabLayout.setIndicatorColor(getResources().getColor(R.color.common_green));
             }
             btnSubmit.setText(tradeType.name);
         });
@@ -408,7 +412,9 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
     public void setCoinInfo(CoinInfo data) {
         if (data != null) {
-            levers = data.getLeverage().split(",");
+            if (data.getLeverage().contains(",")) {
+                levers = data.getLeverage().split(",");
+            }
             spread = new BigDecimal(data.getSpread());
             minChangePrice = new BigDecimal(data.getVar_price());
             if (!TextUtils.isEmpty(data.getPcs_price())) {
@@ -417,6 +423,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
             if (!data.getTrans_fee().startsWith("%")) {
                 fee = new BigDecimal(Float.parseFloat(data.getTrans_fee().substring(0, data.getTrans_fee().indexOf("%"))) / 100);
             }
+            tvUnit.setText(data.getCode().split("_")[0]);
             initLevel();
         }
     }
@@ -449,6 +456,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         pointTabLayout.setCurrentTab(-1);
         mPresenter.getCoinInfo(code);
         edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
+        edtPrice.setText(NumberUtils.keep(coinBean.getPrice(), DigitUtils.getDigit(code)));
     }
 
 

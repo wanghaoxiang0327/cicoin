@@ -26,11 +26,11 @@ public class HttpConfig {
 
     public static final String BANNER = "/Home/Sign/bannerfind";
 
-    public static final String NOTICE_LIST = "/Home/Article/notice_list";
+    public static final String NOTICE_LIST = "/Home/Qbw/zixun";
     public static final String INFORMATION = "/Home/Users/zixun";
     public static final String INFORMATION_DETAIL = "/Home/Users/zixun_detail";
 
-    public static final String NOTICE_DETAIL = "/Home/Article/notice_detail";
+    public static final String NOTICE_DETAIL = "/Home/Qbw/zixun_detail";
 
 
     public static final String WEB_AGGREE = "/Home/ajax/get_web_agree";
@@ -75,7 +75,6 @@ public class HttpConfig {
     public static final String FORGET_LOGIN_PS = "/Home/Users/reset_opwd";
 
 
-
     public static final String GOOGLE_CHECK = "/Home/users/is_start_google";
 
     /**
@@ -95,7 +94,6 @@ public class HttpConfig {
     public static final String CUSTOM = "/Home/Users/my_customer";
 
     public static final String PAY_IN = "/Home/Users/chongzhi";
-
 
 
     public static final String SEND_EMAIL = "/Home/users/send_email";
@@ -183,14 +181,15 @@ public class HttpConfig {
 
     public static final String MACHINE_BUY = "/home/Product/buy_product";
 
-    public static final String CODE_INFO ="/home/qbw/get_info" ;
+    public static final String CODE_INFO = "/home/qbw/get_info";
 
     public static final String GET_DEEP = "/Home/Ajax/get_shendu";
 
-    public static final String GET_ALL_TRADE ="/home/ajax/RealTimeDeal" ;
+    public static final String GET_ALL_TRADE = "/home/ajax/RealTimeDeal";
 
 
-    public static String WS_PANKOU ="ws://47.244.230.29:7275";
+    public static String WS_PANKOU = "ws://47.56.161.148:7275";//盘口
+    public static String WS_DEPTH = "ws://47.56.161.148:7274";//深度图
     public static final String GET_LEVER = "/Home/api/get_lever";
 
     public static final String GET_DEAL_ORDER = "/Home/Order/chengjiao";
@@ -209,5 +208,5 @@ public class HttpConfig {
 
 
     //=================Depth======================================
-    public static final String GET_PANKOU = "/Home/Ajax/getdepth_hy";
+    public static final String GET_PANKOU = "/Home/Ajax/getdepth";
 }

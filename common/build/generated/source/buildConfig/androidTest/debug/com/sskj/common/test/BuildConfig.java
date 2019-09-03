@@ -11,5 +11,5 @@ public final class BuildConfig {
   public static final int VERSION_CODE = 1;
   public static final String VERSION_NAME = "1.0.0";
   // Fields from default config.
-  public static final String IP = "http://47.75.158.103";
+  public static final String IP = "http://47.56.161.148";
 }

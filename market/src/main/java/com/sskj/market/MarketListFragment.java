@@ -28,13 +28,9 @@ import io.reactivex.Flowable;
  * Create at  2019/05/29
  */
 public class MarketListFragment extends BaseFragment<MarketListPresenter> {
-
-
     @BindView(R2.id.market_list)
     RecyclerView marketList;
-
     BaseAdapter<CoinBean> adapter;
-
     SmartRefreshHelper<CoinBean> smartRefreshHelper;
 
     @Override
@@ -55,11 +51,8 @@ public class MarketListFragment extends BaseFragment<MarketListPresenter> {
         adapter = new BaseAdapter<CoinBean>(R.layout.market_item_coin_list, null, marketList) {
             @Override
             public void bind(ViewHolder holder, CoinBean item) {
-                if (holder.getPosition() == 0) {
-                    holder.setVisible(R.id.ll_coins_des, true);
-                }
-                if (item.getName().contains("/")) {
-                    holder.setText(R.id.coin_name, item.getName().split("/")[0]);
+                if (item.getName().contains("_")) {
+                    holder.setText(R.id.coin_name, item.getName().split("_")[0]);
                 } else {
                     holder.setText(R.id.coin_name, item.getName());
                 }

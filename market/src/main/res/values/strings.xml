@@ -2,6 +2,7 @@
 <resources>
     <string name="market_high">高</string>
     <string name="market_low">低</string>
+    <string name="market_amount">量</string>
     <string name="market_norm">指标</string>
     <string name="market_pop_kchart_main">主图</string>
     <string name="market_pop_kchart_fu">副图</string>
@@ -57,4 +58,10 @@
     <string name="market_coins_name">名称</string>
     <string name="market_news_price">最新价</string>
     <string name="market_quote_change">涨跌幅</string>
+    <string name="market_buy">买盘</string>
+    <string name="market_sale">卖盘</string>
+    <string name="market_count">数量(BTC)</string>
+    <string name="market_price">价格(USDT)</string>
+    <string name="market_data">时间</string>
+    <string name="market_direction">方向</string>
 </resources>

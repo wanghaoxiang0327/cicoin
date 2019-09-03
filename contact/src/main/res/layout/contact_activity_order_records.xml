@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_dark"
+    android:background="@color/common_background"
     android:orientation="vertical">
 
     <com.sskj.common.view.ToolBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:background_color="@color/common_action_bar"
-        app:title="@string/contact_contact_activity_order_records20" />
+        app:left_img="@mipmap/contact_icon_back"
+        app:title="@string/contact_contact_activity_order_records20"
+        app:title_color="@color/common_text" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@color/common_background"
+        android:background="@color/common_white"
         android:orientation="horizontal"
         android:padding="@dimen/common_margin">
 
@@ -34,7 +36,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/common_text" />
+                android:textColor="@color/common_text"
+                android:textSize="@dimen/sp_16"
+                tools:text="12565.23" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -42,7 +46,8 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/contact_contact_activity_order_records100"
-                android:textColor="@color/common_hint" />
+                android:textColor="@color/common_hint"
+                android:textSize="@dimen/sp_12" />
 
         </LinearLayout>
 
@@ -60,7 +65,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/common_text" />
+                android:textColor="@color/common_text"
+                android:textSize="@dimen/sp_16"
+                tools:text="12565.23" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -68,7 +75,8 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/contact_contact_activity_order_records170"
-                android:textColor="@color/common_hint" />
+                android:textColor="@color/common_hint"
+                android:textSize="@dimen/sp_12" />
 
         </LinearLayout>
 
@@ -85,7 +93,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/common_text" />
+                android:textColor="@color/common_text"
+                android:textSize="@dimen/sp_16"
+                tools:text="12565.23" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -93,7 +103,8 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/contact_contact_activity_order_records240"
-                android:textColor="@color/common_hint" />
+                android:textColor="@color/common_hint"
+                android:textSize="@dimen/sp_12" />
 
         </LinearLayout>
 
@@ -103,7 +114,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/common_background"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_white"
         android:orientation="horizontal"
         android:padding="@dimen/common_margin">
 
@@ -123,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/common_white"
+                android:textSize="@dimen/sp_16"
                 tools:text="100.00" />
 
             <TextView
@@ -131,7 +144,8 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/contact_contact_activity_order_records340"
-                android:textColor="@color/common_white" />
+                android:textColor="@color/common_white"
+                android:textSize="@dimen/sp_12" />
 
         </LinearLayout>
 
@@ -149,7 +163,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/common_red" />
+                android:textColor="@color/common_green"
+                android:textSize="@dimen/sp_16"
+                tools:text="4656.32" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -157,7 +173,8 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/contact_contact_activity_order_records410"
-                android:textColor="@color/common_hint" />
+                android:textColor="@color/common_green"
+                android:textSize="@dimen/sp_12" />
 
         </LinearLayout>
     </LinearLayout>
@@ -168,10 +185,10 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"
-        android:background="@color/common_background"
+        android:background="@color/common_white"
         app:indicator_color="@color/common_tip"
         app:textSelectColor="@color/common_tip"
-        app:textUnselectColor="@color/common_text" />
+        app:textUnselectColor="@color/common_hint" />
 
     <FrameLayout
         android:id="@+id/order_content"

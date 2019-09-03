@@ -13,6 +13,8 @@ import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.BuySellData;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.data.DepthData;
+import com.sskj.common.data.PankouPushData;
+import com.sskj.common.event.ContactChangeCoin;
 import com.sskj.common.http.HttpConfig;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.rxbus.Subscribe;
@@ -21,7 +23,6 @@ import com.sskj.common.socket.WebSocket;
 import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.contact.data.Pankou;
-import com.sskj.common.event.ContactChangeCoin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,6 @@ import io.reactivex.schedulers.Schedulers;
  * Create at  2019/08/26 14:36:33
  */
 public class PankouFragment extends BaseFragment<PankouPresenter> {
-
     @BindView(R2.id.sell_list)
     RecyclerView sellList;
     @BindView(R2.id.buy_list)
@@ -47,14 +47,10 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
     TextView tvPrice;
     @BindView(R2.id.tv_cny_price)
     TextView tvCnyPrice;
-
     private BaseAdapter<Pankou> sellAdapter;
     private BaseAdapter<Pankou> buyAdapter;
-
     private String code;
-
     private int pankouSize = 7;
-
     private WebSocket webSocket;
 
     @Override
@@ -77,7 +73,6 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
 
     @Override
     public void initView() {
-
         sellList.setLayoutManager(sellLayoutManager);
         buyList.setLayoutManager(buyLayoutManager);
     }
@@ -89,15 +84,16 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
             public void bind(ViewHolder holder, Pankou item) {
                 holder.setTextColor(R.id.tv_price, color(R.color.common_red))
                         .setText(R.id.tv_no, holder.getLayoutPosition() + 1 + "")
+                        .setProgress(R.id.progress, item.getProgressRate())
                         .setText(R.id.tv_price, NumberUtils.keep(item.getPrice(), DigitUtils.getDigit(code)))
                         .setText(R.id.tv_num, NumberUtils.keep(item.getTotalSize(), 0));
-
             }
         };
-        buyAdapter = new BaseAdapter<Pankou>(R.layout.contact_item_pankou, null, buyList) {
+        buyAdapter = new BaseAdapter<Pankou>(R.layout.contact_buy_item_pankou, null, buyList) {
             @Override
             public void bind(ViewHolder holder, Pankou item) {
                 holder.setTextColor(R.id.tv_price, color(R.color.common_green))
+                        .setProgress(R.id.progress, item.getProgressRate())
                         .setText(R.id.tv_no, holder.getLayoutPosition() + 1 + "")
                         .setText(R.id.tv_price, NumberUtils.keep(item.getPrice(), DigitUtils.getDigit(code)))
                         .setText(R.id.tv_num, NumberUtils.keep(item.getTotalSize(), 0));
@@ -151,8 +147,10 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
         }
     }
 
+
     public List<Pankou> formatList(List<DepthData> data) {
         List<Pankou> list = new ArrayList<>();
+        List<Float> totalSize = new ArrayList<>();
         if (data == null) {
             data = new ArrayList<>();
         }
@@ -161,6 +159,24 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
         }
         for (int i = 0; i < pankouSize; i++) {
             list.add(new Pankou(String.valueOf(data.get(i).getPrice()), String.valueOf(data.get(i).getTotalSize())));
+            totalSize.add(data.get(i).getTotalSize());
+        }
+        Double full = 0d;
+        for (Pankou bid : list) {
+            if (!bid.getTotalSize().equals("--")) {
+                Double aDouble = Double.valueOf(bid.getTotalSize());
+                if (aDouble > full) {
+                    full = aDouble;
+                }
+            }
+        }
+        for (Pankou bid : list) {
+            if (!bid.getTotalSize().equals("--")) {
+                Double aDouble = Double.valueOf(bid.getTotalSize());
+                bid.setRate((int) (aDouble / full * 100d));
+            } else {
+                bid.setRate(0);
+            }
         }
         return list;
     }
@@ -177,12 +193,28 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
             Flowable.just(message)
                     .observeOn(AndroidSchedulers.mainThread())
                     .map(s -> {
-                        return JSONObject.parseObject(message, BuySellData.class);
+                        //GSON直接解析成对象
+                        return JSONObject.parseObject(message, PankouPushData.class);
                     })
                     .subscribeOn(Schedulers.io())
                     .subscribe(buySellData -> {
-                        if (buySellData != null) {
-                            setPankouData(buySellData);
+                        if (buySellData != null && buySellData.data != null && buySellData.data.size() > 0) {
+                            BuySellData data = new BuySellData();
+                            List<DepthData> bids = new ArrayList<>();
+                            List<DepthData> asks = new ArrayList<>();
+                            for (PankouPushData.PanKou pankou : buySellData.data) {
+                                DepthData depthData = new DepthData();
+                                depthData.setPrice(pankou.price);
+                                depthData.setTotalSize(pankou.amount);
+                                if ("buy".equals(pankou.dc)) {
+                                    bids.add(depthData);
+                                } else if ("sell".equals(pankou.dc)) {
+                                    asks.add(depthData);
+                                }
+                            }
+                            data.setAsks(asks);
+                            data.setBids(bids);
+                            setPankouData(data);
                         }
                     });
         });
@@ -213,14 +245,15 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
 
     /**
      * 切换币种
+     *
      * @param coinBean
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void changeCoin(ContactChangeCoin coinBean) {
         code = coinBean.getCode();
         mPresenter.getPankouData(code);
-        tvPrice.setText(coinBean.getPrice());
-        tvCnyPrice.setText(coinBean.getCnyPrice());
+        tvPrice.setText(NumberUtils.keepDown(coinBean.getPrice(), DigitUtils.getDigit(code)));
+        tvCnyPrice.setText("≈" + NumberUtils.keepDown(coinBean.getCnyPrice(), 2) + "CNY");
         startWebSocket();
     }
 

@@ -4,12 +4,21 @@ public class Pankou {
 
     private String totalSize;
     private String price;
+    private int rate;
 
     public Pankou() {
 
     }
 
-    public Pankou(String price,String totalSize) {
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
+    public int getProgressRate() {
+        return rate;
+    }
+
+    public Pankou(String price, String totalSize) {
 
         if (totalSize.equals("0.0")) {
             totalSize = "--";

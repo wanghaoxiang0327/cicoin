@@ -54,6 +54,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     TextView changeLanguage;
     @BindView(R.id.change_skin)
     LinearLayout changeSkip;
+    @BindView(R.id.ll_trading_guide)
+    LinearLayout llTradingGuide;
     @BindView(R.id.bannerView)
     Banner bannerView;
 
@@ -175,17 +177,13 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                 changeLanguage.setText("English");
                 break;
         }
-
-        tvNotice.setOnClickListener(view -> {
-
-        });
         wrapRefresh(homeContent);
         setEnableLoadMore(false);
         ClickUtil.click(changeLanguage, view -> {
 //            LanguageActivity.start(getContext());
         });
-        ClickUtil.click(changeSkip, view -> {
-//            ChangeSkipActivity.start(getContext());
+        ClickUtil.click(llTradingGuide, view -> {
+            TradingGuideActivity.start(getContext());
         });
     }
 
@@ -241,9 +239,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         }
         topList.clear();
         for (CoinBean coinBean : data) {
-            if (coinBean.getCode().equals("BTC/USDT") || coinBean.getCode().equals("ETH/USDT") || coinBean.getCode().equals("EOS/USDT")) {
-                topList.add(coinBean);
-            }
+            topList.add(coinBean);
         }
         topAdapter.setNewData(topList);
     }
@@ -269,7 +265,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                             String text = data.getRes().get(position).getTitle();
                             tvNotice.setText(text);
                             ClickUtil.click(tvNotice, view -> {
-                                NewsDetailActivity.start(getContext(), data.getRes().get(position), 1);
+                                NoticeListActivity.start(getContext());
                             });
                         }
                     }, throwable -> {

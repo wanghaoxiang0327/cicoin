@@ -1634,6 +1634,7 @@ drawable btn_right_false
 drawable btn_right_true
 drawable buybuybuy
 drawable common_btn_bg
+drawable common_buy_pankou_progress
 drawable common_dialog_bg_5
 drawable common_edt_border_bg
 drawable common_edt_line_bg
@@ -1641,8 +1642,11 @@ drawable common_green_bg_5
 drawable common_green_select
 drawable common_hint_50
 drawable common_hint_border_50
+drawable common_progress_green
+drawable common_progress_red
 drawable common_red_bg_5
 drawable common_red_select
+drawable common_sell_pankou_progress
 drawable common_splash
 drawable common_tip_15
 drawable common_tip_50
@@ -2416,6 +2420,8 @@ string common_encryptTool1
 string common_imgUtil1
 string common_invite_rules
 string common_jsonCallBack1
+string common_make_empty
+string common_make_more
 string common_no_data
 string common_patternUtils1
 string common_patternUtils2
@@ -3126,7 +3132,9 @@ style WindowStyle
 style actionActivity
 style bottomSheetStyleWrapper
 style commonSplash
+style common_buy_pankou_progress
 style common_custom_dialog
+style common_pankou_progress
 style leak_canary_LeakCanary_Base
 style leak_canary_Theme_Transparent
 style picture_alert_dialog

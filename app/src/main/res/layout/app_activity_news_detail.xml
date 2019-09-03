@@ -7,15 +7,12 @@
     android:orientation="vertical">
 
     <com.sskj.common.view.ToolBarLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:background_color="@color/common_action_bar"
-        app:title_color="@color/common_white" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@color/common_dark" />
+        app:background_color="@color/common_white"
+        app:left_img="@mipmap/icon_back"
+        app:title_color="@color/common_text" />
 
     <LinearLayout
         android:layout_width="match_parent"

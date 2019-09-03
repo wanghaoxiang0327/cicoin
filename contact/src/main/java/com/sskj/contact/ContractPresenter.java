@@ -20,15 +20,12 @@ import java.util.List;
  * Create at  2019/08/22 17:36:31
  */
 class ContractPresenter extends BasePresenter<ContractFragment> {
-
-
-
-    public void getMarketList(boolean showDialog) {
+    public void getMarketList() {
         OkGo.<HttpResult<List<CoinBean>>>get(HttpConfig.BASE_URL + HttpConfig.GET_PRODUCT)
                 .execute(new JsonCallBack<HttpResult<List<CoinBean>>>(this) {
                     @Override
                     protected void onNext(HttpResult<List<CoinBean>> result) {
-                        mView.setCoinList(result.getData(),showDialog);
+                        mView.setCoinList(result.getData());
                     }
                 });
 
