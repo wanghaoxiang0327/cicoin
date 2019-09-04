@@ -14,14 +14,14 @@ import com.sskj.common.http.JsonCallBack;
  */
 public class ForgetPsPresenter extends BasePresenter<ForgetPsActivity> {
     /**
-     *
      * @param mobile type 1注册 （2 重置 3 安全验证 4 资金密码设置 5 提币）
      * @param
      */
-    public void sendSms(String mobile) {
+    public void sendSms(String mobile, String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
                 .params("mobile", mobile)
                 .params("type", 2)
+                .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
                     protected void onNext(HttpResult result) {
@@ -40,7 +40,8 @@ public class ForgetPsPresenter extends BasePresenter<ForgetPsActivity> {
                     }
                 });
     }
-    public void forgetPs(String mobile,String code,String opwd,String opwd1) {
+
+    public void forgetPs(String mobile, String code, String opwd, String opwd1) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.FORGET_PS)
                 .params("mobile", mobile)
                 .params("code", code)
