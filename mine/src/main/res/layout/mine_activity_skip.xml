@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical">
+
+
+    <com.sskj.common.view.ToolBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:background_color="@color/common_action_bar"
+        app:title_color="@color/common_white"
+        app:title="@string/mine_mine_activity_skip" />
+
+    <RadioGroup
+        android:id="@+id/languageGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/common_background"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/common_margin"
+        android:paddingRight="@dimen/common_margin">
+
+        <RadioButton
+            android:id="@+id/light"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:button="@null"
+            android:buttonTint="@color/common_tip"
+            android:drawableRight="@drawable/mine_check_btn"
+            android:gravity="center_vertical"
+            android:text="@string/skip_light"
+            android:textColor="@color/common_text" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/common_divider" />
+
+
+        <RadioButton
+            android:id="@+id/night"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:button="@null"
+            android:buttonTint="@color/common_tip"
+            android:drawableRight="@drawable/mine_check_btn"
+            android:gravity="center_vertical"
+            android:text="@string/mine_skip_night"
+            android:textColor="@color/common_text" />
+    </RadioGroup>
+
+
+</LinearLayout>

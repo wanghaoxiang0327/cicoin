@@ -9,7 +9,8 @@ public class HttpConfig {
     public static final String UPDATE_TRADE_PWD = "/Home/Users/reset_tpwd";
     public static final String ABOUT_US = "/Home/Users/about";
     public static final String SHARE_DETAIL = "/Home/Users/my_broker";
-
+    public static final String GASSETLIST ="" ;
+    public static final String ZOOM_RECORD = "";
 
 
     public static String BASE_URL = BuildConfig.IP;
@@ -51,7 +52,9 @@ public class HttpConfig {
 
     public static final String ORDER_DETAIL = "/Home/contract/contract_detail";
 
-
+    public static final String ADDRESS_MANAGE = "/Home/Users/AddrManage";
+    public static final String GET_TRANSFER = "/home/order/bTranfer";
+    public static final String ASSETTRANSFER = "/home/order/tranfer";
     //========================mine================================
 
     public static final String USER_INFO = "/Home/users/user_info";
@@ -64,14 +67,14 @@ public class HttpConfig {
 
     public static final String BIND_GOOGLE = "/home/google/checkGoogleCommand";
 
-    public static final String FORGET_PS = "/Home/users/find_opwd";
+    public static final String FORGET_PS = "/home/qbw/reset_opwd";
 
 
     public static final String LOGIN = "/Home/Users/user_login";
 
-    public static final String SEND_SMS = "/Home/Users/send_sms";
+    public static final String SEND_SMS = "/Home/Qbw/send_sms";
 
-    public static final String REGISTER = "/Home/users/register";
+    public static final String REGISTER = "/Home/Qbw/register";
 
     public static final String FORGET_LOGIN_PS = "/Home/Users/reset_opwd";
 
@@ -99,7 +102,7 @@ public class HttpConfig {
 
 
 
-    public static final String SEND_EMAIL = "/Home/users/send_email";
+    public static final String SEND_EMAIL = "/Home/Mail/send_mail";
 
     public static final String RESET_LOGIN_PS = "/Home/users/xiugai_pwd";
 
@@ -153,7 +156,6 @@ public class HttpConfig {
     //==============================Address=======================================
     public static final String ADDRESS_LIST = "/Home/Users/Add_list";
 
-    public static final String ADDRESS_MANAGE = "/Home/Users/AddrManage";
 
     public static final String ADDRESS_EDIT = "/Home/Users/Addredit";
 

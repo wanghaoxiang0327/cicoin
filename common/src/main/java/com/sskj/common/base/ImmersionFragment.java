@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.gyf.barlibrary.ImmersionBar;
 
-public class ImmersionFragment extends LazyFragment  {
+public class ImmersionFragment extends LazyFragment {
 
     private boolean mIsActivityCreated;
 
@@ -61,7 +61,7 @@ public class ImmersionFragment extends LazyFragment  {
     }
 
     public void initImmersionBar() {
-
+      ImmersionBar.with(this).transparentStatusBar().init();
     }
 
     public boolean immersionBarEnabled() {

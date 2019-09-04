@@ -1,1 +1,1 @@
-include ':app', ':common', ':market', ':depthlib'
+include ':app', ':common', ':market', ':depthlib', ':login', ':mine', "miner",  ':asset'

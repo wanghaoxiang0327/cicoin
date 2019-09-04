@@ -16,6 +16,24 @@ public class CoinAsset {
     private String pname;
     private String name;
     private double yue;
+    private String price;
+    private String cnyPrice;
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getCnyPrice() {
+        return cnyPrice;
+    }
+
+    public void setCnyPrice(String cnyPrice) {
+        this.cnyPrice = cnyPrice;
+    }
 
     //单位交易量
     private List<String> aim_point;

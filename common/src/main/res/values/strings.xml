@@ -44,6 +44,8 @@
     <string name="common_invite_rules">邀请规则</string>
     <string name="common_director_rules">分红规则</string>
     <string name="common_cancle">取消</string>
+    <string name="common_verify_email">请输入邮箱验证码</string>
+    <string name="common_input_email_verify">请输入邮箱验证码</string>
 
 
 </resources>

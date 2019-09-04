@@ -143,8 +143,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends ExtendActivi
     public void initImmersionBar() {
         ImmersionBar.with(this)
                 .statusBarColor(R.color.common_status_bar)
-                //原理：如果当前设备支持状态栏字体变色，会设置状态栏字体为黑色，如果当前设备不支持状态栏字体变色，会使当前状态栏加上透明度，否则不执行透明度
-                .statusBarDarkFont(false, 0.2f)
+                .fitsSystemWindows(true)
+                .statusBarDarkFont(true)
                 .init();
     }
 

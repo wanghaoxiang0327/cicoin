@@ -1,6 +1,7 @@
 package com.sskj.common.dialog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.ContextCompat;
@@ -40,6 +41,7 @@ import io.reactivex.subscribers.DisposableSubscriber;
  */
 public class VerifyPasswordDialog extends BottomSheetDialog {
 
+    private String emailAddress;
     @BindView(R2.id.title_tv)
     TextView titleTv;
     @BindView(R2.id.cancel_tv)
@@ -54,6 +56,13 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
     TextView getCodeTv;
     @BindView(R2.id.sms_layout)
     LinearLayout smsLayout;
+    @BindView(R2.id.email_layout)
+    LinearLayout emailLayout;
+    @BindView(R2.id.email_code_edt)
+    EditText emailCodeEdt;
+    @BindView(R2.id.get_email_code_tv)
+    TextView getEmailCodeTv;
+
     @BindView(R2.id.google_code_edt)
     EditText googleCodeEdt;
     @BindView(R2.id.past_tv)
@@ -66,7 +75,7 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
     private boolean showPS;
     private boolean showSMS;
     private boolean showGoogle;
-    Context context;
+    private boolean showEmail;
 
     private OnConfirmListener onConfirmListener;
     private DisposableSubscriber<Long> disposableSubscriber;
@@ -82,7 +91,6 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
      */
     public VerifyPasswordDialog(@NonNull Context context, boolean showSMS, boolean showGoogle, boolean showPs, int smsType) {
         super(context);
-        this.context = context;
         View view = LayoutInflater.from(context).inflate(R.layout.common_dialog_verify_password, null);
         setContentView(view);
         ButterKnife.bind(this, view);
@@ -93,16 +101,30 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
         initView();
     }
 
+
+    public VerifyPasswordDialog(@NonNull Context context, boolean showSMS, boolean showEmail, boolean showGoogle, boolean showPs, String email) {
+        super(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.common_dialog_verify_password, null);
+        setContentView(view);
+        ButterKnife.bind(this, view);
+        this.showSMS = showSMS;
+        this.showGoogle = showGoogle;
+        this.showPS = showPs;
+        this.showEmail = showEmail;
+        this.emailAddress = email;
+        initView();
+    }
+
     private void initView() {
         psLayout.setVisibility(showPS ? View.VISIBLE : View.GONE);
         googleLayout.setVisibility(showGoogle ? View.VISIBLE : View.GONE);
         smsLayout.setVisibility(showSMS ? View.VISIBLE : View.GONE);
+        emailLayout.setVisibility(showEmail ? View.VISIBLE : View.GONE);
         cancelTv.setOnClickListener(v -> {
             dismiss();
         });
         ClickUtil.click(submit, view -> {
             if (onConfirmListener != null) {
-
                 if (showPS) {
                     if (TextUtils.isEmpty(psEdt.getText())) {
                         ToastUtils.show(psEdt.getHint());
@@ -123,7 +145,17 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
                     }
                 }
 
-                onConfirmListener.onConfirm(this, psEdt.getText().toString(), smsCodeEdt.getText().toString(), googleCodeEdt.getText().toString());
+                if (showEmail) {
+                    if (TextUtils.isEmpty(emailCodeEdt.getText())) {
+                        ToastUtils.show(emailCodeEdt.getHint());
+                        return;
+                    }
+                }
+                if (showEmail) {
+                    onConfirmListener.onConfirm(this, psEdt.getText().toString(), emailCodeEdt.getText().toString(), googleCodeEdt.getText().toString());
+                } else {
+                    onConfirmListener.onConfirm(this, psEdt.getText().toString(), smsCodeEdt.getText().toString(), googleCodeEdt.getText().toString());
+                }
             }
         });
 
@@ -141,8 +173,19 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
                             startTimeDown(getCodeTv);
                         }
                     });
-    });
-}
+        });
+        //发送邮箱验证码
+        ClickUtil.click(getEmailCodeTv, view -> {
+            OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
+                    .params("email", emailAddress)
+                    .execute(new JsonCallBack<HttpResult>() {
+                        @Override
+                        protected void onNext(HttpResult result) {
+                            startTimeDown(getEmailCodeTv);
+                        }
+                    });
+        });
+    }
 
     public VerifyPasswordDialog setOnConfirmListener(OnConfirmListener onConfirmListener) {
         this.onConfirmListener = onConfirmListener;
@@ -197,14 +240,14 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
         }
     }
 
-public interface OnConfirmListener {
-    /**
-     * 点击确认按钮
-     *
-     * @param dialog
-     */
-    void onConfirm(VerifyPasswordDialog dialog, String ps, String sms, String google);
-}
+    public interface OnConfirmListener {
+        /**
+         * 点击确认按钮
+         *
+         * @param dialog
+         */
+        void onConfirm(VerifyPasswordDialog dialog, String ps, String sms, String google);
+    }
 
 
 }

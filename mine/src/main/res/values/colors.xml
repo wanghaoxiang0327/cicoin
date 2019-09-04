@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <color name="center_text_color">#333333</color>
+    <color name="center_id_text">#5d636e</color>
+    <color name="center_gray">#c0c1c2</color>
+    <color name="center_item_black">#12243b</color>
+</resources>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.WebData;
 import com.sskj.common.language.LocalManageUtil;
@@ -83,9 +84,13 @@ public class WebActivity extends BaseActivity<WebPresenter> {
             default:
                 break;
         }
-
-
     }
 
-
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this)
+                .statusBarDarkFont(true)
+                .fitsSystemWindows(true)
+                .init();
+    }
 }

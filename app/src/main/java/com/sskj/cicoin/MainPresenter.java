@@ -18,7 +18,7 @@ public class MainPresenter extends BasePresenter<MainActivity> {
                 .execute(new JsonCallBack<HttpResult<VersionBean>>(){
                     @Override
                     protected void onNext(HttpResult<VersionBean> result) {
-                        mView.checkVersion(result);
+//                        mView.checkVersion(result);
                     }
                 });
     }

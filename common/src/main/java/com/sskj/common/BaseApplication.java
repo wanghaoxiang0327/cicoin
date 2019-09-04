@@ -16,7 +16,6 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.shizhefei.mvc.MVCHelper;
-import com.squareup.leakcanary.LeakCanary;
 import com.sskj.common.http.HttpsUtil;
 import com.sskj.common.language.LocalManageUtil;
 import com.sskj.common.mvc.LoadViewFactory;
@@ -45,7 +44,7 @@ public class BaseApplication extends MultiDexApplication {
         if (BuildConfig.DEBUG) {
             ARouter.openDebug();
             ARouter.openLog();
-            LeakCanary.install(this);
+//            LeakCanary.install(this);
         } else {
             Cockroach.install(new Cockroach.ExceptionHandler() {
                 @Override

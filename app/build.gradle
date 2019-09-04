@@ -28,4 +28,8 @@ android {
 dependencies {
     implementation project(path: ':common')
     implementation project(path: ':market')
+    implementation project(path: ':login')
+    implementation project(path: ':mine')
+    implementation project(path: ':miner')
+    implementation project(path: ':asset')
 }

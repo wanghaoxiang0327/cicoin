@@ -2,6 +2,7 @@ package com.sskj.cicoin;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.widget.FrameLayout;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.gyf.barlibrary.ImmersionBar;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.data.VersionBean;
@@ -23,6 +25,8 @@ import com.sskj.common.socket.WebSocket;
 import com.sskj.common.tab.TabItem;
 import com.sskj.common.tab.TabLayout;
 import com.sskj.common.tab.TabSelectListener;
+import com.sskj.mine.MineFragment;
+import com.sskj.miner.ui.fragment.MinerFragment;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
@@ -65,8 +69,9 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         mainTabs.add(new TabItem(getString(R.string.app_mainActivity3), R.mipmap.tab_wakuang, R.mipmap.tab_wakuang_p));
         mainTabs.add(new TabItem(getString(R.string.app_mainActivity4), R.mipmap.tab_mine, R.mipmap.tab_mine_p));
         fragments.add(HomeFragment.newInstance());
-//        fragments.add(MarketDetailFragment.newInstance());
-//        fragments.add(MarketDetailFragment2.newInstance());
+        fragments.add(HomeFragment.newInstance());
+        fragments.add(MinerFragment.newInstance());
+        fragments.add(MineFragment.newInstance());
 //        fragments.add(ContractFragment.newInstance());
 //        fragments.add(MineFragment.newInstance());
         mainTabLayout.setTabData(mainTabs, getSupportFragmentManager(), R.id.main_content, fragments);
@@ -151,5 +156,16 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         if (result != null) {
             new VersionUpdateDialog(this, result.getData()).show();
         }
+    }
+
+
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this)
+              .transparentStatusBar()
+                .fitsSystemWindows(false)
+                //原理：如果当前设备支持状态栏字体变色，会设置状态栏字体为黑色，如果当前设备不支持状态栏字体变色，会使当前状态栏加上透明度，否则不执行透明度
+                .statusBarDarkFont(false, 0.2f)
+                .init();
     }
 }
