@@ -4,13 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.gyf.barlibrary.ImmersionBar;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.router.RoutePath;
+import com.sskj.common.rxbus.RxBus;
+import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.view.ToolBarLayout;
 import com.sskj.market.adapter.MarketDetailAdapter;
 import com.sskj.market.data.MarketDetail;
@@ -30,6 +34,10 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
     ToolBarLayout toolbar;
     @BindView(R2.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R2.id.tv_make_more)
+    TextView tvMakeMore;
+    @BindView(R2.id.tv_make_empty)
+    TextView tvMakeEmpty;
     @Autowired
     CoinBean coinBean;
     MarketDetailAdapter detailAdapter;
@@ -54,6 +62,14 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         detailAdapter = new MarketDetailAdapter(null, getSupportFragmentManager());
         recyclerView.setAdapter(detailAdapter);
+        ClickUtil.click(tvMakeMore, view -> {
+            ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore", 1).navigation();
+            finish();
+        });
+        ClickUtil.click(tvMakeEmpty, view -> {
+            ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore", 1).navigation();
+            finish();
+        });
     }
 
     @Override
@@ -76,5 +92,15 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
     protected void onDestroy() {
         super.onDestroy();
         detailAdapter = null;
+    }
+
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this)
+                .transparentStatusBar()
+                .fitsSystemWindows(false)
+                //原理：如果当前设备支持状态栏字体变色，会设置状态栏字体为黑色，如果当前设备不支持状态栏字体变色，会使当前状态栏加上透明度，否则不执行透明度
+                .statusBarDarkFont(false, 0.2f)
+                .init();
     }
 }

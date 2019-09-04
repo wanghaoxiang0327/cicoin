@@ -3,19 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/common_background"
+    android:background="@drawable/contact_border_bg"
     android:orientation="vertical"
     android:padding="@dimen/common_margin">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:text="@string/contact_contact_dialog_close_order20"
-        android:textColor="@color/common_white"
-        android:textSize="17sp"
-        android:textStyle="bold" />
 
 
     <LinearLayout
@@ -25,22 +15,26 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/contact_contact_dialog_close_order80"
-                android:textColor="@color/common_hint" />
+                android:text="@string/contact_contact_dialog_create_order80"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tv_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/common_red"
+                android:textSize="@dimen/sp_14"
                 tools:text="@string/contact_dealFragment6" />
 
         </LinearLayout>
@@ -51,20 +45,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contact_contact_dialog_close_order150"
-                android:textColor="@color/common_hint" />
+                android:textColor="@color/common_hint"
+                android:textSize="@dimen/sp_12" />
 
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/common_text"
+                android:textSize="@dimen/sp_14"
                 tools:text="100.00" />
 
         </LinearLayout>
@@ -74,7 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -95,22 +92,43 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/common_divider" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/contact_contact_dialog_close_order20"
+        android:textColor="@color/common_text"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
         android:background="@drawable/contact_border_dark_bg"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_less"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="@string/contact_contact_dialog_close_order300"
-            android:textColor="@color/common_text" />
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:text="—"
+            android:textColor="@color/common_hint"
+            android:textSize="@dimen/sp_14" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"
+            android:background="@color/common_divider" />
 
         <EditText
             android:id="@+id/edt_num"
@@ -119,22 +137,30 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:textColor="@color/common_hint" />
+            android:inputType="number"
+            android:textColor="@color/common_hint"
+            android:textSize="@dimen/sp_12" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"
+            android:background="@color/common_divider" />
 
         <TextView
+            android:id="@+id/tv_add"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="@string/contact_contact_dialog_close_order340"
-            android:textColor="@color/common_text" />
-
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:text="+"
+            android:textColor="@color/common_hint"
+            android:textSize="@dimen/sp_14" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="27dp"
         android:orientation="horizontal">
 
         <Button

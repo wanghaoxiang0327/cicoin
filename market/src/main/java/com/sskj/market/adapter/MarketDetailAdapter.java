@@ -74,7 +74,7 @@ public class MarketDetailAdapter extends BaseMultiItemQuickAdapter<MarketDetail,
             case MarketDetail.TOP:
                 code = item.getTopData().getCode();
                 helper.setText(R.id.tv_price, item.getTopData().getPrice() + "")
-                        .setText(R.id.tv_the_amount, item.getTopData().getVolume() + "")
+                        .setText(R.id.tv_the_amount, NumberUtils.keepDown(item.getTopData().getVolume(), 2))
                         .setTextColor(R.id.tv_price, item.getTopData().getChangeRate().contains("-") ? mContext.getResources().getColor(R.color.market_green) : mContext.getResources().getColor(R.color.market_red))
                         .setText(R.id.tv_change_rate, item.getTopData().getChangeRate())
                         .setTextColor(R.id.tv_change_rate, item.getTopData().getChangeRate().contains("-") ? mContext.getResources().getColor(R.color.market_green) : mContext.getResources().getColor(R.color.market_red))
@@ -126,7 +126,7 @@ public class MarketDetailAdapter extends BaseMultiItemQuickAdapter<MarketDetail,
         bottomTabs.add(new TabItem("深度"));
         bottomTabs.add(new TabItem("成交"));
         bottomTabs.add(new TabItem("简介"));
-        bottomFragments.add(DepthFragment.newInstance(code));
+        bottomFragments.add(DepthFragment.newInstance(code, true));
         bottomFragments.add(TradeFragment.newInstance(code));
         bottomFragments.add(SummaryFragment.newInstance(code));
     }

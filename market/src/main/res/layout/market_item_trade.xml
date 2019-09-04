@@ -25,7 +25,6 @@
         android:layout_toStartOf="@+id/tvSell"
         android:layout_weight="1"
         android:gravity="end"
-        android:text="方向"
         android:textColor="@color/common_green"
         android:textSize="12sp" />
 

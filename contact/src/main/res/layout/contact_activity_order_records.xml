@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/tv_total"
@@ -58,7 +58,7 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/tv_useful"
@@ -82,11 +82,12 @@
 
         <LinearLayout
             android:layout_width="0dp"
+
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/tv_freeze"
@@ -163,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/common_green"
+                android:textColor="@color/common_red"
                 android:textSize="@dimen/sp_16"
                 tools:text="4656.32" />
 
@@ -173,7 +174,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/contact_contact_activity_order_records410"
-                android:textColor="@color/common_green"
+                android:textColor="@color/common_red"
                 android:textSize="@dimen/sp_12" />
 
         </LinearLayout>
@@ -184,7 +185,7 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:background="@color/common_white"
         app:indicator_color="@color/common_tip"
         app:textSelectColor="@color/common_tip"

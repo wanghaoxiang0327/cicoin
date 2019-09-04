@@ -59,7 +59,7 @@
         android:id="@+id/limit_price_layout"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/contact_edt_price_dark_bg"
+        android:background="@drawable/contact_border_bg"
         android:orientation="horizontal">
 
         <EditText
@@ -114,7 +114,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/contact_border_bg"
+        android:background="@drawable/contact_edt_price_dark_bg"
         android:gravity="center"
         android:text="@string/contact_contact_fragment_contract_left200"
         android:textColor="@color/common_hint"

@@ -35,6 +35,10 @@ public class ContactCloseOrderDialog extends DialogFragment {
     TextView tvPrice;
     @BindView(R2.id.tv_num)
     TextView tvNum;
+    @BindView(R2.id.tv_add)
+    TextView tvAdd;
+    @BindView(R2.id.tv_less)
+    TextView tvLess;
     @BindView(R2.id.edt_num)
     EditText edtNum;
     @BindView(R2.id.btn_cancel)
@@ -73,7 +77,8 @@ public class ContactCloseOrderDialog extends DialogFragment {
     }
 
     private void initView() {
-        tvType.setText(orderData.getType() == 1 ? getString(R.string.contact_dealFragment5) : getString(R.string.contact_dealFragment6));
+        tvType.setText(orderData.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));
+        tvType.setTextColor(orderData.getType() == 1 ? getResources().getColor(R.color.common_red) : getResources().getColor(R.color.common_green));
         tvPrice.setText(orderData.getPrice());
         tvNum.setText(orderData.getBuynum());
         btnCancel.setOnClickListener(v -> {
@@ -84,17 +89,34 @@ public class ContactCloseOrderDialog extends DialogFragment {
                 ToastUtils.show(getString(R.string.contact_contactCloseOrderDialog3));
                 return;
             }
-            double totalNum= Double.parseDouble(orderData.getBuynum());
-            double closeNum= Double.parseDouble(edtNum.getText().toString());
-            if (closeNum>totalNum){
-                ToastUtils.show(getString(R.string.contact_contactCloseOrderDialog4)+orderData.getBuynum());
+            double totalNum = Double.parseDouble(orderData.getBuynum());
+            double closeNum = Double.parseDouble(edtNum.getText().toString());
+            if (closeNum > totalNum) {
+                ToastUtils.show(getString(R.string.contact_contactCloseOrderDialog4) + orderData.getBuynum());
             }
-            if (confirmListener!=null){
+            if (confirmListener != null) {
                 confirmListener.onConfirm(edtNum.getText().toString(), orderData.getHold_id());
             }
             getDialog().dismiss();
         });
-
+        ClickUtil.click(tvAdd, view -> {
+            String num = edtNum.getText().toString();
+            if (!TextUtils.isEmpty(num)) {
+                int nums = Integer.valueOf(num);
+                nums++;
+                edtNum.setText(nums + "");
+            }
+        });
+        ClickUtil.click(tvLess, view -> {
+            String num = edtNum.getText().toString();
+            if (!TextUtils.isEmpty(num)) {
+                int nums = Integer.valueOf(num);
+                nums--;
+                if (nums > 0) {
+                    edtNum.setText(nums + "");
+                }
+            }
+        });
     }
 
 
@@ -118,9 +140,9 @@ public class ContactCloseOrderDialog extends DialogFragment {
     OnConfirmListener confirmListener;
 
 
-    public  static ContactCloseOrderDialog getInstance(HoldOrder holdOrder){
-        ContactCloseOrderDialog dialog=new ContactCloseOrderDialog();
-        Bundle bundle=new Bundle();
+    public static ContactCloseOrderDialog getInstance(HoldOrder holdOrder) {
+        ContactCloseOrderDialog dialog = new ContactCloseOrderDialog();
+        Bundle bundle = new Bundle();
         bundle.putSerializable("order", holdOrder);
         dialog.setArguments(bundle);
         return dialog;

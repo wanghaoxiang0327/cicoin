@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -16,6 +17,7 @@ import com.sskj.common.router.RoutePath;
 import com.sskj.common.socket.WebSocket;
 import com.sskj.common.socket.WebSocketObserver;
 import com.sskj.common.utils.NumberUtils;
+import com.sskj.common.utils.ScreenUtil;
 import com.sskj.depthlib.data.DepthData;
 import com.sskj.depthlib.view.DepthMapView;
 import com.sskj.market.data.BuySellData;
@@ -42,10 +44,13 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
     RecyclerView deepRecyclerView;
     @BindView(R2.id.depthMapTip)
     LinearLayout depthMapTip;
+    @BindView(R2.id.frameLayout)
+    FrameLayout frameLayout;
     private BaseAdapter<DeepData> deepListAdapter;
     private String code;
     private Disposable disposable;
     private WebSocket webSocket;
+    private boolean isBig;
 
     @Override
     public int getLayoutId() {
@@ -61,6 +66,10 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
     public void initView() {
         if (getArguments() != null) {
             code = getArguments().getString("code");
+            isBig = getArguments().getBoolean("isBig");
+        }
+        if (isBig) {
+            frameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.sp2px(getContext(), 200)));
         }
         depthMapView.setOnPointShowListener(show -> {
             if (show) {
@@ -100,10 +109,11 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
 
     }
 
-    public static DepthFragment newInstance(String code) {
+    public static DepthFragment newInstance(String code, boolean isBig) {
         DepthFragment fragment = new DepthFragment();
         Bundle bundle = new Bundle();
         bundle.putString("code", code);
+        bundle.putBoolean("isBig", isBig);
         fragment.setArguments(bundle);
         return fragment;
     }

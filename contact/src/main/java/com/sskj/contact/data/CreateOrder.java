@@ -5,7 +5,7 @@ import com.sskj.contact.type.Trade;
 
 import java.io.Serializable;
 
-public class CreateOrder  implements Serializable {
+public class CreateOrder implements Serializable {
 
     private Price priceType;
     private Trade tradeType;
@@ -14,6 +14,8 @@ public class CreateOrder  implements Serializable {
     private String lever;
     private String code;
     private String total;
+
+    private String fee;
 
 
     public String getTotal() {
@@ -71,4 +73,13 @@ public class CreateOrder  implements Serializable {
     public void setCode(String code) {
         this.code = code;
     }
+
+    public String getFee() {
+        return fee;
+    }
+
+    public void setFee(String fee) {
+        this.fee = fee;
+    }
+
 }

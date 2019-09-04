@@ -2,8 +2,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/common_hint" />
+            <stroke android:width="0.5dp" android:color="@color/common_hint" />
             <corners android:radius="50dp" />
+            <solid android:color="@color/common_white" />
         </shape>
     </item>
     <item android:state_enabled="false">
@@ -13,8 +14,9 @@
     </item>
     <item>
         <shape>
-            <solid android:color="@color/common_action_text" />
-            <corners android:radius="5dp" />
+            <stroke android:width="0.5dp" android:color="@color/common_hint" />
+            <corners android:radius="50dp" />
+            <solid android:color="@color/common_white" />
         </shape>
     </item>
 </selector>

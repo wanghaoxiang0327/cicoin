@@ -15,9 +15,9 @@ import com.sskj.market.data.Summary;
 public class SummaryPresenter extends BasePresenter<SummaryFragment> {
 
 
-    public void  getData(String code){
-        OkGo.<HttpResult<Summary>> post(HttpConfig.BASE_URL+HttpConfig.CODE_INFO)
-                .params("code",code)
+    public void getData(String code) {
+        OkGo.<HttpResult<Summary>>get(HttpConfig.BASE_URL + HttpConfig.CODE_INFO)
+                .params("code", code)
                 .execute(new JsonCallBack<HttpResult<Summary>>(this) {
                     @Override
                     protected void onNext(HttpResult<Summary> result) {

@@ -157,7 +157,7 @@
                 <com.lwj.widget.viewpagerindicator.ViewPagerIndicator
                     android:id="@+id/indicator_line"
                     android:layout_width="match_parent"
-                    android:layout_height="5dp"
+                    android:layout_height="3dp"
                     android:layout_alignParentBottom="true"
                     app:default_color="@color/common_hint"
                     app:distanceType="BY_DISTANCE"
