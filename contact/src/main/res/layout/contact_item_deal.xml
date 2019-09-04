@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/common_background"
+    android:orientation="vertical"
+    android:padding="@dimen/common_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_order_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@color/common_green"
+            tools:text="@string/common_make_more" />
+
+
+        <TextView
+            android:id="@+id/tv_coin_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/common_hint"
+            tools:text="ETH/USDT" />
+
+
+        <TextView
+            android:id="@+id/tv_create_time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:textColor="@color/common_hint"
+            android:textSize="12sp"
+            tools:text="11-05 15:25" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/common_divider" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/contact_opening_time"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_opening_time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="@string/contact_dealFragment7" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/contact_closeing_time"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_order_lever"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="100" />
+        </TableRow>
+
+        <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_item_deal260"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_hold_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="56.00" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_item_deal300"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_close_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="1000.00" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_item_deal370"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_hold_num"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="56.00" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/contact_leverage_multiple"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_night_fee"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="30" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_item_deal480"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_fee"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="30" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_dialog_create_order300"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_total_money"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="100" />
+
+        </TableRow>
+
+        <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_dialog_setting_order170"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_win_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="100.00" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/contact_contact_dialog_setting_order290"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_loss_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/common_text"
+                android:textSize="12sp"
+                tools:text="100.00" />
+
+        </TableRow>
+    </TableLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/common_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_profit"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:background="@color/common_green"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/common_white"
+            android:textSize="12sp"
+            tools:text="@string/contact_contact_item_deal730" />
+
+        <TextView
+            android:id="@+id/tv_state"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
+            android:textColor="@color/common_hint"
+            android:textSize="@dimen/sp_14"
+            tools:text="@string/contact_contact_item_deal770" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/contact_ic_share"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="@string/contact_share"
+            android:textColor="@color/common_tip"
+            android:textSize="@dimen/sp_14" />
+
+    </LinearLayout>
+
+</LinearLayout>

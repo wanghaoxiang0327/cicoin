@@ -6,10 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.fastjson.JSONObject;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
+import com.sskj.common.http.HttpConfig;
+import com.sskj.common.router.RoutePath;
 import com.sskj.common.socket.WebSocket;
 import com.sskj.common.socket.WebSocketObserver;
 import com.sskj.common.utils.NumberUtils;
@@ -31,21 +34,15 @@ import io.reactivex.schedulers.Schedulers;
  * @author Hey
  * Create at  2019/07/31 10:25:20
  */
+@Route(path = RoutePath.DEPTH_FRAGMENT)
 public class DepthFragment extends BaseFragment<DeepthPresenter> {
-
-
     @BindView(R2.id.depthMapView)
     DepthMapView depthMapView;
     @BindView(R2.id.deepRecyclerView)
     RecyclerView deepRecyclerView;
     @BindView(R2.id.depthMapTip)
     LinearLayout depthMapTip;
-
     private BaseAdapter<DeepData> deepListAdapter;
-
-    private List<DeepData> deepData = new ArrayList<>();
-
-
     private String code;
     private Disposable disposable;
     private WebSocket webSocket;
@@ -95,12 +92,12 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
 
     @Override
     public void loadData() {
-
+        mPresenter.getDeepData(code);
     }
 
     @Override
     public void lazyLoad() {
-        mPresenter.getDeepData(code);
+
     }
 
     public static DepthFragment newInstance(String code) {
@@ -183,7 +180,7 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
     public void startWebSocket() {
         JSONObject message = new JSONObject();
         message.put("code", code);
-        webSocket = new WebSocket("wss://www.gccoin.pro:7274", "deep", message.toString());
+        webSocket = new WebSocket(HttpConfig.WS_DEPTH, "deep", message.toString());
         setSocketListener();
     }
 

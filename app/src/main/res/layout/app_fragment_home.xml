@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_background"
@@ -36,6 +35,7 @@
             android:layout_marginBottom="8dp"
             android:drawablePadding="5dp"
             android:textColor="@color/common_hint"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -75,7 +76,8 @@
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/home_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/common_white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,23 +95,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:layout_marginLeft="35dp"
-                    android:layout_marginTop="@dimen/common_margin"
                     android:layout_marginRight="35dp"
-                    android:clipChildren="false" />
+                    android:clipChildren="false"
+                    app:indicator_height="0dp" />
             </LinearLayout>
 
 
             <LinearLayout
+                android:id="@+id/ll_notice"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/common_margin"
-                android:paddingRight="@dimen/common_margin">
+                android:paddingTop="18dp"
+                android:paddingRight="@dimen/common_margin"
+                android:paddingBottom="18dp">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/ic_notice" />
 
                 <TextSwitcher
                     android:id="@+id/tvNotice"
@@ -123,45 +129,119 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:background="@color/common_divider" />
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/topCoinRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="27dp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/common_margin"
-                android:paddingRight="@dimen/common_margin">
+                android:layout_height="wrap_content"
+                android:background="@color/common_background"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/common_hint"
-                    android:textSize="12sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/common_hint"
-                    android:textSize="12sp" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/bg_invitation"
+                        android:orientation="vertical"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="19dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|right"
-                    android:textColor="@color/common_hint"
-                    android:textSize="12sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_invitation_to_return"
+                            android:textColor="@color/common_text"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:text="@string/app_invitation_to_return_des"
+                            android:textColor="@color/common_dark"
+                            android:textSize="8sp" />
 
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_trading_guide"
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/bg_trading_guide"
+                        android:orientation="vertical"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="19dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_trading_guide"
+                            android:textColor="@color/common_text"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:text="@string/app_trading_guide_des"
+                            android:textColor="@color/common_dark"
+                            android:textSize="8sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="69dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@mipmap/bg_mining"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_usdt_mining"
+                        android:textColor="@color/common_white"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/app_usdt_mining_des"
+                        android:textColor="@color/common_white"
+                        android:textSize="9sp" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <FrameLayout

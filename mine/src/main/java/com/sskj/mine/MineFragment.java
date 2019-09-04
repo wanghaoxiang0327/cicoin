@@ -110,7 +110,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
         adapter.setOnItemClickListener((adapter1, view, position) ->
         {
-            if (BaseApplication.isLogin() && position <= 5) {
+            if (!BaseApplication.isLogin() && position <= 5) {
                 ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
                 return;
             }

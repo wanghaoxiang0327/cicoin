@@ -54,6 +54,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     TextView changeLanguage;
     @BindView(R.id.change_skin)
     LinearLayout changeSkip;
+    @BindView(R.id.ll_trading_guide)
+    LinearLayout llTradingGuide;
     @BindView(R.id.bannerView)
     Banner bannerView;
 
@@ -108,7 +110,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                         .setText(R.id.coin_price, NumberUtils.keepDown(item.getPrice(), DigitUtils.getDigit(item.getCode())))
                         .setText(R.id.coin_cny_price, "≈" + item.getCnyPrice() + " CNY")
                         .setText(R.id.coin_change_rate, item.getChange() > 0 ? "+" + item.getChangeRate() : item.getChangeRate());
-                if (item.isUp()) {
+                if (!item.isUp()) {
                     holder.setTextColor(R.id.coin_price, color(R.color.market_green));
                     holder.setTextColor(R.id.coin_change_rate, color(R.color.market_green));
                 } else {
@@ -175,17 +177,13 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                 changeLanguage.setText("English");
                 break;
         }
-
-        tvNotice.setOnClickListener(view -> {
-
-        });
         wrapRefresh(homeContent);
         setEnableLoadMore(false);
         ClickUtil.click(changeLanguage, view -> {
 //            LanguageActivity.start(getContext());
         });
-        ClickUtil.click(changeSkip, view -> {
-//            ChangeSkipActivity.start(getContext());
+        ClickUtil.click(llTradingGuide, view -> {
+            TradingGuideActivity.start(getContext());
         });
     }
 
@@ -241,9 +239,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         }
         topList.clear();
         for (CoinBean coinBean : data) {
-            if (coinBean.getCode().equals("BTC/USDT") || coinBean.getCode().equals("ETH/USDT") || coinBean.getCode().equals("EOS/USDT")) {
-                topList.add(coinBean);
-            }
+            topList.add(coinBean);
         }
         topAdapter.setNewData(topList);
     }
@@ -269,7 +265,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                             String text = data.getRes().get(position).getTitle();
                             tvNotice.setText(text);
                             ClickUtil.click(tvNotice, view -> {
-//                                NewsDetailActivity.start(getContext(), data.getRes().get(position), 1);
+                                NoticeListActivity.start(getContext());
                             });
                         }
                     }, throwable -> {
@@ -291,11 +287,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     public void updateUI(String data) {
         if (data != null) {
             type = SpUtil.getInt("skip", 2);
-            if (data.equals("1")) {
-//                tvMode.setText(getString(R.string.app_sun));
-            } else {
-//                tvMode.setText(getString(R.string.app_night));
-            }
             initTextnotice();
         }
     }

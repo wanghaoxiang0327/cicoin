@@ -55,8 +55,10 @@ public class TradeFragment extends BaseFragment<TradePresenter> {
                         .setText(R.id.tvNum, item.getAmount());
                 if (item.getType().equals("buy")) {
                     holder.setText(R.id.tvDirection, "买入");
+                    holder.setTextColor(R.id.tvDirection, getResources().getColor(R.color.common_red));
                 } else {
                     holder.setText(R.id.tvDirection, "卖出");
+                    holder.setTextColor(R.id.tvDirection, getResources().getColor(R.color.common_green));
                 }
 
             }

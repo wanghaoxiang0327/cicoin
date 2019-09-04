@@ -28,11 +28,11 @@ public class HttpConfig {
 
     public static final String BANNER = "/Home/Sign/bannerfind";
 
-    public static final String NOTICE_LIST = "/Home/Article/notice_list";
+    public static final String NOTICE_LIST = "/Home/Qbw/zixun";
     public static final String INFORMATION = "/Home/Users/zixun";
     public static final String INFORMATION_DETAIL = "/Home/Users/zixun_detail";
 
-    public static final String NOTICE_DETAIL = "/Home/Article/notice_detail";
+    public static final String NOTICE_DETAIL = "/Home/Qbw/zixun_detail";
 
 
     public static final String WEB_AGGREE = "/Home/ajax/get_web_agree";
@@ -186,9 +186,32 @@ public class HttpConfig {
 
     public static final String MACHINE_BUY = "/home/Product/buy_product";
 
-    public static final String CODE_INFO ="/home/qbw/get_info" ;
+    public static final String CODE_INFO = "/home/qbw/get_info";
 
     public static final String GET_DEEP = "/Home/Ajax/get_shendu";
 
-    public static final String GET_ALL_TRADE ="/home/ajax/RealTimeDeal" ;
+    public static final String GET_ALL_TRADE = "/home/ajax/RealTimeDeal";
+
+
+    public static String WS_PANKOU = "ws://47.56.161.148:7275";//盘口
+    public static String WS_DEPTH = "ws://47.56.161.148:7274";//深度图
+    public static final String GET_LEVER = "/Home/api/get_lever";
+
+    public static final String GET_DEAL_ORDER = "/Home/Order/chengjiao";
+    public static final String CONTACT_CREATE_ORDER = "/Home/Order/add_order";
+
+    public static final String CONTACT_SET_POINT = "/Home/Order/set_poit";
+    public static final String GET_ENTRUST_ORDER = "/Home/Order/weituo";
+    public static final String CONTACT_CANCEL_ORDER = "/Home/Order/cancellations";
+
+    public static final String GET_HOLD_ORDER = "/Home/Order/chicang";
+    public static final String CONTACT_CLOSE_ORDER = "/Home/Order/pingcang";
+
+    public static final String CONTACT_POINT_INFO = "/Home/Order/set_poit_pre";
+
+    public static final String GET_TONGJI = "/Home/Order/tongji";
+
+
+    //=================Depth======================================
+    public static final String GET_PANKOU = "/Home/Ajax/getdepth";
 }

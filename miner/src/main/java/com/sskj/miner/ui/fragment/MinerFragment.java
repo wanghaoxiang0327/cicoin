@@ -78,7 +78,7 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
         beans.add(new WaterBean("61"));
         beans.add(new WaterBean("671"));
         beans.add(new WaterBean("1"));
-        Flowable.timer(10, TimeUnit.SECONDS).subscribe(aLong -> viewWaterMiner.setWaters(beans));
+        Flowable.timer(2, TimeUnit.SECONDS).subscribe(aLong -> viewWaterMiner.setWaters(beans));
     }
 
     @Override

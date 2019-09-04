@@ -27,6 +27,7 @@ import com.sskj.common.tab.TabLayout;
 import com.sskj.common.tab.TabSelectListener;
 import com.sskj.mine.MineFragment;
 import com.sskj.miner.ui.fragment.MinerFragment;
+import com.sskj.contact.ContractFragment;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
@@ -69,7 +70,8 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         mainTabs.add(new TabItem(getString(R.string.app_mainActivity3), R.mipmap.tab_wakuang, R.mipmap.tab_wakuang_p));
         mainTabs.add(new TabItem(getString(R.string.app_mainActivity4), R.mipmap.tab_mine, R.mipmap.tab_mine_p));
         fragments.add(HomeFragment.newInstance());
-        fragments.add(HomeFragment.newInstance());
+        fragments.add(ContractFragment.newInstance());
+//        fragments.add(MarketDetailFragment2.newInstance());
         fragments.add(MinerFragment.newInstance());
         fragments.add(MineFragment.newInstance());
 //        fragments.add(ContractFragment.newInstance());

@@ -65,6 +65,7 @@ public class CoinAsset {
     public List<String> getAim_point() {
         return aim_point;
     }
+
     public double getYue() {
         return yue;
     }

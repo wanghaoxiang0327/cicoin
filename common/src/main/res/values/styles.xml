@@ -27,6 +27,15 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="common_pankou_progress" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/common_sell_pankou_progress</item>
+    </style>
+
+    <style name="common_buy_pankou_progress" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/common_buy_pankou_progress</item>
+    </style>
+
+
     <style name="commonBaseThemes" parent="@style/AppTheme">
         <item name="android:windowBackground">@color/common_background</item>
     </style>

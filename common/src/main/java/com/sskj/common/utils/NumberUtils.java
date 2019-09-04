@@ -2,6 +2,7 @@ package com.sskj.common.utils;
 
 import android.text.TextUtils;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
 
@@ -10,7 +11,6 @@ import java.text.NumberFormat;
  * @version 1.1  2019年7月15日12:42:13 修改正则表达式，修复负数不能匹配的问题
  */
 public class NumberUtils {
-
     public static String keep2(Object num) {
         return keepDown(num, 2);
     }
@@ -35,8 +35,14 @@ public class NumberUtils {
 
 
     public static String keepDown(Object num, int digit) {
+        return format(num, 0, digit, RoundingMode.DOWN);
+    }
+
+    public static String keep(Object num, int digit) {
         return format(num, digit, digit, RoundingMode.DOWN);
     }
+
+
 
 
     public static String keepUp(Object num, int digit) {
@@ -61,17 +67,15 @@ public class NumberUtils {
             return numberFormat.format(Double.parseDouble(str));
         } else if (num instanceof Double || num instanceof Float || num instanceof Long) {
             return numberFormat.format(num);
+        }else if (num instanceof BigDecimal){
+            return numberFormat.format(num);
         }
         return "0";
     }
 
 
     public static boolean isNumeric(String str) {
-       try{
-            Double.parseDouble(str);
-            return true;
-        }catch (Exception e){
-            return false;
-        }
+        String reg = "-?[0-9]+.*[0-9]*";
+        return str.matches(reg);
     }
 }
