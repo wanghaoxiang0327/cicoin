@@ -1,5 +1,7 @@
 package com.sskj.contract.login;
 
+import android.util.Log;
+
 import com.lzy.okgo.OkGo;
 import com.sskj.common.base.BasePresenter;
 import com.sskj.common.http.HttpConfig;
@@ -14,11 +16,11 @@ import com.sskj.contract.login.RegisterActivity;
  */
 public class RegisterPresenter extends BasePresenter<RegisterActivity> {
 
-    public void register(String mobile, String code, String opwd, String opwd1, String tjuser) {
+    public void register(String mobile, String code, String type, String opwd, String opwd1, String tjuser) {
         OkGo.<HttpResult<Object>>post(HttpConfig.BASE_URL + HttpConfig.REGISTER)
                 .params("mobile", mobile)
                 .params("code", code)
-                .params("mcode", "86")
+                .params("mcode", type)
                 .params("is_app", "1")
                 .params("opwd", opwd)
                 .params("opwd1", opwd1)
@@ -26,6 +28,7 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> {
                 .execute(new JsonCallBack<HttpResult<Object>>(this) {
                     @Override
                     protected void onNext(HttpResult<Object> result) {
+                        Log.d("yds", "**********************");
                         mView.registerSuccess(mobile);
                     }
                 });
@@ -35,10 +38,11 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> {
      * @param mobile type 1注册 （2 重置 3 安全验证 4 资金密码设置 5 提币）
      * @param
      */
-    public void sendSms(String mobile) {
+    public void sendSms(String mobile, String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
                 .params("mobile", mobile)
                 .params("type", 1)
+                .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
                     protected void onNext(HttpResult result) {

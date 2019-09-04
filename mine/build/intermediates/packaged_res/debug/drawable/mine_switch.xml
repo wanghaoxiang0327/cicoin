@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-        <item android:drawable="@mipmap/mine_switch_on" android:state_checked="true"/>
-        <item android:drawable="@mipmap/mine_switch_off" android:state_checked="false"/>
-</selector>

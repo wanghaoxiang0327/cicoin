@@ -70,7 +70,7 @@ public class HttpConfig {
     public static final String FORGET_PS = "/home/qbw/reset_opwd";
 
 
-    public static final String LOGIN = "/Home/Users/user_login";
+    public static final String LOGIN = "/Home/Qbw/user_login";
 
     public static final String SEND_SMS = "/Home/Qbw/send_sms";
 
@@ -79,7 +79,12 @@ public class HttpConfig {
     public static final String FORGET_LOGIN_PS = "/Home/Users/reset_opwd";
 
 
+<<<<<<< HEAD
     public static final String GOOGLE_CHECK = "/Home/users/is_start_google";
+=======
+
+    public static final String GOOGLE_CHECK = "/Home/Qbw/user_login";
+>>>>>>> 1b06acccbde28ee966623f3ce30aa9e28d22dd82
 
     /**
      * 我的推广二维码

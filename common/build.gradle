@@ -17,6 +17,9 @@ android {
         }
         multiDexEnabled true
         buildConfigField("String", "IP", "\"${IP}\"")
+        buildConfigField("String", "captchaId", "\"${captchaId}\"")
+        buildConfigField("String", "secretId", "\"${secretId}\"")
+        buildConfigField("String", "secretKey", "\"${secretKey}\"")
     }
 
     buildTypes {

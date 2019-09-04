@@ -22,6 +22,7 @@ import com.sskj.common.base.BaseActivity;
 import com.sskj.common.dialog.VerifyPasswordDialog;
 import com.sskj.common.router.RoutePath;
 import com.sskj.common.tab.TabItem;
+import com.sskj.common.user.model.UserViewModel;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.EditUtil;
 import com.sskj.common.utils.PatternUtils;
@@ -29,6 +30,8 @@ import com.sskj.common.utils.SpUtil;
 import com.sskj.contract.login.bean.LoginBean;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,9 +65,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     TextView tips;
     @BindView(R2.id.register)
     TextView register;
-    private ArrayList<TabItem> typeTabs = new ArrayList<>();
     private RegisterType registerType = RegisterType.MOBILE;
 
+    @Inject
+    UserViewModel model;
     VerifyPasswordDialog verifyPasswordDialog;
 
     @Override
@@ -79,6 +83,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
 
     @Override
     public void initView() {
+//        DaggerUserDataComponent.create().inject(this);
         Disposable text = RxTextView.textChangeEvents(etNum)
                 .map(textViewTextChangeEvent -> textViewTextChangeEvent.getText().toString())
                 .subscribe(s -> {
@@ -107,24 +112,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             if (isEmptyShow(etNum)) {
                 return;
             }
-//            if (registerType == RegisterType.MOBILE) {
-//                if (!PatternUtils.isMobile(getText(etNum))) {
-//                    return;
-//                }
-//            } else {
-//                if (!PatternUtils.isEmail(getText(mobileEdt))) {
-//                    return;
-//                }
-//            }
-
-//            if (isEmptyShow(psEdt)) {
-//                return;
-//            }
-
-//            if (!PatternUtils.isLoginPs(getText(psEdt))) {
-//                return;
-//            }
-//            mPresenter.isGoogleCheck(mobileEdt.getText().toString(), psEdt.getText().toString());
+            mPresenter.login(etNum.getText().toString(), etPwd.getText().toString());
         });
 
 
@@ -135,7 +123,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         SpUtil.put(CommonConfig.ACCOUNT, loginBean.getAccount());
         SpUtil.put(CommonConfig.TOKEN, loginBean.getToken());
         if (registerType == RegisterType.MOBILE) {
-//            SpUtil.put(CommonConfig.MOBILE, getText(mobileEdt));
+            SpUtil.put(CommonConfig.MOBILE, getText(etNum));
         }
         SpUtil.put(CommonConfig.LOGIN, true);
         HttpHeaders httpHeaders = new HttpHeaders();

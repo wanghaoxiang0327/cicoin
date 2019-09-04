@@ -29,6 +29,18 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
                 });
     }
 
+    public void login(String mobile,String pwd){
+        OkGo.<HttpResult<LoginBean>>post(HttpConfig.BASE_URL + HttpConfig.LOGIN)
+                .params("mobile", mobile)
+                .params("opwd", pwd)
+                .execute(new JsonCallBack<HttpResult<LoginBean>>(this) {
+                    @Override
+                    protected void onNext(HttpResult<LoginBean> result) {
+                        mView.loginSuccess(result.getData());
+                    }
+                });
+    }
+
     public void isGoogleCheck(String mobile, String opwd) {
         OkGo.<HttpResult<Map<String, String>>>post(HttpConfig.BASE_URL + HttpConfig.GOOGLE_CHECK)
                 .params("mobile", mobile)
