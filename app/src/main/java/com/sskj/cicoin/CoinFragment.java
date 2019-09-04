@@ -54,7 +54,7 @@ public class CoinFragment extends BaseFragment<CoinPresenter> {
             @Override
             public void bind(ViewHolder holder, CoinBean item) {
                 if (holder.getPosition() < 3) {
-                    holder.setText(R.id.coin_name, item.getCode())
+                    holder.setText(R.id.coin_name, item.getCode().toUpperCase())
                             .setText(R.id.coin_price, NumberUtils.keepDown(item.getPrice(), DigitUtils.getDigit(item.getCode())))
                             .setText(R.id.coin_cny_price, "≈" + item.getCnyPrice() + " CNY")
                             .setText(R.id.coin_change_rate, item.getChange() > 0 ? "+" + item.getChangeRate() : item.getChangeRate());

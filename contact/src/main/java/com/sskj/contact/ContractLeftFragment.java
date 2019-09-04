@@ -172,6 +172,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         initPoint();
         tvUnit.setText(code.split("_")[0]);
         edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
+        edtNum.setFilters(new InputFilter[]{new MoneyValueFilter(2)});
         if (!BaseApplication.isLogin()) {
             btnSubmit.setText(getString(R.string.contact_please_login));
         }
@@ -369,7 +370,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         }
         feeMoney = createPrice.multiply(num).multiply(unitNum).multiply(fee);
         BigDecimal total = num.multiply(createPrice).multiply(unitNum).divide(lever, 8, RoundingMode.DOWN).add(feeMoney);
-        setText(tvTotalMoney, NumberUtils.keepDown(total, 4));
+        setText(tvTotalMoney, NumberUtils.keep(total, 4));
     }
 
 

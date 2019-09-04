@@ -44,13 +44,6 @@
             android:textSize="12sp"
             tools:text="11-05 15:25" />
 
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="50dp"
-            android:layout_height="26dp"
-            android:background="@drawable/common_tip_border_radius_50"
-            android:text="@string/contact_contact_item_entrust100"
-            android:textColor="@color/common_white" />
     </LinearLayout>
 
     <View
@@ -218,6 +211,22 @@
                 android:textColor="@color/common_text"
                 android:textSize="12sp"
                 tools:text="30" />
+        </TableRow>
+
+        <TableRow>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="50dp"
+                android:layout_height="26dp"
+                android:background="@drawable/common_tip_border_gray_50"
+                android:text="@string/contact_contact_item_entrust100"
+                android:textColor="@color/common_hint" />
         </TableRow>
 
     </TableLayout>

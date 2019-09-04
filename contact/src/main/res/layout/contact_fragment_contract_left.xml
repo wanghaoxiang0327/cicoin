@@ -171,7 +171,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="@string/contact_input_count"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textColor="@color/common_text"
             android:textSize="12sp" />
 
