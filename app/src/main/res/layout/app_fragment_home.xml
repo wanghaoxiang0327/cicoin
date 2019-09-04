@@ -105,6 +105,7 @@
                 android:id="@+id/ll_notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/common_margin"
                 android:paddingTop="18dp"
@@ -119,15 +120,17 @@
 
                 <TextSwitcher
                     android:id="@+id/tvNotice"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:inAnimation="@anim/common_push_up_in"
                     android:outAnimation="@anim/common_push_up_out" />
 
                 <ImageView
-                    android:src=""
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@mipmap/common_arrow_right"
+                    android:tint="@color/common_text" />
             </LinearLayout>
 
             <View
