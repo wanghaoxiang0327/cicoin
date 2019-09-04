@@ -7,7 +7,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="93dp">
 
         <com.sskj.depthlib.view.DepthMapView
             android:id="@+id/depthMapView"
