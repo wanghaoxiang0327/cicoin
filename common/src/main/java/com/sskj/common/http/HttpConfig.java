@@ -9,7 +9,7 @@ public class HttpConfig {
     public static final String UPDATE_TRADE_PWD = "/Home/Users/reset_tpwd";
     public static final String ABOUT_US = "/Home/Users/about";
     public static final String SHARE_DETAIL = "/Home/Users/my_broker";
-    public static final String GASSETLIST ="" ;
+    public static final String GASSETLIST = "";
     public static final String ZOOM_RECORD = "";
 
 
@@ -79,7 +79,6 @@ public class HttpConfig {
     public static final String FORGET_LOGIN_PS = "/Home/Users/reset_opwd";
 
 
-
     public static final String GOOGLE_CHECK = "/Home/users/is_start_google";
 
     /**
@@ -99,7 +98,6 @@ public class HttpConfig {
     public static final String CUSTOM = "/Home/Users/my_customer";
 
     public static final String PAY_IN = "/Home/Users/chongzhi";
-
 
 
     public static final String SEND_EMAIL = "/Home/Mail/send_mail";
@@ -196,6 +194,7 @@ public class HttpConfig {
     public static String WS_PANKOU = "ws://47.56.161.148:7275";//盘口
     public static String WS_DEPTH = "ws://47.56.161.148:7274";//深度图
     public static final String GET_LEVER = "/Home/api/get_lever";
+    public static final String GET_BALANCE = "/Home/Users/get_balance";
 
     public static final String GET_DEAL_ORDER = "/Home/Order/chengjiao";
     public static final String CONTACT_CREATE_ORDER = "/Home/Order/add_order";

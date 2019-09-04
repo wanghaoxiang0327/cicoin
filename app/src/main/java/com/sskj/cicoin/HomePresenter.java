@@ -27,7 +27,6 @@ public class HomePresenter extends BasePresenter<HomeFragment> {
                         mView.setData(result.getData());
                     }
                 });
-
     }
 
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="miner_details"><![CDATA[查看明细 >>]]></string>
+    <string name="miner_jy">交易</string>
+    <string name="miner_money">0.0000</string>
+    <string name="miner_rules">规则</string>
+    <string name="miner_title">天天挖矿</string>
+    <string name="miner_yl">原力</string>
+</resources>

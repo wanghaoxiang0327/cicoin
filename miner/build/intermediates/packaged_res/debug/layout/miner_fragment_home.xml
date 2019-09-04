@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.MinerFragment"
+    android:background="@drawable/miner_bg">
+
+    <TextView
+        android:id="@+id/tv_title_miner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/miner_title"
+        android:textColor="@color/common_white"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_rule_miner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="13sp"
+        android:text="@string/miner_rules"
+        android:textColor="@color/common_white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title_miner"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/view_bg_miner"
+        android:layout_width="0pt"
+        android:layout_height="32dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/miner_msg_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_miner" />
+
+
+    <ImageView
+        android:id="@+id/img_yl_miner"
+        android:layout_width="13dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="38dp"
+        android:src="@drawable/miner_yuanli"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bg_miner"
+        app:layout_constraintStart_toStartOf="@+id/view_bg_miner"
+        app:layout_constraintTop_toTopOf="@+id/view_bg_miner" />
+
+    <TextView
+        android:id="@+id/tv_yl_miner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="@string/miner_yl"
+        android:textColor="@color/common_white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bg_miner"
+        app:layout_constraintStart_toEndOf="@+id/img_yl_miner"
+        app:layout_constraintTop_toTopOf="@+id/view_bg_miner" />
+
+    <View
+        android:id="@+id/view_line_miner"
+        android:layout_width="1dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="46dp"
+        android:background="@color/common_white"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bg_miner"
+        app:layout_constraintStart_toEndOf="@+id/tv_yl_miner"
+        app:layout_constraintTop_toTopOf="@+id/view_bg_miner" />
+
+    <TextView
+        android:id="@+id/tv_msg_miner"
+        android:layout_width="0pt"
+        android:layout_height="0pt"
+        android:gravity="center"
+        android:textColor="@color/common_white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_bg_miner"
+        app:layout_constraintEnd_toEndOf="@+id/view_bg_miner"
+        app:layout_constraintStart_toEndOf="@+id/view_line_miner"
+        app:layout_constraintTop_toTopOf="@+id/view_bg_miner"
+        tools:text="阿童木 刚刚 获得1.3USDT" />
+
+    <com.sskj.common.view.WaterView
+        android:id="@+id/view_water_miner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_bg_miner" />
+
+    <TextView
+        android:id="@+id/tv_jy_miner"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/miner_jy"
+        android:gravity="center"
+        android:text="@string/miner_jy"
+        android:textColor="@color/common_white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_details_miner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/miner_details"
+        android:textColor="@color/common_white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_jy_miner"
+        app:layout_constraintEnd_toStartOf="@+id/tv_jy_miner"
+        app:layout_constraintTop_toTopOf="@+id/tv_jy_miner" />
+
+    <TextView
+        android:id="@+id/tv_money_miner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/common_white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_jy_miner"
+        app:layout_constraintStart_toEndOf="@+id/tv_jy_miner"
+        app:layout_constraintTop_toTopOf="@+id/tv_jy_miner"
+        android:text="@string/miner_money" />
+
+</android.support.constraint.ConstraintLayout>

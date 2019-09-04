@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.sskj.common.view.ToolBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:background_color="@color/common_action_bar"
+        app:right_text="@string/mine_save"
+        app:right_text_color="@color/common_text"
+        app:title="@string/mine_mine_activity_share_img20" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_img"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/common_background"
+        android:layout_weight="1"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/common_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/common_margin"
+        android:layout_marginRight="@dimen/common_margin"
+        android:layout_marginTop="@dimen/common_margin"
+        android:text="@string/mine_shareimg_step1"
+        android:textColor="@color/common_hint"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_margin="@dimen/common_margin"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/mine_shareimg_step2"
+        android:textColor="@color/common_hint"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/share_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@mipmap/mine_share_img">
+
+        <ImageView
+            android:id="@+id/qr_code_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="25dp"
+            android:background="@color/white"
+            android:padding="5dp" />
+
+
+    </FrameLayout>
+
+
+</LinearLayout>

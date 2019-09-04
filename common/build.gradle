@@ -134,4 +134,6 @@ dependencies {
 //    implementation 'com.github.yoojia:next-inputs-android:1.7.2'
 
     api 'com.binaryfork:spanny:1.0.4'
+
+    api 'com.github.LinweiJ:ViewPagerIndicator:0.0.2'
 }

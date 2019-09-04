@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    tools:ignore="MissingDefaultResource">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/view_top"
+                android:layout_width="match_parent"
+                android:layout_height="156dp"
+                android:background="@drawable/center_top_bg"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.support.constraint.Barrier
+                android:id="@+id/view_barrier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="view_top,view_info_center" />
+
+            <android.support.constraint.Group
+                android:id="@+id/group_unLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="tv_login,tv_tips" />
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginBottom="9dp"
+                android:text="@string/center_login_tips"
+                android:textColor="@color/common_white"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_tips"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tv_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="39dp"
+                android:text="@string/center_hy"
+                android:textColor="@color/common_white"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@+id/view_top"
+                app:layout_constraintStart_toStartOf="@+id/view_top"
+                tools:ignore="SmallSp" />
+
+            <android.support.constraint.Group
+                android:id="@+id/group_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="view_info_center,tv_name,
+        tv_qd,img_qd,tv_uid,tv_zc,tv_zc_info,img_kj,tv_price,tv_cny
+" />
+
+            <View
+                android:id="@+id/view_info_center"
+                android:layout_width="0dp"
+                android:layout_height="184dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/center_login_bg"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:text="蓝鲸mer"
+                android:textColor="@color/center_text_color"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/view_info_center"
+                app:layout_constraintTop_toTopOf="@+id/view_info_center" />
+
+            <TextView
+                android:id="@+id/tv_qd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="签到"
+                android:textColor="#255bfc"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                app:layout_constraintEnd_toEndOf="@id/view_info_center"
+                app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+            <ImageView
+                android:id="@+id/img_qd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/center_qd"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_qd"
+                app:layout_constraintEnd_toStartOf="@+id/tv_qd"
+                app:layout_constraintTop_toTopOf="@+id/tv_qd" />
+
+            <TextView
+                android:id="@+id/tv_uid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="uid:123456"
+                android:textColor="@color/center_id_text"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/tv_zc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="账户资产"
+                android:textColor="@color/center_gray"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_uid" />
+
+            <TextView
+                android:id="@+id/tv_zc_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="总资产折合(USDT)"
+                android:textColor="@color/center_text_color"
+                app:layout_constraintStart_toStartOf="@+id/tv_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_zc" />
+
+            <ImageView
+                android:id="@+id/img_kj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/center_eye"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_zc_info"
+                app:layout_constraintStart_toEndOf="@+id/tv_zc_info"
+                app:layout_constraintTop_toTopOf="@+id/tv_zc_info" />
+
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:gravity="end"
+                android:maxLength="13"
+                android:text="123456.7444"
+                android:textColor="@color/center_text_color"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_zc_info"
+                app:layout_constraintEnd_toEndOf="@+id/view_info_center"
+                app:layout_constraintTop_toTopOf="@+id/tv_zc_info" />
+
+            <TextView
+                android:id="@+id/tv_cny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="≈2.65CNY"
+                android:textColor="@color/center_gray"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_price"
+                app:layout_constraintTop_toBottomOf="@+id/tv_price" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/center_login_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_barrier"
+                app:layout_goneMarginEnd="15dp" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

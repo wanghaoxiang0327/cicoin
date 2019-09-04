@@ -29,6 +29,7 @@ import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.MoneyValueFilter;
 import com.sskj.common.utils.NumberUtils;
+import com.sskj.contact.data.BalanceInfo;
 import com.sskj.contact.data.CoinInfo;
 import com.sskj.contact.data.CreateOrder;
 import com.sskj.contact.dialog.ContactCreateDialog;
@@ -68,6 +69,8 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     LinearLayout limitPriceLayout;
     @BindView(R2.id.tv_market_price)
     TextView tvMarketPrice;
+    @BindView(R2.id.tv_usable_usdt)
+    TextView tvUsableUsdt;
     @BindView(R2.id.tv_unit)
     TextView tvUnit;
     @BindView(R2.id.edt_num)
@@ -322,6 +325,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     @Override
     public void loadData() {
         mPresenter.getCoinInfo(code);
+        mPresenter.getBalance();
     }
 
 
@@ -460,4 +464,9 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     }
 
 
+    public void setBalance(BalanceInfo data) {
+        if (data != null) {
+            tvUsableUsdt.setText(data.balance + "usdt");
+        }
+    }
 }
