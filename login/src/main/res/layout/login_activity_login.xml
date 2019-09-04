@@ -45,6 +45,7 @@
             android:background="@null"
             android:hint="请输入手机号或邮箱"
             android:paddingStart="5dp"
+            android:singleLine="true"
             android:paddingEnd="5dp"
             android:textColor="#25272d"
             android:textColorHint="#c0c1c2"
@@ -88,6 +89,7 @@
             android:imeOptions="actionNext"
             android:inputType="textPassword"
             android:maxLines="1"
+            android:singleLine="true"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:textColor="#25272d"
@@ -114,6 +116,7 @@
             android:src="@mipmap/login_yincang"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/etPwd"
+            android:tint="#c0c1c2"
             app:layout_constraintEnd_toEndOf="@+id/etPwd"
             app:layout_constraintTop_toTopOf="@+id/etPwd" />
 

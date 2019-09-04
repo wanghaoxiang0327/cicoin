@@ -107,24 +107,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             if (isEmptyShow(etNum)) {
                 return;
             }
-//            if (registerType == RegisterType.MOBILE) {
-//                if (!PatternUtils.isMobile(getText(etNum))) {
-//                    return;
-//                }
-//            } else {
-//                if (!PatternUtils.isEmail(getText(mobileEdt))) {
-//                    return;
-//                }
-//            }
-
-//            if (isEmptyShow(psEdt)) {
-//                return;
-//            }
-
-//            if (!PatternUtils.isLoginPs(getText(psEdt))) {
-//                return;
-//            }
-//            mPresenter.isGoogleCheck(mobileEdt.getText().toString(), psEdt.getText().toString());
+            mPresenter.login(etNum.getText().toString(), etPwd.getText().toString());
         });
 
 

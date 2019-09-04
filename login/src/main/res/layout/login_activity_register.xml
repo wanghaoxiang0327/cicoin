@@ -342,7 +342,7 @@
                android:drawablePadding="10dp"
                android:hint="@string/login_input_loagin_ps"
                android:imeOptions="actionNext"
-               android:inputType="textPassword"
+               android:inputType="text"
                android:maxLines="1"
                android:paddingStart="5dp"
                android:paddingEnd="5dp"

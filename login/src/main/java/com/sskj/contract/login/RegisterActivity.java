@@ -32,6 +32,7 @@ import com.netease.nis.captcha.Captcha;
 import com.netease.nis.captcha.CaptchaConfiguration;
 import com.netease.nis.captcha.CaptchaListener;
 import com.sskj.common.App;
+import com.sskj.common.BuildConfig;
 import com.sskj.common.CommonConfig;
 import com.sskj.common.WebActivity;
 import com.sskj.common.base.BaseActivity;
@@ -131,7 +132,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
             registerType = RegisterType.EMAIL;
             changeType();
         });
-        ClickUtil.click(login,view -> finish());
+        ClickUtil.click(login, view -> finish());
         ClickUtil.click(ivClose, view -> etNum.getText().clear());
         //显示密码
         ClickUtil.click(ivPwd1, view -> EditUtil.togglePs(etPwd1, ivPwd1));
@@ -212,6 +213,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
             }
             mPresenter.register(etNum.getText().toString(),
                     etCode.getText().toString(),
+                    registerType == RegisterType.MOBILE ? "86" : null,
                     etPwd1.getText().toString(),
                     etPwd2.getText().toString(),
                     etInvite.getText().toString());
@@ -276,9 +278,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
 
     public void registerCheck() {
         CaptchaConfiguration configuration = new CaptchaConfiguration.Builder()
-                .captchaId("823e000a5fbb4fc6b5b344ec962db09d")
+                .captchaId(BuildConfig.captchaId)
                 // 验证码业务id
-//                    .captchaId("6a5cab86b0eb4c309ccb61073c4ab672")// 验证码业务id
 //                    .mode(CaptchaConfiguration.ModeType.MODE_INTELLIGENT_NO_SENSE) // 验证码类型，默认为普通验证码，如果要使用无感知请设置该类型，否则无需设置
                 .listener(new CaptchaListener() {
                     @Override
@@ -288,14 +289,15 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
 
                     @Override
                     public void onValidate(String result, String validate, String msg) {
+
                         if (!TextUtils.isEmpty(validate)) {
+                            Log.d("yds", (registerType == RegisterType.EMAIL)+"----------------------");
                             if (registerType == RegisterType.EMAIL) {
                                 mPresenter.sendEmail(etNum.getText().toString());
                             } else {
-                                mPresenter.sendSms(etNum.getText().toString());
+                                mPresenter.sendSms(etNum.getText().toString(),validate);
                             }
                             startTimeDown(tvCode);
-                            va = validate;
                         } else {
                             Toast.makeText(getApplicationContext(), "验证失败", Toast.LENGTH_LONG).show();
                         }

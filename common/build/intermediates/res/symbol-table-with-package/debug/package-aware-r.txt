@@ -510,7 +510,6 @@ attr layout_scrollFlags
 attr layout_scrollInterpolator
 attr layout_srlBackgroundColor
 attr layout_srlSpinnerStyle
-attr leak_canary_plus_color
 attr left_img
 attr left_text
 attr liftOnScroll
@@ -587,6 +586,7 @@ attr picture_style_checkNumMode
 attr picture_style_numComplete
 attr picture_title_textColor
 attr popupBackground
+attr popupHeight
 attr popupMenuStyle
 attr popupTheme
 attr popupWindowStyle
@@ -1087,6 +1087,7 @@ color abc_tint_default
 color abc_tint_edittext
 color abc_tint_seek_thumb
 color abc_tint_spinner
+color abc_tint_switch_thumb
 color abc_tint_switch_track
 color accent_material_dark
 color accent_material_light
@@ -1123,16 +1124,26 @@ color color_orange
 color common_action_bar
 color common_action_text
 color common_background
+color common_background_dark
+color common_background_sun
 color common_button_text
 color common_dark
+color common_dark_sun
 color common_dialog
 color common_divider
+color common_divider_sun
+color common_green
 color common_hint
+color common_item_divider
+color common_kline_num
+color common_mine_background
 color common_normal_text
 color common_pressed
+color common_red
 color common_status_bar
 color common_tab
 color common_text
+color common_text_sun
 color common_tip
 color common_toolbar_title
 color common_white
@@ -1162,13 +1173,6 @@ color highlighted_text_material_dark
 color highlighted_text_material_light
 color image_overlay_false
 color image_overlay_true
-color leak_canary_background_color
-color leak_canary_class_name
-color leak_canary_extra
-color leak_canary_help
-color leak_canary_icon_background
-color leak_canary_leak
-color leak_canary_reference
 color line
 color line_color
 color material_blue_grey_800
@@ -1409,20 +1413,6 @@ dimen hint_pressed_alpha_material_light
 dimen item_touch_helper_max_drag_scroll_per_frame
 dimen item_touch_helper_swipe_escape_max_velocity
 dimen item_touch_helper_swipe_escape_velocity
-dimen leak_canary_connector_center_y
-dimen leak_canary_connector_leak_dash_gap
-dimen leak_canary_connector_leak_dash_line
-dimen leak_canary_connector_stroke_size
-dimen leak_canary_connector_width
-dimen leak_canary_more_margin_top
-dimen leak_canary_more_size
-dimen leak_canary_more_stroke_width
-dimen leak_canary_row_margins
-dimen leak_canary_row_min
-dimen leak_canary_row_title_margin_top
-dimen leak_canary_squiggly_span_amplitude
-dimen leak_canary_squiggly_span_period_degrees
-dimen leak_canary_squiggly_span_stroke_width
 dimen margin_top
 dimen mtrl_bottomappbar_fabOffsetEndMode
 dimen mtrl_bottomappbar_fab_cradle_margin
@@ -1520,6 +1510,33 @@ dimen ucrop_size_dot_scale_text_view
 dimen ucrop_size_wrapper_rotate_button
 dimen ucrop_text_size_widget_text
 dimen ucrop_width_horizontal_wheel_progress_line
+drawable a1
+drawable a10
+drawable a11
+drawable a12
+drawable a13
+drawable a14
+drawable a15
+drawable a16
+drawable a17
+drawable a18
+drawable a19
+drawable a2
+drawable a20
+drawable a21
+drawable a22
+drawable a23
+drawable a24
+drawable a25
+drawable a26
+drawable a27
+drawable a3
+drawable a4
+drawable a5
+drawable a6
+drawable a7
+drawable a8
+drawable a9
 drawable abc_ab_share_pack_mtrl_alpha
 drawable abc_action_bar_item_background_material
 drawable abc_btn_borderless_material
@@ -1604,6 +1621,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable anim_loading
 drawable arrow
 drawable arrow_down
 drawable arrow_up
@@ -1622,18 +1640,29 @@ drawable btn_right_bottom_selector
 drawable btn_right_false
 drawable btn_right_true
 drawable buybuybuy
+drawable common_bg_blue
+drawable common_bg_blue2
 drawable common_btn_bg
+drawable common_buy_pankou_progress
 drawable common_dialog_bg_5
 drawable common_edt_border_bg
 drawable common_edt_line_bg
+drawable common_green_bg_5
+drawable common_green_select
 drawable common_hint_50
 drawable common_hint_border_50
+drawable common_progress_green
+drawable common_progress_red
+drawable common_red_bg_5
+drawable common_red_select
+drawable common_sell_pankou_progress
 drawable common_splash
 drawable common_tip_15
 drawable common_tip_50
 drawable common_tip_border
 drawable common_tip_border_50
 drawable common_white_corner5
+drawable common_zoom_bg_corner50
 drawable def
 drawable def_qq
 drawable design_bottom_navigation_item_background
@@ -1662,9 +1691,6 @@ drawable icon_audio
 drawable image_placeholder
 drawable item_select_bg
 drawable kprogresshud_spinner
-drawable leak_canary_icon_foreground
-drawable leak_canary_notification
-drawable leak_canary_toast_background
 drawable more_1x
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
@@ -1772,12 +1798,14 @@ id activity_chooser_view_content
 id add
 id agentweb_webview_id
 id alertTitle
+id always
 id async
 id auto
 id bannerContainer
 id bannerDefaultImage
 id bannerTitle
 id bannerViewPager
+id beginning
 id bgaqrcode_camera_preview
 id blocking
 id both
@@ -1810,6 +1838,7 @@ id checkbox
 id chronometer
 id circleIndicator
 id coin_list
+id collapseActionView
 id common_guideline
 id confirm_btn
 id container
@@ -1828,7 +1857,10 @@ id design_navigation_view
 id dialog_content
 id dialog_content_layout
 id dialog_title
+id disableHome
 id edit_query
+id email_code_edt
+id email_layout
 id empty_text
 id end
 id end_padder
@@ -1846,6 +1878,7 @@ id fl_content
 id folder_list
 id forever
 id get_code_tv
+id get_email_code_tv
 id ghost_view
 id glide_custom_view_target_tag
 id gone
@@ -1853,18 +1886,21 @@ id google_code_edt
 id google_layout
 id group_divider
 id home
+id homeAsUp
 id ib_close
 id icon
 id icon_group
 id id_ll_ok
 id id_ll_root
 id id_titleBar
+id ifRoom
 id image
 id image_num
 id image_view_crop
 id image_view_state_aspect_ratio
 id image_view_state_rotate
 id image_view_state_scale
+id img_btn_close
 id immersion_navigation_bar_view
 id immersion_status_bar_view
 id indicatorInside
@@ -1878,6 +1914,7 @@ id ivLoading
 id iv_bg
 id iv_delete
 id iv_dot
+id iv_loading
 id iv_photo
 id iv_picture
 id iv_play
@@ -1887,16 +1924,6 @@ id largeLabel
 id layout_aspect_ratio
 id layout_rotate_wheel
 id layout_scale_wheel
-id leak_canary_action
-id leak_canary_display_leak_failure
-id leak_canary_display_leak_list
-id leak_canary_row_connector
-id leak_canary_row_details
-id leak_canary_row_layout
-id leak_canary_row_more
-id leak_canary_row_text
-id leak_canary_row_time
-id leak_canary_row_title
 id left
 id left_back
 id left_center
@@ -1929,6 +1956,7 @@ id media_actions
 id menu_crop
 id menu_loader
 id message
+id middle
 id mini
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
@@ -1936,6 +1964,7 @@ id multiply
 id musicSeekBar
 id name
 id navigation_header_container
+id never
 id none
 id normal
 id notification_background
@@ -2020,6 +2049,9 @@ id select_bar_layout
 id select_dialog_listview
 id selected
 id shortcut
+id showCustom
+id showHome
+id showTitle
 id smallLabel
 id sms_code_edt
 id sms_layout
@@ -2044,6 +2076,7 @@ id submit_area
 id sweep
 id switchBtn
 id tabMode
+id tag_layout_helper_bg
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
@@ -2101,6 +2134,7 @@ id tv_ok
 id tv_prompt
 id tv_sign
 id tv_size
+id tv_status
 id tv_tab_title
 id tv_title
 id tv_title_camera
@@ -2114,11 +2148,14 @@ id unlabeled
 id up
 id update_btn
 id update_tip
+id useLogo
 id video_view
 id view_offset_helper
 id view_overlay
 id visible
 id web_parent_layout_id
+id web_view
+id withText
 id wrap
 id wrap_content
 id wrapper_controls
@@ -2203,6 +2240,7 @@ layout common_tab_layout_top
 layout common_tip_dialog
 layout common_tip_dialog_about_us
 layout common_water_item
+layout dailog_captcha
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -2217,6 +2255,7 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout dialog_captcha_tip
 layout dialog_update
 layout item_spinner
 layout layout_tab
@@ -2225,11 +2264,6 @@ layout layout_tab_left
 layout layout_tab_right
 layout layout_tab_segment
 layout layout_tab_top
-layout leak_canary_display_leak
-layout leak_canary_heap_dump_toast
-layout leak_canary_leak_row
-layout leak_canary_ref_row
-layout leak_canary_ref_top_row
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -2292,6 +2326,7 @@ mipmap common_icon_hide
 mipmap common_icon_ltc
 mipmap common_icon_see
 mipmap common_icon_show
+mipmap common_icon_tip
 mipmap common_icon_trx
 mipmap common_icon_unsee
 mipmap common_icon_xrp
@@ -2301,9 +2336,10 @@ mipmap common_scan
 mipmap common_version_top
 mipmap common_water_icon
 mipmap ic_launcher
-mipmap leak_canary_icon
+mipmap ico_close
 mipmap qrcode_default_grid_scan_line
 mipmap qrcode_default_scan_line
+mipmap rectangle
 raw coin
 raw music
 string abc_action_bar_home_description
@@ -2398,8 +2434,11 @@ string common_copyUtils1
 string common_director_rules
 string common_encryptTool1
 string common_imgUtil1
+string common_input_email_verify
 string common_invite_rules
 string common_jsonCallBack1
+string common_make_empty
+string common_make_more
 string common_no_data
 string common_patternUtils1
 string common_patternUtils2
@@ -2408,6 +2447,7 @@ string common_patternUtils4
 string common_refreshActivity1
 string common_scanActivity1
 string common_scanActivity2
+string common_verify_email
 string common_webActivity1
 string continue_downloading
 string dialog_new
@@ -2421,41 +2461,6 @@ string gif_tag
 string hide_bottom_view_on_scroll_behavior
 string isUp
 string latest_version
-string leak_canary_analysis_failed
-string leak_canary_class_has_leaked
-string leak_canary_class_has_leaked_retaining
-string leak_canary_class_no_leak
-string leak_canary_could_not_save_text
-string leak_canary_delete
-string leak_canary_delete_all
-string leak_canary_delete_all_leaks_title
-string leak_canary_display_activity_label
-string leak_canary_download_dump
-string leak_canary_excluded_row
-string leak_canary_failure_report
-string leak_canary_help_detail
-string leak_canary_help_title
-string leak_canary_leak_excluded
-string leak_canary_leak_excluded_retaining
-string leak_canary_leak_list_title
-string leak_canary_no_leak_details
-string leak_canary_notification_analysing
-string leak_canary_notification_channel
-string leak_canary_notification_dumping
-string leak_canary_notification_foreground_text
-string leak_canary_notification_message
-string leak_canary_notification_reporting
-string leak_canary_permission_not_granted
-string leak_canary_permission_notification_text
-string leak_canary_permission_notification_title
-string leak_canary_result_failure_no_disk_space
-string leak_canary_result_failure_no_file
-string leak_canary_result_failure_title
-string leak_canary_share_heap_dump
-string leak_canary_share_leak
-string leak_canary_share_with
-string leak_canary_storage_permission_activity_label
-string leak_canary_toast_heap_dump
 string mtrl_chip_close_icon_content_description
 string original_y
 string password_toggle_content_description
@@ -2525,6 +2530,11 @@ string strLoadViewFactory208
 string strLoadViewFactory209
 string text_empty
 string text_retry
+string tip_init_timeout
+string tip_load_failed
+string tip_loading
+string tip_no_network
+string tip_validate_timeout
 string ucrop_error_input_data_is_absent
 string ucrop_label_edit_photo
 string ucrop_label_original
@@ -2732,6 +2742,7 @@ style Base_Widget_MaterialComponents_Chip
 style Base_Widget_MaterialComponents_TextInputEditText
 style Base_Widget_MaterialComponents_TextInputLayout
 style BottomSheetDialog
+style CaptchaDialogStyle
 style CardView
 style CardView_Dark
 style CardView_Light
@@ -2913,6 +2924,11 @@ style TextAppearance_MaterialComponents_Overline
 style TextAppearance_MaterialComponents_Subtitle1
 style TextAppearance_MaterialComponents_Subtitle2
 style TextAppearance_MaterialComponents_Tab
+style TextAppearance_StatusBar_EventContent
+style TextAppearance_StatusBar_EventContent_Info
+style TextAppearance_StatusBar_EventContent_Line2
+style TextAppearance_StatusBar_EventContent_Time
+style TextAppearance_StatusBar_EventContent_Title
 style TextAppearance_Widget_AppCompat_ExpandedMenu_Item
 style TextAppearance_Widget_AppCompat_Toolbar_Subtitle
 style TextAppearance_Widget_AppCompat_Toolbar_Title
@@ -3038,6 +3054,8 @@ style Widget_AppCompat_ListPopupWindow
 style Widget_AppCompat_ListView
 style Widget_AppCompat_ListView_DropDown
 style Widget_AppCompat_ListView_Menu
+style Widget_AppCompat_NotificationActionContainer
+style Widget_AppCompat_NotificationActionText
 style Widget_AppCompat_PopupMenu
 style Widget_AppCompat_PopupMenu_Overflow
 style Widget_AppCompat_PopupWindow
@@ -3109,10 +3127,11 @@ style Widget_Support_CoordinatorLayout
 style WindowStyle
 style actionActivity
 style bottomSheetStyleWrapper
+style commonBaseThemes
 style commonSplash
+style common_buy_pankou_progress
 style common_custom_dialog
-style leak_canary_LeakCanary_Base
-style leak_canary_Theme_Transparent
+style common_pankou_progress
 style picture_alert_dialog
 style picture_default_style
 style ucrop_ImageViewWidgetIcon
@@ -3194,6 +3213,7 @@ styleable ScrimInsetsFrameLayout insetForeground
 styleable ScrollingViewBehavior_Layout behavior_overlapTop
 styleable SearchView android_focusable android_imeOptions android_inputType android_maxWidth closeIcon commitIcon defaultQueryHint goIcon iconifiedByDefault layout queryBackground queryHint searchHintIcon searchIcon submitBackground suggestionRowLayout voiceIcon
 styleable SegmentTabLayout bar_color bar_stroke_color bar_stroke_width divider_color divider_padding divider_width indicator_anim_duration indicator_anim_enable indicator_bounce_enable indicator_color indicator_corner_radius indicator_height indicator_margin_bottom indicator_margin_left indicator_margin_right indicator_margin_top tab_padding tab_space_equal tab_width textAllCaps textBold textSelectColor textUnselectColor textsize tl_bar_color tl_bar_stroke_color tl_bar_stroke_width tl_divider_color tl_divider_padding tl_divider_width tl_indicator_anim_duration tl_indicator_anim_enable tl_indicator_bounce_enable tl_indicator_color tl_indicator_corner_radius tl_indicator_height tl_indicator_margin_bottom tl_indicator_margin_left tl_indicator_margin_right tl_indicator_margin_top tl_tab_padding tl_tab_space_equal tl_tab_width tl_textAllCaps tl_textBold tl_textSelectColor tl_textUnselectColor tl_textsize
+styleable SkinHeySpinner arrowColor arrowSrc dividerColor dividerHeight itemBackground itemGravity itemTextColor popupBackground popupHeight showArrow tintColor
 styleable SlidingTabLayout divider_color divider_padding divider_width indicator_color indicator_corner_radius indicator_gravity indicator_height indicator_margin_bottom indicator_margin_left indicator_margin_right indicator_margin_top indicator_style indicator_width indicator_width_equal_title tab_padding tab_space_equal tab_width textAllCaps textBold textSelectColor textUnselectColor textsize tl_divider_color tl_divider_padding tl_divider_width tl_indicator_color tl_indicator_corner_radius tl_indicator_gravity tl_indicator_height tl_indicator_margin_bottom tl_indicator_margin_left tl_indicator_margin_right tl_indicator_margin_top tl_indicator_style tl_indicator_width tl_indicator_width_equal_title tl_tab_padding tl_tab_space_equal tl_tab_width tl_textAllCaps tl_textBold tl_textSelectColor tl_textUnselectColor tl_textsize tl_underline_color tl_underline_gravity tl_underline_height underline_color underline_gravity underline_height
 styleable SmartRefreshLayout srlAccentColor srlDisableContentWhenLoading srlDisableContentWhenRefresh srlDragRate srlEnableAutoLoadMore srlEnableClipFooterWhenFixedBehind srlEnableClipHeaderWhenFixedBehind srlEnableFooterFollowWhenLoadFinished srlEnableFooterTranslationContent srlEnableHeaderTranslationContent srlEnableLoadMore srlEnableLoadMoreWhenContentNotFull srlEnableNestedScrolling srlEnableOverScrollBounce srlEnableOverScrollDrag srlEnablePreviewInEditMode srlEnablePureScrollMode srlEnableRefresh srlEnableScrollContentWhenLoaded srlEnableScrollContentWhenRefreshed srlFixedFooterViewId srlFixedHeaderViewId srlFooterHeight srlFooterInsetStart srlFooterMaxDragRate srlFooterTriggerRate srlHeaderHeight srlHeaderInsetStart srlHeaderMaxDragRate srlHeaderTriggerRate srlPrimaryColor srlReboundDuration
 styleable SmartRefreshLayout_Layout layout_srlBackgroundColor layout_srlSpinnerStyle
@@ -3218,10 +3238,8 @@ styleable Toolbar android_gravity android_minHeight buttonGravity collapseConten
 styleable View android_focusable android_theme paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewStubCompat android_id android_inflatedId android_layout
-styleable leak_canary_MoreDetailsView leak_canary_plus_color
 styleable ucrop_AspectRatioTextView ucrop_artv_ratio_title ucrop_artv_ratio_x ucrop_artv_ratio_y
 styleable ucrop_UCropView ucrop_aspect_ratio_x ucrop_aspect_ratio_y ucrop_circle_dimmed_layer ucrop_dimmed_color ucrop_frame_color ucrop_frame_stroke_size ucrop_grid_color ucrop_grid_column_count ucrop_grid_row_count ucrop_grid_stroke_size ucrop_show_frame ucrop_show_grid ucrop_show_oval_crop_frame
 xml file_paths
 xml file_paths_public
-xml leak_canary_file_paths
 xml web_files_paths
