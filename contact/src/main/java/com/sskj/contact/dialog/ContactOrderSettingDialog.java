@@ -24,6 +24,7 @@ import com.sskj.common.http.HttpResult;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.MoneyValueFilter;
+import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.ScreenUtil;
 import com.sskj.contact.R;
 import com.sskj.contact.R2;
@@ -98,7 +99,7 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
         edtLoss.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(orderData.getCode()))});
         edtWin.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(orderData.getCode()))});
         tvType.setText(orderData.getType() == 1 ? getString(R.string.contact_dealFragment5) : getString(R.string.contact_dealFragment6));
-        tvPrice.setText(orderData.getNewprice());
+        tvPrice.setText(NumberUtils.keepMaxDown(orderData.getNewprice(), 4));
         btnCancel.setOnClickListener(v -> {
             getDialog().dismiss();
         });
@@ -159,8 +160,8 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
             minZy = price - Double.parseDouble(result.getMin_zy());
             maxZs = price + Double.parseDouble(result.getMin_zs());
         }
-        tvWinMin.setText("≥" + minZy);
-        tvLossMax.setText("≤" + maxZs);
+        tvWinMin.setText("≥" + NumberUtils.keepMaxDown(minZy, 4));
+        tvLossMax.setText("≤" + NumberUtils.keepMaxDown(maxZs, 4));
     }
 
     public void setPointSuccess() {

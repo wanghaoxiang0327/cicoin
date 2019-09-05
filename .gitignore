@@ -10,6 +10,15 @@
 /.idea/assetWizardSettings.xml
 .DS_Store
 /build
+/app/build
+/asset/build
+/common/build
+/contact/build
+/depthlip/build
+/login/build
+/market/build
+/mine/build
+/miner/build
 /captures
 .externalNativeBuild
 .gitignore

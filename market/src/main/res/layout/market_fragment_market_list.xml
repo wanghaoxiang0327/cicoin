@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/market_coins_name"
-                android:textColor="@color/common_dark"
+                android:textColor="@color/common_hint"
                 android:textSize="13sp" />
 
             <ImageView
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/market_news_price"
-                android:textColor="@color/common_dark"
+                android:textColor="@color/common_hint"
                 android:textSize="13sp" />
 
             <ImageView
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/market_quote_change"
-                android:textColor="@color/common_dark"
+                android:textColor="@color/common_hint"
                 android:textSize="13sp" />
 
             <ImageView

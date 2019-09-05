@@ -1,7 +1,9 @@
 package com.sskj.contact;
 
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
@@ -14,21 +16,27 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.binaryfork.spanny.Spanny;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.hey.lib.HeySpinner;
 import com.hjq.toast.ToastUtils;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.event.ContactChangeCoin;
+import com.sskj.common.router.RoutePath;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.simple.SimpleTextWatcher;
+import com.sskj.common.user.data.UserBean;
+import com.sskj.common.user.model.UserViewModel;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.MoneyValueFilter;
 import com.sskj.common.utils.NumberUtils;
+import com.sskj.contact.data.BalanceInfo;
 import com.sskj.contact.data.CoinInfo;
 import com.sskj.contact.data.CreateOrder;
 import com.sskj.contact.dialog.ContactCreateDialog;
@@ -68,6 +76,8 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     LinearLayout limitPriceLayout;
     @BindView(R2.id.tv_market_price)
     TextView tvMarketPrice;
+    @BindView(R2.id.tv_usable_usdt)
+    TextView tvUsableUsdt;
     @BindView(R2.id.tv_unit)
     TextView tvUnit;
     @BindView(R2.id.edt_num)
@@ -82,7 +92,6 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     TextView tvTotalUnit;
     @BindView(R2.id.btn_submit)
     Button btnSubmit;
-
     private Price priceType = Price.MARKET;
     private Trade tradeType = Trade.UP;
 
@@ -136,6 +145,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     private String code;
 
     private NumberFormat percentFormat = NumberFormat.getPercentInstance();
+    private BigDecimal feeMoney;
 
     @Override
     public void onAttach(Context context) {
@@ -162,8 +172,23 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         initPoint();
         tvUnit.setText(code.split("_")[0]);
         edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
-
+        edtNum.setFilters(new InputFilter[]{new MoneyValueFilter(2)});
+        if (!BaseApplication.isLogin()) {
+            btnSubmit.setText(getString(R.string.contact_please_login));
+        }
+//        userViewModel.getUser().observe(this, new Observer<UserBean>() {
+//            @Override
+//            public void onChanged(@Nullable UserBean userBean) {
+//                if (userBean == null) {
+//                    btnSubmit.setText(getString(R.string.contact_please_login));
+//                }
+//            }
+//        });
         ClickUtil.click(btnSubmit, view -> {
+            if (!BaseApplication.isLogin()) {
+                ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
+                return;
+            }
             if (priceType == Price.LIMIT) {
                 if (isEmpty(edtPrice)) {
                     ToastUtils.show(getString(R.string.contact_contractLeftFragment1));
@@ -186,6 +211,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
             CreateOrder orderBean = new CreateOrder();
             orderBean.setCode(code);
             orderBean.setLever(lever.toString());
+            orderBean.setFee(feeMoney + "");
             orderBean.setNum(num.toString());
             orderBean.setPrice(NumberUtils.keepDown(price, DigitUtils.getDigit(code)));
             orderBean.setPriceType(priceType);
@@ -322,6 +348,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     @Override
     public void loadData() {
         mPresenter.getCoinInfo(code);
+        mPresenter.getBalance();
     }
 
 
@@ -341,9 +368,9 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         } else {
             createPrice = price.subtract(price.multiply(spreadPrice));
         }
-        BigDecimal feeMoney = createPrice.multiply(num).multiply(unitNum).multiply(fee);
+        feeMoney = createPrice.multiply(num).multiply(unitNum).multiply(fee);
         BigDecimal total = num.multiply(createPrice).multiply(unitNum).divide(lever, 8, RoundingMode.DOWN).add(feeMoney);
-        setText(tvTotalMoney, NumberUtils.keepDown(total, 4));
+        setText(tvTotalMoney, NumberUtils.keep(total, 4));
     }
 
 
@@ -414,6 +441,8 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         if (data != null) {
             if (data.getLeverage().contains(",")) {
                 levers = data.getLeverage().split(",");
+            } else {
+                levers = new String[]{data.getLeverage()};
             }
             spread = new BigDecimal(data.getSpread());
             minChangePrice = new BigDecimal(data.getVar_price());
@@ -460,4 +489,9 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     }
 
 
+    public void setBalance(BalanceInfo data) {
+        if (data != null) {
+            tvUsableUsdt.setText(data.balance + "usdt");
+        }
+    }
 }

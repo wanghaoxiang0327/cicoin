@@ -107,12 +107,12 @@ public class ChartFragment extends BaseFragment<ChartPresenter> {
 
     @Override
     public void loadData() {
-
+        mPresenter.getStockInfo(goodsType, code);
     }
 
     @Override
     public void lazyLoad() {
-        mPresenter.getStockInfo(goodsType, code);
+
     }
 
     @Override

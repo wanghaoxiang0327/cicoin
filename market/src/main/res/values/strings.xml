@@ -64,4 +64,6 @@
     <string name="market_price">价格(USDT)</string>
     <string name="market_data">时间</string>
     <string name="market_direction">方向</string>
+    <string name="market_chengjiao_buy">买入</string>
+    <string name="market_chengjiao_sell">卖出</string>
 </resources>

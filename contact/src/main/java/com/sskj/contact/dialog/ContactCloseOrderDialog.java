@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 
 import com.hjq.toast.ToastUtils;
 import com.sskj.common.utils.ClickUtil;
+import com.sskj.common.utils.MoneyValueFilter;
+import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.ScreenUtil;
 import com.sskj.contact.R;
 import com.sskj.contact.R2;
@@ -28,24 +31,24 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class ContactCloseOrderDialog extends DialogFragment {
-
     @BindView(R2.id.tv_type)
     TextView tvType;
     @BindView(R2.id.tv_price)
     TextView tvPrice;
     @BindView(R2.id.tv_num)
     TextView tvNum;
+    @BindView(R2.id.tv_add)
+    TextView tvAdd;
+    @BindView(R2.id.tv_less)
+    TextView tvLess;
     @BindView(R2.id.edt_num)
     EditText edtNum;
     @BindView(R2.id.btn_cancel)
     Button btnCancel;
     @BindView(R2.id.btn_confirm)
     Button btnConfirm;
-
     Unbinder unbinder;
-
     private HoldOrder orderData;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,9 +76,11 @@ public class ContactCloseOrderDialog extends DialogFragment {
     }
 
     private void initView() {
-        tvType.setText(orderData.getType() == 1 ? getString(R.string.contact_dealFragment5) : getString(R.string.contact_dealFragment6));
+        tvType.setText(orderData.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));
+        tvType.setTextColor(orderData.getType() == 1 ? getResources().getColor(R.color.common_red) : getResources().getColor(R.color.common_green));
         tvPrice.setText(orderData.getPrice());
         tvNum.setText(orderData.getBuynum());
+        edtNum.setFilters(new InputFilter[]{new MoneyValueFilter(2)});
         btnCancel.setOnClickListener(v -> {
             getDialog().dismiss();
         });
@@ -84,17 +89,56 @@ public class ContactCloseOrderDialog extends DialogFragment {
                 ToastUtils.show(getString(R.string.contact_contactCloseOrderDialog3));
                 return;
             }
-            double totalNum= Double.parseDouble(orderData.getBuynum());
-            double closeNum= Double.parseDouble(edtNum.getText().toString());
-            if (closeNum>totalNum){
-                ToastUtils.show(getString(R.string.contact_contactCloseOrderDialog4)+orderData.getBuynum());
+            double totalNum = Double.parseDouble(orderData.getBuynum());
+            double closeNum = Double.parseDouble(edtNum.getText().toString());
+            if (closeNum > totalNum) {
+                ToastUtils.show(getString(R.string.contact_contactCloseOrderDialog4) + orderData.getBuynum());
             }
-            if (confirmListener!=null){
+            if (confirmListener != null) {
                 confirmListener.onConfirm(edtNum.getText().toString(), orderData.getHold_id());
             }
             getDialog().dismiss();
         });
+        ClickUtil.click(tvAdd, view -> {
+            changeNum(edtNum, true);
+        });
+        ClickUtil.click(tvLess, view -> {
+            changeNum(edtNum, false);
+        });
+    }
 
+    public void changeNum(EditText editText, boolean increase) {
+        String text = editText.getText().toString();
+        int digit = 0;
+        double num;
+        double minChange = 0.1;
+        int digitIndex = 0;
+        if (TextUtils.isEmpty(text)) {
+            num = 0;
+        } else {
+            num = Double.parseDouble(text);
+        }
+        if (text.contains(".")) {
+            digitIndex = editText.getText().toString().indexOf(".");
+            int length = text.length() - digitIndex;
+            digitIndex = length - 1;
+            for (int i = 0; i < digitIndex - 1; i++) {
+                minChange = 0.1 * minChange;
+            }
+            digit = digitIndex;
+        } else {
+            minChange = 1;
+        }
+        if (increase) {
+            num = num + minChange;
+        } else {
+            num = num - minChange;
+        }
+        if (num < 0) {
+            num = 0;
+        }
+        editText.setText(NumberUtils.keep(num, digit));
+        editText.setSelection(editText.getText().length());
     }
 
 
@@ -118,9 +162,9 @@ public class ContactCloseOrderDialog extends DialogFragment {
     OnConfirmListener confirmListener;
 
 
-    public  static ContactCloseOrderDialog getInstance(HoldOrder holdOrder){
-        ContactCloseOrderDialog dialog=new ContactCloseOrderDialog();
-        Bundle bundle=new Bundle();
+    public static ContactCloseOrderDialog getInstance(HoldOrder holdOrder) {
+        ContactCloseOrderDialog dialog = new ContactCloseOrderDialog();
+        Bundle bundle = new Bundle();
         bundle.putSerializable("order", holdOrder);
         dialog.setArguments(bundle);
         return dialog;

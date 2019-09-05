@@ -304,7 +304,7 @@
             android:id="@+id/tv_profit"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
-            android:background="@color/common_green"
+            android:background="@drawable/common_green_bg_5"
             android:gravity="center"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -322,7 +322,7 @@
             android:id="@+id/btn_close"
             android:layout_width="66dp"
             android:layout_height="28dp"
-            android:background="@drawable/common_tip_border_50"
+            android:background="@drawable/common_tip_border_gray_50"
             android:text="@string/contact_contact_item_hold790"
             android:textColor="@color/common_hint" />
 
@@ -331,7 +331,7 @@
             android:layout_width="66dp"
             android:layout_height="28dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/common_tip_border_50"
+            android:background="@drawable/common_tip_border_gray_50"
             android:text="@string/contact_contact_item_hold770"
             android:textColor="@color/common_hint" />
 

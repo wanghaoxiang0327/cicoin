@@ -105,6 +105,7 @@
                 android:id="@+id/ll_notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/common_margin"
                 android:paddingTop="18dp"
@@ -119,11 +120,17 @@
 
                 <TextSwitcher
                     android:id="@+id/tvNotice"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:inAnimation="@anim/common_push_up_in"
                     android:outAnimation="@anim/common_push_up_out" />
 
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@mipmap/common_arrow_right"
+                    android:tint="@color/common_text" />
             </LinearLayout>
 
             <View
@@ -133,13 +140,31 @@
                 android:layout_marginRight="15dp"
                 android:background="@color/common_divider" />
 
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/topCoinRecyclerView"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
                 android:paddingTop="10dp"
-                android:paddingBottom="27dp" />
+                android:paddingBottom="15dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/common_white" />
+
+                <com.lwj.widget.viewpagerindicator.ViewPagerIndicator
+                    android:id="@+id/indicator_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_alignParentBottom="true"
+                    app:default_color="@color/common_hint"
+                    app:distanceType="BY_DISTANCE"
+                    app:indicatorType="LINE"
+                    app:length="15dp"
+                    app:selected_color="@color/common_text" />
+            </RelativeLayout>
 
 
             <LinearLayout

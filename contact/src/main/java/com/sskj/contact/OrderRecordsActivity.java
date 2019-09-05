@@ -11,6 +11,7 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.tab.TabItem;
 import com.sskj.common.tab.TabLayout;
+import com.sskj.common.utils.NumberUtils;
 import com.sskj.contact.data.DetailOrder;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
         tabItems.add(new TabItem(getString(R.string.contact_orderRecordsActivity3)));
         fragments.add(HoldFragment.newInstance(code));
         fragments.add(EntrustFragment.newInstance());
-        fragments.add(DealFragment.newInstance());
+        fragments.add(DealFragment.newInstance(code));
         tabLayout.setTabData(tabItems, getSupportFragmentManager(), R.id.order_content, fragments);
 
     }
@@ -86,15 +87,15 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
     }
 
     public void setDetailInfo(DetailOrder data) {
-        setText(tvTotal, data.getTotalusdt());
-        setText(tvUseful, data.getKeyong_price());
-        setText(tvProfit, data.getYingkui());
-        setText(tvFreeze, data.getTotaldeposit());
+        setText(tvTotal, NumberUtils.keepMaxDown(data.getTotalusdt(), 4));
+        setText(tvUseful, NumberUtils.keepMaxDown(data.getKeyong_price(), 4));
+        setText(tvProfit, NumberUtils.keepMaxDown(data.getYingkui(), 4));
+        setText(tvFreeze, NumberUtils.keepMaxDown(data.getTotaldeposit(), 4));
         setText(tvBurstRate, data.getRisk());
         if (data.getYingkui().contains("-")) {
-            layoutProfit.setBackgroundResource(R.drawable.common_red_bg_5);
-        } else {
             layoutProfit.setBackgroundResource(R.drawable.common_green_bg_5);
+        } else {
+            layoutProfit.setBackgroundResource(R.drawable.common_red_bg_5);
         }
 
     }

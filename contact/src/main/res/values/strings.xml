@@ -48,8 +48,8 @@
     <string name="contact_dealFragment8">限价</string>
     <string name="contact_dealFragment7">市价</string>
     <string name="contact_contact_dialog_create_order340">杠杆倍数</string>
-    <string name="contact_dealFragment6">做空</string>
-    <string name="contact_dealFragment5">做多</string>
+    <string name="contact_dealFragment6">卖出开空</string>
+    <string name="contact_dealFragment5">买入开多</string>
     <string name="contact_contact_dialog_create_order100">买入</string>
     <string name="contact_dealFragment4">系统平仓</string>
     <string name="contact_dealFragment3">止损平仓</string>
@@ -63,7 +63,7 @@
     <string name="contact_contact_fragment_contract_left200">以当前最优价格交易</string>
     <string name="contact_contact_dialog_create_order230">数量</string>
     <string name="contact_contact_item_deal260">持仓价</string>
-    <string name="contact_contact_dialog_close_order80">类型</string>
+    <string name="contact_contact_dialog_close_order80">类型：</string>
     <string name="contact_contact_item_entrust100">撤单</string>
     <string name="contact_contactOrderSettingDialog4">最大止损价为</string>
     <string name="contact_contactOrderSettingDialog3">最小止盈价为</string>
@@ -78,4 +78,5 @@
     <string name="contact_closeing_time">平仓时间</string>
     <string name="contact_leverage_multiple">杠杆倍数</string>
     <string name="contact_share">分享</string>
+    <string name="contact_please_login">请登录</string>
 </resources>

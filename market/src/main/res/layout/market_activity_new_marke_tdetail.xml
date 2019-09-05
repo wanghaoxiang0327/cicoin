@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_background_dark"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="25dp">
 
     <com.sskj.common.view.ToolBarLayout
         android:id="@+id/toolbar"

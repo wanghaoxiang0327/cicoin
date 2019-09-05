@@ -1,8 +1,11 @@
 package com.sskj.common.http;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class HttpResult<T> {
     private String msg;
+    @JSONField(alternateNames = {"status", "code"})
     private int status;
     private T data;
 

@@ -16,7 +16,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.sskj.common.base.BaseDialogFragment;
+import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.utils.ClickUtil;
+import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.ScreenUtil;
 import com.sskj.contact.R;
 import com.sskj.contact.R2;
@@ -40,6 +42,8 @@ public class ContactCreateDialog extends BaseDialogFragment<CreateDialogPresente
     TextView tvTotal;
     @BindView(R2.id.tv_lever)
     TextView tvLever;
+    @BindView(R2.id.tv_service_fee)
+    TextView tvServiceFee;
     @BindView(R2.id.btn_cancel)
     Button btnCancel;
     @BindView(R2.id.btn_confirm)
@@ -88,10 +92,19 @@ public class ContactCreateDialog extends BaseDialogFragment<CreateDialogPresente
 
     @Override
     public void initView() {
+        //做多
+        if (1 == orderBean.getTradeType().value) {
+            tvTradeType.setTextColor(getResources().getColor(R.color.common_red));
+            tvTradeType.setText(getString(R.string.common_make_more));
+        } else {//做空
+            tvTradeType.setTextColor(getResources().getColor(R.color.common_green));
+            tvTradeType.setText(getString(R.string.common_make_empty));
+        }
         tvPriceType.setText(orderBean.getPriceType().name);
         tvTradeType.setText(orderBean.getTradeType().name);
         tvPrice.setText(orderBean.getPrice());
         tvNum.setText(orderBean.getNum());
+        tvServiceFee.setText(NumberUtils.keepMaxDown(orderBean.getFee(), 4));
         tvTotal.setText(orderBean.getTotal());
         tvLever.setText(orderBean.getLever());
     }
@@ -131,8 +144,10 @@ public class ContactCreateDialog extends BaseDialogFragment<CreateDialogPresente
      * 创建订单成功
      */
     public void createOrderSuccess() {
-
-
+        if (2 == orderBean.getPriceType().value) {
+            RxBus.getDefault().post("LimitPriceSuccess");
+        }
+        getDialog().dismiss();
     }
 
 

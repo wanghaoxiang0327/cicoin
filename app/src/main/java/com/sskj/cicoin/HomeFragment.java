@@ -1,7 +1,9 @@
 package com.sskj.cicoin;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
+import com.lwj.widget.viewpagerindicator.ViewPagerIndicator;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.sskj.cicoin.data.BannerBean;
 import com.sskj.common.adapter.BaseAdapter;
@@ -58,25 +61,22 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     LinearLayout llTradingGuide;
     @BindView(R.id.bannerView)
     Banner bannerView;
-
+    @BindView(R.id.indicator_line)
+    ViewPagerIndicator indicatorLine;
     List<String> bannerImages = new ArrayList<>();
     @BindView(R.id.home_content)
     NestedScrollView homeContent;
     @BindView(R.id.tvNotice)
     TextSwitcher tvNotice;
-    @BindView(R.id.topCoinRecyclerView)
-    RecyclerView topCoinRecyclerView;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
     @BindView(R.id.home_coin_list)
     FrameLayout homeCoinList;
     @BindView(R.id.tv_mode)
     TextView tvMode;
     private int type = 1;
-
-
-    private BaseAdapter<CoinBean> topAdapter;
-
-    List<CoinBean> topList = new ArrayList<>();
-
+    List<Fragment> fragmentList = new ArrayList<>();
+    CoinFragmentPager coinFragmentPager;
     private MarketListFragment marketListFragment;
     private Disposable noticeDisposable;
 
@@ -101,32 +101,11 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
         ft.replace(R.id.home_coin_list, marketListFragment);
         ft.commitAllowingStateLoss();
-        topCoinRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        topCoinRecyclerView.getItemAnimator().setChangeDuration(0);
-        topAdapter = new BaseAdapter<CoinBean>(R.layout.market_item_top_coin, null, topCoinRecyclerView) {
-            @Override
-            public void bind(ViewHolder holder, CoinBean item) {
-                holder.setText(R.id.coin_name, item.getCode())
-                        .setText(R.id.coin_price, NumberUtils.keepDown(item.getPrice(), DigitUtils.getDigit(item.getCode())))
-                        .setText(R.id.coin_cny_price, "≈" + item.getCnyPrice() + " CNY")
-                        .setText(R.id.coin_change_rate, item.getChange() > 0 ? "+" + item.getChangeRate() : item.getChangeRate());
-                if (!item.isUp()) {
-                    holder.setTextColor(R.id.coin_price, color(R.color.market_green));
-                    holder.setTextColor(R.id.coin_change_rate, color(R.color.market_green));
-                } else {
-                    holder.setTextColor(R.id.coin_price, color(R.color.market_red));
-                    holder.setTextColor(R.id.coin_change_rate, color(R.color.market_red));
-                }
-
-//                ClickUtil.click(holder.itemView, view -> {
-//                    ARouter.getInstance()
-//                            .build(RoutePath.MARKET_DETAIL)
-//                            .withSerializable("coinBean", item)
-//                            .navigation();
-//                });
-
-            }
-        };
+        fragmentList.add(CoinFragment.newInstance(1));
+        fragmentList.add(CoinFragment.newInstance(2));
+        coinFragmentPager = new CoinFragmentPager(getFragmentManager(), fragmentList);
+        viewPager.setAdapter(coinFragmentPager);
+        indicatorLine.setViewPager(viewPager);
         type = SpUtil.getInt("skip", 2);
         initTextnotice();
 
@@ -194,6 +173,17 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         mPresenter.getNotice();
     }
 
+    public void setData(List<CoinBean> data) {
+        if (marketListFragment != null) {
+            marketListFragment.setData(data);
+        }
+//        topList.clear();
+//        for (CoinBean coinBean : data) {
+//            topList.add(coinBean);
+//        }
+//        topAdapter.setNewData(topList);
+    }
+
     @Override
     public void onRefresh(RefreshLayout refreshLayout) {
         loadData();
@@ -216,32 +206,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     public void onStop() {
         super.onStop();
         bannerView.stopAutoPlay();
-    }
-
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void updateCoin(CoinBean coinBean) {
-        if (topAdapter != null) {
-            for (int i = 0; i < topAdapter.getData().size(); i++) {
-                if (topAdapter.getData().get(i).getCode().equals(coinBean.getCode())) {
-                    coinBean.setPid(topAdapter.getData().get(i).getPid());
-                    topAdapter.getData().set(i, coinBean);
-                    topAdapter.notifyItemChanged(i);
-                }
-            }
-        }
-    }
-
-
-    public void setData(List<CoinBean> data) {
-        if (marketListFragment != null) {
-            marketListFragment.setData(data);
-        }
-        topList.clear();
-        for (CoinBean coinBean : data) {
-            topList.add(coinBean);
-        }
-        topAdapter.setNewData(topList);
     }
 
     public void setBanner(List<BannerBean> data) {
