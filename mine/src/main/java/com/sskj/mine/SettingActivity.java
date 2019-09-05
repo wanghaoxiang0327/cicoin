@@ -6,9 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import com.sskj.mine.R;
 /**
- * @author budou
- * 设置activity
- * Create at  2019/09/04 09:02:20
+ * @author Hey
+ * Create at  2019/09/05 13:37:06
  */
 public class SettingActivity extends BaseActivity<SettingPresenter> {
 

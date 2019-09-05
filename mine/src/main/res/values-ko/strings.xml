@@ -129,4 +129,14 @@
     <string name="mine_mine_activity_my">我的推广</string>
     <string name="mine_copy">复制</string>
 	<string name="mine_share_tips">长按保存二维码</string>
+    <string name="mine_yjfk">意见反馈</string>
+    <string name="mine_activity_feedback60">请留下你的手机号码或者邮箱</string>
+    <string name="mine_lxfs">你的联系方式</string>
+	<string name="mine_ms">描述：</string>
+	<string name="mine_cicoin">请描述您的问题，问题提交后，CICOIN会通过电邮答复您，请及时关注的你的邮箱。</string>
+    <string name="mine_tjfk">提交反馈</string>
+    <string name="mine_feedbackActivity3">请输入您的联系方式</string>
+	<string name="mine_feedbackActivity2">请输入反馈内容</string>
+    <string name="mine_setting">设置</string>
+    <string name="mine_logout">退出登录</string>
 </resources>

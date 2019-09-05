@@ -75,18 +75,20 @@
         app:layout_constraintStart_toEndOf="@+id/tv_yl_miner"
         app:layout_constraintTop_toTopOf="@+id/view_bg_miner" />
 
-    <TextView
+
+    <TextSwitcher
         android:id="@+id/tv_msg_miner"
         android:layout_width="0pt"
-        android:layout_height="0pt"
-        android:gravity="center"
-        android:textColor="@color/common_white"
-        android:textSize="12sp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/view_bg_miner"
         app:layout_constraintEnd_toEndOf="@+id/view_bg_miner"
         app:layout_constraintStart_toEndOf="@+id/view_line_miner"
         app:layout_constraintTop_toTopOf="@+id/view_bg_miner"
-        tools:text="阿童木 刚刚 获得1.3USDT" />
+        android:layout_weight="1"
+        android:layout_marginStart="10dp"
+        android:inAnimation="@anim/common_push_up_in"
+        android:outAnimation="@anim/common_push_up_out"
+        android:text="@string/hang_hang_fragment_hangqing310" />
 
     <com.sskj.common.view.WaterView
         android:id="@+id/view_water_miner"

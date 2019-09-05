@@ -29,6 +29,8 @@ public class WaterBean {
         this.num = num;
     }
 
+
+
     public String getNum() {
         return num;
     }

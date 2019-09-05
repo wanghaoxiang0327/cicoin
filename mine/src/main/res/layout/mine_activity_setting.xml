@@ -1,17 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/common_background"
     android:orientation="vertical">
 
     <com.sskj.common.view.ToolBarLayout
-        app:background_color="@color/common_action_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:background_color="@color/common_action_bar"
+        app:title="@string/mine_setting"
+        app:title_color="@color/common_text_sun" />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/language"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:sBackgroundDrawableRes="@color/common_white"
+        android:layout_marginTop="5dp"
+        app:sDividerLineColor="@color/common_divider"
+        app:sDividerLineHeight="1dp"
+        app:sDividerLineType="bottom"
+        app:sLeftTextColor="@color/common_text"
+        app:sLeftTextSize="15sp"
+        app:sLeftTextString="语言"
+        app:sRightIconRes="@mipmap/common_arrow_right"
+        app:sRightTextColor="@color/common_hint"
+        app:sRightTextSize="15sp"
+        app:sRightTextString="中文"
+        app:sUseRipple="false" />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/version"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:sBackgroundDrawableRes="@color/common_white"
+        app:sDividerLineColor="@color/common_divider"
+        app:sDividerLineHeight="0.5dp"
+        app:sDividerLineType="bottom"
+        app:sLeftTextColor="@color/common_text"
+        app:sLeftTextSize="15sp"
+        app:sLeftTextString="版本管理"
+        app:sRightTextColor="@color/common_hint"
+        app:sRightTextSize="15sp"
+        app:sRightTextString="v1.0.0"
+        app:sUseRipple="false" />
+    <com.allen.library.SuperButton
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        app:sSolidColor="#255bf9"
+        app:sCornersRadius="180dp"
+        android:layout_marginTop="90dp"
+        android:textColor="@color/white"
+        android:text="@string/mine_logout"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_height="45dp" />
 
 
-
-
-    </LinearLayout>
+</LinearLayout>

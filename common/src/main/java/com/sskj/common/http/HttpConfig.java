@@ -11,6 +11,12 @@ public class HttpConfig {
     public static final String SHARE_DETAIL = "/Home/Users/my_broker";
     public static final String GASSETLIST = "";
     public static final String ZOOM_RECORD = "";
+    public static final String FEEDBACK = "/Home/Qbw/u_msg";
+    public static final String GET_ASSET = "/home/forces/getincome";
+    public static final String GET_RULE = "/home/qbw/agree";
+    public static final String GET_PAO = "/home/Forces/maturepaopao";
+    public static final String RECEIVE_PAO ="/home/Forces/receivepaopao" ;
+    public static final String NOTICE ="/Home/Ajax/paomadeng" ;
 
 
     public static String BASE_URL = BuildConfig.IP;

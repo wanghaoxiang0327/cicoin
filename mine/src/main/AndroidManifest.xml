@@ -23,5 +23,7 @@
 <activity android:name="com.sskj.mine.InviteHomeActivity"/>
 <activity android:name="com.sskj.mine.TeamActivity"/>
 <activity android:name="com.sskj.mine.MoneyActivity"/>
+<activity android:name="com.sskj.mine.FeedbackActivity"/>
+<activity android:name="com.sskj.mine.SettingActivity"/>
 </application>
 </manifest>

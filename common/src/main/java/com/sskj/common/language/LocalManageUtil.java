@@ -8,6 +8,8 @@ import android.os.LocaleList;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.sskj.common.App;
+
 import java.util.Locale;
 
 public class LocalManageUtil {
@@ -121,5 +123,9 @@ public class LocalManageUtil {
         saveSystemCurrentLanguage(context);
         setLocal(context);
         setApplicationLanguage(context);
+    }
+
+    public static boolean isSimpleChinese() {
+        return getSetLanguageLocale(App.INSTANCE) == Locale.SIMPLIFIED_CHINESE;
     }
 }

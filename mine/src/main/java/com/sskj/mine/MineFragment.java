@@ -136,14 +136,16 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 //                    ARouter.getInstance().build(RoutePath.APP_GUIDE_WEB).withBoolean(Constans.IS_ABOUT_US, true).navigation();
                     break;
                 case 4:
+                    FeedbackActivity.start(getContext());
                     break;
                 case 5:
+//                    WebViewActivity.start(this,);
                     break;
                 case 6:
-                    WebViewActivity.start(getContext(), "https://dwz.cn/JzDYCxal");
+                    WebViewActivity.start(getContext(), "https://dwz.cn/gkmdm2c9");
                     break;
                 case 7:
-                    SettingPasswordActivity.start(getActivity());
+                    SettingActivity.start(getActivity());
 
                     break;
                 default:
