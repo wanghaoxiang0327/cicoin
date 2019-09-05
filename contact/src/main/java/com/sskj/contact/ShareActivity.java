@@ -2,6 +2,7 @@ package com.sskj.contact;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -68,6 +69,7 @@ public class ShareActivity extends BaseActivity<SharePresenter> {
 
     @Override
     public void initView() {
+        toolbar.mLeftButton.setCompoundDrawableTintList(ColorStateList.valueOf(color(R.color.common_white)));
         dealOrder = (DealOrder) getIntent().getSerializableExtra("dealOrder");
         if (dealOrder != null) {
             tvMarketMoreOrEmpty.setText(dealOrder.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));

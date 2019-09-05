@@ -196,7 +196,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends ExtendActivi
                     dialog.dismiss();
                     SpUtil.exit(BaseApplication.getMobile());
                     userViewModel.clear();
-                    ARouter.getInstance().build(RoutePath.APP_LOGIN).navigation();
+                    ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
                     AppManager.getInstance().finishAllLogin();
                 }).show();
 

@@ -63,7 +63,11 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
         toolbar.mLeftButton.setCompoundDrawableTintList(ColorStateList.valueOf(getResources().getColor(R.color.common_white)));
         ARouter.getInstance().inject(this);
         coinBean = (CoinBean) getIntent().getSerializableExtra("coinBean");
-        toolbar.setTitle(coinBean.getName());
+        if (coinBean.getName().contains("_")) {
+            toolbar.setTitle(coinBean.getName());
+        } else {
+            toolbar.setTitle(coinBean.getName() + "_USDT");
+        }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         detailAdapter = new MarketDetailAdapter(null, getSupportFragmentManager());
         recyclerView.setAdapter(detailAdapter);
