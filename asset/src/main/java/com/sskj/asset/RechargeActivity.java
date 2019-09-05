@@ -2,7 +2,6 @@ package com.sskj.asset;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,16 +10,13 @@ import com.allen.library.SuperTextView;
 import com.bumptech.glide.Glide;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinAsset;
-import com.sskj.common.dialog.Coin;
 import com.sskj.common.dialog.SelectCoinDialog;
 import com.sskj.common.http.BaseHttpConfig;
-import com.sskj.common.http.HttpResult;
 
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.Flowable;
 
 /**
@@ -30,7 +26,6 @@ import io.reactivex.Flowable;
  * Create at  2019/06/26
  */
 public class RechargeActivity extends BaseActivity<RechargePresenter> {
-
     @BindView(R2.id.select_coin)
     SuperTextView selectCoin;
     @BindView(R2.id.qr_code_img)

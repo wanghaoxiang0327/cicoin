@@ -11,6 +11,9 @@
 <activity android:name="com.sskj.asset.InsertAddressActivity"/>
         <activity android:name=".AssetActivity"/>
 <activity android:name="com.sskj.asset.ZoomActivity"/>
+<activity android:name="com.sskj.asset.ExchangeDetailActivity"/>
+<activity android:name="com.sskj.asset.AssetDetailActivity"/>
+<activity android:name="com.sskj.asset.BillDetailActivity"/>
 </application>
 
 </manifest>

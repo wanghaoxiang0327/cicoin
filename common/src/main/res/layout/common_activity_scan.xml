@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:background_color="@color/common_action_bar"
-        app:title="@string/common_common_activity_scan20" />
+        app:title="@string/common_common_activity_scan20"
+        app:title_color="@color/common_text" />
 
     <cn.bingoogolapple.qrcode.zxing.ZXingView
         android:id="@+id/scan_view"

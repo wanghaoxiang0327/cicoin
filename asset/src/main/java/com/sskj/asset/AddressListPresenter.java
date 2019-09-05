@@ -16,9 +16,7 @@ import com.sskj.common.http.JsonCallBack;
  * Create at  2019/06/26
  */
 public class AddressListPresenter extends BasePresenter<AddressListActivity> {
-
     public void getAddressList() {
-
         OkGo.<HttpResult<AddressBean>>get(BaseHttpConfig.BASE_URL + HttpConfig.ADDRESS_LIST)
                 .execute(new JsonCallBack<HttpResult<AddressBean>>(this) {
                     @Override
@@ -29,9 +27,9 @@ public class AddressListPresenter extends BasePresenter<AddressListActivity> {
     }
 
 
-    public void deleteAddress(String id) {
+    public void deleteAddress(String qiaobao_url) {
         OkGo.<HttpResult<Object>>post(BaseHttpConfig.BASE_URL + HttpConfig.ADDRESS_MANAGE)
-                .params("id", id)
+                .params("qiaobao_url", qiaobao_url)
                 .params("act", "del")
                 .execute(new JsonCallBack<HttpResult<Object>>(this) {
                     @Override

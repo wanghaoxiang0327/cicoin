@@ -18,17 +18,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SelectCoinDialog extends BottomSheetDialog {
-
     @BindView(R2.id.coin_list)
     RecyclerView coinList;
-
-
     private BaseAdapter<CoinAsset> coinAdapter;
-
-
     private OnSelectListener onSelectListener;
-
-
 
     public SelectCoinDialog(@NonNull Context context, OnSelectListener onSelectListener) {
         super(context);
@@ -37,9 +30,6 @@ public class SelectCoinDialog extends BottomSheetDialog {
         this.onSelectListener = onSelectListener;
         initView();
     }
-
-
-
 
     private void initView() {
         coinList.setLayoutManager(new LinearLayoutManager(getContext()));

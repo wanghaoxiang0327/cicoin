@@ -29,8 +29,6 @@ import butterknife.ButterKnife;
  */
 @Route(path = RoutePath.SECURITY)
 public class SecurityActivity extends BaseActivity<SecurityPresenter> {
-
-
     @BindView(R2.id.menu_sms_verify)
     SuperTextView menuSmsVerify;
     @BindView(R2.id.menu_google_verify)

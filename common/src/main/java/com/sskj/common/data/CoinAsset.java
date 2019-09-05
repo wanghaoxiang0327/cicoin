@@ -18,6 +18,7 @@ public class CoinAsset {
     private double yue;
     private String price;
     private String cnyPrice;
+    private String mark;
 
     public String getPrice() {
         return price;
@@ -77,4 +78,13 @@ public class CoinAsset {
     public void setAim_point(List<String> aim_point) {
         this.aim_point = aim_point;
     }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
 }

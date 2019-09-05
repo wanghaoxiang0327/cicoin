@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
  * Create at  2019/06/26
  */
 public class AddressListActivity extends BaseActivity<AddressListPresenter> {
-
     @BindView(R2.id.add_btc_address)
     ImageView addBtcAddress;
     @BindView(R2.id.btc_address_list)
@@ -32,7 +31,6 @@ public class AddressListActivity extends BaseActivity<AddressListPresenter> {
     ImageView addEthAddress;
     @BindView(R2.id.eth_address_list)
     RecyclerView ethAddressList;
-
     BaseAdapter<AddressBean.Address> btcAdapter, ethAdapter;
 
     private boolean select;
@@ -63,7 +61,7 @@ public class AddressListActivity extends BaseActivity<AddressListPresenter> {
                 holder.setText(R.id.name_tv, item.getNotes())
                         .setText(R.id.address, item.getQiaobao_url());
                 ClickUtil.click(holder.getView(R.id.delete), view -> {
-                    mPresenter.deleteAddress(item.getId());
+                    mPresenter.deleteAddress(item.getQiaobao_url());
                 });
                 ClickUtil.click(holder.itemView, view -> {
                     if (select) {
@@ -82,7 +80,7 @@ public class AddressListActivity extends BaseActivity<AddressListPresenter> {
                 holder.setText(R.id.name_tv, item.getNotes())
                         .setText(R.id.address, item.getQiaobao_url());
                 ClickUtil.click(holder.getView(R.id.delete), view -> {
-                    mPresenter.deleteAddress(item.getId());
+                    mPresenter.deleteAddress(item.getQiaobao_url());
                 });
 
                 ClickUtil.click(holder.itemView, view -> {

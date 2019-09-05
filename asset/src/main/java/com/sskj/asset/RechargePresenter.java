@@ -24,11 +24,8 @@ import io.reactivex.Flowable;
  * Create at  2019/06/26
  */
 public class RechargePresenter extends BasePresenter<RechargeActivity> {
-
-
     /**
      * 币种分类
-     *
      * @return
      */
     public void getCoinAsset(boolean showDialog) {
@@ -46,15 +43,13 @@ public class RechargePresenter extends BasePresenter<RechargeActivity> {
     }
 
 
-
-
     /**
      * 充值信息
      */
     public void getRechargeInfo(String pid) {
-         OkGo.<HttpResult<Map<String,String>>>post(BaseHttpConfig.BASE_URL + HttpConfig.RECHARGE_INFO)
+        OkGo.<HttpResult<Map<String, String>>>get(BaseHttpConfig.BASE_URL + HttpConfig.RECHARGE_INFO)
                 .params("pid", pid)
-                .execute(new JsonCallBack<HttpResult<Map<String,String>>>(this){
+                .execute(new JsonCallBack<HttpResult<Map<String, String>>>(this) {
                     @Override
                     protected void onNext(HttpResult<Map<String, String>> result) {
                         mView.setRechargeInfo(result.getData());

@@ -2,23 +2,22 @@ package com.sskj.asset;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.hjq.toast.ToastUtils;
-import com.sskj.asset.data.GAssetBean;
-import com.sskj.asset.data.TransferInfoBean;
 import com.sskj.common.base.BaseActivity;
+import com.sskj.common.data.CoinListEntity;
 import com.sskj.common.router.RoutePath;
 import com.sskj.common.utils.ClickUtil;
-import com.sskj.common.utils.NumberUtils;
+import com.sskj.common.view.ToolBarLayout;
+
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * @author Hey
@@ -26,25 +25,26 @@ import butterknife.ButterKnife;
  */
 @Route(path = RoutePath.ZOOM)
 public class ZoomActivity extends BaseActivity<ZoomPresenter> {
-
-
-    @BindView(R2.id.acount1)
-    TextView acount1;
-    @BindView(R2.id.acount2)
-    TextView acount2;
-    @BindView(R2.id.iv_switch)
-    ImageView ivSwitch;
-    @BindView(R2.id.tv_number)
-    TextView tvNumber;
-    @BindView(R2.id.edt_input_number)
-    EditText edtInputNumber;
-    @BindView(R2.id.tv_all)
-    TextView tvAll;
+    @BindView(R2.id.toolbar)
+    ToolBarLayout toolbar;
+    @BindView(R2.id.tv_old_coin)
+    TextView tvOldCoin;
+    @BindView(R2.id.tv_old_amount)
+    TextView tvOldAmount;
+    @BindView(R2.id.iv_exchange)
+    ImageView ivExchange;
+    @BindView(R2.id.tv_new_coin)
+    TextView tvNewCoin;
+    @BindView(R2.id.tv_new_amount)
+    TextView tvNewAmount;
+    @BindView(R2.id.et_input_exchange_num)
+    EditText etInputExchangeNum;
+    @BindView(R2.id.et_arrival_num)
+    EditText etArrivalNum;
+    @BindView(R2.id.et_asset_pwd)
+    EditText etAssetPwd;
     @BindView(R2.id.submit)
     Button submit;
-    private int type = 1;
-    private double asset;
-    private double wall;
 
     @Override
     public int getLayoutId() {
@@ -58,85 +58,39 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
 
     @Override
     public void initView() {
-        mToolBarLayout.setRightButtonOnClickListener(view -> {
-            TransferRecordsActivity.start(this,2);
-        });
-        ClickUtil.click(submit,view -> {
-            if (isEmptyShow(edtInputNumber)){
-                return;
-            }
-            float number = Float.parseFloat(getText(edtInputNumber));
-            if (type == 1){
-                if (number > asset){
-                    ToastUtils.show(getString(R.string.asset_no_yue));
-                    return;
-                }
-            }else{
-                if (number > wall){
-                    ToastUtils.show(getString(R.string.asset_no_yue));
-                    return;
-                }
-            }
-        mPresenter.Transfer(type, Float.parseFloat(NumberUtils.keepDown(getText(edtInputNumber),4)));
-        });
-        ClickUtil.click(tvAll,view -> {
-            edtInputNumber.setText(tvNumber.getText());
-        });
-        ClickUtil.click(ivSwitch,view -> {
-            type = type==1?2:1;
-            initTextview();
-        });
     }
-    private void initTextview(){
-        switch (type){
-            case 1:
-                acount1.setText(getString(R.string.asset_fragment_assetaccount1));
-                acount2.setText(getString(R.string.asset_fragment_assetaccount2));
-                tvNumber.setText(asset+"");
-                break;
-            case 2:
-                acount1.setText(getString(R.string.asset_fragment_assetaccount2));
-                acount2.setText(getString(R.string.asset_fragment_assetaccount1));
-                tvNumber.setText(wall+"");
-                break;
-        }
-    }
+
     @Override
     public void initData() {
-        type = getIntent().getIntExtra("type",1);
-        initTextview();
+        mPresenter.getExchangeInfo();
+    }
+
+    @Override
+    public void initEvent() {
+        super.initEvent();
+        toolbar.setRightButtonOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ExchangeDetailActivity.start(ZoomActivity.this);
+            }
+        });
     }
 
     @Override
     public void loadData() {
         super.loadData();
-        mPresenter.getTransfer();
+        mPresenter.getExchangeInfo();
     }
 
     public static void start(Context context, int type) {
         Intent intent = new Intent(context, ZoomActivity.class);
-        intent.putExtra("type",type);
+        intent.putExtra("type", type);
         context.startActivity(intent);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+    public void setCoinList(List<CoinListEntity> data) {
+        if (data != null && data.size() > 0) {
 
-    public void updateui(TransferInfoBean data) {
-        asset = data.getAsset();
-        wall = data.getWall();
-        if (type == 1){
-            tvNumber.setText(data.getAsset()+"");
-        }else{
-            tvNumber.setText(data.getWall()+"");
         }
-    }
-
-    public void transfersuccess() {
-        finish();
     }
 }
