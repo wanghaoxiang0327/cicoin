@@ -1,34 +1,31 @@
 package com.sskj.mine;
 
-import com.allen.library.SuperTextView;
-import com.hjq.toast.ToastUtils;
-import com.sskj.common.App;
-import com.sskj.common.base.BaseActivity;
-import com.sskj.common.user.data.UserBean;
-import com.sskj.common.user.model.UserViewModel;
-import com.sskj.common.utils.ClickUtil;
-import com.sskj.common.utils.TipUtil;
-import com.sskj.mine.VerifyHomePresenter;
-
-import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sskj.mine.R;
-
-import javax.inject.Inject;
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.hjq.toast.ToastUtils;
+import com.sskj.common.App;
+import com.sskj.common.base.BaseActivity;
+import com.sskj.common.router.RoutePath;
+import com.sskj.common.user.data.UserBean;
+import com.sskj.common.utils.ClickUtil;
+import com.sskj.common.utils.SpUtil;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @author Hey
  * Create at  2019/09/04 20:37:04
  */
+@Route(path = RoutePath.VERIFY_HOME)
 public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
 
 
@@ -54,6 +51,16 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
     @BindView(R2.id.tv_idcard)
     TextView tv_idcard;
 
+
+    @BindView(R2.id.state1)
+    ImageView state1;
+    @BindView(R2.id.state2)
+    TextView state2;
+    @BindView(R2.id.state3)
+    ImageView state3;
+    @BindView(R2.id.state4)
+    TextView state4;
+
     private boolean firstVerify;
 
     public static final int CODE = 1;
@@ -77,7 +84,45 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
 
     @Override
     public void initView() {
-        userViewModel.getUser().observe(this, bean -> mUserInfo = bean);
+        userViewModel.getUser().observe(this, bean -> {
+            mUserInfo = bean;
+            switch (mUserInfo.getStatus()) {  // 实名认证状态   1 未认证 2 待审核 3 已通过  4拒绝
+                case 1:
+                    state1.setVisibility(View.GONE);
+                    state2.setText("待认证");
+                    break;
+                case 2:
+                    state2.setText("审核中");
+                    break;
+                case 3:
+                    state1.setVisibility(View.VISIBLE);
+                    state2.setText("认证成功");
+                    tv_name.setText(SpUtil.getString("mine_name","****"));
+                    tv_idcard.setText(SpUtil.getString("mine_idno","****"));
+                    break;
+                case 4:
+                    state2.setText("认证失败");
+                    break;
+            }
+            switch (mUserInfo.getAuth_status()) {  // 高级实名认证   1:未认证 2:待审核 3:已认证 4:审核未通过
+                case 1:
+                    state3.setVisibility(View.GONE);
+                    state4.setText("待认证");
+                    break;
+                case 2:
+                    state4.setText("审核中");
+                    break;
+                case 3:
+                    state3.setVisibility(View.VISIBLE);
+                    state4.setText("认证成功");
+                    break;
+                case 4:
+                    state4.setText("认证失败");
+                    break;
+            }
+        });
+
+
 
     }
 
@@ -87,17 +132,15 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
         ClickUtil.click(ll_realName, view -> {
             if (mUserInfo == null) {
                 return;
-            }
-            startActivityForResult(new Intent(this, VerifyFirstActivity.class), CODE);
-            switch (mUserInfo.getStatus()) {  // 实名认证状态   1   已认证   0  未认证
-                case 0:
+            } switch (mUserInfo.getStatus()) {  // 实名认证状态   1 未认证 2 待审核 3 已通过  4拒绝
+                case 1:
                     VerifyFirstActivity.start(this);
-                    startActivityForResult(new Intent(this, VerifyFirstActivity.class), CODE);
+
                     break;
                 case 2:
                     ToastUtils.show(App.INSTANCE.getString(R.string.mine_verifyHomeActivity2));
                     break;
-                case 1:
+                case 3:
                     ToastUtils.show(App.INSTANCE.getString(R.string.mine_verifyFirstActivity23));
 //                    ARouter.getInstance().build(RConfig.MINE_VERIFY_RESULT)
 //                            .withBoolean("isSuccess", true)
@@ -108,10 +151,11 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
                     startActivityForResult(new Intent(this, VerifyFirstActivity.class), CODE);
                     break;
             }
+
         });
         //高级认证
         ClickUtil.click(ll_high, view -> {
-            if (mUserInfo.getStatus() == 0) {
+            if (mUserInfo.getStatus() == 1) {
                 ToastUtils.show(App.INSTANCE.getString(R.string.mine_verifyHomeActivity4));
                 return;
             }
@@ -129,6 +173,7 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
 //                            .navigation();
                     break;
                 case 4:
+                    VerifySecondActivity.start(this);
 //                    TipUtil.getSureTip(this, App.INSTANCE.getString(R.string.mine_verifyFirstActivity11), App.INSTANCE.getString(R.string.mine_verifyFirstActivity12) + mUserInfo.getReason(), App.INSTANCE.getString(R.string.mine_verifyFirstActivity13), () -> {
 //                        VerifySecondActivity.start(this);
 //                    });
@@ -214,5 +259,6 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
             }
         }
     }
+
 
 }

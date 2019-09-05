@@ -79,4 +79,9 @@
 	<string name="asset_zoom_tip">Transactions may be made only if the assets are transferred to the corresponding account.</string>
 	<string name="asset_zoom_record">Transfer of records</string>
 	<string name="asset_no_yue">Insufficient available balance</string>
+    <string name="asset_rechargr_list">充币记录</string>
+    <string name="asset_cbdz">充币地址</string>
+	<string name="asset_cbsl">充币数量</string>
+	<string name="asset_tjsj">提交时间</string>
+	<string name="asset_shsj">审核时间</string>
 </resources>

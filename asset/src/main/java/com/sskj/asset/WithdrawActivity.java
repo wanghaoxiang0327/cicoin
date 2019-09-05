@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.allen.library.SuperTextView;
 import com.hjq.toast.ToastUtils;
 import com.sskj.asset.data.TransferInfo;
@@ -22,6 +24,7 @@ import com.sskj.common.data.WithdrawCoinInfo;
 import com.sskj.common.dialog.Coin;
 import com.sskj.common.dialog.SelectCoinDialog;
 import com.sskj.common.dialog.VerifyPasswordDialog;
+import com.sskj.common.router.RoutePath;
 import com.sskj.common.simple.SimpleTextWatcher;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.DigitUtils;
@@ -68,12 +71,11 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
     private List<CoinAsset> coinList;
     private String pid;
     private String code;
-    double minCount;
-    boolean checkSms;
-    boolean checkGoogle;
+    double minCount;;
     double fee;
     double useful;
     private String codeOrigin;
+    private boolean hasTbpwd;
 
     @Override
     public int getLayoutId() {
@@ -93,8 +95,7 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
 
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
-                checkSms = userBean.getIsStartSms() == 1;
-                checkGoogle = userBean.getIsStartGoogle() == 1;
+                hasTbpwd= !TextUtils.isEmpty(userBean.getTpwd());
             }
         });
     }
@@ -115,6 +116,10 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
             }
         });
         ClickUtil.click(submit, view -> {
+            if (!hasTbpwd){
+                ARouter.getInstance().build(RoutePath.TPWD).navigation();
+                ToastUtils.show("请先设置支付密码");
+            }
             if (isEmpty(countEdt)) {
                 ToastUtils.show(getString(R.string.asset_transferActivity1));
                 return;
@@ -129,7 +134,7 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
                 ToastUtils.show(getString(R.string.asset_withdrawActivity3));
                 return;
             }
-            new VerifyPasswordDialog(this, checkSms, checkGoogle, true, 5)
+            new VerifyPasswordDialog(this, true, false, true, 5)
                     .setOnConfirmListener((dialog, ps, sms, google) -> {
                         dialog.dismiss();
                         mPresenter.withdraw(getText(addressEdt), pid, NumberUtils.keepDown(getText(countEdt), 4), ps, sms, BaseApplication.getMobile());

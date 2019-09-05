@@ -175,14 +175,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
         ClickUtil.click(tvLogin, view -> ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation());
         ClickUtil.click(tvQd, view -> {
-            new TipsNewDialog(getActivity())
-                    .setTitle("签到")
-                    .setContent("签到成成，恭喜您获得 +5原力")
-                    .setConfirmText("去完成任务")
-                    .setConfirmListener(dialog -> {
-                        RxBus.getDefault().send(BusCode.SECOND);
-                        dialog.dismiss();
-                    }).show();
+          mPresenter.qd();
         });
         ClickUtil.click(50, imgKj, view -> {
             SpUtil.put(CommonConfig.SHOWASSET, !SpUtil.getBoolean(CommonConfig.SHOWASSET, true));
@@ -222,6 +215,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
 
     public void getSuccess(UserBean bean, double usdrt, double money) {
+        Log.d("yds",usdrt+"--------"+money);
         tvName.setText(bean.getNickname());
         tvQd.setText(bean.getQd() == 0 ? "签到" : "已签到");
         tvUid.setText("uid:" + bean.getUid());
@@ -250,6 +244,14 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
     public void qd() {
         tvQd.setText("已签到");
+        new TipsNewDialog(getActivity())
+                .setTitle("签到")
+                .setContent("签到成成，恭喜您获得 +5原力")
+                .setConfirmText("去完成任务")
+                .setConfirmListener(dialog -> {
+                    RxBus.getDefault().send(BusCode.SECOND);
+                    dialog.dismiss();
+                }).show();
         userViewModel.update();
     }
 }

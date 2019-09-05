@@ -9,10 +9,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.hjq.toast.ToastUtils;
 import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.dialog.VerifyPasswordDialog;
+import com.sskj.common.router.RoutePath;
 import com.sskj.common.utils.CapUtils;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.EditUtil;
@@ -28,6 +30,7 @@ import butterknife.ButterKnife;
  * @author Hey
  * Create at  2019/06/25
  */
+@Route(path = RoutePath.TPWD)
 public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresenter> {
 
     @BindView(R2.id.ps_edt)

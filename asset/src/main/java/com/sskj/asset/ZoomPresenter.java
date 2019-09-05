@@ -2,6 +2,7 @@ package com.sskj.asset;
 
 import com.hjq.toast.ToastUtils;
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 import com.sskj.asset.data.GAssetBean;
 import com.sskj.asset.data.TransferInfoBean;
 import com.sskj.common.base.BasePresenter;
@@ -41,22 +42,28 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
                     @Override
                     protected void onNext(HttpResult<List<CoinListEntity>> result) {
                         mView.setCoinList(result.getData());
+
                     }
                 });
     }
 
-    public void Transfer(int type, float num) {
-        OkGo.<HttpResult<Object>>post(BaseHttpConfig.BASE_URL + HttpConfig.ASSETTRANSFER)
-                .params("type", type)
-                .params("num", num)
-                .execute(new JsonCallBack<HttpResult<Object>>(this) {
+    public void Transfer(String code) {
+        OkGo.<HttpResult<List<TransferInfoBean>>>post(BaseHttpConfig.BASE_URL + HttpConfig.GET_TRANSFER)
+                .params("coin", code)
+                .execute(new JsonCallBack<HttpResult<List<TransferInfoBean>>>(this) {
                     @Override
-                    protected void onNext(HttpResult<Object> result) {
+                    protected void onNext(HttpResult<List<TransferInfoBean>> result) {
                         if (result.getStatus() == 200) {
-                            ToastUtils.show(result.getMsg());
-//                            mView.transfersuccess();
+                            mView.setRCoinList(result.getData());
                         }
                     }
+
+                    @Override
+                    public void onError(Response<HttpResult<List<TransferInfoBean>>> response) {
+                        super.onError(response);
+                        mView.setError();
+                    }
                 });
+
     }
 }

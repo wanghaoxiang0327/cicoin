@@ -25,4 +25,5 @@
     <string name="login_loginActivity1">手机号登录</string>
     <string name="login_login_activity_login350">还没有账号?立即注册</string>
     <string name="login_login_activity_forget_ps40">忘记密码</string>
+    <string name="common_tvcode">点击获取验证码</string>
 </resources>

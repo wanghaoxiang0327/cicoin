@@ -158,4 +158,32 @@
     <string name="mine_settingActivity41">当前版本号V%s</string>
     <string name="mine_mine_activity_bind_googl_everify10">手机或邮箱验证码</string>
     <string name="mine_mine_activity_bind_googl_everify19">请输入手机或邮箱验证码</string>
+    <string name="mine_advanced_certification">高级认证</string>
+
+    <string name="mine_tip_setpwd">8-20位数字与字母组合密码</string>
+    <string name="mine_primary_certification">初级认证</string>
+    <string name="mine_decertification_success">认证成功</string>
+    <string name="mine_decertificationing">认证中</string>
+    <string name="mine_certificationing">身份认证中</string>
+    <string name="mine_decertification_fail">认证失败</string>
+    <string name="mine_no_decertification">待认证</string>
+    <string name="mine_no_decertification_tip">通过高级认证，以获得更多功能</string>
+    <string name="mine_primary_tip">为保障您的账户安全，需要进行身份验证\n身份一旦认证无法修改，请仔细填写您的真实信息</string>
+    <string name="mine_decertification_name">姓名</string>
+    <string name="mine_decertification_idnumber">身份证号</string>
+    <string name="mine_decertification_name_hint">请输入您的姓名</string>
+    <string name="mine_decertification_id_hint">请输入您的身份证号码</string>
+    <string name="mine_advance_id">身份证</string>
+    <string name="mine_aadvance_idtip">请正确上传您的证件图片</string>
+    <string name="mine_mine_activity_verify_second19_j0">请上传身份证正面</string>
+    <string name="mine_verifySecondActivity6_j">请上传手持身份证照片</string>
+    <string name="mine_mine_activity_verify_second25_j0">请上传身份证背面</string>
+    <string name="mine_mine_activity_verify_second21_j0">身份证正面确保无水印无污渍，身份信息清晰，非文字反向照片，请勿进行PS处理。</string>
+    <string name="mine_mine_activity_verify_second27_j0">身份证反面确保无水印无污渍，身份信息清晰，非文字反向照片，请勿进行PS处理。</string>
+    <string name="mine_mine_activity_verify_second33_j0">需要您本人单手手持您的身份证，另一只手持有一张有您手写的ID和当天日期的白纸，确保身份证和白纸在您胸前，不遮挡您的脸部，并且身份证和白纸上的信息清晰可见。</string>
+    <string name="mine_certification_success">身份认证成功</string>
+    <string name="mine_certification_success_tip">请遵守平台交易规则进行交易</string>
+    <string name="mine_certification_fail">认证失败，请</string>
+    <string name="mine_recertification">重新认证</string>
+    <string name="mine_certification_fail_tip">失败原因：</string>
 </resources>

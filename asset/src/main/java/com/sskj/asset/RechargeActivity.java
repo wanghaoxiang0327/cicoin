@@ -2,9 +2,11 @@ package com.sskj.asset;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.allen.library.SuperTextView;
 import com.bumptech.glide.Glide;
@@ -12,6 +14,7 @@ import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinAsset;
 import com.sskj.common.dialog.SelectCoinDialog;
 import com.sskj.common.http.BaseHttpConfig;
+import com.sskj.common.view.ToolBarLayout;
 
 import java.util.List;
 import java.util.Map;
@@ -26,6 +29,7 @@ import io.reactivex.Flowable;
  * Create at  2019/06/26
  */
 public class RechargeActivity extends BaseActivity<RechargePresenter> {
+
     @BindView(R2.id.select_coin)
     SuperTextView selectCoin;
     @BindView(R2.id.qr_code_img)
@@ -61,13 +65,14 @@ public class RechargeActivity extends BaseActivity<RechargePresenter> {
             }
         });
        mToolBarLayout.setRightButtonOnClickListener(v -> {
-           WithdrawRecordsActivity.start(this,"recharge");
+           RechargeListActivity.start(this);
        });
     }
 
     @Override
     public void initData() {
         mPresenter.getCoinAsset(false);
+
     }
 
 

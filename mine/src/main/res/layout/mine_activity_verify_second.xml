@@ -1,19 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/common_background"
     android:orientation="vertical">
 
     <com.sskj.common.view.ToolBarLayout
-        app:background_color="@color/common_action_bar"
         android:layout_width="match_parent"
-        app:title="高级认证"
-        app:title_color="@color/common_text_sun"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:background_color="@color/common_background"
+        app:title="@string/mine_advanced_certification"
+        app:title_color="@color/common_text_sun" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/common_background">
+
+                <TextView
+                    style="@style/mine_text_white15"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/mine_advance_id" />
+
+                <TextView
+                    style="@style/mine_text_white15"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/mine_aadvance_idtip"
+                    android:textColor="@color/common_hint"
+                    android:textSize="12sp" />
+            </RelativeLayout>
 
 
+
+
+            <ImageView
+                android:id="@+id/verify_photo_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:background="@mipmap/mine_advance_card1"
+                android:scaleType="fitXY" />
+
+            <TextView
+                style="@style/mine_text_white15"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:text="@string/mine_mine_activity_verify_second19_j0" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="40dp"
+                android:text="@string/mine_mine_activity_verify_second21_j0"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+
+            <ImageView
+                android:id="@+id/verify_photo_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:background="@mipmap/mine_advance_card2"
+                android:scaleType="fitXY" />
+
+
+            <TextView
+                style="@style/mine_text_white15"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:text="@string/mine_mine_activity_verify_second25_j0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="40dp"
+                android:text="@string/mine_mine_activity_verify_second27_j0"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/verify_photo_hand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@mipmap/mine_advance_card3"
+                android:scaleType="fitXY" />
+
+
+            <TextView
+                style="@style/mine_text_white15"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:text="@string/mine_verifySecondActivity6_j" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="40dp"
+                android:text="@string/mine_mine_activity_verify_second33_j0"
+                android:textColor="@color/common_hint"
+                android:textSize="12sp" />
+
+            <com.allen.library.SuperButton
+                android:id="@+id/verify_submit"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="30dp"
+                android:text="提交"
+                android:textColor="@color/white"
+
+                app:sCornersRadius="180dp"
+                app:sSolidColor="@color/common_tip" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 
 </LinearLayout>

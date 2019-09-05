@@ -14,6 +14,7 @@
 <activity android:name="com.sskj.asset.ExchangeDetailActivity"/>
 <activity android:name="com.sskj.asset.AssetDetailActivity"/>
 <activity android:name="com.sskj.asset.BillDetailActivity"/>
+<activity android:name="com.sskj.asset.RechargeListActivity"/>
 </application>
 
 </manifest>

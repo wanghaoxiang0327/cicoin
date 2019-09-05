@@ -8,9 +8,12 @@
     android:orientation="vertical">
 
     <com.sskj.common.view.ToolBarLayout
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:background_color="@color/common_action_bar"
+        app:right_text="充币记录"
+        app:right_text_color="@color/common_text_sun"
         app:title="@string/asset_asset_activity_recharge20"
         app:title_color="@color/common_text" />
 

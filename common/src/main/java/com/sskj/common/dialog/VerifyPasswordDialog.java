@@ -22,6 +22,7 @@ import com.sskj.common.R2;
 import com.sskj.common.http.HttpConfig;
 import com.sskj.common.http.HttpResult;
 import com.sskj.common.http.JsonCallBack;
+import com.sskj.common.utils.CapUtils;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.CopyUtils;
 
@@ -98,7 +99,7 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
         this.showGoogle = showGoogle;
         this.showPS = showPs;
         this.smsType = smsType;
-        initView();
+        initView(context);
     }
 
 
@@ -112,10 +113,10 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
         this.showPS = showPs;
         this.showEmail = showEmail;
         this.emailAddress = email;
-        initView();
+        initView(context);
     }
 
-    private void initView() {
+    private void initView(Context context) {
         psLayout.setVisibility(showPS ? View.VISIBLE : View.GONE);
         googleLayout.setVisibility(showGoogle ? View.VISIBLE : View.GONE);
         smsLayout.setVisibility(showSMS ? View.VISIBLE : View.GONE);
@@ -164,26 +165,30 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
         });
         //发送验证码
         ClickUtil.click(getCodeTv, view -> {
-            OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
-                    .params("mobile", BaseApplication.getMobile())
-                    .params("type", smsType)
-                    .execute(new JsonCallBack<HttpResult>() {
-                        @Override
-                        protected void onNext(HttpResult result) {
-                            startTimeDown(getCodeTv);
-                        }
-                    });
+            CapUtils.registerCheck(context, dialog -> {
+                OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
+                        .params("mobile", BaseApplication.getMobile())
+                        .params("type", smsType)
+                        .params("validate", dialog)
+                        .execute(new JsonCallBack<HttpResult>() {
+                            @Override
+                            protected void onNext(HttpResult result) {
+                                startTimeDown(getCodeTv);
+                            }
+                        });
+            });
         });
         //发送邮箱验证码
         ClickUtil.click(getEmailCodeTv, view -> {
-            OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
+            CapUtils.registerCheck(context, str -> OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
                     .params("email", emailAddress)
+                    .params("validate", str)
                     .execute(new JsonCallBack<HttpResult>() {
                         @Override
                         protected void onNext(HttpResult result) {
                             startTimeDown(getEmailCodeTv);
                         }
-                    });
+                    }));
         });
     }
 

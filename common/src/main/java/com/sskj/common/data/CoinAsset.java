@@ -20,6 +20,14 @@ public class CoinAsset {
     private String cnyPrice;
     private String mark;
 
+    public CoinAsset() {
+    }
+
+    public CoinAsset(String pid, String name) {
+        this.pid = pid;
+        this.pname = name;
+    }
+
     public String getPrice() {
         return price;
     }

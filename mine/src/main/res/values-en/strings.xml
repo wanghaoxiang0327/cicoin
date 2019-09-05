@@ -151,4 +151,5 @@
     <string name="mine_logout">退出登录</string>
     <string name="mine_settingActivity41">当前版本号V%s</string>
     <string name="mine_mine_activity_bind_googl_everify10">手机或邮箱验证码</string>
+    <string name="mine_advanced_certification">高级认证</string>
 </resources>

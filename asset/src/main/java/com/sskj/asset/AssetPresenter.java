@@ -30,6 +30,7 @@ public class AssetPresenter extends BasePresenter<AssetActivity> {
                 });
     }
 
+
     public void getAllAsset() {
         OkGo.<HttpResult<AllAssetEntity>>get(BaseHttpConfig.BASE_URL + HttpConfig.GASSETLIST)
                 .execute(new JsonCallBack<HttpResult<AllAssetEntity>>(this) {

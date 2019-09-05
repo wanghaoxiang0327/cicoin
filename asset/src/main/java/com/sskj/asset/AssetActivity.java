@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.hjq.toast.ToastUtils;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseActivity;
@@ -48,12 +49,14 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
     ImageView ivEye;
     @BindView(R2.id.ll_nolever)
     LinearLayout llNolever;
-    private boolean checkSms;
-    private boolean checkGoogle;
     //是否设置支付密码
     private boolean setPs;
     private boolean isOpen = true;
     AllAssetEntity data;
+    //初级认证
+    boolean isFirstCheck = false;
+    //高级认证
+    boolean isSecondCheck = false;
 
     @Override
     public int getLayoutId() {
@@ -69,9 +72,9 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
     public void initView() {
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
-                checkSms = userBean.getIsStartSms() == 1;
-                checkGoogle = userBean.getIsStartGoogle() == 1;
                 setPs = !TextUtils.isEmpty(userBean.getTpwd());
+                isFirstCheck = userBean.getStatus() == 3;
+                isSecondCheck = userBean.getAuth_status() == 3;
             }
         });
         assetList.setLayoutManager(new LinearLayoutManager(this));
@@ -82,16 +85,16 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
                         .setText(R.id.coin_name, item.pname)
                         .setText(R.id.tv_asset_equivalent, NumberUtils.keep2(item.cny));
                 holder.setImageResource(R.id.coin_icon, CoinIcon.getIcon(item.mark));
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        BillDetailActivity.start(AssetActivity.this, item.pid);
-                    }
-                });
+                holder.itemView.setOnClickListener(v -> BillDetailActivity.start(AssetActivity.this, item.pid));
             }
         };
         ClickUtil.click(llRecharge, view -> {
-            RechargeActivity.start(this);
+            if (isFirstCheck) {
+                RechargeActivity.start(this);
+            } else {
+                ARouter.getInstance().build(RoutePath.VERIFY_HOME).navigation();
+                ToastUtils.show("请先完成初级验证");
+            }
         });
         ClickUtil.click(ivEye, view -> {
             if (isOpen) {
@@ -116,18 +119,12 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
                         .show();
                 return;
             }
+            if (!isSecondCheck) {
+                ARouter.getInstance().build(RoutePath.VERIFY_HOME).navigation();
+                ToastUtils.show("请先完成高级验证");
+                return;
+            }
 //
-//            if (!checkSms && !checkGoogle) {
-//                new TipDialog(this)
-//                        .setContent(getString(R.string.asset_assetFragment1))
-//                        .setCancelVisible(View.GONE)
-//                        .setConfirmListener(dialog -> {
-//                            dialog.dismiss();
-//                            ARouter.getInstance().build(RoutePath.SECURITY).navigation();
-//                        })
-//                        .show();
-//                return;
-//            }
             WithdrawActivity.start(this);
         });
         ClickUtil.click(llTransfer, view -> {

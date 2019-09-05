@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         app:background_color="@color/common_action_bar"
         app:title="@string/asset_asset_activity_insert_address200"
+        app:right_text_color="@color/common_text_sun"
+        app:right_text="提币记录"
         app:title_color="@color/common_text" />
 
 
@@ -101,8 +103,8 @@
         <View
             android:layout_width="0.5dp"
             android:layout_height="25dp"
-            android:layout_marginRight="16dp"
-            android:backgroundTint="@color/common_divider" />
+            android:layout_marginEnd="16dp"
+            android:background="@color/common_divider" />
 
         <ImageView
             android:id="@+id/select_address"

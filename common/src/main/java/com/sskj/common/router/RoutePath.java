@@ -38,4 +38,5 @@ public class RoutePath {
 
     public static final String LOGIN_LOGIN = "/login/login";
     public static final String INVITE_HOME = "/mine/invite";
+    public static final String TPWD = "/mine/tpwd";
 }

@@ -1,5 +1,6 @@
 package com.sskj.asset;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +13,11 @@ import com.sskj.common.BaseApplication;
 import com.sskj.common.ScanActivity;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.utils.ClickUtil;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.functions.Consumer;
 
 /**
  * 添加收货地址
@@ -61,8 +64,14 @@ public class InsertAddressActivity extends BaseActivity<InsertAddressPresenter> 
             mPresenter.insertAddress(getText(addressEdt), getText(remarkEdt), type);
         });
         ClickUtil.click(selectAddress, view -> {
-            Intent intent = new Intent(this, ScanActivity.class);
-            startActivityForResult(intent, SCAN_CODE);
+            new RxPermissions(this)
+                    .request(Manifest.permission.CAMERA)
+                    .subscribe(aBoolean -> {
+                        if (aBoolean) {
+                            Intent intent = new Intent(InsertAddressActivity.this, ScanActivity.class);
+                            startActivityForResult(intent, SCAN_CODE);
+                        }
+                    });
         });
     }
 

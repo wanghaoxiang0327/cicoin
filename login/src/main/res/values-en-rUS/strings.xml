@@ -26,5 +26,6 @@
     <string name="login_loginActivity1">Mobile login</string>
     <string name="login_login_activity_login350">No account yet? Register immediately</string>
     <string name="login_login_activity_forget_ps40">Forget the password</string>
+    <string name="common_tvcode">点击获取验证码</string>
 
 </resources>

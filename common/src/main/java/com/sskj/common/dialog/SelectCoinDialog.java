@@ -5,12 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.sskj.common.R;
 import com.sskj.common.R2;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.data.CoinAsset;
+import com.sskj.common.utils.ClickUtil;
 
 import java.util.List;
 
@@ -20,6 +22,9 @@ import butterknife.ButterKnife;
 public class SelectCoinDialog extends BottomSheetDialog {
     @BindView(R2.id.coin_list)
     RecyclerView coinList;
+    @BindView(R2.id.tvCancel)
+    TextView tvCancel;
+
     private BaseAdapter<CoinAsset> coinAdapter;
     private OnSelectListener onSelectListener;
 
@@ -39,21 +44,22 @@ public class SelectCoinDialog extends BottomSheetDialog {
                 holder.setText(R.id.name, item.getPname());
                 holder.itemView.setOnClickListener(view -> {
                     if (onSelectListener != null) {
-                        onSelectListener.onSelect(SelectCoinDialog.this, item,holder.getLayoutPosition());
+                        onSelectListener.onSelect(SelectCoinDialog.this, item, holder.getLayoutPosition());
                     }
                 });
             }
         };
+        ClickUtil.click(tvCancel,view -> dismiss());
     }
 
 
-    public SelectCoinDialog setData(List<CoinAsset> data){
+    public SelectCoinDialog setData(List<CoinAsset> data) {
         coinAdapter.setNewData(data);
         return this;
     }
 
     public interface OnSelectListener {
-        void onSelect(SelectCoinDialog dialog, CoinAsset coin,int position);
+        void onSelect(SelectCoinDialog dialog, CoinAsset coin, int position);
     }
 
 }

@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 /**
  * @author Hey
  * Create at  2019/06/26
+ * 地址管理
  */
 public class AddressListActivity extends BaseActivity<AddressListPresenter> {
     @BindView(R2.id.add_btc_address)

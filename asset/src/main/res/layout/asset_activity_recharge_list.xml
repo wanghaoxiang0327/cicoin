@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -6,37 +6,36 @@
     android:background="@color/common_background"
     android:orientation="vertical">
 
-
     <com.sskj.common.view.ToolBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title_color="@color/common_text_sun"
         app:background_color="@color/common_action_bar"
-        app:title="@string/asset_asset_activity_withdraw_records20" />
-
+        app:title="@string/asset_rechargr_list"
+        app:title_color="@color/common_text_sun" />
 
     <com.allen.library.SuperTextView
         android:id="@+id/select_coin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="5dp"
         android:paddingLeft="@dimen/common_margin"
         android:paddingRight="@dimen/common_margin"
-        app:sBackgroundDrawableRes="@color/common_background"
+        app:sBackgroundDrawableRes="@color/common_white"
         app:sDividerLineColor="@color/common_divider"
         app:sDividerLineType="top"
         app:sLeftTextColor="@color/common_text"
+        app:sLeftTextSize="@dimen/sp_16"
         app:sLeftTextString="@string/asset_asset_activity_recharge40"
-        app:sLeftViewMarginLeft="0dp"
-        app:sRightTextColor="@color/common_text"
+        app:sRightTextColor="@color/common_hint"
+        app:sRightTextSize="@dimen/sp_16"
+        app:sRightTextString="BTC"
         app:sRightTvDrawableRight="@mipmap/common_arrow_right" />
 
-
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/withdraw_records"
-
+        android:background="@color/common_white"
+        android:id="@+id/list"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

@@ -9,6 +9,7 @@
     <com.sskj.common.view.ToolBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:title_color="@color/common_text_sun"
         app:background_color="@color/common_action_bar"
         app:title="@string/common_common_activity_web20" />
 

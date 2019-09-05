@@ -37,6 +37,7 @@
         android:paddingBottom="15dp">
 
         <LinearLayout
+            android:id="@+id/left"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
@@ -79,6 +80,7 @@
             android:src="@mipmap/asset_icon_trans" />
 
         <LinearLayout
+            android:id="@+id/right"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"

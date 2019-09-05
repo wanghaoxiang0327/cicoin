@@ -99,4 +99,9 @@
     <string name="asset_withdraw_addrees">提币地址</string>
     <string name="asset_recharge_submit">提交时间</string>
     <string name="asset_recharge_review">审核时间</string>
+    <string name="asset_rechargr_list">充币记录</string>
+    <string name="asset_cbdz">充币地址</string>
+    <string name="asset_cbsl">充币数量</string>
+    <string name="asset_tjsj">提交时间</string>
+    <string name="asset_shsj">审核时间</string>
 </resources>

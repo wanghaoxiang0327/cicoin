@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="mine_text_white15">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">@color/common_white</item>
+    </style>
+    <style name="mine_button_comfir">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:text">@string/common_common_tip_dialog80</item>
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginBottom">50dp</item>
+        <item name="android:background">@drawable/common_tip_5</item>
+    </style>
+    <style name="mine_MyDialogStyleBottom" parent="Theme.AppCompat.Light.NoActionBar">
+        //设置背景
+        <item name="android:windowBackground">@android:color/transparent</item>
+        //设置窗口和软键盘的交互模式
+        <item name="android:windowSoftInputMode">adjustPan</item>
+        //Dialog的windowFrame框为无
+        <item name="android:windowFrame">@null</item>
+        //是否显示标题，true则去掉默认的标题栏
+        <item name="android:windowNoTitle">true</item>
+        //是否浮现在activity之上，false的话会被软键盘覆盖
+        <item name="android:windowIsFloating">true</item>
+        //是否半透明，为false时背景为黑色不透明
+        <item name="android:windowIsTranslucent">true</item>
+        //是否有覆盖
+        <item name="android:windowContentOverlay">@null</item>
+        //Activity的动画效果
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <!--<item name="android:windowAnimationStyle">@style/DialogAnimation</item>-->
+        //背景是否模糊显示，为false时效果为全透明
+        <item name="android:backgroundDimEnabled">true</item>
+        //点击空白处时是否销毁Activity
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+</resources>
