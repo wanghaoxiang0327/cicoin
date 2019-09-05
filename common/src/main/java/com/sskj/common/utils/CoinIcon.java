@@ -38,6 +38,8 @@ public class CoinIcon {
         iconMap.put("ltc", R.mipmap.common_icon_ltc);
         iconMap.put("zec_usdt", R.mipmap.common_icon_zec);
         iconMap.put("zec", R.mipmap.common_icon_zec);
+        iconMap.put("usdt_usdt", R.mipmap.common_icon_usdt);
+        iconMap.put("usdt", R.mipmap.common_icon_usdt);
 //        iconMap.put("qtum_usdt", R.mipmap.app_icon_qtum);
 //        iconMap.put("ada_usdt", R.mipmap.app_icon_ada);
 //        iconMap.put("xmr_usdt", R.mipmap.app_icon_xmr);

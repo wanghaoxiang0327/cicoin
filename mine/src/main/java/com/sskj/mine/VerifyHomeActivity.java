@@ -91,8 +91,8 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
             startActivityForResult(new Intent(this, VerifyFirstActivity.class), CODE);
             switch (mUserInfo.getStatus()) {  // 实名认证状态   1   已认证   0  未认证
                 case 0:
-//                    VerifyFirstActivity.start(this);
-//                    startActivityForResult(new Intent(this, VerifyFirstActivity.class), CODE);
+                    VerifyFirstActivity.start(this);
+                    startActivityForResult(new Intent(this, VerifyFirstActivity.class), CODE);
                     break;
                 case 2:
                     ToastUtils.show(App.INSTANCE.getString(R.string.mine_verifyHomeActivity2));

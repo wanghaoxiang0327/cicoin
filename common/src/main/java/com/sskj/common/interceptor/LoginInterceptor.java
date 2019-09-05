@@ -23,7 +23,7 @@ public class LoginInterceptor implements IInterceptor {
         if (postcard.getExtra() == RoutePath.NEED_LOGIN) {
             if (!BaseApplication.isLogin()) {
                 AndroidSchedulers.mainThread().scheduleDirect(() -> {
-                    ARouter.getInstance().build(RoutePath.APP_LOGIN)
+                    ARouter.getInstance().build(RoutePath.LOGIN_LOGIN)
                             .greenChannel()
                             .navigation();
                 });
@@ -31,7 +31,7 @@ public class LoginInterceptor implements IInterceptor {
             } else {
                 callback.onContinue(postcard);
             }
-        }else {
+        } else {
             callback.onContinue(postcard);
         }
 

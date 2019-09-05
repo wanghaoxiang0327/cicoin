@@ -15,10 +15,8 @@ import com.sskj.common.http.JsonCallBack;
  * Create at  2019/06/26
  */
 public class AssetPresenter extends BasePresenter<AssetActivity> {
-
     /**
      * 资产列表
-     *
      */
     public void getAsset() {
         OkGo.<HttpResult<AssetData>>post(BaseHttpConfig.BASE_URL + HttpConfig.ASSETLIST)
@@ -27,21 +25,22 @@ public class AssetPresenter extends BasePresenter<AssetActivity> {
                 .execute(new JsonCallBack<HttpResult<AssetData>>(this) {
                     @Override
                     protected void onNext(HttpResult<AssetData> result) {
-                        mView.setAsset(result.getData());
+//                        mView.setAsset(result.getData());
                     }
                 });
     }
 
-    public void getGAsset() {
-        OkGo.<HttpResult<GAssetBean>>post(BaseHttpConfig.BASE_URL + HttpConfig.GASSETLIST)
-                .execute(new JsonCallBack<HttpResult<GAssetBean>>(this) {
+    public void getAllAsset() {
+        OkGo.<HttpResult<AllAssetEntity>>get(BaseHttpConfig.BASE_URL + HttpConfig.GASSETLIST)
+                .execute(new JsonCallBack<HttpResult<AllAssetEntity>>(this) {
                     @Override
-                    protected void onNext(HttpResult<GAssetBean> result) {
-                        mView.setGAsset(result.getData());
+                    protected void onNext(HttpResult<AllAssetEntity> result) {
+                        if (result.getData() != null) {
+                            mView.getAllAsset(result.getData());
+                        }
                     }
                 });
     }
-
 
 
 //    public Flowable<List<AssetData>> getAssetList(int page, int size) {

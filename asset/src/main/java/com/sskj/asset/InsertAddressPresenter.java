@@ -16,11 +16,10 @@ import com.sskj.common.http.JsonCallBack;
 public class InsertAddressPresenter extends BasePresenter<InsertAddressActivity> {
 
 
-    public void insertAddress(String address, String notes, String mobile, String type) {
+    public void insertAddress(String qiaobao_url, String notes, String type) {
         OkGo.<HttpResult<Object>>post(BaseHttpConfig.BASE_URL + HttpConfig.ADDRESS_MANAGE)
-                .params("address", address)
+                .params("qiaobao_url", qiaobao_url)
                 .params("notes", notes)
-                .params("mobile", mobile)
                 .params("type", type)
                 .execute(new JsonCallBack<HttpResult<Object>>(this) {
                     @Override

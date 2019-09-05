@@ -9,7 +9,7 @@ public class HttpConfig {
     public static final String UPDATE_TRADE_PWD = "/Home/Users/reset_tpwd";
     public static final String ABOUT_US = "/Home/sign/lxfs";
     public static final String SHARE_DETAIL = "/Home/Users/my_broker";
-    public static final String GASSETLIST = "";
+    public static final String GASSETLIST = "/Home/Api/asset";
     public static final String ZOOM_RECORD = "";
     public static final String FEEDBACK = "/Home/Qbw/u_msg";
     public static final String GET_ASSET = "/home/forces/getincome";
@@ -53,8 +53,10 @@ public class HttpConfig {
     public static final String WEB_AGGREE = "/Home/ajax/get_web_agree";
 
     //=======================交易==============================
-    //币种资产
-    public static final String COINASSET = "/home/user/wall_list";
+    //充币
+    public static final String COINASSET = "/Home/Qbw/cbAddrList";
+    //提币
+    public static final String WITHDRAWCOIN = "/home/qbw/AddrList";
 
     //交易币种
     public static final String TRADECOIN = "/home/Contract/pro_list";
@@ -67,12 +69,14 @@ public class HttpConfig {
 
     public static final String ORDER_DETAIL = "/Home/contract/contract_detail";
 
-    public static final String ADDRESS_MANAGE = "/Home/Users/AddrManage";
-    public static final String GET_TRANSFER = "/home/order/bTranfer";
+    public static final String ADDRESS_MANAGE = "/home/qbw/AddrManage";
+    public static final String GET_TRANSFER = "/home/exchange/exchange";
+    public static final String GET_COINLIST = "Home/exchange/coinList";
     public static final String ASSETTRANSFER = "/home/order/tranfer";
     //========================mine================================
 
     public static final String USER_INFO = "/Home/Qbw/user_info";
+    public static final String EXCHANGE_DETAIL_LIST = "/Home/exchange/ex_list";
 
     public static final String ASSET_RECORS = "/home/users/finance_list";
 
@@ -124,7 +128,7 @@ public class HttpConfig {
 
     public static final String SET_GOOGLE_STATE = "/home/google/set_google_state";
 
-    public static final String GET_GOOGLE_INFO = "/home/google/createGoogleCommand";
+    public static final String GET_GOOGLE_INFO = "/Home/Google/createGoogleCommand";
 
     public static final String SHARE_INFO = "/Home/Qbw/link";
 
@@ -151,7 +155,7 @@ public class HttpConfig {
 
     public static final String ASSET_TYPE = "/Home/users/caiwu_type";
 
-    public static final String RECHARGE_INFO = "/Home/Users/bpay";
+    public static final String RECHARGE_INFO = "/home/order/bpay";
 
     public static final String TRANSFER_INFO = "/home/users/bTranfer";
 
@@ -159,9 +163,9 @@ public class HttpConfig {
 
     public static final String TRANSFER_RECORD = "/Home/users/tranfer_record";
 
-    public static final String WITHDRAW_INFO = "/Home/Users/tb_home";
+    public static final String WITHDRAW_INFO = "/Home/Order/ti_bi";
 
-    public static final String WITHDRAW = "/Home/Users/ti_bi";
+    public static final String WITHDRAW = "/Home/Order/ti_bi";
 
     public static final String WITHDRAW_RECORDS = "/Home/Users/tb_list";
 
@@ -169,7 +173,7 @@ public class HttpConfig {
 
 
     //==============================Address=======================================
-    public static final String ADDRESS_LIST = "/Home/Users/Add_list";
+    public static final String ADDRESS_LIST = "/home/qbw/AddrList";
 
 
     public static final String ADDRESS_EDIT = "/Home/Users/Addredit";
@@ -231,5 +235,8 @@ public class HttpConfig {
 
 
     //=================Depth======================================
+    public static final String GET_RECHARGE_RECORD = "/Home/Api/cz_record";
+    public static final String GET_WITHDRAW_RECORD = "/Home/Api/tb_record";
+    public static final String GET_OTHER_RECORD = "/Home/Qbw/caiwu";
     public static final String GET_PANKOU = "/Home/Ajax/getdepth";
 }

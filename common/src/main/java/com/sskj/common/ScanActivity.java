@@ -20,7 +20,6 @@ import cn.bingoogolapple.qrcode.zxing.ZXingView;
  * Create at  2019/06/29
  */
 public class ScanActivity extends BaseActivity<ScanPresenter> implements QRCodeView.Delegate {
-
     ZXingView scanView;
 
     @Override
@@ -35,8 +34,6 @@ public class ScanActivity extends BaseActivity<ScanPresenter> implements QRCodeV
 
     @Override
     public void initView() {
-
-
         scanView = findViewById(R.id.scan_view);
     }
 
@@ -58,8 +55,6 @@ public class ScanActivity extends BaseActivity<ScanPresenter> implements QRCodeV
         scanView.startCamera();
         // 显示扫描框，并开始识别
         scanView.startSpotAndShowRect();
-
-
     }
 
     @Override

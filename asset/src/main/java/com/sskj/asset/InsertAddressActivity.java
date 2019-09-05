@@ -23,8 +23,6 @@ import butterknife.ButterKnife;
  * Create at  2019/06/26
  */
 public class InsertAddressActivity extends BaseActivity<InsertAddressPresenter> {
-
-
     @BindView(R2.id.address_edt)
     EditText addressEdt;
     @BindView(R2.id.select_address)
@@ -33,9 +31,7 @@ public class InsertAddressActivity extends BaseActivity<InsertAddressPresenter> 
     EditText remarkEdt;
     @BindView(R2.id.submit)
     Button submit;
-
     private String type;
-
     private int SCAN_CODE = 1000;
 
     @Override
@@ -62,7 +58,7 @@ public class InsertAddressActivity extends BaseActivity<InsertAddressPresenter> 
             if (isEmptyShow(remarkEdt)) {
                 return;
             }
-            mPresenter.insertAddress(getText(addressEdt), getText(remarkEdt), BaseApplication.getMobile(), type);
+            mPresenter.insertAddress(getText(addressEdt), getText(remarkEdt), type);
         });
         ClickUtil.click(selectAddress, view -> {
             Intent intent = new Intent(this, ScanActivity.class);
@@ -75,7 +71,7 @@ public class InsertAddressActivity extends BaseActivity<InsertAddressPresenter> 
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == SCAN_CODE) {
-                String address=data.getStringExtra("result");
+                String address = data.getStringExtra("result");
                 addressEdt.setText(address);
             }
         }

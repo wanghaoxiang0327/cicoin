@@ -15,8 +15,10 @@ import com.allen.library.SuperTextView;
 import com.hjq.toast.ToastUtils;
 import com.sskj.asset.data.TransferInfo;
 import com.sskj.asset.data.WithdrawInfo;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinAsset;
+import com.sskj.common.data.WithdrawCoinInfo;
 import com.sskj.common.dialog.Coin;
 import com.sskj.common.dialog.SelectCoinDialog;
 import com.sskj.common.dialog.VerifyPasswordDialog;
@@ -26,6 +28,7 @@ import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.MoneyValueFilter;
 import com.sskj.common.utils.NumberUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -39,8 +42,6 @@ import io.reactivex.Flowable;
  * Create at  2019/06/26
  */
 public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
-
-
     @BindView(R2.id.select_coin)
     SuperTextView selectCoin;
     @BindView(R2.id.useful_tv)
@@ -61,18 +62,12 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
     TextView arriveCount;
     @BindView(R2.id.submit)
     Button submit;
-
     private final int SELECT_ADDRESS = 1003;
-
     private String unit;
-
-
     private SelectCoinDialog selectCoinDialog;
     private List<CoinAsset> coinList;
     private String pid;
     private String code;
-
-
     double minCount;
     boolean checkSms;
     boolean checkGoogle;
@@ -134,11 +129,10 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
                 ToastUtils.show(getString(R.string.asset_withdrawActivity3));
                 return;
             }
-
             new VerifyPasswordDialog(this, checkSms, checkGoogle, true, 5)
                     .setOnConfirmListener((dialog, ps, sms, google) -> {
                         dialog.dismiss();
-                        mPresenter.withdraw(getText(addressEdt), pid, NumberUtils.keepDown(getText(countEdt),DigitUtils.getAssetDigit(code)), ps, sms, google);
+                        mPresenter.withdraw(getText(addressEdt), pid, NumberUtils.keepDown(getText(countEdt), 4), ps, sms, BaseApplication.getMobile());
                     }).show();
         });
 
@@ -217,11 +211,11 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
 
 
     public void setWithDrawInfo(WithdrawInfo data) {
-        usefulTv.setText(NumberUtils.keepDown(data.getUsable(), DigitUtils.getAssetDigit(code)) + " " + unit);
-        countEdt.setHint(getString(R.string.asset_withdrawActivity4) + data.getTb_min());
-        feeTv.setText(getString(R.string.asset_transferActivity4) + data.getSxfee() + " " + unit + getString(R.string.asset_transferActivity5));
-        fee = data.getSxfee();
-        useful = data.getUsable();
+        usefulTv.setText(NumberUtils.keepDown(data.balance, DigitUtils.getAssetDigit(code)) + " " + unit);
+        countEdt.setHint(getString(R.string.asset_withdrawActivity4) + data.tb_minum);
+        feeTv.setText(getString(R.string.asset_transferActivity4) + data.tb_fee + " " + unit + getString(R.string.asset_transferActivity5));
+        fee = Double.valueOf(data.tb_fee);
+        useful = Double.valueOf(data.balance);
     }
 
     /**

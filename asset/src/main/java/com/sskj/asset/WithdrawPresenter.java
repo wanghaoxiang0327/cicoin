@@ -20,14 +20,6 @@ import java.util.List;
  * Create at  2019/06/26
  */
 public class WithdrawPresenter extends BasePresenter<WithdrawActivity> {
-
-
-
-    /**
-     * 币种分类
-     *
-     * @return
-     */
     public void getCoinAsset(boolean showDialog) {
         OkGo.<HttpResult<List<CoinAsset>>>get(BaseHttpConfig.BASE_URL + HttpConfig.COINASSET)
                 .execute(new JsonCallBack<HttpResult<List<CoinAsset>>>(this) {
@@ -44,10 +36,10 @@ public class WithdrawPresenter extends BasePresenter<WithdrawActivity> {
 
 
     /**
-     * 提币信息
+     * 提币
      */
     public void getWithdrawInfo(String pid) {
-        OkGo.<HttpResult<WithdrawInfo>>post(BaseHttpConfig.BASE_URL + HttpConfig.WITHDRAW_INFO)
+        OkGo.<HttpResult<WithdrawInfo>>post(BaseHttpConfig.BASE_URL + HttpConfig.GET_BALANCE)
                 .params("type", pid)
                 .execute(new JsonCallBack<HttpResult<WithdrawInfo>>(this){
                     @Override
@@ -59,14 +51,14 @@ public class WithdrawPresenter extends BasePresenter<WithdrawActivity> {
     }
 
 
-    public void withdraw(String url,String pid,String num,String tpwd,String code,String googleCode) {
+    public void withdraw(String url,String pid,String num,String tpwd,String code,String account) {
         OkGo.<HttpResult<Object>>post(BaseHttpConfig.BASE_URL + HttpConfig.WITHDRAW)
-                .params("type", pid)
-                .params("qianbao_url", url)
+                .params("pid", pid)
                 .params("num", num)
                 .params("tpwd", tpwd)
                 .params("code", code)
-                .params("googleCode", googleCode)
+                .params("account", account)
+                .params("address", url)
                 .execute(new JsonCallBack<HttpResult<Object>>(this){
                     @Override
                     protected void onNext(HttpResult<Object> result) {
