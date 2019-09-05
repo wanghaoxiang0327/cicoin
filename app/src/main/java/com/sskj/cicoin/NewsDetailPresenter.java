@@ -14,12 +14,9 @@ import com.sskj.common.language.LocalManageUtil;
  * Create at  2019/06/26
  */
 public class NewsDetailPresenter extends BasePresenter<NewsDetailActivity> {
-
-
     public void getNoticeDetail(String id) {
         OkGo.<HttpResult<NewsBean>>post(HttpConfig.BASE_URL + HttpConfig.NOTICE_DETAIL)
-                .params("id",id)
-                .params("lang", LocalManageUtil.getLanguage(App.INSTANCE))
+                .params("id", id)
                 .execute(new JsonCallBack<HttpResult<NewsBean>>(this) {
                     @Override
                     protected void onNext(HttpResult<NewsBean> result) {
@@ -28,4 +25,17 @@ public class NewsDetailPresenter extends BasePresenter<NewsDetailActivity> {
                 });
 
     }
+
+    public void getSysInfoDetial(String id) {
+        OkGo.<HttpResult<NewsBean>>post(HttpConfig.BASE_URL + HttpConfig.SYSINFO_DETAIL)
+                .params("id", id)
+                .execute(new JsonCallBack<HttpResult<NewsBean>>(this) {
+                    @Override
+                    protected void onNext(HttpResult<NewsBean> result) {
+                        mView.setNoticeDetail(result.getData());
+                    }
+                });
+
+    }
+
 }

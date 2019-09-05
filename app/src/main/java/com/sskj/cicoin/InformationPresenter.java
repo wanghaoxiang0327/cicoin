@@ -20,12 +20,12 @@ import io.reactivex.Flowable;
  * Create at  2019/06/26
  */
 public class InformationPresenter extends BasePresenter<InformationFragment> {
-    public Flowable<List<NewsBean>> getNotice(int page,int size) {
-        return OkGo.<HttpResult<Page<NewsBean>>>post(HttpConfig.BASE_URL + HttpConfig.NOTICE_LIST)
-                .params("p",page)
-                .params("size",size)
+    public Flowable<List<NewsEntity>> getNotice(int page, int size) {
+        return OkGo.<HttpResult<Page<NewsEntity>>>post(HttpConfig.BASE_URL + HttpConfig.BLICKS_LIST)
+                .params("p", page)
+                .params("s", size)
                 .params("lang", LocalManageUtil.getLanguage(App.INSTANCE))
-                .converter(new JsonConvert<HttpResult<Page<NewsBean>>>() {})
+                .converter(new JsonConvert<HttpResult<Page<NewsEntity>>>() {})
                 .adapt(new FlowableBody<>())
                 .map(pageHttpResult -> {
                     return pageHttpResult.getData().getRes();
@@ -33,12 +33,12 @@ public class InformationPresenter extends BasePresenter<InformationFragment> {
 
     }
 
-    public Flowable<List<NewsBean>> getInformation(int page,int size) {
-        return OkGo.<HttpResult<Page<NewsBean>>>post(HttpConfig.BASE_URL + HttpConfig.INFORMATION)
-                .params("page",page)
-                .params("size",size)
+    public Flowable<List<NewsEntity>> getInformation(int page, int size) {
+        return OkGo.<HttpResult<Page<NewsEntity>>>post(HttpConfig.BASE_URL + HttpConfig.INFORMATION)
+                .params("page", page)
+                .params("size", size)
                 .params("lang", LocalManageUtil.getLanguage(App.INSTANCE))
-                .converter(new JsonConvert<HttpResult<Page<NewsBean>>>() {})
+                .converter(new JsonConvert<HttpResult<Page<NewsEntity>>>() {})
                 .adapt(new FlowableBody<>())
                 .map(pageHttpResult -> {
                     return pageHttpResult.getData().getRes();

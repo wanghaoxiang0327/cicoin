@@ -30,7 +30,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
     LinearLayout linearLayout;
     @BindView(R.id.top_layout)
     LinearLayout topLayout;
-    private int type;
+    private int type;//1 公告 2行业资讯 3交易指南
     private NewsBean newsBean;
 
     @Override
@@ -55,6 +55,17 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
             mPresenter.getNoticeDetail(newsBean.getId());
             linearLayout.setVisibility(View.GONE);
             topLayout.setVisibility(View.VISIBLE);
+            toolbar.setTitle(getString(R.string.app_notice_detail));
+        } else if (type == 2) {
+            toolbar.setTitle(getString(R.string.app_infomation_detail));
+            mPresenter.getSysInfoDetial(newsBean.getId());
+            linearLayout.setVisibility(View.GONE);
+            topLayout.setVisibility(View.VISIBLE);
+        } else if (type == 3) {
+            toolbar.setTitle(getString(R.string.app_trading_guide));
+            mPresenter.getSysInfoDetial(newsBean.getId());
+            linearLayout.setVisibility(View.GONE);
+            topLayout.setVisibility(View.VISIBLE);
         } else {
             linearLayout.setVisibility(View.VISIBLE);
             AgentWeb.with(this)
@@ -76,7 +87,6 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
 
 
     public void setNoticeDetail(NewsBean data) {
-        toolbar.setTitle(data.getTitle());
         setText(titleTv, data.getTitle());
         setText(timeTv, data.getDate());
         RichText.fromHtml(data.getContent()).into(contentTv);

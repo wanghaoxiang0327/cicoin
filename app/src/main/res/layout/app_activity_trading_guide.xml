@@ -28,10 +28,10 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="?android:actionBarSize"
-            app:indicator_color="@color/common_tip"
+            app:indicator_color="@color/common_action_text"
             app:indicator_width="30dp"
             app:selctTextSize="18sp"
-            app:tabSelectedTextColor="@color/common_tip"
+            app:tabSelectedTextColor="@color/common_action_text"
             app:textUnselectColor="@color/common_hint"
             app:textsize="18sp" />
     </LinearLayout>

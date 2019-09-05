@@ -2,9 +2,13 @@ package com.sskj.market;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.os.Build;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -13,7 +17,6 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.router.RoutePath;
-import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.view.ToolBarLayout;
 import com.sskj.market.adapter.MarketDetailAdapter;
@@ -54,8 +57,10 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
         return new NewMarketDetailPresenter();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void initView() {
+        toolbar.mLeftButton.setCompoundDrawableTintList(ColorStateList.valueOf(getResources().getColor(R.color.common_white)));
         ARouter.getInstance().inject(this);
         coinBean = (CoinBean) getIntent().getSerializableExtra("coinBean");
         toolbar.setTitle(coinBean.getName());

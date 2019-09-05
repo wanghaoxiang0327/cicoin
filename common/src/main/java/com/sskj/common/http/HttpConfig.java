@@ -33,12 +33,17 @@ public class HttpConfig {
     public static final String GET_PRODUCT = "/home/ajax/getpro";
 
     public static final String BANNER = "/Home/Sign/bannerfind";
-
+    //公告列表
     public static final String NOTICE_LIST = "/Home/Qbw/zixun";
-    public static final String INFORMATION = "/Home/Users/zixun";
+    //系统资讯列表
+    public static final String BLICKS_LIST = "/home/Resource/blocksMsg";
+    //交易指南
+    public static final String INFORMATION = "/Home/Sign/getjyzn";
     public static final String INFORMATION_DETAIL = "/Home/Users/zixun_detail";
-
+    //公告详情
     public static final String NOTICE_DETAIL = "/Home/Qbw/zixun_detail";
+    //系统咨询详情
+    public static final String SYSINFO_DETAIL = "/home/Resource/msgDetail";
 
 
     public static final String WEB_AGGREE = "/Home/ajax/get_web_agree";
@@ -214,6 +219,7 @@ public class HttpConfig {
 
     public static final String GET_HOLD_ORDER = "/Home/Order/chicang";
     public static final String CONTACT_CLOSE_ORDER = "/Home/Order/pingcang";
+    public static final String CONTACT_CLOSE_ALL_ORDER = "/Home/Order/all_ping";
 
     public static final String CONTACT_POINT_INFO = "/Home/Order/set_poit_pre";
 

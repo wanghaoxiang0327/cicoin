@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.azhon.appupdate.utils.SharePreUtil;
 import com.bumptech.glide.Glide;
 import com.sskj.common.WebActivity;
 import com.sskj.common.base.BaseActivity;

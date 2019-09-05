@@ -321,6 +321,7 @@
             tools:text="@string/contact_contact_item_deal770" />
 
         <TextView
+            android:id="@+id/tv_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@mipmap/contact_ic_share"

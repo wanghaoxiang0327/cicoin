@@ -191,10 +191,29 @@
         app:textSelectColor="@color/common_tip"
         app:textUnselectColor="@color/common_hint" />
 
-    <FrameLayout
-        android:id="@+id/order_content"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
+        <FrameLayout
+            android:id="@+id/order_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
+        <TextView
+            android:id="@+id/tv_close_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="23dp"
+            android:layout_marginBottom="34dp"
+            android:background="@mipmap/contact_fab_bg"
+            android:gravity="center"
+            android:text="@string/contact_one_button_closing"
+            android:textColor="@color/common_white"
+            android:textSize="15sp" />
+    </RelativeLayout>
 </LinearLayout>

@@ -45,14 +45,12 @@ import butterknife.BindView;
  */
 @Route(path = RoutePath.MAIN)
 public class MainActivity extends BaseActivity<MainPresenter> {
-
     @BindView(R.id.main_content)
     FrameLayout mainContent;
     @BindView(R.id.main_tab_layout)
     TabLayout mainTabLayout;
     ArrayList<TabItem> mainTabs = new ArrayList<>();
     ArrayList<Fragment> fragments = new ArrayList<>();
-
     private WebSocket marketWebSocket;
 
     @Override
@@ -86,6 +84,8 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         int isOpenMore = intent.getIntExtra("isOpenMore", 0);
         if (isOpenMore == 1) {
             mainTabLayout.setCurrentTab(1);
+        } else if (isOpenMore == 2) {
+            mainTabLayout.setCurrentTab(2);
         }
     }
 
@@ -122,7 +122,6 @@ public class MainActivity extends BaseActivity<MainPresenter> {
 
             @Override
             public boolean onTabReselect(int position) {
-
                 return true;
             }
         });

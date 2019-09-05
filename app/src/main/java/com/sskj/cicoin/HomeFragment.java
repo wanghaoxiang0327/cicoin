@@ -5,8 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.FrameLayout;
@@ -14,11 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.lwj.widget.viewpagerindicator.ViewPagerIndicator;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.sskj.cicoin.data.BannerBean;
-import com.sskj.common.adapter.BaseAdapter;
-import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.glide.GlideImageLoader;
@@ -27,13 +24,11 @@ import com.sskj.common.http.BaseHttpConfig;
 import com.sskj.common.http.Page;
 import com.sskj.common.language.LanguageSPUtil;
 import com.sskj.common.language.LocalManageUtil;
+import com.sskj.common.router.RoutePath;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.utils.ClickUtil;
-import com.sskj.common.utils.DigitUtils;
-import com.sskj.common.utils.NumberUtils;
-import com.sskj.common.utils.SpUtil;
 import com.sskj.market.MarketListFragment;
 import com.youth.banner.Banner;
 
@@ -52,11 +47,14 @@ import io.reactivex.schedulers.Schedulers;
  * Create at  2019/06/21
  */
 public class HomeFragment extends BaseFragment<HomePresenter> {
-
     @BindView(R.id.change_language)
     TextView changeLanguage;
     @BindView(R.id.change_skin)
     LinearLayout changeSkip;
+    @BindView(R.id.ll_invite)
+    LinearLayout llInvite;
+    @BindView(R.id.ll_mining)
+    LinearLayout llMining;
     @BindView(R.id.ll_trading_guide)
     LinearLayout llTradingGuide;
     @BindView(R.id.bannerView)
@@ -74,12 +72,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     FrameLayout homeCoinList;
     @BindView(R.id.tv_mode)
     TextView tvMode;
-    private int type = 1;
     List<Fragment> fragmentList = new ArrayList<>();
     CoinFragmentPager coinFragmentPager;
     private MarketListFragment marketListFragment;
     private Disposable noticeDisposable;
-
 
     @Override
     public int getLayoutId() {
@@ -106,15 +102,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         coinFragmentPager = new CoinFragmentPager(getFragmentManager(), fragmentList);
         viewPager.setAdapter(coinFragmentPager);
         indicatorLine.setViewPager(viewPager);
-        type = SpUtil.getInt("skip", 2);
         initTextnotice();
-
-
-        if (type == 1) {
-//            tvMode.setText(getString(R.string.app_sun));
-        } else {
-//            tvMode.setText(getString(R.string.app_night));
-        }
     }
 
     private void initTextnotice() {
@@ -123,11 +111,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
             TextView textView = new TextView(getActivity());
             textView.setMaxLines(2);
             textView.setEllipsize(TextUtils.TruncateAt.END);
-//            if (type == 1) {
-//                textView.setTextColor(color(R.color.common_text_sun));
-//            } else {
-//                textView.setTextColor(color(R.color.common_toolbar_right));
-//            }
             textView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
             textView.setGravity(Gravity.CENTER_VERTICAL);
             textView.setPadding(20, 0, 0, 0);
@@ -138,7 +121,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
 
     @Override
     public void initData() {
-
         switch (LanguageSPUtil.getInstance(getContext()).getSelectLanguage()) {
             case 1:
 //                changeLanguage.setText(getString(R.string.app_homeFragment1));
@@ -158,11 +140,14 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         }
         wrapRefresh(homeContent);
         setEnableLoadMore(false);
-        ClickUtil.click(changeLanguage, view -> {
-//            LanguageActivity.start(getContext());
+        ClickUtil.click(llInvite, view -> {
+            ARouter.getInstance().build(RoutePath.INVITE_HOME).navigation();
         });
         ClickUtil.click(llTradingGuide, view -> {
             TradingGuideActivity.start(getContext());
+        });
+        ClickUtil.click(llMining, view -> {
+            ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore", 2).navigation();
         });
     }
 
@@ -177,11 +162,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         if (marketListFragment != null) {
             marketListFragment.setData(data);
         }
-//        topList.clear();
-//        for (CoinBean coinBean : data) {
-//            topList.add(coinBean);
-//        }
-//        topAdapter.setNewData(topList);
     }
 
     @Override
@@ -250,7 +230,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void updateUI(String data) {
         if (data != null) {
-            type = SpUtil.getInt("skip", 2);
             initTextnotice();
         }
     }

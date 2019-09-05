@@ -31,7 +31,6 @@ import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.simple.SimpleTextWatcher;
 import com.sskj.common.user.data.UserBean;
-import com.sskj.common.user.model.UserViewModel;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.MoneyValueFilter;
@@ -173,17 +172,17 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         tvUnit.setText(code.split("_")[0]);
         edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
         edtNum.setFilters(new InputFilter[]{new MoneyValueFilter(2)});
-        if (!BaseApplication.isLogin()) {
-            btnSubmit.setText(getString(R.string.contact_please_login));
-        }
-//        userViewModel.getUser().observe(this, new Observer<UserBean>() {
-//            @Override
-//            public void onChanged(@Nullable UserBean userBean) {
-//                if (userBean == null) {
-//                    btnSubmit.setText(getString(R.string.contact_please_login));
-//                }
-//            }
-//        });
+        userViewModel.getUser().observe(this, new Observer<UserBean>() {
+            @Override
+            public void onChanged(@Nullable UserBean userBean) {
+                if (userBean == null) {
+                    btnSubmit.setText(getString(R.string.contact_please_login));
+                } else {
+                    btnSubmit.setText(getString(R.string.common_make_more));
+                    btnSubmit.setBackgroundResource(R.drawable.contact_red_bg_50);
+                }
+            }
+        });
         ClickUtil.click(btnSubmit, view -> {
             if (!BaseApplication.isLogin()) {
                 ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
@@ -347,7 +346,6 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
     @Override
     public void loadData() {
-        mPresenter.getCoinInfo(code);
         mPresenter.getBalance();
     }
 
@@ -478,12 +476,18 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updatePrice(CoinInfo coinInfo) {
+        if (coinInfo != null) {
+            setCoinInfo(coinInfo);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void changeCoin(ContactChangeCoin coinBean) {
         code = coinBean.getCode();
         edtNum.getText().clear();
         edtPrice.getText().clear();
         pointTabLayout.setCurrentTab(-1);
-        mPresenter.getCoinInfo(code);
         edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
         edtPrice.setText(NumberUtils.keep(coinBean.getPrice(), DigitUtils.getDigit(code)));
     }

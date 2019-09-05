@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.allen.library.SuperTextView;
 import com.sskj.common.base.BaseActivity;
+import com.sskj.common.router.RoutePath;
 import com.sskj.common.utils.ClickUtil;
 
 import butterknife.BindView;
@@ -16,6 +18,7 @@ import butterknife.ButterKnife;
  * @author Hey
  * Create at  2019/09/05 08:58:17
  */
+@Route(path = RoutePath.INVITE_HOME)
 public class InviteHomeActivity extends BaseActivity<InviteHomePresenter> {
 
 
@@ -49,9 +52,9 @@ public class InviteHomeActivity extends BaseActivity<InviteHomePresenter> {
 
     @Override
     public void initData() {
-        ClickUtil.click(sp1,view -> InviteActivity.start(this));
-        ClickUtil.click(sp2,view -> TeamActivity.start(this));
-        ClickUtil.click(sp3,view ->MoneyActivity.start(this) );
+        ClickUtil.click(sp1, view -> InviteActivity.start(this));
+        ClickUtil.click(sp2, view -> TeamActivity.start(this));
+        ClickUtil.click(sp3, view -> MoneyActivity.start(this));
     }
 
     public static void start(Context context) {

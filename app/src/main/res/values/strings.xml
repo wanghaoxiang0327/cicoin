@@ -12,4 +12,6 @@
     <string name="app_usdt_mining_des">天天挖矿收取海量USDT，原力越高增长越快</string>
     <string name="app_industry_information">行业资讯</string>
     <string name="app_platform_announcement">平台公告</string>
+    <string name="app_infomation_detail">资讯详情</string>
+    <string name="app_notice_detail">公告</string>
 </resources>

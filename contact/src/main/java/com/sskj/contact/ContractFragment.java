@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.CoinIcon;
 import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.NumberUtils;
+import com.sskj.contact.data.CoinInfo;
 
 import java.util.List;
 
@@ -100,7 +102,12 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
                 ClickUtil.click(holder.itemView, view -> {
                     code = item.getCode();
                     coinBean = item;
-                    tvSelectCoin.setText(item.getName());
+                    if (item.getName().contains("_")) {
+                        tvSelectCoin.setText(item.getName());
+                    } else {
+                        tvSelectCoin.setText(item.getName() + "_USDT");
+                    }
+                    mPresenter.getCoinInfo(code);
                     ContactChangeCoin contactChangeCoin = new ContactChangeCoin(item.getName());
                     contactChangeCoin.setPrice(item.getPrice() + "");
                     contactChangeCoin.setCnyPrice(item.getCnyPrice());
@@ -113,6 +120,12 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
         };
     }
 
+    public void setCoinInfo(CoinInfo data) {
+        if (data != null) {
+            tvBurstRate.setText(getString(R.string.contact_contact_fragment_contract130) + (TextUtils.isEmpty(data.getTrans_ware()) ? "---" : data.getTrans_ware()));
+            RxBus.getDefault().post(data);
+        }
+    }
 
     @Override
     public void initData() {
@@ -137,7 +150,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
 
     @Override
     public void loadData() {
-
+        mPresenter.getCoinInfo(code);
     }
 
     @Override

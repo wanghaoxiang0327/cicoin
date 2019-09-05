@@ -4,9 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.sskj.common.DividerLineItemDecoration;
 import com.sskj.common.adapter.BaseAdapter;
@@ -14,6 +11,9 @@ import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.helper.DataSource;
 import com.sskj.common.helper.SmartRefreshHelper;
+import com.sskj.common.rxbus.RxBus;
+import com.sskj.common.rxbus.Subscribe;
+import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.ScreenUtil;
@@ -26,8 +26,6 @@ import com.sskj.contact.dialog.ContactOrderSettingDialog;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.Flowable;
 
 /**
@@ -37,16 +35,11 @@ import io.reactivex.Flowable;
  * Create at  2019/08/26 16:57:34
  */
 public class HoldFragment extends BaseFragment<HoldPresenter> {
-
     @BindView(R2.id.order_list)
     RecyclerView orderList;
-
     SmartRefreshHelper<HoldOrder> smartRefreshHelper;
-
     BaseAdapter<HoldOrder> orderAdapter;
-
     String code;
-
     int size = 10;
 
     @Override
@@ -69,6 +62,7 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
 
     @Override
     public void initView() {
+        RxBus.getDefault().register(this);
         orderList.setLayoutManager(new LinearLayoutManager(getContext()));
         orderList.addItemDecoration(new DividerLineItemDecoration(getContext())
                 .setDividerColor(color(R.color.common_background))
@@ -97,8 +91,6 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
                 } else {
                     holder.setBackgroundRes(R.id.tv_profit, R.drawable.common_red_bg_5);
                 }
-
-
                 ClickUtil.click(holder.getView(R.id.btn_close), view -> {
                     ContactCloseOrderDialog.getInstance(item)
                             .setConfirmListener((num, id) -> {
@@ -106,12 +98,9 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
                             }).show(getChildFragmentManager(), "ContactCloseOrderDialog");
 
                 });
-
                 ClickUtil.click(holder.getView(R.id.btn_reset), view -> {
                     mPresenter.getPointInfo(item);
                 });
-
-
             }
         };
     }
@@ -125,6 +114,19 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
     @Override
     public void loadData() {
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void refreshOrder(String refresh) {
+        if (refresh.equals("refreshDealOrder")) {
+            smartRefreshHelper.refresh();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RxBus.getDefault().unregister(this);
     }
 
     @Override
@@ -144,7 +146,6 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
         fragment.setArguments(bundle);
         return fragment;
     }
-
 
     public void closeOrderSuccess() {
         smartRefreshHelper.loadData();

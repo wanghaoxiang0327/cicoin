@@ -12,6 +12,7 @@ import com.hjq.toast.style.ToastQQStyle;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.lzy.okgo.model.HttpHeaders;
+import com.lzy.okgo.model.HttpParams;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
@@ -28,8 +29,6 @@ import java.util.logging.Level;
 import okhttp3.OkHttpClient;
 
 public class BaseApplication extends MultiDexApplication {
-
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -68,7 +67,13 @@ public class BaseApplication extends MultiDexApplication {
         if (!TextUtils.isEmpty(token)) {
             httpHeaders.put(CommonConfig.TOKEN, token);
         }
-        OkGo.getInstance().addCommonHeaders(httpHeaders);
+        HttpParams httpParams = new HttpParams();
+        httpParams.put("lang", LocalManageUtil.getLanguage(App.INSTANCE));
+        OkGo okGo = OkGo.getInstance();
+        if (okGo.getCommonParams() != null) {
+            okGo.getCommonParams().clear();
+        }
+        okGo.addCommonHeaders(httpHeaders).addCommonParams(httpParams);
     }
 
     @Override
@@ -100,8 +105,6 @@ public class BaseApplication extends MultiDexApplication {
                 .setOkHttpClient(builder.build())
                 .setRetryCount(3)
                 .addCommonHeaders(httpHeaders);
-
-
     }
 
 

@@ -45,8 +45,8 @@ public class TradingGuideActivity extends BaseActivity<TradingGuidePresenter> {
     public void initView() {
         tabs.add(new TabItem(getString(R.string.app_industry_information)));
         tabs.add(new TabItem(getString(R.string.app_trading_guide)));
-        fragments.add(InformationFragment.newInstance(0));
-        fragments.add(InformationFragment.newInstance(1));
+        fragments.add(InformationFragment.newInstance());
+        fragments.add(TransGuideFragment.newInstance());
         tabLayout.setTextSelectColor(getResources().getColor(R.color.common_tip));
         tabLayout.setTabData(tabs, getSupportFragmentManager(), R.id.news_content, fragments);
         ClickUtil.click(leftImg, view -> {

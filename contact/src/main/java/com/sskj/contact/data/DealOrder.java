@@ -1,6 +1,8 @@
 package com.sskj.contact.data;
 
-public class DealOrder {
+import java.io.Serializable;
+
+public class DealOrder implements Serializable {
 
     /**
      * pname : BTC

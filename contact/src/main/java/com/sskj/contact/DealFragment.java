@@ -5,8 +5,12 @@ import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
 
+import com.sskj.common.data.CoinBean;
 import com.sskj.common.helper.DataSource;
 import com.sskj.common.helper.SmartRefreshHelper;
+import com.sskj.common.rxbus.RxBus;
+import com.sskj.common.rxbus.Subscribe;
+import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.ScreenUtil;
 import com.sskj.common.utils.TimeFormatUtil;
@@ -17,6 +21,7 @@ import com.sskj.contact.data.EntrustOrder;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.HashMap;
 import java.util.List;
@@ -55,6 +60,7 @@ public class DealFragment extends BaseFragment<DealPresenter> {
 
     @Override
     public void initView() {
+        RxBus.getDefault().register(this);
         if (getArguments() != null) {
             code = getArguments().getString("code");
         }
@@ -72,7 +78,7 @@ public class DealFragment extends BaseFragment<DealPresenter> {
         adapter = new BaseAdapter<DealOrder>(R.layout.contact_item_deal, null, orderList) {
             @Override
             public void bind(ViewHolder holder, DealOrder item) {
-                holder.setText(R.id.tv_order_type, item.getType() == 1 ? getString(R.string.contact_dealFragment5) : getString(R.string.contact_dealFragment6))
+                holder.setText(R.id.tv_order_type, item.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty))
                         .setText(R.id.tv_opening_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
                         .setText(R.id.tv_coin_name, item.getPname())
                         .setText(R.id.tv_create_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
@@ -87,13 +93,17 @@ public class DealFragment extends BaseFragment<DealPresenter> {
                         .setText(R.id.tv_loss_price, NumberUtils.keepMaxDown(item.getPoit_loss(), 4))
                         .setText(R.id.tv_profit, getString(R.string.contact_dealFragment9) + NumberUtils.keepMaxDown(item.getProfit(), 4))
                         .setText(R.id.tv_state, getString(R.string.contact_contact_dialog_close_order80) + typeMap.get(item.getPc_type()));
-
                 if (item.getProfit().contains("-")) {
-                    holder.setBackgroundRes(R.id.tv_profit, R.drawable.common_red_bg_5);
-                } else {
                     holder.setBackgroundRes(R.id.tv_profit, R.drawable.common_green_bg_5);
+                } else {
+                    holder.setBackgroundRes(R.id.tv_profit, R.drawable.common_red_bg_5);
                 }
-
+                holder.setOnClickListener(R.id.tv_share, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShareActivity.start(getContext(), item);
+                    }
+                });
             }
         };
     }
@@ -126,6 +136,5 @@ public class DealFragment extends BaseFragment<DealPresenter> {
         fragment.setArguments(bundle);
         return fragment;
     }
-
 
 }
