@@ -120,7 +120,7 @@
                         android:layout_weight="1"
                         android:gravity="right|center_vertical"
                         android:text="@string/contact_contact_activity_order_records20"
-                        android:textColor="@color/common_tip" />
+                        android:textColor="@color/common_action_text" />
 
                 </LinearLayout>
 

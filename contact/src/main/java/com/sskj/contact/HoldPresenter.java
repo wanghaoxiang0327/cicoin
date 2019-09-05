@@ -38,10 +38,10 @@ class HoldPresenter extends BasePresenter<HoldFragment> {
 
     }
 
-    public void closeOrder(String num,String order_id){
-        OkGo.<HttpResult<Object>> post(HttpConfig.BASE_URL+HttpConfig.CONTACT_CLOSE_ORDER)
-                .params("num",num)
-                .params("order_id",order_id)
+    public void closeOrder(String num, String order_id) {
+        OkGo.<HttpResult<Object>>post(HttpConfig.BASE_URL + HttpConfig.CONTACT_CLOSE_ORDER)
+                .params("num", num)
+                .params("order_id", order_id)
                 .tag(this)
                 .execute(new JsonCallBack<HttpResult<Object>>(this) {
                     @Override
@@ -53,14 +53,14 @@ class HoldPresenter extends BasePresenter<HoldFragment> {
 
     }
 
-    public void getPointInfo(HoldOrder order){
-        OkGo.<HttpResult<PointInfo>> post(HttpConfig.BASE_URL+HttpConfig.CONTACT_POINT_INFO)
-                .params("pid",order.getPid())
+    public void getPointInfo(HoldOrder order) {
+        OkGo.<HttpResult<PointInfo>>post(HttpConfig.BASE_URL + HttpConfig.CONTACT_POINT_INFO)
+                .params("pid", order.getPid())
                 .tag(this)
                 .execute(new JsonCallBack<HttpResult<PointInfo>>(this) {
                     @Override
                     protected void onNext(HttpResult<PointInfo> result) {
-                        mView.setPointInfo(result.getData(),order);
+                        mView.setPointInfo(result.getData(), order);
                     }
                 });
 

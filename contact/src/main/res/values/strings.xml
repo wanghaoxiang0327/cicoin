@@ -28,7 +28,7 @@
     <string name="contact_contact_activity_order_records170">可用USDT</string>
     <string name="contact_contact_dialog_close_order390">取消</string>
     <string name="contact_orderRecordsActivity2">委托</string>
-    <string name="contact_contact_fragment_contract130">爆仓率:---</string>
+    <string name="contact_contact_fragment_contract130">爆仓率:</string>
     <string name="contact_contact_item_deal520">过夜费</string>
     <string name="contact_contact_dialog_close_order20">平仓确认</string>
     <string name="contact_contact_activity_order_records340">浮动盈亏</string>
@@ -79,4 +79,14 @@
     <string name="contact_leverage_multiple">杠杆倍数</string>
     <string name="contact_share">分享</string>
     <string name="contact_please_login">请登录</string>
+    <string name="contact_save_pic">保存图片</string>
+    <string name="contact_share_des">一般一般 ，翻了几倍</string>
+    <string name="contact_share_profit_amount">盈利金额</string>
+    <string name="contact_share_usdt_contract">USDT合约</string>
+    <string name="contact_share_opening_price">开仓价</string>
+    <string name="contact_share_king_of_contract">合约之王</string>
+    <string name="contact_share_right_of_interpretation">最终解释权归CICOIN所有</string>
+    <string name="contact_one_button_closing">一键\n平仓</string>
+    <string name="contact_tips">提醒</string>
+    <string name="contact_close_all_order_des">是否要确认平仓？</string>
 </resources>

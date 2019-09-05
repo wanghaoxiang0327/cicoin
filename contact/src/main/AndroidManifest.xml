@@ -3,5 +3,6 @@
 
     <application>
         <activity android:name=".OrderRecordsActivity"/>
-    </application>
+    <activity android:name="com.sskj.contact.ShareActivity"/>
+</application>
 </manifest>

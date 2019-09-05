@@ -1,5 +1,6 @@
 package com.sskj.cicoin;
 
+import android.content.Intent;
 import android.os.Build;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -33,8 +34,9 @@ public class SplashActivity extends NormalActivity {
 
     @Override
     public void initView() {
+        lanucher();
         setNavigationBarColor();
-        RequestOptions requestOptions=new RequestOptions()
+        RequestOptions requestOptions = new RequestOptions()
                 .format(DecodeFormat.PREFER_ARGB_8888)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
         Glide.with(this).asGif().load(R.drawable.splash).apply(requestOptions).into(ivBg);
@@ -50,6 +52,17 @@ public class SplashActivity extends NormalActivity {
     @Override
     public void initData() {
 
+    }
+
+    private void lanucher() {
+        if (!this.isTaskRoot()) {
+            Intent mainIntent = getIntent();
+            String action = mainIntent.getAction();
+            if (mainIntent.hasCategory(Intent.CATEGORY_LAUNCHER) && action.equals(Intent.ACTION_MAIN)) {
+                finish();
+                return;
+            }
+        }
     }
 
     @Override

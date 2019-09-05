@@ -212,10 +212,11 @@
         android:textColor="@color/common_hint"
         android:textSize="13sp"
         app:arrowColor="@color/common_text"
-        app:dividerColor="@color/common_item_divider"
+        app:dividerColor="@color/common_divider"
+        app:popupBackground="@drawable/contact_gray_border_bg"
         app:dividerHeight="1dp"
-        app:itemBackground="@color/common_divider"
-        app:itemTextColor="@color/common_hint" />
+        app:itemBackground="@color/common_white"
+        app:itemTextColor="@color/common_text" />
 
     <LinearLayout
         android:layout_width="match_parent"

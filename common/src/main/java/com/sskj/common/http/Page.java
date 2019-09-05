@@ -6,10 +6,13 @@ import java.util.List;
 
 public class Page<T> {
 
-    @JSONField(name = "res",alternateNames = {"res","list","product_list"})
+    @JSONField(name = "res", alternateNames = {"res", "list", "product_list", "data"})
     private List<T> res;
+    @JSONField(name = "p", alternateNames = {"p", "nowpage"})
     private int p;
+    @JSONField(name = "count", alternateNames = {"count", "sum"})
     private int count;
+    @JSONField(name = "size", alternateNames = {"size", "nownums"})
     private int size;
 
     public List<T> getRes() {

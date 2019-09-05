@@ -11,6 +11,7 @@ import com.sskj.common.http.HttpResult;
 import com.sskj.common.http.JsonCallBack;
 import com.sskj.common.http.RxUtils;
 import com.sskj.contact.ContractFragment;
+import com.sskj.contact.data.CoinInfo;
 
 import java.util.List;
 
@@ -29,5 +30,17 @@ class ContractPresenter extends BasePresenter<ContractFragment> {
                     }
                 });
 
+    }
+
+    public void getCoinInfo(String code) {
+        OkGo.<HttpResult<CoinInfo>>get(HttpConfig.BASE_URL + HttpConfig.GET_LEVER)
+                .tag(this)
+                .params("code", code)
+                .execute(new JsonCallBack<HttpResult<CoinInfo>>(this) {
+                    @Override
+                    protected void onNext(HttpResult<CoinInfo> result) {
+                        mView.setCoinInfo(result.getData());
+                    }
+                });
     }
 }

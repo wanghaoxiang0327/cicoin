@@ -4,15 +4,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.sskj.common.base.BaseActivity;
+import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.tab.TabItem;
 import com.sskj.common.tab.TabLayout;
+import com.sskj.common.tab.TabSelectListener;
+import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.contact.data.DetailOrder;
+import com.sskj.contact.dialog.ContactCloseAllOrderDialog;
 
 import java.util.ArrayList;
 
@@ -39,7 +45,8 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
     LinearLayout layoutProfit;
     @BindView(R2.id.tabLayout)
     TabLayout tabLayout;
-
+    @BindView(R2.id.tv_close_all)
+    TextView tvCloseAll;
     String code;
 
 
@@ -67,7 +74,37 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
         fragments.add(EntrustFragment.newInstance());
         fragments.add(DealFragment.newInstance(code));
         tabLayout.setTabData(tabItems, getSupportFragmentManager(), R.id.order_content, fragments);
+        ClickUtil.click(tvCloseAll, view -> {
+            ContactCloseAllOrderDialog.getInstance()
+                    .setConfirmListener(() -> {
+                        mPresenter.closeAllOrder();
+                    }).show(getSupportFragmentManager(), "");
+        });
+    }
 
+    @Override
+    public void initEvent() {
+        super.initEvent();
+        tabLayout.setOnTabSelectListener(new TabSelectListener() {
+            @Override
+            public boolean onTabSelect(int position) {
+                if (position == 0) {
+                    tvCloseAll.setVisibility(View.VISIBLE);
+                } else {
+                    tvCloseAll.setVisibility(View.GONE);
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onTabReselect(int position) {
+                return false;
+            }
+        });
+    }
+
+    public void closeAllOrderSuccess() {
+        RxBus.getDefault().post("refreshDealOrder");
     }
 
     @Override

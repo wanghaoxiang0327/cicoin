@@ -9,8 +9,6 @@ import com.sskj.common.http.HttpResult;
 import com.sskj.common.http.JsonCallBack;
 
 public class MainPresenter extends BasePresenter<MainActivity> {
-
-
     public void checkVersion(String versionName){
         OkGo.<HttpResult<VersionBean>>post(BaseHttpConfig.BASE_URL+ HttpConfig.CHECK_VERSION)
                 .params("version",versionName)
@@ -18,7 +16,7 @@ public class MainPresenter extends BasePresenter<MainActivity> {
                 .execute(new JsonCallBack<HttpResult<VersionBean>>(){
                     @Override
                     protected void onNext(HttpResult<VersionBean> result) {
-//                        mView.checkVersion(result);
+                        mView.checkVersion(result);
                     }
                 });
     }
