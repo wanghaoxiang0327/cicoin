@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.hjq.toast.ToastUtils;
 import com.sskj.common.AppManager;
+import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.dialog.VerifyPasswordDialog;
 import com.sskj.common.router.RoutePath;
@@ -66,8 +67,8 @@ public class ResetPayPasswordActivity extends BaseActivity<ResetPayPasswordPrese
     public void initView() {
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
-                mobile = userBean.getMobile();
-                email = userBean.getEmail();
+                mobile = SpUtil.getString(CommonConfig.MOBILE, "");
+                email =  SpUtil.getString(CommonConfig.EMAIL, "");
             }
         });
     }

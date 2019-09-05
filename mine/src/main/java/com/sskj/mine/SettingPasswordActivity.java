@@ -10,12 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hjq.toast.ToastUtils;
+import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.dialog.VerifyPasswordDialog;
 import com.sskj.common.utils.CapUtils;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.EditUtil;
 import com.sskj.common.utils.PatternUtils;
+import com.sskj.common.utils.SpUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,8 +62,8 @@ public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresent
     public void initView() {
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
-                mobile = userBean.getMobile();
-                email = userBean.getEmail();
+                mobile = SpUtil.getString(CommonConfig.MOBILE, "");
+                email =  SpUtil.getString(CommonConfig.EMAIL, "");
             }
         });
     }

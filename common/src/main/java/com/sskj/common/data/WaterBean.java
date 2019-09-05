@@ -1,52 +1,19 @@
 package com.sskj.common.data;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.sskj.common.view.WaterView;
-
 public class WaterBean {
-
     /**
-     * id : 5
-     * userid : 6
+     * id : 6
+     * userid : 3
      * usdt_num : 0.00
-     * gtc_num : 83.33
-     * status : 0
-     * type : 2
+     * gtc_num : 0.00
+     * status : 31
      */
 
-    private int type;
     private String id;
-    private int status;
-    @JSONField(name = "pro_get")
-    private String num;
-
-    public WaterBean(){
-
-    }
-
-    public WaterBean(String num) {
-
-        this.num = num;
-    }
-
-
-
-    public String getNum() {
-        return num;
-    }
-
-    public void setNum(String num) {
-        this.num = num;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
+    private String userid;
+    private String usdt_num;
+    private String gtc_num;
+    private String status;
 
     public String getId() {
         return id;
@@ -56,13 +23,40 @@ public class WaterBean {
         this.id = id;
     }
 
+    public String getUserid() {
+        return userid;
+    }
 
-    public int getStatus() {
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getUsdt_num() {
+        return usdt_num;
+    }
+
+    public void setUsdt_num(String usdt_num) {
+        this.usdt_num = usdt_num;
+    }
+
+    public String getGtc_num() {
+        return gtc_num;
+    }
+
+    public void setGtc_num(String gtc_num) {
+        this.gtc_num = gtc_num;
+    }
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
+
+
+
+
 
 }

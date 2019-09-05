@@ -1,12 +1,14 @@
 package com.sskj.mine;
 
 import com.lzy.okgo.OkGo;
+import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BasePresenter;
 import com.sskj.common.http.BaseHttpConfig;
 import com.sskj.common.http.HttpConfig;
 import com.sskj.common.http.HttpResult;
 import com.sskj.common.http.JsonCallBack;
 import com.sskj.common.http.Page;
+import com.sskj.common.utils.SpUtil;
 import com.sskj.mine.BindMobileOrEmailActivity;
 
 
@@ -26,6 +28,7 @@ public class BindMobileOrEmailPresenter extends BasePresenter<BindMobileOrEmailA
                     @Override
                     protected void onNext(HttpResult<Object> result) {
                         mView.bindSuccess(result.getData());
+
                     }
                 });
     }
@@ -40,6 +43,7 @@ public class BindMobileOrEmailPresenter extends BasePresenter<BindMobileOrEmailA
                     @Override
                     protected void onNext(HttpResult<Object> result) {
                         mView.bindSuccess(result.getData());
+                        SpUtil.put(CommonConfig.MOBILE, mobile);
                     }
                 });
     }

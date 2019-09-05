@@ -7,10 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.utils.CapUtils;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.PatternUtils;
+import com.sskj.common.utils.SpUtil;
 import com.sskj.mine.data.Verify;
 
 import butterknife.BindView;
@@ -65,6 +67,8 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
                 mToolBarLayout.setTitle(getString(R.string.mine_mine_activity_bind_mobile_or_email20));
                 verifyCodeName.setText(getString(R.string.mine_bindMobileOrEmailActivity2));
                 verifyAccountEdt.setHint(getString(R.string.mine_mine_activity_bind_mobile_or_email60));
+                break;
+            default:
                 break;
         }
 
@@ -126,11 +130,13 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
     public static void start(Context context, Verify verify) {
         Intent intent = new Intent(context, BindMobileOrEmailActivity.class);
         intent.putExtra("type", verify);
+
         context.startActivity(intent);
     }
 
 
     public void bindSuccess(Object data) {
+
         finish();
     }
 

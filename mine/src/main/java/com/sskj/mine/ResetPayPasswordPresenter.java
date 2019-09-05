@@ -17,7 +17,6 @@ public class ResetPayPasswordPresenter extends BasePresenter<ResetPayPasswordAct
     /**
      * 重置资金密码
      *
-     * @param state 0 关闭 1 开启
      */
     public void resetLoginPs(String oldpwd,String opwd,String opwd1,String smsCode,String googleCode) {
         OkGo.<HttpResult<Object>>post(BaseHttpConfig.BASE_URL + HttpConfig.RESET_PAY_PS)
@@ -42,7 +41,7 @@ public class ResetPayPasswordPresenter extends BasePresenter<ResetPayPasswordAct
     public void sendSms(String mobile, String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
                 .params("mobile", mobile)
-                .params("type", 1)
+                .params("type", 2)
                 .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
@@ -55,7 +54,7 @@ public class ResetPayPasswordPresenter extends BasePresenter<ResetPayPasswordAct
     public void sendEmail(String email,String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
                 .params("email", email)
-                .params("type", "1")
+                .params("type", "2")
                 .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override

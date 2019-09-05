@@ -2,7 +2,6 @@ package com.sskj.mine;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -11,11 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
-import com.sskj.common.glide.GlideApp;
-import com.sskj.common.http.HttpResult;
+import com.sskj.common.utils.CapUtils;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.CopyUtils;
+import com.sskj.common.utils.SpUtil;
 import com.sskj.mine.data.GoogleInfo;
 
 import butterknife.BindView;
@@ -42,6 +42,10 @@ public class BindGoogleVerifyActivity extends BaseActivity<BindGoogleVerifyPrese
     TextView copyTv;
     @BindView(R2.id.submit)
     Button submit;
+    @BindView(R2.id.edt_verify_mobile)
+    EditText edtVerifyMobile;
+    @BindView(R2.id.get_code_tv)
+    TextView getCodeTv;
 
     private GoogleInfo code;
 
@@ -57,22 +61,32 @@ public class BindGoogleVerifyActivity extends BaseActivity<BindGoogleVerifyPrese
 
     @Override
     public void initView() {
-        code= (GoogleInfo) getIntent().getSerializableExtra("code");
+        code = (GoogleInfo) getIntent().getSerializableExtra("code");
         ClickUtil.click(submit, view -> {
-            if (isEmptyShow(edtVerifyCode)){
+            if (isEmptyShow(edtVerifyCode)) {
                 return;
             }
-            mPresenter.bindGoogle(getText(edtVerifyCode));
+            if (isEmptyShow(edtVerifyMobile)) {
+                return;
+            }
+            mPresenter.bindGoogle(getText(edtVerifyCode), edtVerifyMobile.getText().toString());
         });
         setGoogleInfo(code);
     }
 
     @Override
     public void initData() {
-
+        ClickUtil.click(getCodeTv, view -> CapUtils.registerCheck(this, validate -> {
+            startTimeDown(getCodeTv);
+            if (TextUtils.isEmpty(SpUtil.getString(CommonConfig.MOBILE, ""))) {
+                mPresenter.sendEmail(SpUtil.getString(CommonConfig.EMAIL, ""), validate);
+            } else {
+                mPresenter.sendSms(SpUtil.getString(CommonConfig.MOBILE, ""), validate);
+            }
+        }));
     }
 
-    public static void start(Context context,GoogleInfo code) {
+    public static void start(Context context, GoogleInfo code) {
         Intent intent = new Intent(context, BindGoogleVerifyActivity.class);
         intent.putExtra("code", code);
         context.startActivity(intent);
@@ -90,4 +104,9 @@ public class BindGoogleVerifyActivity extends BaseActivity<BindGoogleVerifyPrese
     public void bindGoogleSuccess() {
         finish();
     }
+
+    public void sendVerifyCodeSuccess() {
+
+    }
+
 }

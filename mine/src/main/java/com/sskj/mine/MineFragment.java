@@ -1,5 +1,6 @@
 package com.sskj.mine;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.constraint.Barrier;
 import android.support.constraint.Group;
@@ -26,6 +27,8 @@ import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.dialog.TipsNewDialog;
 import com.sskj.common.router.RoutePath;
+import com.sskj.common.rxbus.BusCode;
+import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.user.data.UserBean;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.ItemDivider;
@@ -134,11 +137,13 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                     break;
                 case 3:
 //                    ARouter.getInstance().build(RoutePath.APP_GUIDE_WEB).withBoolean(Constans.IS_ABOUT_US, true).navigation();
+                    mPresenter.about();
                     break;
                 case 4:
                     FeedbackActivity.start(getContext());
                     break;
                 case 5:
+
 //                    WebViewActivity.start(this,);
                     break;
                 case 6:
@@ -175,8 +180,8 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                     .setContent("签到成成，恭喜您获得 +5原力")
                     .setConfirmText("去完成任务")
                     .setConfirmListener(dialog -> {
-                        ToastUtils.show("完成任务去");
-                        tvQd.setText("已签到");
+                        RxBus.getDefault().send(BusCode.SECOND);
+                        dialog.dismiss();
                     }).show();
         });
         ClickUtil.click(50, imgKj, view -> {
@@ -232,5 +237,19 @@ public class MineFragment extends BaseFragment<MinePresenter> {
             tvCny.setText("≈****");
             imgKj.setImageResource(R.mipmap.mine_icon_hide);
         }
+    }
+
+    public void about(String s) {
+        new TipsNewDialog(getActivity())
+                .setTitle("关于我们")
+                .setContent(s)
+                .setConfirmText("确认")
+                .setConfirmListener(Dialog::dismiss)
+                .show();
+    }
+
+    public void qd() {
+        tvQd.setText("已签到");
+        userViewModel.update();
     }
 }

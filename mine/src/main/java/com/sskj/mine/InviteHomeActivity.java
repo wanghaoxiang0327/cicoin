@@ -10,6 +10,7 @@ import com.allen.library.SuperTextView;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.router.RoutePath;
 import com.sskj.common.utils.ClickUtil;
+import com.sskj.mine.data.InvateBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +48,7 @@ public class InviteHomeActivity extends BaseActivity<InviteHomePresenter> {
 
     @Override
     public void initView() {
-
+mPresenter.getInvate();
     }
 
     @Override
@@ -62,5 +63,10 @@ public class InviteHomeActivity extends BaseActivity<InviteHomePresenter> {
         context.startActivity(intent);
     }
 
+    public void getInv(InvateBean invateBean) {
+        t1.setText(invateBean.getUser_total());
+        t2.setText(invateBean.getPrice_day());
+        t3.setText(invateBean.getPrice_total());
 
+    }
 }

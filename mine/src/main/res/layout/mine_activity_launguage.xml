@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical">
+
+    <com.sskj.common.view.ToolBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:background_color="@color/common_action_bar"
+        app:title="语言"
+        app:title_color="@color/common_text_sun" />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/zh"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        app:sBackgroundDrawableRes="@color/white"
+        app:sDividerLineType="none"
+        app:sLeftTextString="简体中文"
+        app:sRightIconRes="@drawable/miner_duigou"
+        app:sUseRipple="false" />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/en"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="1dp"
+        app:sRightIconRes="@drawable/miner_duigou"
+        app:sBackgroundDrawableRes="@color/white"
+        app:sDividerLineType="none"
+        app:sLeftTextString="English"
+        app:sUseRipple="false" />
+
+
+</LinearLayout>

@@ -43,7 +43,7 @@ public class SettingPasswordPresenter extends BasePresenter<SettingPasswordActiv
     public void sendSms(String mobile, String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
                 .params("mobile", mobile)
-                .params("type", 1)
+                .params("type", 4)
                 .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
@@ -56,7 +56,7 @@ public class SettingPasswordPresenter extends BasePresenter<SettingPasswordActiv
     public void sendEmail(String email,String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
                 .params("email", email)
-                .params("type", "1")
+                .params("type", "4")
                 .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override

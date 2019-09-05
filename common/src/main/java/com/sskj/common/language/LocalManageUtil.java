@@ -65,6 +65,19 @@ public class LocalManageUtil {
         }
     }
 
+    public static String dealLanguage(Context context) {
+        switch (getLanguage(context)) {
+            case "zh_TW":
+                return "繁体中文";
+            case "zh_CN":
+                return "简体中文";
+            case "en":
+                return "English";
+            default:
+                return "简体中文";
+        }
+    }
+
     public static void saveSelectLanguage(Context context, int select) {
         LanguageSPUtil.getInstance(context).saveLanguage(select);
         setApplicationLanguage(context);

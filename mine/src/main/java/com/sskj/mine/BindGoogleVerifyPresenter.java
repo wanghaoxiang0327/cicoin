@@ -36,14 +36,51 @@ public class BindGoogleVerifyPresenter extends BasePresenter<BindGoogleVerifyAct
      * 设置短信验证开关
      *
      */
-    public void bindGoogle(String code) {
+    public void bindGoogle(String code,String smdCode) {
         OkGo.<HttpResult<Object>>post(BaseHttpConfig.BASE_URL + HttpConfig.BIND_GOOGLE)
                 .params("dyGoodleCommand",code)
+                .params("code",smdCode)
                 .execute(new JsonCallBack<HttpResult<Object>>(this) {
                     @Override
                     protected void onNext(HttpResult<Object> result) {
                         ToastUtils.show(result.getMsg());
                         mView.bindGoogleSuccess();
+                    }
+                });
+    }
+
+
+    /**
+     * @param mobile type 1注册 （2 重置 3 安全验证 4 资金密码设置 5 提币）
+     * @param
+     */
+    public void sendSms(String mobile, String validate) {
+        OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
+                .params("mobile", mobile)
+                .params("type", 3)
+                .params("validate", validate)
+                .execute(new JsonCallBack<HttpResult>(this) {
+                    @Override
+                    protected void onNext(HttpResult result) {
+                        mView.sendVerifyCodeSuccess();
+                    }
+                });
+    }
+
+    /**
+     * 1注册 2 （重置/修改） 3 安全验证 4 资金密码设置 5 提币
+     * @param email
+     * @param validate
+     */
+    public void sendEmail(String email, String validate) {
+        OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
+                .params("email", email)
+                .params("type", "3")
+                .params("validate", validate)
+                .execute(new JsonCallBack<HttpResult>(this) {
+                    @Override
+                    protected void onNext(HttpResult result) {
+                        mView.sendVerifyCodeSuccess();
                     }
                 });
     }

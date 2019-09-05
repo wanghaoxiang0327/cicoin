@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.allen.library.SuperTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/usdt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:sLeftTextSize="15sp"
+    app:sRightTextSize="13sp"
+    app:sLeftTextColor="@color/common_text"
+    app:sRightTextColor="@color/common_hint"
+    app:sRightTextString="1233"
+    app:sLeftTextString="sads"
+    android:layout_height="50dp">
+
+
+</com.allen.library.SuperTextView>

@@ -8,45 +8,34 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 import com.sskj.common.App;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.WaterBean;
 import com.sskj.common.dialog.TipsNewDialog;
+import com.sskj.common.rxbus.BusCode;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.utils.ClickUtil;
-import com.sskj.common.utils.TipUtil;
 import com.sskj.common.view.WaterView;
 import com.sskj.miner.R;
 import com.sskj.miner.R2;
-import com.sskj.miner.bean.BibPaoBean;
-import com.sskj.miner.bean.IWaterBean;
-import com.sskj.miner.bean.MinerAssetBean;
-import com.sskj.miner.bean.PaoBean;
 import com.sskj.miner.bean.TotalAsset;
-import com.sskj.miner.bean.UsdtPaoBean;
 import com.sskj.miner.presenter.MinerPresenter;
+import com.sskj.miner.ui.activity.ForceActivity;
+import com.sskj.miner.ui.activity.SyActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -74,6 +63,11 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
     TextView tvMoneyMiner;
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.miner_fragment_home;
     }
@@ -84,13 +78,8 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void initView() {
-        RxBus.getDefault().register(this);
+
         tvMsgMiner.setFactory(() -> {
             TextView textView = new TextView(getActivity());
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
@@ -107,20 +96,44 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
     @Override
     public void initData() {
         ClickUtil.click(tvRuleMiner, view -> mPresenter.getRule());
-        ClickUtil.click(tvDetailsMiner, view -> ToastUtils.show("查看详情"));
-        ClickUtil.click(tvMoneyMiner, view -> {
-            ToastUtils.show("收益详情");
+        ClickUtil.click(tvJyMiner, view -> {
+            //交易
+            RxBus.getDefault().send(BusCode.SECOND);
+        });
+        ClickUtil.click(tvYlMiner, view -> {
+            ForceActivity.start(getActivity());
+        });
+        ClickUtil.click(tvDetailsMiner, view -> SyActivity.start(getActivity()));
+        viewWaterMiner.setOnWaterViewClick((waterData, view) -> {
+            if (Integer.parseInt(waterData.getStatus()) > 3) {
+                new TipsNewDialog(getActivity())
+                        .setTitle(App.INSTANCE.getString(R.string.miner_tixing))
+                        .setContent(App.INSTANCE.getString(R.string.miner_tips_heyue))
+                        .setConfirmText(App.INSTANCE.getString(R.string.miner_confirm_tips))
+                        .setConfirmListener(dialog -> {
+                            RxBus.getDefault().send(BusCode.SECOND);
+                            dialog.dismiss();
+                        })
+                        .show();
+                return;
+            }
+            mPresenter.receivePao(waterData.getId(), view);
         });
     }
 
     @Override
     public void loadData() {
-        mPresenter.getNotices();
-        mPresenter.getAsset();
 
 
     }
 
+    @Override
+    public void lazyLoad() {
+        super.lazyLoad();
+        mPresenter.getNotices();
+        mPresenter.getAsset();
+        mPresenter.getPao();
+    }
 
     public static MinerFragment newInstance() {
         MinerFragment fragment = new MinerFragment();
@@ -150,55 +163,16 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
                 .setConfirmListener(Dialog::dismiss).show();
     }
 
-    public void updatePao(List<PaoBean> data) {
 
-        if (data == null) {
+    public void updatePao(List<WaterBean> data) {
+        if (data.size() == 0) {
             return;
         }
-        List<WaterBean> waterBeans = new ArrayList<>();
-        for (PaoBean p : data) {
-waterBeans.add(new WaterBean());
-        }
-//        viewWaterMiner.setWaters(iWaterBeans);
-
-//        for (int i = 0; i < data.getUSDT().getNum(); i++) {
-//            iWaterBeans.add(new UsdtPaoBean(data.getUSDT().getCode(), data.getUSDT().getEveryValue(), R.drawable.miner_icon_usdt_small));
-//        }
-//        for (int i = 0; i < data.getBIB().getNum(); i++) {
-//            iWaterBeans.add(new BibPaoBean(data.getBIB().getCode(), data.getBIB().getEveryValue(), R.drawable.miner_icon_bib));
-//        }
-//        Flowable.fromIterable(data.getLargePao())
-//                .filter(largePaoBean -> largePaoBean.getTaskComplete() != 3)
-//                .toList()
-//                .subscribe((largePaoBeans, throwable) -> {
-//                    iWaterBeans.addAll(largePaoBeans);
-//                    waterView.setWaters(iWaterBeans);
-//                    waterView.setOnWaterViewClick((waterData, view) -> {
-//                        Object tag = view.getTag();
-//                        if (tag instanceof UsdtPaoBean) {
-//                            UsdtPaoBean usdtPaoBean = (UsdtPaoBean) tag;
-//                            mPresenter.receivePao(usdtPaoBean.getCode(), usdtPaoBean.getNum(), "2", null, view);
-//                        } else if (tag instanceof BibPaoBean) {
-//                            BibPaoBean usdtPaoBean = (BibPaoBean) tag;
-//
-//                            mPresenter.receivePao(usdtPaoBean.getCode(), usdtPaoBean.getNum(), "2", null, view);
-//
-//                        } else if (tag instanceof PaoBean.LargePaoBean) {
-//
-//                            PaoBean.LargePaoBean largePaoBean = (PaoBean.LargePaoBean) tag;
-//                            if (largePaoBean.getTaskComplete() == 1) {
-//                                showFail(largePaoBean);
-//                                return;
-//                            }
-//                            mPresenter.receivePao("USDT", largePaoBean.getValue(), "1", largePaoBean.getType(), view);
-//
-//                        }
-//                    });
-//                });
+        viewWaterMiner.setWaters(data);
 
     }
 
-    private void showFail(PaoBean bean) {
+    private void showFail(WaterBean bean) {
 //        taskTip = TipUtil.getSureTip(this, App.INSTANCE.getString(R.string.miner_miningActivity3), largePaoBean.getTaskIntro(), App.INSTANCE.getString(R.string.miner_miningActivity4), () -> {
 //
 //            taskTip.dismiss();
@@ -230,13 +204,10 @@ waterBeans.add(new WaterBean());
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(aLong -> {
                             String title = notice.get((int) (aLong % notice.size()));
-                            tvMsgMiner.setText(title);
+                            if (tvMsgMiner != null) {
+                                tvMsgMiner.setText(title);
+                            }
                         });
-//                        .subscribe(i -> {
-//                            if (tvMsgMiner != null) {
-//                                tvMsgMiner.setText(notice.get((int) (i % notice.size());
-//                            }
-//                        }, System.out::println);
             }
         }
     }

@@ -10,4 +10,9 @@
     <string name="miner_miningActivity2">确定</string>
     <string name="hang_hang_fragment_hangqing310">阿童木 刚刚 获得1.3USDT</string>
     <string name="miner_yuanli">原力</string>
+    <string name="miner_ylmx">原力明细</string>
+    <string name="miner_symx">收益明细</string>
+    <string name="miner_tixing">提醒</string>
+    <string name="miner_tips_heyue">完成3次合约交易，才可领取该USDT气泡</string>
+    <string name="miner_confirm_tips">去完成任务</string>
 </resources>

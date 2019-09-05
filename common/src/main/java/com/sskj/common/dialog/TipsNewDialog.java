@@ -13,6 +13,7 @@ import com.allen.library.SuperButton;
 import com.sskj.common.R;
 import com.sskj.common.R2;
 import com.sskj.common.utils.ScreenUtil;
+import com.zzhoujay.richtext.RichText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,7 +94,8 @@ public class TipsNewDialog extends AlertDialog {
     }
 
     public TipsNewDialog setContent(String content) {
-        this.content.setText(content);
+        RichText.from(content)
+                .into(this.content);
         return this;
     }
 

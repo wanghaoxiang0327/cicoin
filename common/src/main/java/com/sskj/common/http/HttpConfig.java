@@ -7,7 +7,7 @@ public class HttpConfig {
     public static final String CUSTOME = "/Home/Users/my_customer";
     public static final String UPDATE_LOGIN_PWD = "/Home/Users/xiugai_pwd";
     public static final String UPDATE_TRADE_PWD = "/Home/Users/reset_tpwd";
-    public static final String ABOUT_US = "/Home/Users/about";
+    public static final String ABOUT_US = "/Home/sign/lxfs";
     public static final String SHARE_DETAIL = "/Home/Users/my_broker";
     public static final String GASSETLIST = "";
     public static final String ZOOM_RECORD = "";
@@ -15,8 +15,12 @@ public class HttpConfig {
     public static final String GET_ASSET = "/home/forces/getincome";
     public static final String GET_RULE = "/home/qbw/agree";
     public static final String GET_PAO = "/home/Forces/maturepaopao";
-    public static final String RECEIVE_PAO ="/home/Forces/receivepaopao" ;
-    public static final String NOTICE ="/Home/Ajax/paomadeng" ;
+    public static final String RECEIVE_PAO = "/home/Forces/receivepaopao";
+    public static final String NOTICE = "/Home/Ajax/paomadeng";
+    public static final String YL = "/home/Forces/yuanlimingxi ";
+    public static final String USDT = "/Home/Forces/shouyimingxi";
+    public static final String INV = "/qbw/show_index";
+    public static final Object QD = "/Home/Sign/user_sign";
 
 
     public static String BASE_URL = BuildConfig.IP;
@@ -120,7 +124,7 @@ public class HttpConfig {
 
     public static final String SET_GOOGLE_STATE = "/home/google/set_google_state";
 
-    public static final String GET_GOOGLE_INFO = "/Home/Google/createGoogleCommand";
+    public static final String GET_GOOGLE_INFO = "/home/google/createGoogleCommand";
 
     public static final String SHARE_INFO = "/Home/Qbw/link";
 

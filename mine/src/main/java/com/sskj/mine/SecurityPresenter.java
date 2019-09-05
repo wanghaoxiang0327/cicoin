@@ -18,9 +18,8 @@ public class SecurityPresenter extends BasePresenter<SecurityActivity> {
     /**
      * 获取谷歌信息
      */
-    public void getGoogleInfo(String code) {
+    public void getGoogleInfo() {
         OkGo.<HttpResult<GoogleInfo>>post(BaseHttpConfig.BASE_URL + HttpConfig.GET_GOOGLE_INFO)
-                .params("code", code)
                 .execute(new JsonCallBack<HttpResult<GoogleInfo>>(this) {
                     @Override
                     protected void onNext(HttpResult<GoogleInfo> result) {

@@ -158,42 +158,7 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
             VerifyHomeActivity.start(this);
         });
         ClickUtil.click(menuGoogleVerify, view -> {
-            VerifySettingActivity.start(this, Verify.GOOGLE);
-            if (bindGoogle) {
-            } else {
-                if (bindSMS || bindEmail) {
-                    if (startSms) {
-                        new VerifyPasswordDialog(this, true, false, false, 3)
-                                .setOnConfirmListener((dialog, ps, sms, google) -> {
-                                    dialog.dismiss();
-                                    mPresenter.getGoogleInfo(sms);
-                                }).show();
-                    } else if (bindEmail) {
-                        new VerifyPasswordDialog(this, false, true, false, false, emailAddress)
-                                .setOnConfirmListener((dialog, ps, sms, google) -> {
-                                    dialog.dismiss();
-                                    mPresenter.getGoogleInfo(sms);
-                                }).show();
-                    } else {
-                        new TipDialog(this)
-                                .setTitle(getString(R.string.mine_mine_activity_bind_googl_everify20))
-                                .setContent(getString(R.string.mine_start_sms))
-                                .setConfirmListener(dialog -> {
-                                    dialog.dismiss();
-                                    VerifySettingActivity.start(this, Verify.SMS);
-                                }).show();
-                    }
-
-                } else {
-                    new TipDialog(this)
-                            .setTitle(getString(R.string.mine_mine_activity_bind_googl_everify20))
-                            .setContent(getString(R.string.mine_start_sms))
-                            .setConfirmListener(dialog -> {
-                                dialog.dismiss();
-                                BindMobileOrEmailActivity.start(this, Verify.SMS);
-                            }).show();
-                }
-            }
+            mPresenter.getGoogleInfo();
         });
         ClickUtil.click(menuLoginPs, view -> {
             ResetPasswordActivity.start(this);

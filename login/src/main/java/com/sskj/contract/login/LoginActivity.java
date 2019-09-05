@@ -82,7 +82,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
 
     @Override
     public void initView() {
-//        DaggerUserDataComponent.create().inject(this);
         Disposable text = RxTextView.textChangeEvents(etNum)
                 .map(textViewTextChangeEvent -> textViewTextChangeEvent.getText().toString())
                 .subscribe(s -> {
@@ -121,6 +120,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     public void loginSuccess(LoginBean loginBean) {
         SpUtil.put(CommonConfig.ACCOUNT, loginBean.getAccount());
         SpUtil.put(CommonConfig.TOKEN, loginBean.getToken());
+        if (etPwd.getText().toString().contains("@")) {
+            SpUtil.put(CommonConfig.EMAIL,etNum.getText().toString());
+        }else {
+            SpUtil.put(CommonConfig.MOBILE, etNum.getText().toString());
+        }
         if (registerType == RegisterType.MOBILE) {
             SpUtil.put(CommonConfig.MOBILE, getText(etNum));
         }

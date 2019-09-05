@@ -68,9 +68,8 @@ public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> 
     public void initView() {
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
-                mobile = userBean.getMobile();
-                email = userBean.getEmail();
-                Log.d("yds", mobile + "-----------" + email);
+                mobile = SpUtil.getString(CommonConfig.MOBILE, "");
+                email =  SpUtil.getString(CommonConfig.EMAIL, "");
             }
         });
     }

@@ -11,6 +11,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -134,12 +135,18 @@ public class WaterView extends FrameLayout {
         }
     };
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        Log.d("yds", "执行了measure方法");
+
+    }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-//        int w = getMeasuredWidth();
-//        int h = getMeasuredHeight();
+        Log.d("yds", "执行了sizeChange方法");
         mMaxSpace = (float) Math.sqrt(w * w + h * h);
         mDestroyPoint = new Point((int) getX(), h);
         maxX = w;
@@ -147,7 +154,21 @@ public class WaterView extends FrameLayout {
 
     }
 
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        Log.d("yds", "执行了layout方法");
+    }
 
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        Log.d("yds", "执行了finish方法");
+        int w = getMeasuredWidth();
+        int h = getMeasuredHeight();
+        Log.d("yds", w + "--------------" + h);
+
+    }
 
     /**
      * 界面销毁时回调
@@ -198,9 +219,15 @@ public class WaterView extends FrameLayout {
         reset();
         isCancelAnimation = false;
         setCurrentCanChoseRandoms();
-        addWaterView(waters);
-        setViewsSpd();
-        startAnimation();
+        post(new Runnable() {
+            @Override
+            public void run() {
+                addWaterView(waters);
+                setViewsSpd();
+                startAnimation();
+            }
+        });
+
     }
 
     private void setCurrentCanChoseRandoms() {
@@ -212,6 +239,7 @@ public class WaterView extends FrameLayout {
      * 添加水滴view
      */
     private void addWaterView(List<WaterBean> waters) {
+        Log.d("yds", "**************");
         for (int i = 0; i < (waters.size() <= MaxCount ? waters.size() : MaxCount); i++) {
             final WaterBean water = waters.get(i);
             addView(water);
@@ -225,9 +253,11 @@ public class WaterView extends FrameLayout {
      */
     private void addView(WaterBean water) {
         View view = mInflater.inflate(mChildViewRes, this, false);
-        TextView tvWater = view.findViewById(R.id.tv_water);
+        ImageView imageView = view.findViewById(R.id.img_water);
+        TextView tvWater = view.findViewById(R.id.tv_water_num);
         view.setTag(water);
-        tvWater.setText(water.getNum());
+        tvWater.setText(water.getUsdt_num());
+        imageView.setImageResource(Integer.parseInt(water.getStatus()) <= 3 ? R.mipmap.miner_icon_usdt_small : R.mipmap.miner_icon_usdt_big);
         view.setOnClickListener(view1 -> handViewClick(view1));
         //随机设置view动画的方向
         view.setTag(R.string.isUp, mRandom.nextBoolean());
@@ -291,6 +321,7 @@ public class WaterView extends FrameLayout {
      * @param view
      */
     private void setChildViewLocation(View view) {
+        Log.d("yds", maxX + "------" + maxY + "-----" + mXCurrentCanShoseRandoms + "------" + mXRandoms + "-----" + mYCurrentCanShoseRandoms + "----" + mYRandoms);
         view.setX((float) (maxX * getX_YRandom(mXCurrentCanShoseRandoms, mXRandoms)));
         view.setY((float) (maxY * getX_YRandom(mYCurrentCanShoseRandoms, mYRandoms)));
         view.setTag(R.string.original_y, view.getY());

@@ -31,5 +31,6 @@
         <activity android:name="com.sskj.common.WebActivity" />
         <activity android:name="com.sskj.common.WebViewActivity" />
 
+
     </application>
 </manifest>

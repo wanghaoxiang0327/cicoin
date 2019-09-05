@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
@@ -15,6 +16,10 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.gyf.barlibrary.ImmersionBar;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.HttpHeaders;
+import com.sskj.common.App;
+import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.data.VersionBean;
@@ -22,7 +27,9 @@ import com.sskj.common.dialog.TipDialog;
 import com.sskj.common.dialog.VersionUpdateDialog;
 import com.sskj.common.http.BaseHttpConfig;
 import com.sskj.common.http.HttpResult;
+import com.sskj.common.language.LocalManageUtil;
 import com.sskj.common.router.RoutePath;
+import com.sskj.common.rxbus.BusCode;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
@@ -36,6 +43,7 @@ import com.sskj.contact.ContractFragment;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import butterknife.BindView;
 
@@ -62,6 +70,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        RxBus.getDefault().register(this);
         checkPermission();
     }
 
@@ -87,6 +96,11 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         } else if (isOpenMore == 2) {
             mainTabLayout.setCurrentTab(2);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, code = BusCode.SECOND)
+    public void showCurrent() {
+        mainTabLayout.setCurrentTab(1);
     }
 
     @Override
@@ -180,4 +194,14 @@ public class MainActivity extends BaseActivity<MainPresenter> {
                 .init();
     }
 
+    @Subscribe(code = BusCode.CHANGE_LANGUAGE, threadMode = ThreadMode.MAIN)
+    public void changeLanguage() {
+        HttpHeaders httpHeaders = OkGo.getInstance().getCommonHeaders();
+        httpHeaders.put("lang", LocalManageUtil.getSetLanguageLocale(App.INSTANCE) == Locale.ENGLISH ? "eu" : "cn");
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
+    }
 }

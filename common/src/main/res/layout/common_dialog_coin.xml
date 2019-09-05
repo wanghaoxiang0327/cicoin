@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/common_dialog"
+    android:background="@color/white"
     android:orientation="vertical">
 
 
@@ -14,7 +14,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="#1C1F22" />
+        android:background="@color/common_background" />
 
     <TextView
         android:id="@+id/tvCancel"
@@ -22,7 +22,7 @@
         android:layout_height="40dp"
         android:gravity="center"
         android:text="@string/common_cancle"
-        android:textColor="#74CFFC"
+        android:textColor="@color/common_tip"
         android:textSize="16sp" />
 
 </LinearLayout>
