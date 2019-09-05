@@ -68,7 +68,7 @@
                 android:id="@+id/group_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:constraint_referenced_ids="view_info_center,tv_name,
         tv_qd,img_qd,tv_uid,tv_zc,tv_zc_info,img_kj,tv_price,tv_cny
 " />
@@ -159,25 +159,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:tint="@color/center_id_text"
                 android:src="@drawable/center_eye"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_zc_info"
                 app:layout_constraintStart_toEndOf="@+id/tv_zc_info"
                 app:layout_constraintTop_toTopOf="@+id/tv_zc_info" />
 
-
+<android.support.constraint.Guideline
+    android:id="@+id/line"
+    android:layout_width="wrap_content"
+    app:layout_constraintEnd_toEndOf="@+id/view_info_center"
+    android:orientation="vertical"
+    app:layout_constraintGuide_end="25dp"
+    android:layout_height="match_parent" />
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:gravity="end"
                 android:maxLength="13"
-                android:text="123456.7444"
+                tools:text="14dddbbbbbbbbddddd"
                 android:textColor="@color/center_text_color"
                 android:textSize="22sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/line"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_zc_info"
-                app:layout_constraintEnd_toEndOf="@+id/view_info_center"
                 app:layout_constraintTop_toTopOf="@+id/tv_zc_info" />
 
             <TextView
@@ -185,10 +191,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="≈2.65CNY"
+                tools:text="≈2.65CNY"
                 android:textColor="@color/center_gray"
                 android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="@+id/tv_price"
+                app:layout_constraintEnd_toEndOf="@+id/line"
                 app:layout_constraintTop_toBottomOf="@+id/tv_price" />
 
 

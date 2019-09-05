@@ -1653,6 +1653,7 @@ drawable common_hint_50
 drawable common_hint_border_50
 drawable common_progress_green
 drawable common_progress_red
+drawable common_radius
 drawable common_red_bg_5
 drawable common_red_select
 drawable common_sell_pankou_progress
@@ -1837,6 +1838,7 @@ id check
 id checkbox
 id chronometer
 id circleIndicator
+id close
 id coin_list
 id collapseActionView
 id common_guideline
@@ -1864,6 +1866,7 @@ id email_layout
 id empty_text
 id end
 id end_padder
+id ensure
 id expand_activities_button
 id expanded_menu
 id fill
@@ -2116,6 +2119,7 @@ id tvTitle
 id tv_PlayPause
 id tv_Quit
 id tv_Stop
+id tv_close
 id tv_content
 id tv_description
 id tv_dialog_cancel
@@ -2150,6 +2154,7 @@ id update_btn
 id update_tip
 id useLogo
 id video_view
+id view
 id view_offset_helper
 id view_overlay
 id visible
@@ -2224,6 +2229,7 @@ layout common_activity_splash
 layout common_activity_web
 layout common_activity_web_view
 layout common_candy
+layout common_dialog
 layout common_dialog_coin
 layout common_dialog_verify_password
 layout common_dialog_version_update

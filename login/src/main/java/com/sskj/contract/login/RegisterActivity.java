@@ -291,11 +291,10 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
                     public void onValidate(String result, String validate, String msg) {
 
                         if (!TextUtils.isEmpty(validate)) {
-                            Log.d("yds", (registerType == RegisterType.EMAIL)+"----------------------");
                             if (registerType == RegisterType.EMAIL) {
-                                mPresenter.sendEmail(etNum.getText().toString());
+                                mPresenter.sendEmail(etNum.getText().toString(), validate);
                             } else {
-                                mPresenter.sendSms(etNum.getText().toString(),validate);
+                                mPresenter.sendSms(etNum.getText().toString(), validate);
                             }
                             startTimeDown(tvCode);
                         } else {

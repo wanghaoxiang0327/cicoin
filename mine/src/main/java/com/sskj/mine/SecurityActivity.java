@@ -4,10 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.allen.library.SuperTextView;
+import com.hjq.toast.ToastUtils;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.dialog.TipDialog;
 import com.sskj.common.dialog.VerifyPasswordDialog;
@@ -37,6 +41,12 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
     SuperTextView menuLoginPs;
     @BindView(R2.id.menu_pay_ps)
     SuperTextView menuPayPs;
+    @BindView(R2.id.menu_user_verify)
+    SuperTextView menu_user_verify;
+    @BindView(R2.id.gradle)
+    TextView gradle;
+    @BindView(R2.id.jb)
+    ProgressBar jb;
 
     private boolean setPayPs;
 
@@ -44,6 +54,7 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
     private boolean startSms;
 
     private boolean bindEmail;
+    //是否绑定手机号码
     private boolean bindSMS;
     private boolean bindGoogle;
     private String emailAddress;
@@ -63,7 +74,8 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
 
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
-                setPayPs = TextUtils.isEmpty(userBean.getTpwd());
+                //资金密码
+                setPayPs = userBean.getTpwd().equals("false");
                 if (setPayPs) {
                     menuPayPs.setRightString(getString(R.string.mine_securityActivity1));
                 } else {
@@ -92,21 +104,35 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
                         menuGoogleVerify.setRightString(getString(R.string.mine_securityActivity1));
                     }
                 }
-                if (userBean.getIsStartSms() == 1) {
-                    startSms = true;
+                if (!TextUtils.isEmpty(userBean.getMobile())) {
+                    menuSmsVerify.setRightString("已绑定");
                     bindSMS = true;
-                    menuSmsVerify.setRightString(getString(R.string.mine_securityActivity3));
                 } else {
-                    startSms = false;
-                    if (TextUtils.isEmpty(userBean.getMobile())) {
-                        bindSMS = false;
-                        menuSmsVerify.setRightString(getString(R.string.mine_securityActivity1));
-                    } else {
-                        bindSMS = true;
-                        menuSmsVerify.setRightString(getString(R.string.mine_securityActivity4));
-                    }
-
+                    menuSmsVerify.setRightString(getString(R.string.mine_securityActivity1));
+                    bindSMS = false;
                 }
+                String jb = "低";
+                int proress = 33;
+                switch (userBean.getUserLevel()) {
+                    case "1":
+                        jb = "低";
+                        proress = 33;
+                        break;
+                    case "2":
+                        jb = "中";
+                        proress = 66;
+                        break;
+                    case "3":
+                        jb = "高";
+                        proress = 100;
+                        break;
+                    default:
+                        jb = "低";
+                        proress = 33;
+                        break;
+                }
+                gradle.setText("安全级别：" + jb);
+                this.jb.setProgress(proress);
             }
         });
     }
@@ -117,7 +143,7 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
             if (!bindSMS) {
                 BindMobileOrEmailActivity.start(this, Verify.SMS);
             } else {
-                VerifySettingActivity.start(this, Verify.SMS);
+                ToastUtils.show("已绑定");
             }
         });
         ClickUtil.click(menuEmailVerify, view -> {
@@ -127,24 +153,28 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
                 BindMobileOrEmailActivity.start(this, Verify.EMAIL);
             }
         });
+
+        ClickUtil.click(menu_user_verify, view -> {
+            VerifyHomeActivity.start(this);
+        });
         ClickUtil.click(menuGoogleVerify, view -> {
+            VerifySettingActivity.start(this, Verify.GOOGLE);
             if (bindGoogle) {
-                VerifySettingActivity.start(this, Verify.GOOGLE);
             } else {
                 if (bindSMS || bindEmail) {
                     if (startSms) {
                         new VerifyPasswordDialog(this, true, false, false, 3)
                                 .setOnConfirmListener((dialog, ps, sms, google) -> {
                                     dialog.dismiss();
-                                   mPresenter.getGoogleInfo(sms);
+                                    mPresenter.getGoogleInfo(sms);
                                 }).show();
-                    }else if (bindEmail) {
+                    } else if (bindEmail) {
                         new VerifyPasswordDialog(this, false, true, false, false, emailAddress)
                                 .setOnConfirmListener((dialog, ps, sms, google) -> {
                                     dialog.dismiss();
                                     mPresenter.getGoogleInfo(sms);
                                 }).show();
-                    }else {
+                    } else {
                         new TipDialog(this)
                                 .setTitle(getString(R.string.mine_mine_activity_bind_googl_everify20))
                                 .setContent(getString(R.string.mine_start_sms))
@@ -154,7 +184,7 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
                                 }).show();
                     }
 
-                }else {
+                } else {
                     new TipDialog(this)
                             .setTitle(getString(R.string.mine_mine_activity_bind_googl_everify20))
                             .setContent(getString(R.string.mine_start_sms))
@@ -166,26 +196,14 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
             }
         });
         ClickUtil.click(menuLoginPs, view -> {
-            if (!startSms && !startGoogle) {
-                new TipDialog(this)
-                        .setContent(getString(R.string.mine_securityActivity5))
-                        .setCancelVisible(View.GONE)
-                        .show();
-            } else {
-                ResetPasswordActivity.start(this);
-            }
+            ResetPasswordActivity.start(this);
         });
         ClickUtil.click(menuPayPs, view -> {
             if (setPayPs) {
-                if (!startSms && !startGoogle) {
-                    new TipDialog(this)
-                            .setContent(getString(R.string.mine_securityActivity5))
-                            .setCancelVisible(View.GONE)
-                            .show();
-                } else {
-                    SettingPasswordActivity.start(this);
-                }
+                //设置资金密码
+                SettingPasswordActivity.start(this);
             } else {
+                //修改资金密码
                 ResetPayPasswordActivity.start(this);
             }
         });

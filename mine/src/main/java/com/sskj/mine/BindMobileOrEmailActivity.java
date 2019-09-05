@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.sskj.common.base.BaseActivity;
+import com.sskj.common.utils.CapUtils;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.PatternUtils;
 import com.sskj.mine.data.Verify;
@@ -34,7 +35,8 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
     TextView getCode;
     @BindView(R2.id.edt_verify_code)
     EditText edtVerifyCode;
-
+    @BindView(R2.id.verify_money_edt)
+    EditText verify_money_edt;
     Verify verify;
     @BindView(R2.id.submit)
     Button submit;
@@ -89,9 +91,9 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
             }
 
             if (verify == Verify.EMAIL) {
-                mPresenter.bindEmail(getText(verifyAccountEdt), getText(edtVerifyCode));
+                mPresenter.bindEmail(getText(verifyAccountEdt), getText(edtVerifyCode), getText(verify_money_edt));
             } else {
-                mPresenter.bindMobile(getText(verifyAccountEdt), getText(edtVerifyCode));
+                mPresenter.bindMobile(getText(verifyAccountEdt), getText(edtVerifyCode), getText(verify_money_edt));
             }
         });
 
@@ -108,11 +110,15 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
                     return;
                 }
             }
-            if (verify == Verify.EMAIL) {
-                mPresenter.sendEmail(getText(verifyAccountEdt));
-            } else {
-                mPresenter.sendSms(getText(verifyAccountEdt));
-            }
+            CapUtils.registerCheck(this, validate -> {
+                if (verify == Verify.EMAIL) {
+                    mPresenter.sendEmail(getText(verifyAccountEdt));
+                } else {
+                    mPresenter.sendSms(getText(verifyAccountEdt), validate);
+                }
+                startTimeDown(getCode);
+            });
+
 
         });
     }
@@ -130,7 +136,7 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
 
 
     public void sendVerifyCodeSuccess() {
-        startTimeDown(getCode);
+
     }
 
 

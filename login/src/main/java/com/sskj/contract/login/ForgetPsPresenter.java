@@ -30,9 +30,11 @@ public class ForgetPsPresenter extends BasePresenter<ForgetPsActivity> {
                 });
     }
 
-    public void sendEmail(String email) {
+    public void sendEmail(String email,String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
                 .params("email", email)
+                .params("type", "1")
+                .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
                     protected void onNext(HttpResult result) {

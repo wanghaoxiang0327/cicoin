@@ -14,7 +14,7 @@
     <string name="common_encryptTool1">长度不是偶数</string>
     <string name="common_common_activity_scan20">二维码扫描</string>
     <string name="common_common_activity_scan40">将条码放入框内，即可自动扫描</string>
-    <string name="common_baseActivity2">获取验证码</string>
+    <string name="common_baseActivity2">@string/mine_tvcode</string>
     <string name="common_webActivity1">注册协议</string>
     <string name="common_common_dialog_verify_password410">粘贴</string>
     <string name="common_baseActivity1">S后重新发送</string>

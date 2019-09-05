@@ -67,8 +67,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     TextView register;
     private RegisterType registerType = RegisterType.MOBILE;
 
-    @Inject
-    UserViewModel model;
+
     VerifyPasswordDialog verifyPasswordDialog;
 
     @Override
@@ -130,8 +129,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         httpHeaders.put(CommonConfig.ACCOUNT, loginBean.getAccount());
         httpHeaders.put(CommonConfig.TOKEN, loginBean.getToken());
         OkGo.getInstance().addCommonHeaders(httpHeaders);
-        ARouter.getInstance().build(RoutePath.MAIN).navigation();
-        finish();
+        userViewModel.update();
+        userViewModel.getUser().observe(this, userBean -> {
+            if (userBean != null) {
+                ARouter.getInstance().build(RoutePath.MAIN).navigation();
+                finish();
+            }
+        });
+
     }
 
 

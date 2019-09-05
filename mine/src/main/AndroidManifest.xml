@@ -17,5 +17,11 @@
         <activity android:name="com.sskj.mine.ResetPasswordActivity"/>
         <activity android:name=".ChangeSkipActivity"/>
     <activity android:name="com.sskj.mine.SettingActivity"/>
+<activity android:name="com.sskj.mine.VerifyHomeActivity"/>
+<activity android:name="com.sskj.mine.VerifyFirstActivity"/>
+<activity android:name="com.sskj.mine.VerifySecondActivity"/>
+<activity android:name="com.sskj.mine.InviteHomeActivity"/>
+<activity android:name="com.sskj.mine.TeamActivity"/>
+<activity android:name="com.sskj.mine.MoneyActivity"/>
 </application>
 </manifest>

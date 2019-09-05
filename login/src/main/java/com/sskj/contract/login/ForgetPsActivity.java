@@ -255,7 +255,7 @@ public class ForgetPsActivity extends BaseActivity<ForgetPsPresenter> {
                     public void onValidate(String result, String validate, String msg) {
                         if (!TextUtils.isEmpty(validate)) {
                             if (registerType == RegisterType.EMAIL) {
-                                mPresenter.sendEmail(etNum.getText().toString());
+                                mPresenter.sendEmail(etNum.getText().toString(),validate);
                             } else {
                                 mPresenter.sendSms(etNum.getText().toString(),validate);
                             }

@@ -39,7 +39,9 @@ public class UserBean {
     private String mobile;
     private String mail;
     private String nickname;
+    private String email;
     private String tgno;
+    //资金密码
     private String tpwd;
     @JSONField(name = "command")
     private int isBindGoogle;
@@ -61,12 +63,48 @@ public class UserBean {
     private ZcTotalBean zcTotal;
 
 
+    // "wallone": "63400.3496",购买锁仓可用金额
+    private String wallone;
+    // "walltwo": "0.0000",法币冻结
+    private String walltwo;
+    //"wallthree": "0.0000",待售
+    private String wallthree;
+    //"wallfour": "0.0000",可售
+    private String wallfour;
+    //"wallfive": "0.0000",成为商家冻结
+    private String wallfive;
+    // "apply_reason": "",认证拒绝原因
+    private String apply_reason;
+
+    //  "shop_fee": "",成为商家费用
+    private String shop_fee;
+    //  "sxfee": ""法币交易手续费
+    private String sxfee;
+
+    //初级认证状态  1 未认证 2 待审核 3 已通过  4拒绝
+    private int status;
+
+    // 高级认证状态 1 未认证 2 待审核 3 已通过  4拒绝
+    //是否是商家 0否 1是 2审核中
+    private int auth_status;
+    private int is_shop;
+
     //经纪人 0非经纪人  1初级经纪人  2中级  3高级
     private int rank;
+    //0：没签到  1 已签到
+    private int qd;
 
     //是否是董事
     private int is_ds;
 
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public int getRank() {
         return rank;
@@ -119,6 +157,102 @@ public class UserBean {
 
     public String getMail() {
         return mail;
+    }
+
+    public String getWallone() {
+        return wallone;
+    }
+
+    public void setWallone(String wallone) {
+        this.wallone = wallone;
+    }
+
+    public String getWalltwo() {
+        return walltwo;
+    }
+
+    public void setWalltwo(String walltwo) {
+        this.walltwo = walltwo;
+    }
+
+    public String getWallthree() {
+        return wallthree;
+    }
+
+    public void setWallthree(String wallthree) {
+        this.wallthree = wallthree;
+    }
+
+    public String getWallfour() {
+        return wallfour;
+    }
+
+    public void setWallfour(String wallfour) {
+        this.wallfour = wallfour;
+    }
+
+    public String getWallfive() {
+        return wallfive;
+    }
+
+    public void setWallfive(String wallfive) {
+        this.wallfive = wallfive;
+    }
+
+    public String getApply_reason() {
+        return apply_reason;
+    }
+
+    public void setApply_reason(String apply_reason) {
+        this.apply_reason = apply_reason;
+    }
+
+    public String getShop_fee() {
+        return shop_fee;
+    }
+
+    public void setShop_fee(String shop_fee) {
+        this.shop_fee = shop_fee;
+    }
+
+    public String getSxfee() {
+        return sxfee;
+    }
+
+    public void setSxfee(String sxfee) {
+        this.sxfee = sxfee;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getAuth_status() {
+        return auth_status;
+    }
+
+    public void setAuth_status(int auth_status) {
+        this.auth_status = auth_status;
+    }
+
+    public int getIs_shop() {
+        return is_shop;
+    }
+
+    public void setIs_shop(int is_shop) {
+        this.is_shop = is_shop;
+    }
+
+    public int getQd() {
+        return qd;
+    }
+
+    public void setQd(int qd) {
+        this.qd = qd;
     }
 
     public void setMail(String mail) {

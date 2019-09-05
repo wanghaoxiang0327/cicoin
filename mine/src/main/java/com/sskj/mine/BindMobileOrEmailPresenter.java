@@ -17,8 +17,11 @@ import com.sskj.mine.BindMobileOrEmailActivity;
 public class BindMobileOrEmailPresenter extends BasePresenter<BindMobileOrEmailActivity> {
 
 
-    public void bindEmail(String email, String code) {
+    public void bindEmail(String email, String code, String tpwd) {
         OkGo.<HttpResult<Object>>post(BaseHttpConfig.BASE_URL + HttpConfig.BIND_EMAIL)
+                .params("mobile", email)
+                .params("code", code)
+                .params("tpwd", tpwd)
                 .execute(new JsonCallBack<HttpResult<Object>>(this) {
                     @Override
                     protected void onNext(HttpResult<Object> result) {
@@ -27,8 +30,12 @@ public class BindMobileOrEmailPresenter extends BasePresenter<BindMobileOrEmailA
                 });
     }
 
-    public void bindMobile(String mobile, String code) {
+    public void bindMobile(String mobile, String code, String tpwd) {
         OkGo.<HttpResult<Object>>post(BaseHttpConfig.BASE_URL + HttpConfig.BIND_MOBILE)
+                .params("mobile", mobile)
+                .params("mcode", "86")
+                .params("code", code)
+                .params("tpwd", tpwd)
                 .execute(new JsonCallBack<HttpResult<Object>>(this) {
                     @Override
                     protected void onNext(HttpResult<Object> result) {
@@ -36,18 +43,17 @@ public class BindMobileOrEmailPresenter extends BasePresenter<BindMobileOrEmailA
                     }
                 });
     }
-
 
 
     /**
-     *
      * @param mobile type 1注册 （2 重置 3 安全验证 4 资金密码设置 5 提币）
      * @param
      */
-    public void sendSms(String mobile) {
+    public void sendSms(String mobile, String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
                 .params("mobile", mobile)
-                .params("type", 1)
+                .params("type", 3)
+                .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
                     protected void onNext(HttpResult result) {

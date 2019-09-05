@@ -3,13 +3,16 @@ package com.sskj.mine;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.hjq.toast.ToastUtils;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.dialog.VerifyPasswordDialog;
+import com.sskj.common.utils.CapUtils;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.EditUtil;
 import com.sskj.common.utils.PatternUtils;
@@ -31,13 +34,17 @@ public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresent
     ImageView showPsImg;
     @BindView(R2.id.ps_repeat_edt)
     EditText psRepeatEdt;
+    @BindView(R2.id.ps_code_edt)
+    EditText ps_code_edt;
+    @BindView(R2.id.tvCode)
+    TextView tvCode;
     @BindView(R2.id.show_repeat_ps_img)
     ImageView showRepeatPsImg;
     @BindView(R2.id.submit)
     Button submit;
 
-    boolean checkSms;
-    boolean checkGoogle;
+
+    private String mobile, email;
 
     @Override
     public int getLayoutId() {
@@ -53,8 +60,8 @@ public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresent
     public void initView() {
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
-                checkSms = userBean.getIsStartSms() == 1;
-                checkGoogle = userBean.getIsStartGoogle() == 1;
+                mobile = userBean.getMobile();
+                email = userBean.getEmail();
             }
         });
     }
@@ -68,6 +75,18 @@ public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresent
 
         showRepeatPsImg.setOnClickListener(v -> {
             EditUtil.togglePs(psRepeatEdt, showRepeatPsImg);
+        });
+
+        ClickUtil.click(tvCode, view -> {
+            CapUtils.registerCheck(this, validate -> {
+                startTimeDown(tvCode);
+                if (TextUtils.isEmpty(mobile)) {
+                    //只能发送邮件
+                    mPresenter.sendEmail(email, validate);
+                } else {
+                    mPresenter.sendSms(mobile, validate);
+                }
+            });
         });
 
         ClickUtil.click(submit, view -> {
@@ -87,15 +106,11 @@ public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresent
                 ToastUtils.show(getString(R.string.mine_resetPasswordActivity2));
                 return;
             }
-
-            if (checkSms || checkGoogle) {
-                new VerifyPasswordDialog(this, checkSms, checkGoogle, false,4)
-                        .setOnConfirmListener((dialog, ps, sms, google) -> {
-                            mPresenter.resetLoginPs(getText(psEdt), getText(psRepeatEdt), sms, google);
-                        }).show();
-            } else {
-                mPresenter.resetLoginPs(getText(psEdt), getText(psRepeatEdt), "", "");
+            if (isEmpty(ps_code_edt)) {
+                return;
             }
+            //todo 这个有问题
+            mPresenter.resetLoginPs(getText(psEdt), getText(psRepeatEdt), getText(ps_code_edt), TextUtils.isEmpty(mobile) ? email : mobile);
         });
     }
 
@@ -106,7 +121,10 @@ public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresent
 
 
     public void setPsSuccess() {
-
         finish();
+    }
+
+    public void sendVerifyCodeSuccess() {
+
     }
 }

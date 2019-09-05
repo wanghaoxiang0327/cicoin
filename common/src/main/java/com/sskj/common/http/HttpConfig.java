@@ -57,13 +57,13 @@ public class HttpConfig {
     public static final String ASSETTRANSFER = "/home/order/tranfer";
     //========================mine================================
 
-    public static final String USER_INFO = "/Home/users/user_info";
+    public static final String USER_INFO = "/Home/Qbw/user_info";
 
     public static final String ASSET_RECORS = "/home/users/finance_list";
 
-    public static final String BIND_EMAIL = "/Home/users/binding_email";
+    public static final String BIND_EMAIL = "/home/qbw/binding_mobile";
 
-    public static final String BIND_MOBILE = "/Home/users/binding_mobile";
+    public static final String BIND_MOBILE = "/home/qbw/binding_mobile";
 
     public static final String BIND_GOOGLE = "/home/google/checkGoogleCommand";
 
@@ -104,9 +104,9 @@ public class HttpConfig {
 
     public static final String SEND_EMAIL = "/Home/Mail/send_mail";
 
-    public static final String RESET_LOGIN_PS = "/Home/users/xiugai_pwd";
+    public static final String RESET_LOGIN_PS = "/home/qbw/xiugai_pwd";
 
-    public static final String RESET_PAY_PS = "/Home/users/reset_tpwd";
+    public static final String RESET_PAY_PS = "/home/qbw/reset_tpwd";
 
     public static final String SET_SMS_STATE = "/Home/User/sms_check";
 
@@ -114,11 +114,11 @@ public class HttpConfig {
 
     public static final String GET_GOOGLE_INFO = "/Home/Google/createGoogleCommand";
 
-    public static final String SHARE_INFO = "/Home/users/link";
+    public static final String SHARE_INFO = "/Home/Qbw/link";
 
-    public static final String MY_TEAM = "/Home/users/my_down";
+    public static final String MY_TEAM = "/Home/Link/customer";
 
-    public static final String COMISSION = "/Home/contract/commission_log";
+    public static final String COMISSION = "/Home/Forces/yjmx";
 
     public static final String DIRECTOR_PROFIT = "/Home/contract/director_bonus";
 
@@ -129,6 +129,9 @@ public class HttpConfig {
 
 
     //==========================Asset==========================================
+
+
+    public static final String ASSET = "/Home/Api/asset";
 
     public static final String ASSETLIST = "/Home/users/get_asset";
 

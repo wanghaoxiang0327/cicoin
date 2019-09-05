@@ -6,6 +6,7 @@ import android.support.constraint.Group;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +17,20 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gyf.barlibrary.BarHide;
 import com.gyf.barlibrary.ImmersionBar;
+import com.hjq.toast.ToastUtils;
 import com.sskj.common.BaseApplication;
+import com.sskj.common.CommonConfig;
 import com.sskj.common.WebViewActivity;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
+import com.sskj.common.dialog.TipsNewDialog;
 import com.sskj.common.router.RoutePath;
+import com.sskj.common.user.data.UserBean;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.ItemDivider;
+import com.sskj.common.utils.NumberUtils;
+import com.sskj.common.utils.SpUtil;
 import com.sskj.mine.data.CentenItemBean;
 
 import java.util.ArrayList;
@@ -74,8 +81,9 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     @BindView(R2.id.rl_content)
     RecyclerView rlContent;
 
-
+    private boolean showAsset;
     private List<CentenItemBean> data = new ArrayList<>();
+    private double usdrt, money;
 
     @Override
     public int getLayoutId() {
@@ -122,7 +130,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                     SecurityActivity.start(getContext());
                     break;
                 case 2:
-                    InviteActivity.start(getContext());
+                    InviteHomeActivity.start(getContext());
                     break;
                 case 3:
 //                    ARouter.getInstance().build(RoutePath.APP_GUIDE_WEB).withBoolean(Constans.IS_ABOUT_US, true).navigation();
@@ -146,37 +154,41 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
     @Override
     public void initData() {
-//        userViewModel.getUser().observe(this, userBean -> {
-//            if (userBean != null) {
-//                userName.setText(userBean.getNickname());
-//                userLevel.setText(userBean.getUserLevel());
-//                userId.setText("UID：" + userBean.getUid());
-//                isDirector = userBean.getIs_ds() == 1;
-//                menuLogout.setVisibility(View.VISIBLE);
-//                rlAsset.setVisibility(View.VISIBLE);
-//                totalmoney = userBean.getZcTotal().getTtl_money()+"";
-//                totalcny = userBean.getZcTotal().getTtl_cnymoney();
-//                showAsset = SpUtil.getBoolean(CommonConfig.SHOWASSET,true);
-//                if (showAsset) {
-//                    totalAssetTv.setText(NumberUtils.keepDown(totalmoney,4));
-//                    cnyAssetTv.setText("≈" + totalcny + "CNY");
-//                    hideAssetImg.setImageResource(R.mipmap.mine_icon_show);
-//                }else{
-//                    totalAssetTv.setText("****");
-//                    cnyAssetTv.setText("****");
-//                    hideAssetImg.setImageResource(R.mipmap.mine_icon_hide);
-//        }
-//            } else {
-//                userName.setText(getString(R.string.mine_mineFragment1));
-//                userId.setText(getString(R.string.mine_mineFragment2));
-//                ClickUtil.click(userName, view -> {
-//                    ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
-//                });
-//                rlAsset.setVisibility(View.GONE);
-//                menuLogout.setVisibility(View.GONE);
-//            }
-//        });
+        userViewModel.getUser().observe(this, userBean -> {
+            if (userBean != null) {
+                groupLogin.setVisibility(View.VISIBLE);
+                groupUnLogin.setVisibility(View.GONE);
+                mPresenter.getMoney(userBean);
 
+            } else {
+                groupLogin.setVisibility(View.GONE);
+                groupUnLogin.setVisibility(View.VISIBLE);
+            }
+        });
+
+        ClickUtil.click(tvLogin, view -> ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation());
+        ClickUtil.click(tvQd, view -> {
+            new TipsNewDialog(getActivity())
+                    .setTitle("签到")
+                    .setContent("签到成成，恭喜您获得 +5原力")
+                    .setConfirmText("去完成任务")
+                    .setConfirmListener(dialog -> {
+                        ToastUtils.show("完成任务去");
+                        tvQd.setText("已签到");
+                    }).show();
+        });
+        ClickUtil.click(50, imgKj, view -> {
+            SpUtil.put(CommonConfig.SHOWASSET, !SpUtil.getBoolean(CommonConfig.SHOWASSET, true));
+            if (SpUtil.getBoolean(CommonConfig.SHOWASSET, true)) {
+                tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
+                tvCny.setText("≈" + money + "CNY");
+                imgKj.setImageResource(R.mipmap.mine_icon_show);
+            } else {
+                tvPrice.setText("****");
+                tvCny.setText("≈****");
+                imgKj.setImageResource(R.mipmap.mine_icon_hide);
+            }
+        });
     }
 
     @Override
@@ -202,4 +214,21 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     }
 
 
+    public void getSuccess(UserBean bean, double usdrt, double money) {
+        tvName.setText(bean.getNickname());
+        tvQd.setText(bean.getQd() == 0 ? "签到" : "已签到");
+        tvUid.setText("uid:" + bean.getUid());
+        this.usdrt = usdrt;
+        this.money = money;
+        showAsset = SpUtil.getBoolean(CommonConfig.SHOWASSET, true);
+        if (showAsset) {
+            tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
+            tvCny.setText("≈" + money + "CNY");
+            imgKj.setImageResource(R.mipmap.mine_icon_show);
+        } else {
+            tvPrice.setText("****");
+            tvCny.setText("≈****");
+            imgKj.setImageResource(R.mipmap.mine_icon_hide);
+        }
+    }
 }

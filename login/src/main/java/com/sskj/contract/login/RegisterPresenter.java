@@ -28,7 +28,6 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> {
                 .execute(new JsonCallBack<HttpResult<Object>>(this) {
                     @Override
                     protected void onNext(HttpResult<Object> result) {
-                        Log.d("yds", "**********************");
                         mView.registerSuccess(mobile);
                     }
                 });
@@ -51,9 +50,11 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> {
                 });
     }
 
-    public void sendEmail(String email) {
+    public void sendEmail(String email, String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
                 .params("email", email)
+                .params("type", "1")
+                .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
                     protected void onNext(HttpResult result) {

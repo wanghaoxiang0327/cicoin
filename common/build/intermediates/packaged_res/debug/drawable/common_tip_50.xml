@@ -13,7 +13,7 @@
     </item>
     <item>
         <shape>
-            <solid android:color="@color/common_tip"/>
+            <solid android:color="#2e6afe"/>
             <corners android:radius="50dp"/>
         </shape>
     </item>
