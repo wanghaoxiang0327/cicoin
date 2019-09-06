@@ -25,9 +25,12 @@ import com.sskj.contact.dialog.ContactCloseOrderDialog;
 import com.sskj.contact.dialog.ContactOrderSettingDialog;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import io.reactivex.Flowable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * 持仓订单
@@ -42,6 +45,7 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
     BaseAdapter<HoldOrder> orderAdapter;
     String code;
     int size = 10;
+    Disposable disposable;
 
     @Override
     public void onAttach(Context context) {
@@ -151,6 +155,12 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
                 return mPresenter.getHoldOrder(code, page, size);
             }
         });
+        disposable = Flowable.interval(5, TimeUnit.SECONDS).subscribe(new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                smartRefreshHelper.loadData();
+            }
+        });
     }
 
     public static HoldFragment newInstance(String code) {
@@ -171,5 +181,11 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
                     smartRefreshHelper.refresh();
                 }).show(getChildFragmentManager(), "ContactOrderSettingDialog");
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        disposable.dispose();
     }
 }
