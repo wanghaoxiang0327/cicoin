@@ -4,6 +4,7 @@ import com.hjq.toast.ToastUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.sskj.asset.data.GAssetBean;
+import com.sskj.asset.data.MaxCountBean;
 import com.sskj.asset.data.TransferInfoBean;
 import com.sskj.common.base.BasePresenter;
 import com.sskj.asset.ZoomActivity;
@@ -22,15 +23,15 @@ import java.util.List;
  */
 class ZoomPresenter extends BasePresenter<ZoomActivity> {
     public void getTransfer(String coin, String ex_coin, String num, String tpwd) {
-        OkGo.<HttpResult<TransferInfoBean>>post(BaseHttpConfig.BASE_URL + HttpConfig.GET_TRANSFER)
+        OkGo.<HttpResult>post(BaseHttpConfig.BASE_URL + HttpConfig.ASSETTRANSFER)
                 .params("coin", coin)
                 .params("ex_coin", ex_coin)
                 .params("num", num)
                 .params("tpwd", tpwd)
-                .execute(new JsonCallBack<HttpResult<TransferInfoBean>>(this) {
+                .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
-                    protected void onNext(HttpResult<TransferInfoBean> result) {
-//                        mView.updateui(result.getData());
+                    protected void onNext(HttpResult result) {
+                        mView.transeSuceesss();
                     }
                 });
     }
@@ -64,6 +65,16 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
                         mView.setError();
                     }
                 });
+    }
 
+    public void getMax(String id) {
+        OkGo.<HttpResult<MaxCountBean>>get(BaseHttpConfig.BASE_URL + HttpConfig.MAX)
+                .params("id", id)
+                .execute(new JsonCallBack<HttpResult<MaxCountBean>>() {
+                    @Override
+                    protected void onNext(HttpResult<MaxCountBean> result) {
+                        mView.max(Double.parseDouble(result.getData().getTb_maxnum()));
+                    }
+                });
     }
 }

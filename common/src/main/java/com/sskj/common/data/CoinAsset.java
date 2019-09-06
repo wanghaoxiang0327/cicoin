@@ -23,9 +23,11 @@ public class CoinAsset {
     public CoinAsset() {
     }
 
-    public CoinAsset(String pid, String name) {
+    public CoinAsset(String pid, String name, String price,String mark) {
         this.pid = pid;
         this.pname = name;
+        this.price = price;
+        this.mark=mark;
     }
 
     public String getPrice() {

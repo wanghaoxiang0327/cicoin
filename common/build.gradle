@@ -98,8 +98,8 @@ dependencies {
     //Banner
     api 'com.youth.banner:banner:1.4.10'
     //Glide
-    api 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    api 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     //富文本
     api 'com.zzhoujay.richtext:richtext:3.0.7'
     //

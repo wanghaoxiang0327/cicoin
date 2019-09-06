@@ -49,22 +49,27 @@
 
             <TextView
                 android:id="@+id/tv_old_coin"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="EOS"
                 android:textColor="@color/common_text"
                 android:textSize="@dimen/sp_12" />
 
             <TextView
                 android:id="@+id/tv_old_amount"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/common_red"
                 tools:text="65656.25656" />
+
+            <ImageView
+                android:id="@+id/zhang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/asset_zhang" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -92,22 +97,27 @@
 
             <TextView
                 android:id="@+id/tv_new_coin"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="EOS"
                 android:textColor="@color/common_text"
                 android:textSize="@dimen/sp_12" />
 
             <TextView
                 android:id="@+id/tv_new_amount"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/common_green"
                 tools:text="65656.25656" />
+
+            <ImageView
+                android:id="@+id/die"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/asset_die" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -137,6 +147,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:hint="@string/asset_zoom_number_hint"
+        android:inputType="number"
         android:padding="15dp"
         android:textSize="@dimen/sp_14" />
 
@@ -162,6 +173,7 @@
         android:background="@color/white"
         android:hint="@string/asset_zoom_daozhang_hint"
         android:padding="15dp"
+        android:enabled="false"
         android:textSize="@dimen/sp_14" />
 
     <View
@@ -184,6 +196,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:hint="@string/asset_iniput_amount_pwd"
+        android:inputType="textPassword"
         android:padding="15dp"
         android:textSize="@dimen/sp_14" />
 
@@ -193,6 +206,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="@dimen/common_margin"
+
         android:layout_marginTop="50dp"
         android:layout_marginRight="@dimen/common_margin"
         android:layout_marginBottom="50dp"

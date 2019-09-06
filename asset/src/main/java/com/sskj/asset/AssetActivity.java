@@ -128,6 +128,17 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
             WithdrawActivity.start(this);
         });
         ClickUtil.click(llTransfer, view -> {
+            if (!setPs) {
+                new TipDialog(this)
+                        .setContent(getString(R.string.asset_assetFragment2))
+                        .setCancelVisible(View.GONE)
+                        .setConfirmListener(dialog -> {
+                            dialog.dismiss();
+                            ARouter.getInstance().build(RoutePath.SECURITY).navigation();
+                        })
+                        .show();
+                return;
+            }
             ZoomActivity.start(this, 1);
         });
     }

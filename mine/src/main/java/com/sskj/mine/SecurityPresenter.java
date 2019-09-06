@@ -6,6 +6,7 @@ import com.sskj.common.http.BaseHttpConfig;
 import com.sskj.common.http.HttpConfig;
 import com.sskj.common.http.HttpResult;
 import com.sskj.common.http.JsonCallBack;
+import com.sskj.common.user.model.UserViewModel;
 import com.sskj.mine.SecurityActivity;
 import com.sskj.mine.data.GoogleInfo;
 
@@ -26,5 +27,23 @@ public class SecurityPresenter extends BasePresenter<SecurityActivity> {
                         mView.startGoogle(result.getData());
                     }
                 });
+    }
+
+
+    public void switchGogle(String dyGoodleCommand, String mobile, String code, String act, UserViewModel userViewModel) {
+        OkGo.<HttpResult>post(BaseHttpConfig.BASE_URL + HttpConfig.GOGLE)
+                .params("dyGoodleCommand", dyGoodleCommand)
+                .params("mobile", mobile)
+                .params("code", code)
+                .params("act", act)
+                .execute(new JsonCallBack<HttpResult>() {
+                    @Override
+                    protected void onNext(HttpResult result) {
+                        mView.switchSuccess();
+                        userViewModel.update();
+
+                    }
+                });
+
     }
 }

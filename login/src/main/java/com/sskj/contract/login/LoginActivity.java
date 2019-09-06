@@ -121,8 +121,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         SpUtil.put(CommonConfig.ACCOUNT, loginBean.getAccount());
         SpUtil.put(CommonConfig.TOKEN, loginBean.getToken());
         if (etPwd.getText().toString().contains("@")) {
-            SpUtil.put(CommonConfig.EMAIL,etNum.getText().toString());
-        }else {
+            SpUtil.put(CommonConfig.EMAIL, etNum.getText().toString());
+        } else {
             SpUtil.put(CommonConfig.MOBILE, etNum.getText().toString());
         }
         if (registerType == RegisterType.MOBILE) {
@@ -136,8 +136,24 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         userViewModel.update();
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
-                ARouter.getInstance().build(RoutePath.MAIN).navigation();
-                finish();
+                if (userBean.getIsStartGoogle() == 1) {
+                    //开启了
+                    //已开启，gogle验证
+                    VerifyPasswordDialog pa = new VerifyPasswordDialog(this, false, true, false, 4)
+                            .setOnConfirmListener((dialog, ps, sms, google) -> {
+                                mPresenter.isGoogleCheck(etNum.getText().toString(), google);
+                            });
+                if (!pa.isShowing()){
+                    pa.show();
+                }
+                } else {
+                    if (userBean.getIsStartGoogle() == 0) {
+                        ARouter.getInstance().build(RoutePath.MAIN).navigation();
+                        finish();
+                    }
+                }
+
+
             }
         });
 
@@ -158,6 +174,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
                 .init();
     }
 
+
+    public void verify() {
+        ARouter.getInstance().build(RoutePath.MAIN).navigation();
+        finish();
+    }
 
     /**
      * 显示谷歌验证

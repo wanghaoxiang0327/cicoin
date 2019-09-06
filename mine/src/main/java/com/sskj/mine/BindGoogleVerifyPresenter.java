@@ -20,11 +20,10 @@ public class BindGoogleVerifyPresenter extends BasePresenter<BindGoogleVerifyAct
 
     /**
      * 获取谷歌信息
-     *
      */
     public void getGoogleInfo(String code) {
         OkGo.<HttpResult<GoogleInfo>>post(BaseHttpConfig.BASE_URL + HttpConfig.GET_GOOGLE_INFO)
-                .params("code",code)
+                .params("code", code)
                 .execute(new JsonCallBack<HttpResult<GoogleInfo>>(this) {
                     @Override
                     protected void onNext(HttpResult<GoogleInfo> result) {
@@ -32,14 +31,15 @@ public class BindGoogleVerifyPresenter extends BasePresenter<BindGoogleVerifyAct
                     }
                 });
     }
+
     /**
      * 设置短信验证开关
-     *
      */
-    public void bindGoogle(String code,String smdCode) {
+    public void bindGoogle(String code, String smdCode, String mobile) {
         OkGo.<HttpResult<Object>>post(BaseHttpConfig.BASE_URL + HttpConfig.BIND_GOOGLE)
-                .params("dyGoodleCommand",code)
-                .params("code",smdCode)
+                .params("dyGoodleCommand", code)
+                .params("code", smdCode)
+                .params("account", mobile)
                 .execute(new JsonCallBack<HttpResult<Object>>(this) {
                     @Override
                     protected void onNext(HttpResult<Object> result) {
@@ -57,7 +57,7 @@ public class BindGoogleVerifyPresenter extends BasePresenter<BindGoogleVerifyAct
     public void sendSms(String mobile, String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
                 .params("mobile", mobile)
-                .params("type", 3)
+                .params("type", 7)
                 .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
@@ -69,13 +69,14 @@ public class BindGoogleVerifyPresenter extends BasePresenter<BindGoogleVerifyAct
 
     /**
      * 1注册 2 （重置/修改） 3 安全验证 4 资金密码设置 5 提币
+     *
      * @param email
      * @param validate
      */
     public void sendEmail(String email, String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
                 .params("email", email)
-                .params("type", "3")
+                .params("type", "7")
                 .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override

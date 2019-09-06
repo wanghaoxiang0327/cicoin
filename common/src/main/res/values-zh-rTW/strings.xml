@@ -43,4 +43,9 @@
 	<string name="common_refreshActivity1">該View下有且只有有一個子View</string>
     <string name="common_invite_rules">邀請規則</string>
 	<string name="common_director_rules">分紅規則</string>
+    <string name="kqgogle">开启谷歌验证</string>
+    <string name="common_common_dialog_verify_sms">短信验证码</string>
+    <string name="common_getcode">获取验证码</string>
+	<string name="common_ssetpwd">请输入验证码</string>
+    <string name="common_gbgogle">关闭谷歌验证</string>
 </resources>

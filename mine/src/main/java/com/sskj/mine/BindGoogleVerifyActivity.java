@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.luck.picture.lib.tools.PictureFileUtils;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.utils.CapUtils;
@@ -69,7 +72,7 @@ public class BindGoogleVerifyActivity extends BaseActivity<BindGoogleVerifyPrese
             if (isEmptyShow(edtVerifyMobile)) {
                 return;
             }
-            mPresenter.bindGoogle(getText(edtVerifyCode), edtVerifyMobile.getText().toString());
+            mPresenter.bindGoogle(getText(edtVerifyCode), edtVerifyMobile.getText().toString(), BaseApplication.getMobile());
         });
         setGoogleInfo(code);
     }
@@ -84,6 +87,8 @@ public class BindGoogleVerifyActivity extends BaseActivity<BindGoogleVerifyPrese
                 mPresenter.sendSms(SpUtil.getString(CommonConfig.MOBILE, ""), validate);
             }
         }));
+        qrCodeImg.setOnLongClickListener(v -> true);
+
     }
 
     public static void start(Context context, GoogleInfo code) {

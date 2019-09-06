@@ -43,4 +43,9 @@
 	<string name="common_refreshActivity1">보기 아래에 하나의 하위보기 만 있습니다.</string>
     <string name="common_invite_rules">초대 규칙</string>
 	<string name="common_director_rules">배당 규칙</string>
+    <string name="kqgogle">开启谷歌验证</string>
+    <string name="common_common_dialog_verify_sms">短信验证码</string>
+    <string name="common_getcode">获取验证码</string>
+	<string name="common_ssetpwd">请输入验证码</string>
+    <string name="common_gbgogle">关闭谷歌验证</string>
 </resources>

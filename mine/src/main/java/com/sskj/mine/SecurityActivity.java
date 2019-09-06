@@ -2,26 +2,22 @@ package com.sskj.mine;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.allen.library.SuperTextView;
 import com.hjq.toast.ToastUtils;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.base.BaseActivity;
-import com.sskj.common.dialog.TipDialog;
-import com.sskj.common.dialog.VerifyPasswordDialog;
+import com.sskj.common.dialog.TipsGogleDialog;
 import com.sskj.common.router.RoutePath;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.mine.data.GoogleInfo;
 import com.sskj.mine.data.Verify;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * @author Hey
@@ -156,7 +152,17 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
             VerifyHomeActivity.start(this);
         });
         ClickUtil.click(menuGoogleVerify, view -> {
-            mPresenter.getGoogleInfo();
+            if (!bindGoogle) {
+                mPresenter.getGoogleInfo();
+            } else {
+                new TipsGogleDialog(this,startGoogle)
+                        .setOnConfirmListener((dialog, gogole, mobile, code) -> {
+                            mPresenter.switchGogle(gogole, BaseApplication.getMobile(), code, startGoogle ? "0" : "1", userViewModel);
+                            dialog.dismiss();
+                        })
+                        .show();
+
+            }
         });
         ClickUtil.click(menuLoginPs, view -> {
             ResetPasswordActivity.start(this);
@@ -186,5 +192,26 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
 
     public void startGoogle(GoogleInfo data) {
         BindGoogleVerifyActivity.start(this, data);
+    }
+
+    public void switchSuccess() {
+        userViewModel.getUser().observe(this, userBean -> {
+
+            assert userBean != null;
+            if (userBean.getIsStartGoogle() == 1) {
+                startGoogle = true;
+                bindGoogle = true;
+                menuGoogleVerify.setRightString(getString(R.string.mine_securityActivity3));
+            } else {
+                startGoogle = false;
+                if (userBean.getIsBindGoogle() == 1) {
+                    bindGoogle = true;
+                    menuGoogleVerify.setRightString(getString(R.string.mine_securityActivity4));
+                } else {
+                    bindGoogle = false;
+                    menuGoogleVerify.setRightString(getString(R.string.mine_securityActivity1));
+                }
+            }
+        });
     }
 }

@@ -19,11 +19,13 @@ public class HttpConfig {
     public static final String NOTICE = "/Home/Ajax/paomadeng";
     public static final String YL = "/home/Forces/yuanlimingxi ";
     public static final String USDT = "/Home/Forces/shouyimingxi";
-    public static final String INV = "/qbw/show_index";
+    public static final String INV = "/Home/qbw/show_index";
     public static final Object QD = "/Home/Sign/user_sign";
     public static final String ASSET_RECORDLIST = "/Home/Api/cz_record";
     public static final String HIGH_VERIFY ="/home/qbw/set_img" ;
     public static final String HIGH_VERIFY_IMG = "/Home/Qbw/upload_pic";
+    public static final String MAX ="/Home/Users/get_balance" ;
+    public static final String GOGLE ="/Home/google/set_google_state" ;
 
 
     public static String BASE_URL = BuildConfig.IP;
@@ -75,7 +77,7 @@ public class HttpConfig {
     public static final String ADDRESS_MANAGE = "/home/qbw/AddrManage";
     public static final String GET_TRANSFER = "/Home/exchange/thisCoinList";
     public static final String GET_COINLIST = "/Home/exchange/coinList";
-    public static final String ASSETTRANSFER = "/home/order/tranfer";
+    public static final String ASSETTRANSFER = "/home/exchange/exchange";
     //========================mine================================
 
     public static final String USER_INFO = "/Home/Qbw/user_info";
@@ -100,7 +102,7 @@ public class HttpConfig {
 
     public static final String FORGET_LOGIN_PS = "/Home/Users/reset_opwd";
 
-    public static final String GOOGLE_CHECK = "/Home/Qbw/user_login";
+    public static final String GOOGLE_CHECK = "/Home/google/check_google_code";
 
     /**
      * 我的推广二维码

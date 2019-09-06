@@ -58,6 +58,7 @@
             <TextView
                 style="@style/mine_text_white15"
                 android:layout_gravity="center_horizontal"
+                android:textColor="@color/common_hint"
                 android:layout_marginTop="14dp"
                 android:text="@string/mine_mine_activity_verify_second19_j0" />
 
@@ -87,6 +88,7 @@
                 style="@style/mine_text_white15"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="14dp"
+                android:textColor="@color/common_hint"
                 android:text="@string/mine_mine_activity_verify_second25_j0" />
 
             <TextView
@@ -94,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="16dp"
+
                 android:layout_marginRight="40dp"
                 android:text="@string/mine_mine_activity_verify_second27_j0"
                 android:textColor="@color/common_hint"
@@ -113,6 +116,7 @@
                 style="@style/mine_text_white15"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="14dp"
+                android:textColor="@color/common_hint"
                 android:text="@string/mine_verifySecondActivity6_j" />
 
             <TextView

@@ -48,6 +48,11 @@
     <string name="common_input_email_verify">请输入邮箱验证码</string>
     <string name="common_make_more">买入开多</string>
     <string name="common_make_empty">卖出开空</string>
+    <string name="kqgogle">开启谷歌验证</string>
+    <string name="common_common_dialog_verify_sms">短信验证码</string>
+    <string name="common_getcode">获取验证码</string>
+    <string name="common_ssetpwd">请输入验证码</string>
+    <string name="common_gbgogle">关闭谷歌验证</string>
 
 
 </resources>

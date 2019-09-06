@@ -29,7 +29,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
                 });
     }
 
-    public void login(String mobile,String pwd){
+    public void login(String mobile, String pwd) {
         OkGo.<HttpResult<LoginBean>>post(HttpConfig.BASE_URL + HttpConfig.LOGIN)
                 .params("mobile", mobile)
                 .params("opwd", pwd)
@@ -42,16 +42,18 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
     }
 
     public void isGoogleCheck(String mobile, String opwd) {
-        OkGo.<HttpResult<Map<String, String>>>post(HttpConfig.BASE_URL + HttpConfig.GOOGLE_CHECK)
+        OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.GOOGLE_CHECK)
                 .params("mobile", mobile)
-                .execute(new JsonCallBack<HttpResult<Map<String, String>>>(this) {
+                .params("dyGoodleCommand", opwd)
+                .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
-                    protected void onNext(HttpResult<Map<String, String>> result) {
-                        if (result.getData().get("is_start_google") == null || result.getData().get("is_start_google").equals("0")) {
-                            login(mobile, opwd, null);
-                        } else {
-                            mView.showCheckGoogle(mobile, opwd);
-                        }
+                    protected void onNext(HttpResult result) {
+                        mView.verify();
+//                        if (result.getData().get("is_start_google") == null || result.getData().get("is_start_google").equals("0")) {
+//                            login(mobile, opwd, null);
+//                        } else {
+//                            mView.showCheckGoogle(mobile, opwd);
+//                        }
                     }
                 });
     }

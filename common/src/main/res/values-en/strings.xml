@@ -44,4 +44,9 @@
     <string name="common_invite_rules">Invitation rule</string>
     <string name="common_director_rules">Dividend rule</string>
     <string name="common_cancle">Cancel</string>
+    <string name="kqgogle">开启谷歌验证</string>
+    <string name="common_common_dialog_verify_sms">短信验证码</string>
+    <string name="common_getcode">获取验证码</string>
+    <string name="common_ssetpwd">请输入验证码</string>
+    <string name="common_gbgogle">关闭谷歌验证</string>
 </resources>

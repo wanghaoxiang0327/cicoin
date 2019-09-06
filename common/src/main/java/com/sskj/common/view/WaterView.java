@@ -139,14 +139,12 @@ public class WaterView extends FrameLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        Log.d("yds", "执行了measure方法");
 
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Log.d("yds", "执行了sizeChange方法");
         mMaxSpace = (float) Math.sqrt(w * w + h * h);
         mDestroyPoint = new Point((int) getX(), h);
         maxX = w;
@@ -157,16 +155,13 @@ public class WaterView extends FrameLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        Log.d("yds", "执行了layout方法");
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        Log.d("yds", "执行了finish方法");
         int w = getMeasuredWidth();
         int h = getMeasuredHeight();
-        Log.d("yds", w + "--------------" + h);
 
     }
 
@@ -239,7 +234,6 @@ public class WaterView extends FrameLayout {
      * 添加水滴view
      */
     private void addWaterView(List<WaterBean> waters) {
-        Log.d("yds", "**************");
         for (int i = 0; i < (waters.size() <= MaxCount ? waters.size() : MaxCount); i++) {
             final WaterBean water = waters.get(i);
             addView(water);
@@ -321,7 +315,6 @@ public class WaterView extends FrameLayout {
      * @param view
      */
     private void setChildViewLocation(View view) {
-        Log.d("yds", maxX + "------" + maxY + "-----" + mXCurrentCanShoseRandoms + "------" + mXRandoms + "-----" + mYCurrentCanShoseRandoms + "----" + mYRandoms);
         view.setX((float) (maxX * getX_YRandom(mXCurrentCanShoseRandoms, mXRandoms)));
         view.setY((float) (maxY * getX_YRandom(mYCurrentCanShoseRandoms, mYRandoms)));
         view.setTag(R.string.original_y, view.getY());

@@ -109,7 +109,9 @@ public class BaseApplication extends MultiDexApplication {
 
 
     public static String getMobile() {
-        return SpUtil.getString(CommonConfig.MOBILE, "");
+        return TextUtils.isEmpty(SpUtil.getString(CommonConfig.MOBILE, "")) ?
+                SpUtil.getString(CommonConfig.EMAIL, "") :
+                SpUtil.getString(CommonConfig.MOBILE, "");
     }
 
     public static String getAccount() {

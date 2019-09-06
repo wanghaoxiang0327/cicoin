@@ -215,7 +215,6 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
 
     public void getSuccess(UserBean bean, double usdrt, double money) {
-        Log.d("yds",usdrt+"--------"+money);
         tvName.setText(bean.getNickname());
         tvQd.setText(bean.getQd() == 0 ? "签到" : "已签到");
         tvUid.setText("uid:" + bean.getUid());
@@ -254,4 +253,6 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 }).show();
         userViewModel.update();
     }
+
+
 }
