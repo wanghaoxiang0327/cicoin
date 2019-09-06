@@ -201,7 +201,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:background="@drawable/common_tip_50"
+            android:background="@drawable/common_tip_15"
             android:text="@string/contact_contact_dialog_close_order410"
             android:textColor="@color/common_white" />
 
