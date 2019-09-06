@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="miner_title">天天挖矿</string>
-    <string name="miner_rules">规则</string>
-    <string name="miner_yl">原力</string>
-    <string name="miner_jy">交易</string>
-    <string name="miner_details"><![CDATA[查看明细 >>]]></string>
+    <string name="miner_title">Digging every day</string>
+    <string name="miner_rules">rule</string>
+    <string name="miner_yl">Force</string>
+    <string name="miner_jy">transaction</string>
+    <string name="miner_details"><![CDATA[Check the details >>]]></string>
     <string name="miner_money">0.0000</string>
-    <string name="miner_miningActivity1">规则</string>
-    <string name="miner_miningActivity2">确定</string>
-    <string name="hang_hang_fragment_hangqing310">阿童木 刚刚 获得1.3USDT</string>
-    <string name="miner_yuanli">原力</string>
-    <string name="miner_ylmx">原力明细</string>
-    <string name="miner_symx">收益明细</string>
-    <string name="miner_tixing">提醒</string>
-    <string name="miner_tips_heyue">完成3次合约交易，才可领取该USDT气泡</string>
-    <string name="miner_confirm_tips">去完成任务</string>
+    <string name="miner_miningActivity1">rule</string>
+    <string name="miner_miningActivity2">Sure?</string>
+    <string name="hang_hang_fragment_hangqing310">Astro Boy just got 1.3USDT</string>
+    <string name="miner_yuanli">Force</string>
+    <string name="miner_ylmx">Force Details</string>
+    <string name="miner_symx">Income details</string>
+    <string name="miner_tixing">remind</string>
+    <string name="miner_tips_heyue">The USDT bubbles can only be collected after three contract transactions have been completed.</string>
+    <string name="miner_confirm_tips">ToAccomplishTheTask</string>
 </resources>

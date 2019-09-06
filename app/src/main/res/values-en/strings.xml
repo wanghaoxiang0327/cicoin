@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+    <string name="app_name">CICOIN</string>
+    <string name="app_mainActivity1">home</string>
+    <string name="app_mainActivity2">contract</string>
+    <string name="app_mainActivity3">mining</string>
+    <string name="app_mainActivity4">My</string>
+    <string name="app_invitation_to_return">Invite Commission</string>
+    <string name="app_invitation_to_return_des">Invite friends and get more commission</string>
+    <string name="app_trading_guide">Transaction Guide</string>
+    <string name="app_trading_guide_des">Minute understanding of contract transactions</string>
+    <string name="app_usdt_mining">USDT Tiantian Mining</string>
+    <string name="app_usdt_mining_des">The higher the force is, the faster the growth will be.</string>
+    <string name="app_industry_information">Industry Information</string>
+    <string name="app_platform_announcement">Platform announcement</string>
+    <string name="app_infomation_detail">Details of information</string>
+    <string name="app_notice_detail">Notice</string>
+</resources>

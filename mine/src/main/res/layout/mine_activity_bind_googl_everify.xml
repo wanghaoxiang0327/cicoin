@@ -140,7 +140,6 @@
                     android:id="@+id/edt_verify_mobile"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-
                     android:layout_weight="1"
                     android:background="@drawable/common_edt_border_bg"
                     android:gravity="center_vertical"

@@ -13,7 +13,6 @@ import android.widget.FrameLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
-import com.hjq.toast.ToastUtils;
 import com.sskj.common.App;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.WaterBean;

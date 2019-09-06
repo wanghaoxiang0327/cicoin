@@ -123,9 +123,9 @@ public class MarketDetailAdapter extends BaseMultiItemQuickAdapter<MarketDetail,
     }
 
     private void initBottomTab() {
-        bottomTabs.add(new TabItem("深度"));
-        bottomTabs.add(new TabItem("成交"));
-        bottomTabs.add(new TabItem("简介"));
+        bottomTabs.add(new TabItem(mContext.getResources().getString(R.string.market_depth)));
+        bottomTabs.add(new TabItem(mContext.getResources().getString(R.string.market_Deal)));
+        bottomTabs.add(new TabItem(mContext.getResources().getString(R.string.market_brief_introduction)));
         bottomFragments.add(DepthFragment.newInstance(code, true));
         bottomFragments.add(TradeFragment.newInstance(code));
         bottomFragments.add(SummaryFragment.newInstance(code));

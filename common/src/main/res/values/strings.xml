@@ -48,6 +48,8 @@
     <string name="common_input_email_verify">请输入邮箱验证码</string>
     <string name="common_make_more">买入开多</string>
     <string name="common_make_empty">卖出开空</string>
+    <string name="common_tips">提醒</string>
+    <string name="common_close">关闭</string>
 
 
 </resources>

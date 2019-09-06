@@ -26,6 +26,27 @@
     <string name="login_loginActivity1">Mobile login</string>
     <string name="login_login_activity_login350">No account yet? Register immediately</string>
     <string name="login_login_activity_forget_ps40">Forget the password</string>
-    <string name="common_tvcode">点击获取验证码</string>
-
+    <string name="login_tvcode">Get Message Code</string>
+    <string name="login_login_cicoin">Log in to CICOIN</string>
+    <string name="login_phone_des">Please enter your mobile number or email address</string>
+    <string name="login_login">Login</string>
+    <string name="login_register">register</string>
+    <string name="login_no_account">No CICOIN account yet,</string>
+    <string name="login_register_cicoin">Register CICOIN</string>
+    <string name="login_phone_register">Register your phone</string>
+    <string name="login_email_register">email registration</string>
+    <string name="login_has_account">Have a CICOIN account,</string>
+    <string name="login_register_phone_number">PhoneNumber</string>
+    <string name="login_phone">Mobile</string>
+    <string name="login_confirm">Confirm</string>
+    <string name="login_register_email_number">Email</string>
+    <string name="login_register_message_code">VerificationCode</string>
+    <string name="login_register_invite_code">InvitationCode</string>
+    <string name="login_register_input_pwd">Inputpassword</string>
+    <string name="login_register_confirm_pwd">confirmPassword</string>
+    <string name="login_msg_send_success_des">The verification code has been sent, please check</string>
+    <string name="login_check_fail">verification failed</string>
+    <string name="login_input_pwd">Please enter an 8-20 digit password (including numbers and letters)</string>
+    <string name="login_check_success">verification success</string>
+    <string name="login_register_input_invite">Please enter the invitation code (required)</string>
 </resources>

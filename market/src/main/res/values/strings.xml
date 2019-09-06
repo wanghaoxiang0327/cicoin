@@ -46,7 +46,6 @@
     <string name="market_market_activity_profit_share190">开仓价格</string>
     <string name="market_market_item_hold360">止损价</string>
     <string name="marketStrSummaryFragment201">万</string>
-
     <string name="xmlfragment_summary28">发行时间</string>
     <string name="xmlfragment_summary46">发行总量</string>
     <string name="xmlfragment_summary64">流通总量</string>
@@ -66,4 +65,7 @@
     <string name="market_direction">方向</string>
     <string name="market_chengjiao_buy">买入</string>
     <string name="market_chengjiao_sell">卖出</string>
+    <string name="market_depth">深度</string>
+    <string name="market_Deal">成交</string>
+    <string name="market_brief_introduction">简介</string>
 </resources>

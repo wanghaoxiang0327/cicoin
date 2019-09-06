@@ -44,4 +44,10 @@
     <string name="common_invite_rules">Invitation rule</string>
     <string name="common_director_rules">Dividend rule</string>
     <string name="common_cancle">Cancel</string>
+    <string name="common_verify_email">Please enter the mailbox verification code</string>
+    <string name="common_input_email_verify">Please enter the mailbox verification code</string>
+    <string name="common_make_more">Buy more</string>
+    <string name="common_make_empty">Short selling</string>
+    <string name="common_tips">Tips</string>
+    <string name="common_close">Close</string>
 </resources>

@@ -100,14 +100,14 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
     @Override
     public void initView() {
-        data.add(new CentenItemBean(R.drawable.center_zcgl, "资产管理"));
-        data.add(new CentenItemBean(R.drawable.center_aqzx, "安全中心"));
-        data.add(new CentenItemBean(R.drawable.center_yqfy, "邀请返佣"));
-        data.add(new CentenItemBean(R.drawable.center_gywm, "关于我们"));
-        data.add(new CentenItemBean(R.drawable.center_yjfk, "意见反馈"));
-        data.add(new CentenItemBean(R.drawable.center_bzzx, "帮助中心"));
-        data.add(new CentenItemBean(R.drawable.center_bzzx, "联系客服"));
-        data.add(new CentenItemBean(R.drawable.center_shezhi, "设置"));
+        data.add(new CentenItemBean(R.drawable.center_zcgl, getString(R.string.mine_asset_manager)));
+        data.add(new CentenItemBean(R.drawable.center_aqzx, getString(R.string.mine_mine_activity_security20)));
+        data.add(new CentenItemBean(R.drawable.center_yqfy, getString(R.string.mine_invite_title)));
+        data.add(new CentenItemBean(R.drawable.center_gywm, getString(R.string.mine_about_us)));
+        data.add(new CentenItemBean(R.drawable.center_yjfk, getString(R.string.mine_yjfk)));
+        data.add(new CentenItemBean(R.drawable.center_bzzx, getString(R.string.mine_helper_center)));
+        data.add(new CentenItemBean(R.drawable.center_bzzx, getString(R.string.mine_mine_fragment_mine190)));
+        data.add(new CentenItemBean(R.drawable.center_shezhi, getString(R.string.mine_setting)));
         rlContent.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         rlContent.addItemDecoration(new ItemDivider().setDividerColor(ContextCompat.getColor(getActivity(), R.color.common_background)).setDividerWith(2));
         BaseAdapter<CentenItemBean> adapter = new BaseAdapter<CentenItemBean>(R.layout.center_item, data, rlContent) {
@@ -175,7 +175,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
         ClickUtil.click(tvLogin, view -> ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation());
         ClickUtil.click(tvQd, view -> {
-          mPresenter.qd();
+            mPresenter.qd();
         });
         ClickUtil.click(50, imgKj, view -> {
             SpUtil.put(CommonConfig.SHOWASSET, !SpUtil.getBoolean(CommonConfig.SHOWASSET, true));
@@ -215,9 +215,8 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
 
     public void getSuccess(UserBean bean, double usdrt, double money) {
-        Log.d("yds",usdrt+"--------"+money);
-        tvName.setText(bean.getNickname());
-        tvQd.setText(bean.getQd() == 0 ? "签到" : "已签到");
+        tvName.setText(bean.getName());
+        tvQd.setText(bean.getQd() == 0 ? getString(R.string.mine_sign_in) : getString(R.string.mine_no_sign_in));
         tvUid.setText("uid:" + bean.getUid());
         this.usdrt = usdrt;
         this.money = money;
@@ -235,19 +234,19 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
     public void about(String s) {
         new TipsNewDialog(getActivity())
-                .setTitle("关于我们")
+                .setTitle(getString(R.string.mine_about_us))
                 .setContent(s)
-                .setConfirmText("确认")
+                .setConfirmText(getString(R.string.mine_confirm))
                 .setConfirmListener(Dialog::dismiss)
                 .show();
     }
 
     public void qd() {
-        tvQd.setText("已签到");
+        tvQd.setText(getString(R.string.mine_no_sign_in));
         new TipsNewDialog(getActivity())
-                .setTitle("签到")
-                .setContent("签到成成，恭喜您获得 +5原力")
-                .setConfirmText("去完成任务")
+                .setTitle(getString(R.string.mine_sign_in))
+                .setContent(getString(R.string.mine_sign_des))
+                .setConfirmText(getString(R.string.mine_to_complete_task))
                 .setConfirmListener(dialog -> {
                     RxBus.getDefault().send(BusCode.SECOND);
                     dialog.dismiss();
