@@ -49,4 +49,10 @@
     <string name="common_getcode">获取验证码</string>
     <string name="common_ssetpwd">请输入验证码</string>
     <string name="common_gbgogle">关闭谷歌验证</string>
+    <string name="common_verify_email">Please enter the mailbox verification code</string>
+    <string name="common_input_email_verify">Please enter the mailbox verification code</string>
+    <string name="common_make_more">Buy more</string>
+    <string name="common_make_empty">Short selling</string>
+    <string name="common_tips">Tips</string>
+    <string name="common_close">Close</string>
 </resources>

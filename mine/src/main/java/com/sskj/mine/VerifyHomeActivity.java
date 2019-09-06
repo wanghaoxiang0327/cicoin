@@ -89,39 +89,38 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
             switch (mUserInfo.getStatus()) {  // 实名认证状态   1 未认证 2 待审核 3 已通过  4拒绝
                 case 1:
                     state1.setVisibility(View.GONE);
-                    state2.setText("待认证");
+                    state2.setText(getString(R.string.mine_no_decertification));
                     break;
                 case 2:
-                    state2.setText("审核中");
+                    state2.setText(getString(R.string.mine_verifyHomeActivity7));
                     break;
                 case 3:
                     state1.setVisibility(View.VISIBLE);
-                    state2.setText("认证成功");
-                    tv_name.setText(SpUtil.getString("mine_name","****"));
-                    tv_idcard.setText(SpUtil.getString("mine_idno","****"));
+                    state2.setText(getString(R.string.mine_decertification_success));
+                    tv_name.setText(SpUtil.getString("mine_name", "****"));
+                    tv_idcard.setText(SpUtil.getString("mine_idno", "****"));
                     break;
                 case 4:
-                    state2.setText("认证失败");
+                    state2.setText(getString(R.string.mine_decertification_fail));
                     break;
             }
             switch (mUserInfo.getAuth_status()) {  // 高级实名认证   1:未认证 2:待审核 3:已认证 4:审核未通过
                 case 1:
                     state3.setVisibility(View.GONE);
-                    state4.setText("待认证");
+                    state4.setText(getString(R.string.mine_no_decertification));
                     break;
                 case 2:
-                    state4.setText("审核中");
+                    state4.setText(getString(R.string.mine_verifyHomeActivity7));
                     break;
                 case 3:
                     state3.setVisibility(View.VISIBLE);
-                    state4.setText("认证成功");
+                    state4.setText(getString(R.string.mine_decertification_success));
                     break;
                 case 4:
-                    state4.setText("认证失败");
+                    state4.setText(getString(R.string.mine_decertification_fail));
                     break;
             }
         });
-
 
 
     }
@@ -132,7 +131,8 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
         ClickUtil.click(ll_realName, view -> {
             if (mUserInfo == null) {
                 return;
-            } switch (mUserInfo.getStatus()) {  // 实名认证状态   1 未认证 2 待审核 3 已通过  4拒绝
+            }
+            switch (mUserInfo.getStatus()) {  // 实名认证状态   1 未认证 2 待审核 3 已通过  4拒绝
                 case 1:
                     VerifyFirstActivity.start(this);
 

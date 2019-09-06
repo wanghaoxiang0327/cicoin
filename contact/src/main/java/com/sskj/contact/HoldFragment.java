@@ -9,6 +9,7 @@ import com.sskj.common.DividerLineItemDecoration;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
+import com.sskj.common.data.CoinBean;
 import com.sskj.common.helper.DataSource;
 import com.sskj.common.helper.SmartRefreshHelper;
 import com.sskj.common.rxbus.RxBus;
@@ -74,7 +75,7 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
                 holder.setText(R.id.tv_order_type, item.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty))
                         .setTextColor(R.id.tv_order_type, item.getType() == 1 ? color(R.color.common_red) : color(R.color.common_green))
                         .setText(R.id.tv_price_type, item.getOtype() == 1 ? getString(R.string.contact_dealFragment7) : getString(R.string.contact_dealFragment8))
-                        .setText(R.id.tv_coin_name, item.getCode())
+                        .setText(R.id.tv_coin_name, item.getCode().replace("_", "/").toUpperCase())
                         .setText(R.id.tv_create_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
                         .setText(R.id.tv_order_lever, item.getLeverage())
                         .setText(R.id.tv_hold_price, NumberUtils.keepMaxDown(item.getBuyprice(), 4))
@@ -105,6 +106,19 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
         };
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updateCoin(CoinBean coinBean) {
+        if (orderAdapter != null) {
+            for (int i = 0; i < orderAdapter.getData().size(); i++) {
+                if (orderAdapter.getData().get(i).getCode().equals(coinBean.getCode())) {
+                    HoldOrder holdOrder = orderAdapter.getData().get(i);
+                    holdOrder.setNewprice(coinBean.getPrice() + "");
+                    orderAdapter.getData().set(i, holdOrder);
+                    orderAdapter.notifyItemChanged(i);
+                }
+            }
+        }
+    }
 
     @Override
     public void initData() {

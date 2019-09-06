@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.fastjson.JSONException;
 import com.github.nukc.stateview.StateView;
 import com.hjq.toast.ToastUtils;
 import com.lzy.okgo.exception.HttpException;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.sskj.common.R;
+import com.sskj.common.http.ApiException;
 
 import java.net.UnknownHostException;
 import java.util.List;
@@ -15,8 +18,9 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * 实现自动下拉刷新，加载更多
- * @author Hey
+ *
  * @param <T>
+ * @author Hey
  */
 public class SmartRefreshHelper<T> extends BaseHelper<T> implements LoadListener<T>, IRefreshView<T> {
 
@@ -40,6 +44,10 @@ public class SmartRefreshHelper<T> extends BaseHelper<T> implements LoadListener
         this.adapter = adapter;
         wrapRefresh(adapter.getContentView());
         stateView = StateView.inject(mRefreshLayout);
+        stateView.setEmptyResource(R.layout.common_empty_view);
+        stateView.setLoadingResource(R.layout.common_loading_view);
+        stateView.setRetryResource(R.layout.common_error_view);
+        stateView.setAnimatorProvider(new FadeAnimatorProvider());
         stateView.setOnRetryClickListener(() -> {
             loadData();
         });
@@ -54,7 +62,11 @@ public class SmartRefreshHelper<T> extends BaseHelper<T> implements LoadListener
             adapter.addMoreData(data);
             mRefreshLayout.finishLoadMore();
         }
-        stateView.showContent();
+        if ((refresh && data == null) || (refresh && data.size() == 0)) {
+            stateView.showEmpty();
+        } else {
+            stateView.showContent();
+        }
         mRefreshLayout.setNoMoreData(!dataSource.hasMore());
     }
 
@@ -72,13 +84,21 @@ public class SmartRefreshHelper<T> extends BaseHelper<T> implements LoadListener
             } else {
                 ToastUtils.show("网络好像有点问题~");
             }
-        }else if (e instanceof HttpException){
+        } else if (e instanceof HttpException) {
             if (adapter.getCount() == 0) {
                 stateView.showRetry();
             } else {
                 ToastUtils.show("服务器好像有点问题~");
             }
+        } else if (e instanceof ApiException) {
+            adapter.setRefreshData(null);
+            stateView.showEmpty();
+        } else if (e instanceof JSONException) {
+            stateView.showEmpty();
+        } else {
+            stateView.showRetry();
         }
+
     }
 
     @Override
@@ -93,6 +113,11 @@ public class SmartRefreshHelper<T> extends BaseHelper<T> implements LoadListener
         loadData();
     }
 
+    public void setDataSource(IDataSoucre<T> dataSource, boolean showLoading) {
+        this.dataSource = dataSource;
+        loadData(showLoading);
+    }
+
 
     @Override
     public void refresh() {
@@ -104,11 +129,19 @@ public class SmartRefreshHelper<T> extends BaseHelper<T> implements LoadListener
         mRefreshLayout.autoLoadMore();
     }
 
-    @Override
-    public void loadData() {
+
+    public void loadData(boolean showLoading) {
+        if (showLoading) {
+            stateView.showLoading();
+        }
         dataSource.refresh(this);
     }
 
+    @Override
+    public void loadData() {
+        stateView.showLoading();
+        dataSource.refresh(this);
+    }
 
     /**
      * 包裹模式 在view的外层包裹上RefreshLayout

@@ -147,6 +147,7 @@ public class ContactCreateDialog extends BaseDialogFragment<CreateDialogPresente
         if (2 == orderBean.getPriceType().value) {
             RxBus.getDefault().post("LimitPriceSuccess");
         }
+        RxBus.getDefault().post("makeOrderSuccess");
         getDialog().dismiss();
     }
 

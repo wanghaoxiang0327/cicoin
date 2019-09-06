@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:background_color="@color/common_action_bar"
-        app:title="语言"
+        app:title="@string/mine_lang"
         app:title_color="@color/common_text_sun" />
 
     <com.allen.library.SuperTextView

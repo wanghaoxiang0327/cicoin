@@ -249,7 +249,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
         if (registerType == RegisterType.MOBILE) {
             etNum.setHint(getString(R.string.login_input_mobile));
             etNum.setInputType(InputType.TYPE_CLASS_PHONE);
-            t1.setText("手机号");
+            t1.setText(getString(R.string.login_register_phone_number));
             mobileLine.setVisibility(View.VISIBLE);
             emailLine.setVisibility(View.INVISIBLE);
             mobile.setTextColor(Color.parseColor("#255bfc"));
@@ -257,7 +257,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
             mobile.setTextSize(16);
             email.setTextSize(14);
         } else {
-            t1.setText("邮箱");
+            t1.setText(getString(R.string.login_register_email_number));
             etNum.setHint(getString(R.string.login_input_email));
             etNum.setInputType(InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE);
             mobileLine.setVisibility(View.INVISIBLE);
@@ -273,7 +273,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
      * 发送验证码成功
      */
     public void sendVerifyCodeSuccess() {
-        ToastUtils.show("验证码已发送，请注意查收");
+        ToastUtils.show(getString(R.string.login_msg_send_success_des));
     }
 
     public void registerCheck() {
@@ -298,13 +298,13 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
                             }
                             startTimeDown(tvCode);
                         } else {
-                            Toast.makeText(getApplicationContext(), "验证失败", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.login_check_fail), Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onError(String msg) {
-                        Toast.makeText(getApplicationContext(), "验证出错：" + msg, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.login_check_fail) + msg, Toast.LENGTH_LONG).show();
                     }
 
                     @Override

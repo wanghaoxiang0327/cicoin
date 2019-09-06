@@ -10,7 +10,9 @@ import com.sskj.common.http.HttpObserver;
 import com.sskj.common.http.HttpResult;
 import com.sskj.common.http.JsonCallBack;
 import com.sskj.common.http.RxUtils;
+import com.sskj.common.rxbus.RxBus;
 import com.sskj.contact.ContractFragment;
+import com.sskj.contact.data.BalanceInfo;
 import com.sskj.contact.data.CoinInfo;
 
 import java.util.List;
@@ -31,6 +33,7 @@ class ContractPresenter extends BasePresenter<ContractFragment> {
                 });
 
     }
+
 
     public void getCoinInfo(String code) {
         OkGo.<HttpResult<CoinInfo>>get(HttpConfig.BASE_URL + HttpConfig.GET_LEVER)

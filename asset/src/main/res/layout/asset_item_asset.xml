@@ -35,7 +35,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
-            android:visibility="gone"
             android:gravity="right"
             android:text="@string/asset_bill_detail"
             android:textColor="@color/common_action_text"

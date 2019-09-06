@@ -169,8 +169,8 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         initPriceType();
         initTradeType();
         initPoint();
-        tvUnit.setText(code.split("_")[0]);
-        edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
+        tvUnit.setText(code.split("_")[0].toUpperCase());
+        edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(4)});
         edtNum.setFilters(new InputFilter[]{new MoneyValueFilter(2)});
         userViewModel.getUser().observe(this, new Observer<UserBean>() {
             @Override
@@ -225,6 +225,14 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void makeOrder(String makeOrder) {
+        if ("makeOrderSuccess".equals(makeOrder)) {
+            loadData();
+            edtNum.getText().clear();
+        }
+    }
+
     private void initPoint() {
         String[] pointTabs = new String[]{"25%", "50%", "75%", "100%"};
         pointTabLayout.setTabData(pointTabs);
@@ -233,6 +241,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
             public void onTabSelect(int position) {
                 if (position != -1) {
                     try {
+                        calculateMaxTrade();
                         changeByPosition = true;
                         BigDecimal p = new BigDecimal(percentFormat.parse(pointTabs[position]).floatValue());
                         edtNum.setText(NumberUtils.keepDown(maxNum.multiply(p), 0));
@@ -241,7 +250,6 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                } else {
                 }
             }
 
@@ -265,7 +273,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
             } else {
                 priceType = Price.LIMIT;
                 limitPriceLayout.setVisibility(View.VISIBLE);
-                edtPrice.setText(NumberUtils.keep(price, DigitUtils.getDigit(code)));
+                edtPrice.setText(NumberUtils.keep(price, 4));
                 tvMarketPrice.setVisibility(View.GONE);
             }
         });
@@ -450,7 +458,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
             if (!data.getTrans_fee().startsWith("%")) {
                 fee = new BigDecimal(Float.parseFloat(data.getTrans_fee().substring(0, data.getTrans_fee().indexOf("%"))) / 100);
             }
-            tvUnit.setText(data.getCode().split("_")[0]);
+            tvUnit.setText(data.getCode().split("_")[0].toUpperCase());
             initLevel();
         }
     }
@@ -495,7 +503,8 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
     public void setBalance(BalanceInfo data) {
         if (data != null) {
-            tvUsableUsdt.setText(data.balance + "usdt");
+            balance = new BigDecimal(data.balance);
+            tvUsableUsdt.setText(data.balance + "USDT");
         }
     }
 }

@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:text="签到"
+                android:text="@string/mine_sign_in"
                 android:textColor="#255bfc"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -138,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="账户资产"
+                android:text="@string/mine_account_asset"
                 android:textColor="@color/center_gray"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -149,7 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="总资产折合(USDT)"
+                android:text="@string/mine_account_all_asset"
                 android:textColor="@color/center_text_color"
                 app:layout_constraintStart_toStartOf="@+id/tv_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_zc" />
@@ -159,43 +159,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:tint="@color/center_id_text"
                 android:src="@drawable/center_eye"
+                android:tint="@color/center_id_text"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_zc_info"
                 app:layout_constraintStart_toEndOf="@+id/tv_zc_info"
                 app:layout_constraintTop_toTopOf="@+id/tv_zc_info" />
 
-<android.support.constraint.Guideline
-    android:id="@+id/line"
-    android:layout_width="wrap_content"
-    app:layout_constraintEnd_toEndOf="@+id/view_info_center"
-    android:orientation="vertical"
-    app:layout_constraintGuide_end="25dp"
-    android:layout_height="match_parent" />
+            <android.support.constraint.Guideline
+                android:id="@+id/line"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/view_info_center"
+                app:layout_constraintGuide_end="25dp" />
+
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:maxLength="13"
-                tools:text="14dddbbbbbbbbddddd"
                 android:textColor="@color/center_text_color"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/line"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_zc_info"
-                app:layout_constraintTop_toTopOf="@+id/tv_zc_info" />
+                app:layout_constraintEnd_toEndOf="@+id/line"
+                app:layout_constraintTop_toTopOf="@+id/tv_zc_info"
+                tools:text="14dddbbbbbbbbddddd" />
 
             <TextView
                 android:id="@+id/tv_cny"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                tools:text="≈2.65CNY"
                 android:textColor="@color/center_gray"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="@+id/line"
-                app:layout_constraintTop_toBottomOf="@+id/tv_price" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_price"
+                tools:text="≈2.65CNY" />
 
 
             <android.support.v7.widget.RecyclerView

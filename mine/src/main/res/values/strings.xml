@@ -140,6 +140,8 @@
     <string name="mine_mine_activity_teamleavl">手机号</string>
     <string name="mine_mine_activity_team330">注册时间</string>
     <string name="mine_wdkf_title">我的客户</string>
+    <string name="mine_helper_center">帮助中心</string>
+    <string name="mine_about_us">关于我们</string>
     <string name="mine_wdyj_title">我的佣金</string>
     <string name="mine_mine_activity_yj">佣金</string>
     <string name="mine_mine_activity_my">我的推广</string>
@@ -186,4 +188,21 @@
     <string name="mine_certification_fail">认证失败，请</string>
     <string name="mine_recertification">重新认证</string>
     <string name="mine_certification_fail_tip">失败原因：</string>
+    <string name="mine_sign_in">签到</string>
+    <string name="mine_no_sign_in">已签到</string>
+    <string name="mine_confirm">确定</string>
+    <string name="mine_sign_des">签到成成，恭喜您获得 +5原力</string>
+    <string name="mine_to_complete_task">去完成任务</string>
+    <string name="mine_account_asset">账户资产</string>
+    <string name="mine_account_all_asset">总资产折合(USDT)</string>
+    <string name="mine_security_level">安全级别：</string>
+    <string name="mine_verification_Des">请至少开启两项安全验证</string>
+    <string name="mine_phone">手机</string>
+    <string name="mine_email">邮箱</string>
+    <string name="mine_other_setting">其他设置</string>
+    <string name="mine_low">低</string>
+    <string name="mine_middle">中</string>
+    <string name="mine_high">高</string>
+    <string name="mine_version_manger">版本管理</string>
+    <string name="mine_lang">语言</string>
 </resources>

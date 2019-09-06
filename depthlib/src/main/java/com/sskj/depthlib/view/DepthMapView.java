@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -34,7 +36,7 @@ public class DepthMapView extends View {
     //右侧委托量绘制个数
     private int mLineCount;
     //背景颜色
-    private int mBackgroundColor;
+    public int mBackgroundColor;
 
     private boolean mIsHave;
     //是否是长按
@@ -78,6 +80,7 @@ public class DepthMapView extends View {
     private HashMap<Integer, Float> mMapY;
     private Float[] mBottomPrice;
     private GestureDetector mGestureDetector;
+    public boolean isBig;
 
     public DepthMapView(Context context) {
         this(context, null);
@@ -132,18 +135,35 @@ public class DepthMapView extends View {
                 mDotRadius = typedArray.getDimensionPixelSize(R.styleable.DepthMapView_depth_mv_dot_radius, ResourceUtil.dp2px(getContext(), mDotRadius));
                 mCircleRadius = typedArray.getDimensionPixelSize(R.styleable.DepthMapView_depth_mv_circle_radius, ResourceUtil.dp2px(getContext(), mCircleRadius));
                 mBackgroundColor = typedArray.getColor(R.styleable.DepthMapView_depth_mv_background_color, ResourceUtil.getColor(getContext(), R.color.depth_background));
+                mSellPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depth_mv_sell_path_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_path)));
+                mBuyPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depth_mv_buy_path_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_path)));
+                if (!isBig) {
+                    Shader mShader = new LinearGradient(0.0F, 0.0F, 0.0F, 1000.0F, new int[]{0, 0}, (float[]) null, Shader.TileMode.REPEAT);
+                    this.mBuyPathPaint.setShader(mShader);
+                    this.mSellPathPaint.setShader(mShader);
+                    mBackgroundColor = typedArray.getColor(R.styleable.DepthMapView_depth_mv_background_color, ResourceUtil.getColor(getContext(), R.color.common_white));
+                } else {
+                    mBackgroundColor = typedArray.getColor(R.styleable.DepthMapView_depth_mv_background_color, ResourceUtil.getColor(getContext(), R.color.common_background_dark));
+                }
+                mBuyLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depth_mv_buy_line_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_line)));
+                mSellLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depth_mv_sell_line_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_line)));
                 mBuyLinePaint.setStrokeWidth(typedArray.getDimensionPixelSize(R.styleable.DepthMapView_depth_mv_line_width, ResourceUtil.dp2px(getContext(), 1.5f)));
                 mSellLinePaint.setStrokeWidth(typedArray.getDimensionPixelSize(R.styleable.DepthMapView_depth_mv_line_width, ResourceUtil.dp2px(getContext(), 1.5f)));
                 mTextPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depth_mv_text_color, ResourceUtil.getColor(getContext(), R.color.depth_text_color)));
                 mTextPaint.setTextSize(typedArray.getDimension(R.styleable.DepthMapView_depth_mv_text_size, ResourceUtil.getDimension(getContext(), R.dimen.depth_text_size)));
-                mBuyLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depth_mv_buy_line_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_line)));
-                mSellLinePaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depth_mv_sell_line_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_line)));
-                mBuyPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depth_mv_buy_path_color, ResourceUtil.getColor(getContext(), R.color.depth_buy_path)));
-                mSellPathPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depth_mv_sell_path_color, ResourceUtil.getColor(getContext(), R.color.depth_sell_path)));
                 mSelectorBackgroundPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_depth_mv_selector_background_color, ResourceUtil.getColor(getContext(), R.color.depth_selector)));
             } finally {
                 typedArray.recycle();
             }
+        }
+    }
+
+    public void setShader(boolean isBuy, int colorTop, int colorMiddle, int colorEnd, int endY) {
+        Shader mShader = new LinearGradient(0.0F, 0.0F, 0.0F, (float) endY, new int[]{colorTop, colorMiddle, colorEnd}, new float[]{0.1F, 0.3F, 0.5F}, Shader.TileMode.REPEAT);
+        if (isBuy) {
+            this.mBuyPathPaint.setShader(mShader);
+        } else {
+            this.mSellPathPaint.setShader(mShader);
         }
     }
 

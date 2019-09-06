@@ -18,15 +18,15 @@
 
 
     <TextView
-        android:paddingTop="17dp"
         android:id="@+id/gradle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/white"
         android:paddingStart="20dp"
+        android:paddingTop="17dp"
         android:paddingEnd="20dp"
-        android:text="安全级别：低"
+        android:text="@string/mine_security_level"
         android:textColor="#2e6afe"
         android:textSize="15sp" />
 
@@ -36,8 +36,8 @@
         android:background="@color/white"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingEnd="20dp">
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp">
 
         <ProgressBar
             android:id="@+id/jb"
@@ -55,9 +55,9 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:paddingStart="20dp"
-        android:paddingBottom="10dp"
         android:paddingEnd="20dp"
-        android:text="请至少开启两项安全验证"
+        android:paddingBottom="10dp"
+        android:text="@string/mine_verification_Des"
         android:textColor="#2e6afe"
         android:textSize="10sp" />
 
@@ -75,10 +75,9 @@
         app:sDividerLineType="bottom"
         app:sLeftTextColor="@color/common_text"
         app:sLeftTextSize="16sp"
-        app:sLeftTextString="手机"
+        app:sLeftTextString="@string/mine_phone"
         app:sRightTextColor="@color/common_hint"
         app:sRightTextSize="14sp"
-        app:sRightTextString="已绑定"
         app:sRightTvDrawableRight="@mipmap/common_arrow_right"
         app:sUseRipple="false" />
 
@@ -95,7 +94,7 @@
         app:sDividerLineType="bottom"
         app:sLeftTextColor="@color/common_text"
         app:sLeftTextSize="16sp"
-        app:sLeftTextString="邮箱"
+        app:sLeftTextString="@string/mine_email"
         app:sRightTextColor="@color/common_hint"
         app:sRightTextSize="14sp"
         app:sRightTextString="1251115115@qq.com"
@@ -130,7 +129,7 @@
         app:sDividerLineType="none"
         app:sLeftTextColor="@color/common_text"
         app:sLeftTextSize="16sp"
-        app:sLeftTextString="身份认证"
+        app:sLeftTextString="@string/mine_verify_user"
         app:sRightTextColor="@color/common_hint"
         app:sRightTextSize="14sp"
         app:sRightTvDrawableRight="@mipmap/common_arrow_right" />
@@ -141,7 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="17dp"
-        android:text="其他设置"
+        android:text="@string/mine_other_setting"
         android:textColor="@color/common_text"
         android:textSize="14sp" />
 

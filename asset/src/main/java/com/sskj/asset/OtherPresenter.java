@@ -2,6 +2,7 @@ package com.sskj.asset;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okrx2.adapter.FlowableBody;
+import com.sskj.asset.data.OtherRecordEntity;
 import com.sskj.common.App;
 import com.sskj.common.base.BasePresenter;
 import com.sskj.asset.OtherFragment;
@@ -21,13 +22,13 @@ import io.reactivex.Flowable;
  * Create at  2019/09/05 21:26:00
  */
 class OtherPresenter extends BasePresenter<OtherFragment> {
-    public Flowable<List<RechargeEntity>> getOtherDetailList(int page, int size, String pid) {
-        return OkGo.<HttpResult<Page<RechargeEntity>>>post(HttpConfig.BASE_URL + HttpConfig.GET_OTHER_RECORD)
+    public Flowable<List<OtherRecordEntity>> getOtherDetailList(int page, int size, String pid) {
+        return OkGo.<HttpResult<Page<OtherRecordEntity>>>post(HttpConfig.BASE_URL + HttpConfig.GET_OTHER_RECORD)
                 .params("p", page)
                 .params("pid", pid)
                 .params("s", size)
                 .params("lang", LocalManageUtil.getLanguage(App.INSTANCE))
-                .converter(new JsonConvert<HttpResult<Page<RechargeEntity>>>() {
+                .converter(new JsonConvert<HttpResult<Page<OtherRecordEntity>>>() {
                 })
                 .adapt(new FlowableBody<>())
                 .map(pageHttpResult -> {

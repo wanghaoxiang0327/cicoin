@@ -53,6 +53,8 @@
     <string name="common_getcode">获取验证码</string>
     <string name="common_ssetpwd">请输入验证码</string>
     <string name="common_gbgogle">关闭谷歌验证</string>
+    <string name="common_tips">提醒</string>
+    <string name="common_close">关闭</string>
 
 
 </resources>

@@ -25,4 +25,10 @@
     <color name="common_item_divider">#1f2e44</color>
     <color name="common_background_dark">#0f1826</color>
     <color name="common_kline_num">#8e94a3</color>
+    <color name="common_depth_buy_top">#a0e6d1</color>
+    <color name="common_depth_buy_middle">#d2f4e9</color>
+    <color name="common_depth_buy_bottom">#e5f9f3</color>
+    <color name="common_depth_sell_top">#ff7f7f</color>
+    <color name="common_depth_sell_middle">#ffe1e1</color>
+    <color name="common_depth_sell_bottom">#ffedec</color>
 </resources>

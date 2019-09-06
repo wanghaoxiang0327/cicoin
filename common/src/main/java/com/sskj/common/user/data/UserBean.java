@@ -38,6 +38,8 @@ public class UserBean {
     private String uid;
     private String mobile;
     private String mail;
+    private String name;
+    private String realname;
     private String nickname;
     private String email;
     private String tgno;
@@ -261,6 +263,22 @@ public class UserBean {
 
     public String getNickname() {
         return nickname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
     }
 
     public void setNickname(String nickname) {

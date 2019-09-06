@@ -6,22 +6,19 @@
     android:background="@color/common_background"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
         android:background="@color/common_action_bar"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_margin"
         android:paddingRight="@dimen/common_margin">
 
         <ImageView
             android:id="@+id/left_img"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:paddingTop="18dp"
-            android:paddingRight="18dp"
-            android:paddingBottom="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
             android:src="@mipmap/common_icon_back"
             android:tint="@color/common_text" />
 
@@ -35,7 +32,7 @@
             app:tabSelectedTextColor="@color/common_text"
             app:textUnselectColor="@color/common_hint"
             app:textsize="18sp" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/content"

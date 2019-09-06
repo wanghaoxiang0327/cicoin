@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <string name="trust_price">Principal Price</string>
+    <string name="trust_quantity">Entrustment</string>
+</resources>

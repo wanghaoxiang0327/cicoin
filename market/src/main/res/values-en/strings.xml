@@ -45,13 +45,27 @@
     <string name="market_market_activity_profit_share190">open price</string>
     <string name="market_market_item_hold360">stop loss </string>
     <string name="marketStrSummaryFragment201">万</string>
-
-    <string name="xmlfragment_summary28">发行时间</string>
-    <string name="xmlfragment_summary46">发行总量</string>
-    <string name="xmlfragment_summary64">流通总量</string>
-    <string name="xmlfragment_summary82">众筹价格</string>
-    <string name="xmlfragment_summary100">白皮书</string>
-    <string name="xmlfragment_summary118">官网</string>
-    <string name="xmlfragment_summary136">区块查询</string>
-    <string name="xmlfragment_summary150">简介</string>
+    <string name="market_amount">amount</string>
+    <string name="xmlfragment_summary28">Time of issue</string>
+    <string name="xmlfragment_summary46">Total issuance</string>
+    <string name="xmlfragment_summary64">Total circulation</string>
+    <string name="xmlfragment_summary82">Crowdsourcing Price</string>
+    <string name="xmlfragment_summary100">white paper</string>
+    <string name="xmlfragment_summary118">Official website</string>
+    <string name="xmlfragment_summary136">Block query</string>
+    <string name="xmlfragment_summary150">brief introduction</string>
+    <string name="market_coins_name">Name</string>
+    <string name="market_news_price">Latest Price</string>
+    <string name="market_quote_change">Up and down</string>
+    <string name="market_buy">Bid</string>
+    <string name="market_sale">Selling</string>
+    <string name="market_count">Number(BTC)</string>
+    <string name="market_price">Price(USDT)</string>
+    <string name="market_data">time</string>
+    <string name="market_direction">direction</string>
+    <string name="market_chengjiao_buy">Purchase</string>
+    <string name="market_chengjiao_sell">Sell out</string>
+    <string name="market_depth">depth</string>
+    <string name="market_Deal">Deal</string>
+    <string name="market_brief_introduction">briefIntroduction</string>
 </resources>

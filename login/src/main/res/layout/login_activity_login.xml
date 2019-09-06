@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginTop="26dp"
-            android:text="登录CICOIN"
+            android:text="@string/login_login_cicoin"
             android:textColor="#25272d"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -43,10 +43,10 @@
             android:layout_marginTop="88dp"
             android:layout_marginEnd="35dp"
             android:background="@null"
-            android:hint="请输入手机号或邮箱"
+            android:hint="@string/login_phone_des"
             android:paddingStart="5dp"
-            android:singleLine="true"
             android:paddingEnd="5dp"
+            android:singleLine="true"
             android:textColor="#25272d"
             android:textColorHint="#c0c1c2"
             android:textSize="13sp"
@@ -89,9 +89,9 @@
             android:imeOptions="actionNext"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:singleLine="true"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
+            android:singleLine="true"
             android:textColor="#25272d"
             android:textColorHint="#c0c1c2"
             android:textSize="13sp"
@@ -114,9 +114,9 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:src="@mipmap/login_yincang"
+            android:tint="#c0c1c2"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/etPwd"
-            android:tint="#c0c1c2"
             app:layout_constraintEnd_toEndOf="@+id/etPwd"
             app:layout_constraintTop_toTopOf="@+id/etPwd" />
 
@@ -125,7 +125,7 @@
             android:layout_width="0dp"
             android:layout_height="44dp"
             android:layout_marginTop="49dp"
-            android:text="登录"
+            android:text="@string/login_login"
             android:textColor="@color/white"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="@id/etNum"
@@ -139,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="忘记密码？"
+            android:text="@string/login_login_activity_forget_ps40"
             android:textColor="#255bfc"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/login"
@@ -150,7 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="81dp"
-            android:text="还没有CICOIN账号，"
+            android:text="@string/login_no_account"
             android:textColor="#c0c1c2"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -159,19 +159,20 @@
 
         <TextView
             android:id="@+id/register"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="注册"
+            android:text="@string/login_register"
             android:textColor="#255bfc"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tips"
             app:layout_constraintStart_toEndOf="@+id/tips"
             app:layout_constraintTop_toTopOf="@+id/tips" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            app:layout_constraintTop_toBottomOf="@+id/tips"/>
+            app:layout_constraintTop_toBottomOf="@+id/tips" />
 
     </android.support.constraint.ConstraintLayout>
 

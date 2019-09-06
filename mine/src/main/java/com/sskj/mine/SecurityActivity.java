@@ -99,33 +99,33 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
                     }
                 }
                 if (!TextUtils.isEmpty(userBean.getMobile())) {
-                    menuSmsVerify.setRightString("已绑定");
+                    menuSmsVerify.setRightString(getString(R.string.mine_verifySettingActivity2));
                     bindSMS = true;
                 } else {
                     menuSmsVerify.setRightString(getString(R.string.mine_securityActivity1));
                     bindSMS = false;
                 }
-                String jb = "低";
+                String jb = getString(R.string.mine_low);
                 int proress = 33;
                 switch (userBean.getUserLevel()) {
                     case "1":
-                        jb = "低";
+                        jb = "";
                         proress = 33;
                         break;
                     case "2":
-                        jb = "中";
+                        jb = getString(R.string.mine_middle);
                         proress = 66;
                         break;
                     case "3":
-                        jb = "高";
+                        jb = getString(R.string.mine_high);
                         proress = 100;
                         break;
                     default:
-                        jb = "低";
+                        jb = getString(R.string.mine_low);
                         proress = 33;
                         break;
                 }
-                gradle.setText("安全级别：" + jb);
+                gradle.setText(getString(R.string.mine_security_level) + jb);
                 this.jb.setProgress(proress);
             }
         });
@@ -137,7 +137,7 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
             if (!bindSMS) {
                 BindMobileOrEmailActivity.start(this, Verify.SMS);
             } else {
-                ToastUtils.show("已绑定");
+                ToastUtils.show(getString(R.string.mine_verifySettingActivity2));
             }
         });
         ClickUtil.click(menuEmailVerify, view -> {

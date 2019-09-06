@@ -20,10 +20,16 @@ class OrderRecordsPresenter extends BasePresenter<OrderRecordsActivity> {
         OkGo.<HttpResult<DetailOrder>>get(HttpConfig.BASE_URL + HttpConfig.GET_TONGJI)
                 .tag(this)
                 .params("code", code)
-                .execute(new JsonCallBack<HttpResult<DetailOrder>>(this) {
+                .execute(new JsonCallBack<HttpResult<DetailOrder>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<DetailOrder> result) {
-                        mView.setDetailInfo(result.getData());
+                        try {
+                            if (result != null && result.getData() != null) {
+                                mView.setDetailInfo(result.getData());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
     }

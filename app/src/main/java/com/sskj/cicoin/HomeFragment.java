@@ -98,7 +98,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         ft.replace(R.id.home_coin_list, marketListFragment);
         ft.commitAllowingStateLoss();
         fragmentList.add(CoinFragment.newInstance(1));
-        fragmentList.add(CoinFragment.newInstance(2));
+//        fragmentList.add(CoinFragment.newInstance(2));
         coinFragmentPager = new CoinFragmentPager(getFragmentManager(), fragmentList);
         viewPager.setAdapter(coinFragmentPager);
         indicatorLine.setViewPager(viewPager);
