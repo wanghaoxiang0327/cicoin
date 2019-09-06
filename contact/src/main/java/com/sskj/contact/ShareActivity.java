@@ -42,6 +42,12 @@ public class ShareActivity extends BaseActivity<SharePresenter> {
     TextView tvCoinCount;
     @BindView(R2.id.tv_open_price)
     TextView tvOpenPrice;
+    @BindView(R2.id.tv_coin_name_des)
+    TextView tvCoinNameDes;
+    @BindView(R2.id.tv_coin_count_des)
+    TextView tvCoinCountDes;
+    @BindView(R2.id.tv_price_des)
+    TextView tvPriceDes;
     @BindView(R2.id.iv_share_code)
     ImageView ivShareCode;
     @BindView(R2.id.rl_share)
@@ -77,8 +83,14 @@ public class ShareActivity extends BaseActivity<SharePresenter> {
             tvCode.setText(NumberUtils.keepMaxDown(dealOrder.getProfit(), 4) + "USDT");
             if (dealOrder.getProfit().contains("-")) {
                 tvCode.setTextColor(color(R.color.common_green));
+                tvCoinNameDes.setTextColor(color(R.color.common_green));
+                tvCoinCountDes.setTextColor(color(R.color.common_green));
+                tvPriceDes.setTextColor(color(R.color.common_green));
             } else {
                 tvCode.setTextColor(color(R.color.common_red));
+                tvCoinNameDes.setTextColor(color(R.color.common_red));
+                tvCoinCountDes.setTextColor(color(R.color.common_red));
+                tvPriceDes.setTextColor(color(R.color.common_red));
             }
             tvCoinName.setText(dealOrder.getPname());
             tvCoinCount.setText(NumberUtils.keepMaxDown(dealOrder.getBuynum(), 4));

@@ -111,6 +111,11 @@ public class TipsNewDialog extends AlertDialog {
         return this;
     }
 
+    public TipsNewDialog setConfirmTextColor(int color) {
+        ensure.setShapeSolidColor(color);
+        return this;
+    }
+
     public TipsNewDialog setCancelText(String text) {
         tvClose.setText(text);
         return this;

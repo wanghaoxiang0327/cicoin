@@ -21,9 +21,12 @@ import com.sskj.contact.data.DetailOrder;
 import com.sskj.contact.dialog.ContactCloseAllOrderDialog;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Flowable;
+import io.reactivex.functions.Consumer;
 
 /**
  * @author Hey
@@ -114,7 +117,13 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
 
     @Override
     public void loadData() {
-        mPresenter.getDetailInfo(code);
+        Flowable.interval(0, 5, TimeUnit.SECONDS).subscribe(new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                mPresenter.getDetailInfo(code);
+            }
+        });
+
     }
 
     public static void start(Context context, String code) {

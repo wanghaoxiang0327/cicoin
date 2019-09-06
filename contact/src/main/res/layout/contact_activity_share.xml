@@ -95,6 +95,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_coin_name_des"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/contact_share_usdt_contract"
@@ -120,6 +121,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_coin_count_des"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/contact_contact_dialog_create_order230"
@@ -145,6 +147,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_price_des"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/contact_share_opening_price"

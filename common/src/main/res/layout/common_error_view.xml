@@ -15,6 +15,6 @@
         android:drawablePadding="10dp"
         android:gravity="center"
         android:padding="@dimen/common_margin"
-        android:text="@string/common_no_data"
+        android:text="出错了,点击重试"
         android:textColor="@color/common_text" />
 </FrameLayout>

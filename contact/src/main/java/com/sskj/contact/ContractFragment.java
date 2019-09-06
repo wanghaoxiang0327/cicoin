@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,8 @@ import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.CoinBean;
+import com.sskj.common.dialog.TipDialog;
+import com.sskj.common.dialog.TipsNewDialog;
 import com.sskj.common.event.ContactChangeCoin;
 import com.sskj.common.router.RoutePath;
 import com.sskj.common.rxbus.RxBus;
@@ -24,6 +27,7 @@ import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.CoinIcon;
 import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.NumberUtils;
+import com.sskj.common.utils.TipUtil;
 import com.sskj.contact.data.CoinInfo;
 
 import java.util.List;
@@ -54,6 +58,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
     BaseAdapter<CoinBean> adapter;
     private String code = "eth_usdt";
     CoinBean coinBean;
+    private String rata;
 
     @Override
     public int getLayoutId() {
@@ -103,9 +108,9 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
                     code = item.getCode();
                     coinBean = item;
                     if (item.getName().contains("_")) {
-                        tvSelectCoin.setText(item.getName());
+                        tvSelectCoin.setText(item.getName().replace("_", "/"));
                     } else {
-                        tvSelectCoin.setText(item.getName() + "_USDT");
+                        tvSelectCoin.setText(item.getName() + "/USDT");
                     }
                     mPresenter.getCoinInfo(code);
                     ContactChangeCoin contactChangeCoin = new ContactChangeCoin(item.getName());
@@ -122,6 +127,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
 
     public void setCoinInfo(CoinInfo data) {
         if (data != null) {
+            rata = data.getTrans_ware();
             tvBurstRate.setText(getString(R.string.contact_contact_fragment_contract130) + (TextUtils.isEmpty(data.getTrans_ware()) ? "---" : data.getTrans_ware()));
             RxBus.getDefault().post(data);
         }
@@ -145,6 +151,14 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
 
         ClickUtil.click(imgMarket, view -> {
             ARouter.getInstance().build(RoutePath.MARKET_DETAIL).withSerializable("coinBean", coinBean).navigation();
+        });
+        ClickUtil.click(tvBurstRate, view -> {
+            new TipsNewDialog(getContext())
+                    .setContent(String.format(getString(R.string.contact_burst_rate_des), rata))
+                    .setConfirmText(getString(R.string.common_common_tip_dialog80))
+                    .setConfirmTextColor(R.color.common_red)
+                    .setCancelVisible(View.GONE)
+                    .show();
         });
     }
 
@@ -190,7 +204,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
         if (data != null && data.size() > 0) {
             code = data.get(0).getCode();
             coinBean = data.get(0);
-            tvSelectCoin.setText(coinBean.getName() + "_USDT");
+            tvSelectCoin.setText(coinBean.getName() + "/USDT");
             adapter.setNewData(data);
             RxBus.getDefault().post(data.get(0));
         }

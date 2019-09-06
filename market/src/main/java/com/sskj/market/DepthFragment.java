@@ -44,6 +44,8 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
     RecyclerView deepRecyclerView;
     @BindView(R2.id.depthMapTip)
     LinearLayout depthMapTip;
+    @BindView(R2.id.ll_depth)
+    LinearLayout llDepth;
     @BindView(R2.id.frameLayout)
     FrameLayout frameLayout;
     private BaseAdapter<DeepData> deepListAdapter;
@@ -69,7 +71,15 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
             isBig = getArguments().getBoolean("isBig");
         }
         if (isBig) {
+            llDepth.setBackgroundResource(R.color.common_background_dark);
             frameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.sp2px(getContext(), 200)));
+            depthMapView.isBig = true;
+            depthMapView.mBackgroundColor = R.color.common_background_dark;
+        } else {
+            llDepth.setBackgroundResource(R.color.common_white);
+            depthMapView.isBig = false;
+            depthMapView.setShader(false, color(R.color.common_depth_buy_top), color(R.color.common_depth_buy_middle), color(R.color.common_depth_buy_bottom), 1000);
+            depthMapView.setShader(true, color(R.color.common_depth_sell_top), color(R.color.common_depth_sell_middle), color(R.color.common_depth_sell_bottom), 1000);
         }
         depthMapView.setOnPointShowListener(show -> {
             if (show) {

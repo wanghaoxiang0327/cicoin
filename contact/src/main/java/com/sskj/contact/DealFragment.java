@@ -80,7 +80,7 @@ public class DealFragment extends BaseFragment<DealPresenter> {
             public void bind(ViewHolder holder, DealOrder item) {
                 holder.setText(R.id.tv_order_type, item.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty))
                         .setText(R.id.tv_opening_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
-                        .setText(R.id.tv_coin_name, item.getPname())
+                        .setText(R.id.tv_coin_name, item.getPname().replace("_", "/").toUpperCase())
                         .setText(R.id.tv_create_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
                         .setText(R.id.tv_order_lever, TimeFormatUtil.SF_FORMAT_J.format(item.getSelltime() * 1000))
                         .setText(R.id.tv_hold_price, NumberUtils.keepMaxDown(item.getBuyprice(), 4))

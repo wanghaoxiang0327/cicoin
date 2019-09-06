@@ -7,4 +7,6 @@
     <color name="depth_buy_path">#0F3031</color>
     <color name="depth_sell_path">#2E2227</color>
     <color name="depth_selector">#DA30343C</color>
+    <color name="depth_small_buy_path">#DA30343C</color>
+    <color name="depth_small_sell_path">#DA30343C</color>
 </resources>
