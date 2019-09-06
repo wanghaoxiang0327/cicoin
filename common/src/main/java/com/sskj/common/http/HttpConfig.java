@@ -17,7 +17,7 @@ public class HttpConfig {
     public static final String GET_PAO = "/home/Forces/maturepaopao";
     public static final String RECEIVE_PAO = "/home/Forces/receivepaopao";
     public static final String NOTICE = "/Home/Ajax/paomadeng";
-    public static final String YL = "/home/Forces/yuanlimingxi ";
+    public static final String YL = "/home/Forces/yuanlimingxi";
     public static final String USDT = "/Home/Forces/shouyimingxi";
     public static final String INV = "/Home/qbw/show_index";
     public static final Object QD = "/Home/Sign/user_sign";

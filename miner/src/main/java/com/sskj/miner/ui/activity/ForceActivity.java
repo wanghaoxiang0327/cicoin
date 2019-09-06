@@ -109,15 +109,17 @@ public class ForceActivity extends BaseActivity<ForcePresenter> {
 
 
     public void setForce(ForceBean data) {
-
         if (page == 1) {
             teamAdapter.setNewData(data.getData());
+            teamAdapter.notifyDataSetChanged();
         } else {
             teamAdapter.addData(data.getData());
+            teamAdapter.notifyDataSetChanged();
         }
 
         if (data.getData() == null || data.getData().isEmpty()) {
             mRefreshLayout.setNoMoreData(true);
+            teamAdapter.notifyDataSetChanged();
         }
 
     }
