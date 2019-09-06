@@ -13,7 +13,6 @@ import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.BuySellData;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.data.DepthData;
-import com.sskj.common.data.PankouPushData;
 import com.sskj.common.event.ContactChangeCoin;
 import com.sskj.common.http.HttpConfig;
 import com.sskj.common.rxbus.RxBus;
@@ -147,7 +146,6 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
         }
     }
 
-
     public List<Pankou> formatList(List<DepthData> data) {
         List<Pankou> list = new ArrayList<>();
         List<Float> totalSize = new ArrayList<>();
@@ -181,7 +179,6 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
         return list;
     }
 
-
     public void startWebSocket() {
         if (webSocket != null) {
             webSocket.closeWebSocket();
@@ -193,28 +190,12 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
             Flowable.just(message)
                     .observeOn(AndroidSchedulers.mainThread())
                     .map(s -> {
-                        //GSON直接解析成对象
-                        return JSONObject.parseObject(message, PankouPushData.class);
+                        return JSONObject.parseObject(message, BuySellData.class);
                     })
                     .subscribeOn(Schedulers.io())
                     .subscribe(buySellData -> {
-                        if (buySellData != null && buySellData.data != null && buySellData.data.size() > 0) {
-                            BuySellData data = new BuySellData();
-                            List<DepthData> bids = new ArrayList<>();
-                            List<DepthData> asks = new ArrayList<>();
-                            for (PankouPushData.PanKou pankou : buySellData.data) {
-                                DepthData depthData = new DepthData();
-                                depthData.setPrice(pankou.price);
-                                depthData.setTotalSize(pankou.amount);
-                                if ("buy".equals(pankou.dc)) {
-                                    bids.add(depthData);
-                                } else if ("sell".equals(pankou.dc)) {
-                                    asks.add(depthData);
-                                }
-                            }
-                            data.setAsks(asks);
-                            data.setBids(bids);
-                            setPankouData(data);
+                        if (buySellData != null) {
+                            setPankouData(buySellData);
                         }
                     });
         });

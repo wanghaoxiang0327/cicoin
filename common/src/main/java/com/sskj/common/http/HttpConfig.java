@@ -66,6 +66,7 @@ public class HttpConfig {
     //交易币种
     public static final String TRADECOIN = "/home/Contract/pro_list";
 
+
     //创建订单
     public static final String CREATE_ORDER = "/home/Contract/create_order";
 

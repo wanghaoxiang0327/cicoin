@@ -21,6 +21,7 @@ import com.binaryfork.spanny.Spanny;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.hey.lib.HeySpinner;
 import com.hjq.toast.ToastUtils;
+import com.sskj.common.App;
 import com.sskj.common.BaseApplication;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.CoinBean;
@@ -140,9 +141,8 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
     //是否选择仓位
     private boolean changeByPosition;
-
+    private UserBean mUserInfo;
     private String code;
-
     private NumberFormat percentFormat = NumberFormat.getPercentInstance();
     private BigDecimal feeMoney;
 
@@ -169,6 +169,12 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         initPriceType();
         initTradeType();
         initPoint();
+        userViewModel.getUser().observe(this, new Observer<UserBean>() {
+            @Override
+            public void onChanged(@Nullable UserBean userBean) {
+                mUserInfo = userBean;
+            }
+        });
         tvUnit.setText(code.split("_")[0].toUpperCase());
         edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(4)});
         edtNum.setFilters(new InputFilter[]{new MoneyValueFilter(2)});
@@ -184,8 +190,12 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
             }
         });
         ClickUtil.click(btnSubmit, view -> {
-            if (!BaseApplication.isLogin()) {
+            if (mUserInfo == null) {
                 ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
+                return;
+            }
+            if (mUserInfo.getStatus() == 1) {
+                ToastUtils.show(App.INSTANCE.getString(R.string.contact_verifyHomeActivity4));
                 return;
             }
             if (priceType == Price.LIMIT) {

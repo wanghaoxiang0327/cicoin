@@ -115,10 +115,10 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
                 return mPresenter.getEntrustOrder(page, size);
             }
         });
-        disposable = Flowable.interval(5, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
+        disposable = Flowable.interval(2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
             @Override
             public void accept(Long aLong) throws Exception {
-                smartRefreshHelper.loadData();
+                smartRefreshHelper.loadData(false);
             }
         });
     }
@@ -148,6 +148,8 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
     public void onDestroy() {
         super.onDestroy();
         RxBus.getDefault().unregister(this);
-        disposable.dispose();
+        if (disposable != null) {
+            disposable.dispose();
+        }
     }
 }

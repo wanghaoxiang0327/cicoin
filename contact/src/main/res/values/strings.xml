@@ -90,4 +90,5 @@
     <string name="contact_tips">提醒</string>
     <string name="contact_close_all_order_des">是否要确认平仓？</string>
     <string name="contact_burst_rate_des">当风险率低于%s 系统会自动强平？</string>
+    <string name="contact_verifyHomeActivity4">请先完成初级实名认证</string>
 </resources>

@@ -65,10 +65,4 @@ public class VerifyFirstActivity extends BaseActivity<VerifyFirstPresenter> {
         finish();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

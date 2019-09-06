@@ -88,4 +88,5 @@
     <string name="contact_one_button_closing">One\nCloseing</string>
     <string name="contact_tips">remind</string>
     <string name="contact_close_all_order_des">Do you want to confirm closing?</string>
+    <string name="contact_verifyHomeActivity4">Please complete the primary real-name certification first</string>
 </resources>

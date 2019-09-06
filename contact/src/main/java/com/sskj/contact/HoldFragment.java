@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
@@ -155,10 +156,10 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
                 return mPresenter.getHoldOrder(code, page, size);
             }
         });
-        disposable = Flowable.interval(5, TimeUnit.SECONDS).subscribe(new Consumer<Long>() {
+        disposable = Flowable.interval(2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
             @Override
             public void accept(Long aLong) throws Exception {
-                smartRefreshHelper.loadData();
+                smartRefreshHelper.loadData(false);
             }
         });
     }
@@ -186,6 +187,8 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        disposable.dispose();
+        if (disposable != null) {
+            disposable.dispose();
+        }
     }
 }
