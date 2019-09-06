@@ -2,14 +2,11 @@ package com.sskj.contact;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.flyco.tablayout.listener.CustomTabEntity;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.tab.TabItem;
@@ -24,8 +21,8 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.Flowable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -33,7 +30,6 @@ import io.reactivex.functions.Consumer;
  * Create at  2019/08/28 09:24:57
  */
 public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
-
     @BindView(R2.id.tv_total)
     TextView tvTotal;
     @BindView(R2.id.tv_useful)
@@ -51,7 +47,7 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
     @BindView(R2.id.tv_close_all)
     TextView tvCloseAll;
     String code;
-
+    Disposable disposable;
 
     private ArrayList<TabItem> tabItems = new ArrayList<>();
     private ArrayList<Fragment> fragments = new ArrayList<>();
@@ -117,13 +113,12 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
 
     @Override
     public void loadData() {
-        Flowable.interval(0, 5, TimeUnit.SECONDS).subscribe(new Consumer<Long>() {
+        disposable = Flowable.interval(0, 5, TimeUnit.SECONDS).subscribe(new Consumer<Long>() {
             @Override
             public void accept(Long aLong) throws Exception {
                 mPresenter.getDetailInfo(code);
             }
         });
-
     }
 
     public static void start(Context context, String code) {
@@ -143,6 +138,11 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
         } else {
             layoutProfit.setBackgroundResource(R.drawable.common_red_bg_5);
         }
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        disposable.dispose();
     }
 }

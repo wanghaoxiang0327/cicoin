@@ -25,11 +25,16 @@ import com.sskj.common.utils.TimeFormatUtil;
 import com.sskj.contact.data.EntrustOrder;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 委托订单
@@ -44,7 +49,7 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
     RecyclerView orderList;
 
     BaseAdapter<EntrustOrder> adapter;
-
+    Disposable disposable;
     int size = 10;
 
     private SmartRefreshHelper<EntrustOrder> smartRefreshHelper;
@@ -99,17 +104,23 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
 
     @Override
     public void loadData() {
+
+    }
+
+    @Override
+    public void lazyLoad() {
         smartRefreshHelper.setDataSource(new DataSource<EntrustOrder>() {
             @Override
             public Flowable<List<EntrustOrder>> loadData(int page) {
                 return mPresenter.getEntrustOrder(page, size);
             }
         });
-    }
-
-    @Override
-    public void lazyLoad() {
-
+        disposable = Flowable.interval(5, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                smartRefreshHelper.loadData();
+            }
+        });
     }
 
     public static EntrustFragment newInstance() {
@@ -137,5 +148,6 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
     public void onDestroy() {
         super.onDestroy();
         RxBus.getDefault().unregister(this);
+        disposable.dispose();
     }
 }

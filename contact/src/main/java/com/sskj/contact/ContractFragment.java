@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
@@ -136,7 +137,11 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
     @Override
     public void initData() {
         ClickUtil.click(tvAllOrder, view -> {
-            OrderRecordsActivity.start(getContext(), code);
+            if (BaseApplication.isLogin()) {
+                OrderRecordsActivity.start(getContext(), code);
+            } else {
+                ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
+            }
         });
 
         ClickUtil.click(tvSelectCoin, view -> {
