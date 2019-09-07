@@ -510,7 +510,6 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     public void updatePrice(EventContact eventContact) {
         if (eventContact.code == 0) {
             edtPrice.getText().clear();
-            edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
             edtPrice.setText(NumberUtils.keep(eventContact.content, 4));
         }
     }
