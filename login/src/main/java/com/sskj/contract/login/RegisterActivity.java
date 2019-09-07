@@ -3,17 +3,8 @@ package com.sskj.contract.login;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.InputType;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -24,40 +15,26 @@ import android.widget.Toast;
 import com.allen.library.SuperButton;
 import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.toast.ToastUtils;
-import com.jakewharton.rxbinding3.view.RxView;
 import com.jakewharton.rxbinding3.widget.RxTextView;
-import com.jakewharton.rxbinding3.widget.TextViewAfterTextChangeEvent;
-import com.jakewharton.rxbinding3.widget.TextViewTextChangeEvent;
 import com.netease.nis.captcha.Captcha;
 import com.netease.nis.captcha.CaptchaConfiguration;
 import com.netease.nis.captcha.CaptchaListener;
-import com.sskj.common.App;
 import com.sskj.common.BuildConfig;
 import com.sskj.common.CommonConfig;
 import com.sskj.common.WebActivity;
 import com.sskj.common.base.BaseActivity;
-import com.sskj.common.tab.TabItem;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.EditUtil;
 import com.sskj.common.utils.PatternUtils;
-import com.sskj.common.utils.ScreenUtil;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.subscribers.DisposableSubscriber;
 
 /**
  * @author Hey
  * Create at  2019/06/21
  */
 public class RegisterActivity extends BaseActivity<RegisterPresenter> {
-
-
     @BindView(R2.id.back)
     ImageView back;
     @BindView(R2.id.mobile)
@@ -78,6 +55,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
     EditText etCode;
     @BindView(R2.id.tvCode)
     TextView tvCode;
+    @BindView(R2.id.tv_rules)
+    TextView tvRules;
     @BindView(R2.id.etPwd1)
     EditText etPwd1;
     @BindView(R2.id.iv_pwd1)
@@ -94,12 +73,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
     SuperButton register;
     @BindView(R2.id.login)
     TextView login;
-    private ArrayList<TabItem> typeTabs = new ArrayList<>();
     private RegisterType registerType = RegisterType.MOBILE;
-    private DisposableSubscriber<Long> disposableSubscriber;
-
-
-    private String va;
 
     @Override
     public int getLayoutId() {
@@ -113,7 +87,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
 
     @Override
     public void initView() {
-        //进入默认展示
         changeType();
     }
 
@@ -123,7 +96,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
         ClickUtil.click(back, view -> finish());
         //手机号注册
         ClickUtil.click(mobile, view -> {
-
             registerType = RegisterType.MOBILE;
             changeType();
         });
@@ -133,27 +105,12 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
             changeType();
         });
         ClickUtil.click(login, view -> finish());
+        ClickUtil.click(tvRules, view -> WebActivity.start(RegisterActivity.this, 1));
         ClickUtil.click(ivClose, view -> etNum.getText().clear());
         //显示密码
         ClickUtil.click(ivPwd1, view -> EditUtil.togglePs(etPwd1, ivPwd1));
         //再次显示密码
         ClickUtil.click(ivPwd2, view -> EditUtil.togglePs(etPwd2, ivPwd2));
-        SpannableString reg = new SpannableString(getString(R.string.login_registerActivity3));
-        ClickableSpan clickableSpan = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                WebActivity.start(RegisterActivity.this, 1);
-            }
-
-            @Override
-            public void updateDrawState(@NonNull TextPaint ds) {
-
-            }
-        };
-        reg.setSpan(new ForegroundColorSpan(Color.parseColor("#255bfc")), reg.toString().indexOf("《"), reg.toString().indexOf("》"), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        reg.setSpan(clickableSpan, reg.toString().indexOf("《"), reg.toString().indexOf("》"), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        readRules.setText(reg);
-        readRules.setMovementMethod(new LinkMovementMethod());
         Disposable text = RxTextView.textChangeEvents(etNum)
                 .map(textViewTextChangeEvent -> textViewTextChangeEvent.getText().toString())
                 .subscribe(s -> {
@@ -231,7 +188,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
                     return;
                 }
             }
-
             registerCheck();
         });
     }
@@ -341,7 +297,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
 
     }
 
-
     public static void start(Context context) {
         Intent intent = new Intent(context, RegisterActivity.class);
         context.startActivity(intent);
@@ -352,12 +307,5 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
         intent.putExtra(CommonConfig.MOBILE, mobile);
         setResult(RESULT_OK, intent);
         finish();
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
     }
 }

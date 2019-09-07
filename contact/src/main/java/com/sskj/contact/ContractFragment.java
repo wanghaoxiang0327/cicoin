@@ -57,7 +57,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
     @BindView(R2.id.img_market)
     ImageView imgMarket;
     BaseAdapter<CoinBean> adapter;
-    private String code = "eth_usdt";
+    private String code = "btc_usdt";
     CoinBean coinBean;
     private String rata;
 

@@ -31,7 +31,6 @@ class ContractPresenter extends BasePresenter<ContractFragment> {
                         mView.setCoinList(result.getData());
                     }
                 });
-
     }
 
 
