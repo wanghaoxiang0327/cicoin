@@ -39,6 +39,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -54,7 +55,8 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_marginLeft="31dp"
-                        android:src="@mipmap/asset_icon_eye_open" />
+                        android:src="@mipmap/asset_icon_eye_open"
+                        android:tint="@color/common_dark" />
 
                     <TextView
                         android:id="@+id/tv_all_asset"

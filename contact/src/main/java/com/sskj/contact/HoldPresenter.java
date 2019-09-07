@@ -35,7 +35,6 @@ class HoldPresenter extends BasePresenter<HoldFragment> {
                 .map(pageHttpResult -> {
                     return pageHttpResult.getData().getRes();
                 });
-
     }
 
     public void closeOrder(String num, String order_id) {

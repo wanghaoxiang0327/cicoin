@@ -18,7 +18,6 @@ import io.reactivex.Flowable;
  * Create at  2019/05/29
  */
 class MarketListPresenter extends BasePresenter<MarketListFragment> {
-
     public Flowable<List<CoinBean>> getMarketList(String code) {
         return OkGo.<HttpResult<List<CoinBean>>>get(HttpConfig.BASE_URL + HttpConfig.GET_PRODUCT)
                 .params("code", code)
@@ -27,6 +26,4 @@ class MarketListPresenter extends BasePresenter<MarketListFragment> {
                 .adapt(new FlowableBody<>())
                 .map(listHttpResult -> listHttpResult.getData());
     }
-
-
 }

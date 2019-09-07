@@ -57,6 +57,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     LinearLayout llMining;
     @BindView(R.id.ll_trading_guide)
     LinearLayout llTradingGuide;
+    @BindView(R.id.ll_notice)
+    LinearLayout llNotice;
     @BindView(R.id.bannerView)
     Banner bannerView;
     @BindView(R.id.indicator_line)
@@ -208,7 +210,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                             int position = (int) (i % data.getRes().size());
                             String text = data.getRes().get(position).getTitle();
                             tvNotice.setText(text);
-                            ClickUtil.click(tvNotice, view -> {
+                            ClickUtil.click(llNotice, view -> {
                                 NoticeListActivity.start(getContext());
                             });
                         }

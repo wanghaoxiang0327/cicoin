@@ -168,7 +168,7 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
                     return null;
                 })
                 .subscribe(data -> {
-                    deepListAdapter.setNewData(data);
+                    deepListAdapter.setNewData(data.subList(0, 30));
                 }, Throwable::printStackTrace);
     }
 

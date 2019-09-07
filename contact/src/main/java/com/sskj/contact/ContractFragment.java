@@ -30,6 +30,7 @@ import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.TipUtil;
 import com.sskj.contact.data.CoinInfo;
+import com.sskj.contact.event.EventContact;
 
 import java.util.List;
 
@@ -119,6 +120,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
                     contactChangeCoin.setCnyPrice(item.getCnyPrice());
                     contactChangeCoin.setCode(code);
                     RxBus.getDefault().post(contactChangeCoin);
+                    RxBus.getDefault().post(new EventContact(0, item.getPrice() + ""));
                     //关闭抽屉
                     drawLayout.closeDrawer(Gravity.LEFT);
                 });
@@ -212,6 +214,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
             tvSelectCoin.setText(coinBean.getName() + "/USDT");
             adapter.setNewData(data);
             RxBus.getDefault().post(data.get(0));
+            RxBus.getDefault().post(new EventContact(0, data.get(0).getPrice() + ""));
         }
     }
 

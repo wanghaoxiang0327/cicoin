@@ -103,9 +103,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/common_margin"
-                android:paddingTop="18dp"
-                android:paddingRight="@dimen/common_margin"
-                android:paddingBottom="18dp">
+                android:paddingRight="@dimen/common_margin">
 
                 <ImageView
                     android:layout_width="16dp"
@@ -122,8 +120,9 @@
                     android:outAnimation="@anim/common_push_up_out" />
 
                 <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="15dp"
                     android:src="@mipmap/common_arrow_right"
                     android:tint="@color/common_text" />
             </LinearLayout>

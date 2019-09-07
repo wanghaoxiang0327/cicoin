@@ -20,7 +20,11 @@ import android.widget.TextView;
 import com.hjq.toast.ToastUtils;
 import com.sskj.common.base.BaseDialogFragment;
 import com.sskj.common.base.BasePresenter;
+import com.sskj.common.data.CoinBean;
 import com.sskj.common.http.HttpResult;
+import com.sskj.common.rxbus.RxBus;
+import com.sskj.common.rxbus.Subscribe;
+import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.MoneyValueFilter;
@@ -71,6 +75,7 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        RxBus.getDefault().register(this);
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.common_custom_dialog);
         if (getArguments() != null) {
             orderData = (HoldOrder) getArguments().getSerializable("order");
@@ -135,7 +140,7 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
 
     @Override
     public void initData() {
-        setPointInfo(pointInfo);
+        setPointInfo(pointInfo, orderData.getNewprice());
     }
 
     @Override
@@ -153,8 +158,8 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
         return new OrderSettingDialogPresenter();
     }
 
-    public void setPointInfo(PointInfo result) {
-        Double price = Double.parseDouble(orderData.getNewprice());
+    public void setPointInfo(PointInfo result, String newPrice) {
+        Double price = Double.parseDouble(newPrice);
         if (orderData.getType() == 1) {
             minZy = price + Double.parseDouble(result.getMin_zy());
             maxZs = price - Double.parseDouble(result.getMin_zs());
@@ -201,5 +206,16 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        RxBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updateCoin(CoinBean coinBean) {
+        if (orderData != null) {
+            if (orderData.getCode().equals(coinBean.getCode())) {
+                tvPrice.setText(NumberUtils.keepMaxDown(coinBean.getPrice(), 4));
+                setPointInfo(pointInfo, coinBean.getPrice() + "");
+            }
+        }
     }
 }

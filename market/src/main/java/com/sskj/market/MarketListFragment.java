@@ -82,6 +82,7 @@ public class MarketListFragment extends BaseFragment<MarketListPresenter> {
         smartRefreshHelper.setDataSource(new DataSource<CoinBean>() {
             @Override
             public Flowable<List<CoinBean>> loadData(int page) {
+                mPresenter.hideLoading();
                 return mPresenter.getMarketList("");
             }
         });

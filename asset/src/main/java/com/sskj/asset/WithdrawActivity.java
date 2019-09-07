@@ -89,14 +89,11 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
 
     @Override
     public void initView() {
-        mToolBarLayout.setRightButtonOnClickListener(view -> {
-            WithdrawRecordsActivity.start(this, "cash");
-        });
-
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
                 hasTbpwd= !TextUtils.isEmpty(userBean.getTpwd());
             }
+
         });
     }
 

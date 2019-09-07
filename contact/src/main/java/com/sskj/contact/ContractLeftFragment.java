@@ -39,6 +39,7 @@ import com.sskj.contact.data.BalanceInfo;
 import com.sskj.contact.data.CoinInfo;
 import com.sskj.contact.data.CreateOrder;
 import com.sskj.contact.dialog.ContactCreateDialog;
+import com.sskj.contact.event.EventContact;
 import com.sskj.contact.type.Price;
 import com.sskj.contact.type.Trade;
 import com.sskj.contact.view.NoTopCornerTabLayout;
@@ -495,7 +496,6 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     public void updatePrice(CoinBean coinBean) {
         if (code.equals(coinBean.getCode())) {
             price = new BigDecimal(coinBean.getPrice());
-            edtPrice.setText(NumberUtils.keep(price, 4));
         }
     }
 
@@ -507,13 +507,20 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updatePrice(EventContact eventContact) {
+        if (eventContact.code == 0) {
+            edtPrice.getText().clear();
+            edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
+            edtPrice.setText(NumberUtils.keep(eventContact.content, 4));
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void changeCoin(ContactChangeCoin coinBean) {
         code = coinBean.getCode();
         edtNum.getText().clear();
-        edtPrice.getText().clear();
         pointTabLayout.setCurrentTab(-1);
-        edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
-        edtPrice.setText(NumberUtils.keep(coinBean.getPrice(), DigitUtils.getDigit(code)));
+
     }
 
 

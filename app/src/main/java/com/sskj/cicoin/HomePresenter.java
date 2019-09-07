@@ -21,7 +21,7 @@ import java.util.List;
 public class HomePresenter extends BasePresenter<HomeFragment> {
     public void getMarketList() {
         OkGo.<HttpResult<List<CoinBean>>>get(HttpConfig.BASE_URL + HttpConfig.GET_PRODUCT)
-                .execute(new JsonCallBack<HttpResult<List<CoinBean>>>(this) {
+                .execute(new JsonCallBack<HttpResult<List<CoinBean>>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<List<CoinBean>> result) {
                         mView.setData(result.getData());
@@ -34,7 +34,7 @@ public class HomePresenter extends BasePresenter<HomeFragment> {
         OkGo.<HttpResult<List<BannerBean>>>get(HttpConfig.BASE_URL + HttpConfig.BANNER)
                 .params("type", 0)
                 .params("lang", lang)
-                .execute(new JsonCallBack<HttpResult<List<BannerBean>>>(this) {
+                .execute(new JsonCallBack<HttpResult<List<BannerBean>>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<List<BannerBean>> result) {
                         mView.setBanner(result.getData());
@@ -46,7 +46,7 @@ public class HomePresenter extends BasePresenter<HomeFragment> {
     public void getNotice() {
         OkGo.<HttpResult<Page<NewsBean>>>post(HttpConfig.BASE_URL + HttpConfig.NOTICE_LIST)
                 .params("lang", LocalManageUtil.getLanguage(App.INSTANCE))
-                .execute(new JsonCallBack<HttpResult<Page<NewsBean>>>(this) {
+                .execute(new JsonCallBack<HttpResult<Page<NewsBean>>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<Page<NewsBean>> result) {
                         mView.setNotice(result.getData());

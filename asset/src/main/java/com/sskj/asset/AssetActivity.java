@@ -102,10 +102,12 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
                 tvAllAsset.setText(NumberUtils.keepMaxDown(data.ttl_money, 4));
                 tvAssetRnb.setText("≈" + NumberUtils.keep2(data.ttl_cnymoney) + "CNY");
                 isOpen = false;
+                ivEye.setImageResource(R.mipmap.asset_icon_eye_open);
             } else {
                 tvAllAsset.setText("****");
                 tvAssetRnb.setText("≈****CNY");
                 isOpen = true;
+                ivEye.setImageResource(R.mipmap.asset_icon_eye_close);
             }
         });
         ClickUtil.click(llCashOut, view -> {

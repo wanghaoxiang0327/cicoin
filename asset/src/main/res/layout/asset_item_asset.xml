@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageView
@@ -33,12 +34,20 @@
             android:id="@+id/tv_asset_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
+
             android:layout_weight="1"
             android:gravity="right"
             android:text="@string/asset_bill_detail"
             android:textColor="@color/common_action_text"
             android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/common_arrow_right"
+            android:tint="@color/common_action_text" />
 
     </LinearLayout>
 
