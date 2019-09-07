@@ -30,7 +30,6 @@ public class BindMobileOrEmailPresenter extends BasePresenter<BindMobileOrEmailA
                     protected void onNext(HttpResult<Object> result) {
                         ToastUtils.show(result.getMsg());
                         mView.bindSuccess(result.getData());
-
                     }
                 });
     }

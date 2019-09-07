@@ -3,12 +3,7 @@ package com.sskj.asset;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.sskj.asset.data.WithDrawEntity;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
@@ -20,8 +15,6 @@ import com.sskj.common.utils.TimeFormatUtil;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.Flowable;
 
 /**
@@ -58,7 +51,15 @@ public class CoinFragment extends BaseFragment<CoinPresenter> {
         newsAdapter = new BaseAdapter<RechargeEntity>(R.layout.asset_item_recharge_record, null, recyclerView) {
             @Override
             public void bind(ViewHolder holder, RechargeEntity item) {
-                holder.setText(R.id.tv_recharge_address, item.chongzhi_url).setText(R.id.tv_recharge_count, item.account).setText(R.id.tv_recharge_submit, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.addtime) * 1000)).setText(R.id.tv_recharge_review, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.check_time) * 1000));
+                holder.setText(R.id.tv_recharge_address, item.chongzhi_url)
+                        .setText(R.id.tv_recharge_count, item.account)
+                        .setText(R.id.tv_recharge_submit, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.addtime) * 1000))
+                        .setText(R.id.tv_recharge_review, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.check_time) * 1000));
+                if (type == 1) {
+                    holder.setVisible(R.id.tv_status, true);
+                } else {
+                    holder.setVisible(R.id.tv_status, false);
+                }
             }
         };
         adapter = new BaseAdapter<WithDrawEntity>(R.layout.asset_item_recharge_record, null, recyclerView) {

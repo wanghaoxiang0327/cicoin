@@ -17,8 +17,6 @@ import butterknife.ButterKnife;
  * Create at  2019/09/04 21:11:04
  */
 public class VerifyFirstActivity extends BaseActivity<VerifyFirstPresenter> {
-
-
     @BindView(R2.id.et_name)
     EditText etName;
     @BindView(R2.id.ps_edt)
@@ -44,16 +42,14 @@ public class VerifyFirstActivity extends BaseActivity<VerifyFirstPresenter> {
     @Override
     public void initData() {
         ClickUtil.click(submit,view -> {
-            if (isEmpty(etName)) {
+            if (isEmptyShow(etName)) {
                 return;
             }
-            if (isEmpty(psEdt)) {
+            if (isEmptyShow(psEdt)) {
                 return;
             }
             mPresenter.firstVerify(getText(etName),getText(psEdt));
         });
-
-
     }
 
     public static void start(Context context) {

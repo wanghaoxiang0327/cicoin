@@ -34,8 +34,6 @@ import butterknife.ButterKnife;
  * Create at  2019/06/26
  */
 public class ResetPayPasswordActivity extends BaseActivity<ResetPayPasswordPresenter> {
-
-
     @BindView(R2.id.ps_edt)
     EditText psEdt;
     @BindView(R2.id.new_ps_edt)
@@ -80,18 +78,16 @@ public class ResetPayPasswordActivity extends BaseActivity<ResetPayPasswordPrese
         showNewPsImg.setOnClickListener(v -> {
             EditUtil.togglePs(newPsEdt, showNewPsImg);
         });
-
         showRepeatPsImg.setOnClickListener(v -> {
             EditUtil.togglePs(psRepeatEdt, showRepeatPsImg);
         });
         ClickUtil.click(tvCode, view -> {
-            if (isEmpty(newPsEdt)) {
+            if (isEmptyShow(newPsEdt)) {
                 return;
             }
-            if (isEmpty(psRepeatEdt)) {
+            if (isEmptyShow(psRepeatEdt)) {
                 return;
             }
-
             CapUtils.registerCheck(this, validate -> {
                 startTimeDown(tvCode);
                 if (TextUtils.isEmpty(mobile)) {
@@ -103,26 +99,20 @@ public class ResetPayPasswordActivity extends BaseActivity<ResetPayPasswordPrese
             });
         });
         ClickUtil.click(submit, view -> {
-
-
-            if (isEmpty(newPsEdt)) {
-                ToastUtils.show(getString(R.string.mine_resetPayPasswordActivity1));
+            if (isEmptyShow(newPsEdt)) {
                 return;
             }
             if (isEmptyShow(psRepeatEdt)) {
                 return;
             }
-
             if (!PatternUtils.isLoginPs(getText(newPsEdt))) {
                 return;
             }
-
             if (!getText(psRepeatEdt).equals(getText(newPsEdt))) {
                 ToastUtils.show(getString(R.string.mine_resetPasswordActivity2));
                 return;
             }
             mPresenter.resetLoginPs(getText(newPsEdt), getText(psRepeatEdt), getText(ps_code_edt), BaseApplication.getMobile());
-
         });
     }
 
@@ -132,7 +122,6 @@ public class ResetPayPasswordActivity extends BaseActivity<ResetPayPasswordPrese
     }
 
     public void resetPsSuccess() {
-
         finish();
     }
 

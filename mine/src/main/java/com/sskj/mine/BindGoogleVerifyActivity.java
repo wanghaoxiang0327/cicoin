@@ -29,8 +29,6 @@ import butterknife.ButterKnife;
  * Create at  2019/06/25
  */
 public class BindGoogleVerifyActivity extends BaseActivity<BindGoogleVerifyPresenter> {
-
-
     @BindView(R2.id.verify_name)
     TextView verifyName;
     @BindView(R2.id.google_code)
@@ -49,7 +47,6 @@ public class BindGoogleVerifyActivity extends BaseActivity<BindGoogleVerifyPrese
     EditText edtVerifyMobile;
     @BindView(R2.id.get_code_tv)
     TextView getCodeTv;
-
     private GoogleInfo code;
 
     @Override
@@ -79,14 +76,19 @@ public class BindGoogleVerifyActivity extends BaseActivity<BindGoogleVerifyPrese
 
     @Override
     public void initData() {
-        ClickUtil.click(getCodeTv, view -> CapUtils.registerCheck(this, validate -> {
-            startTimeDown(getCodeTv);
-            if (TextUtils.isEmpty(SpUtil.getString(CommonConfig.MOBILE, ""))) {
-                mPresenter.sendEmail(SpUtil.getString(CommonConfig.EMAIL, ""), validate);
-            } else {
-                mPresenter.sendSms(SpUtil.getString(CommonConfig.MOBILE, ""), validate);
+        ClickUtil.click(getCodeTv, view -> {
+            if (isEmptyShow(edtVerifyCode)) {
+                return;
             }
-        }));
+            CapUtils.registerCheck(this, validate -> {
+                startTimeDown(getCodeTv);
+                if (TextUtils.isEmpty(SpUtil.getString(CommonConfig.MOBILE, ""))) {
+                    mPresenter.sendEmail(SpUtil.getString(CommonConfig.EMAIL, ""), validate);
+                } else {
+                    mPresenter.sendSms(SpUtil.getString(CommonConfig.MOBILE, ""), validate);
+                }
+            });
+        });
         qrCodeImg.setOnLongClickListener(v -> true);
 
     }

@@ -33,7 +33,6 @@ import butterknife.ButterKnife;
  * Create at  2019/06/26
  */
 public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> {
-
     @BindView(R2.id.ps_edt)
     EditText psEdt;
     @BindView(R2.id.new_ps_edt)
@@ -50,8 +49,6 @@ public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> 
     EditText ps_code_edt;
     @BindView(R2.id.tvCode)
     TextView tvCode;
-
-
     private String mobile, email;
 
     @Override
@@ -76,23 +73,20 @@ public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> 
 
     @Override
     public void initData() {
-
         showNewPsImg.setOnClickListener(v -> {
             EditUtil.togglePs(newPsEdt, showNewPsImg);
         });
-
         showRepeatPsImg.setOnClickListener(v -> {
             EditUtil.togglePs(psRepeatEdt, showRepeatPsImg);
         });
-
         ClickUtil.click(tvCode, view -> {
-            if (isEmpty(ps_code_edt)) {
+            if (isEmptyShow(psEdt)) {
                 return;
             }
-            if (isEmpty(psEdt)) {
+            if (isEmptyShow(newPsEdt)) {
                 return;
             }
-            if (isEmpty(psRepeatEdt)) {
+            if (isEmptyShow(psRepeatEdt)) {
                 return;
             }
             CapUtils.registerCheck(this, validate -> {
@@ -106,29 +100,26 @@ public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> 
             });
         });
         ClickUtil.click(submit, view -> {
-
-
-            if (isEmpty(newPsEdt)) {
-                ToastUtils.show(getString(R.string.mine_resetPasswordActivity1));
+            if (isEmptyShow(psEdt)) {
+                return;
+            }
+            if (isEmptyShow(newPsEdt)) {
                 return;
             }
             if (isEmptyShow(psRepeatEdt)) {
                 return;
             }
-
             if (!PatternUtils.isLoginPs(getText(newPsEdt))) {
                 return;
             }
-
             if (!getText(psRepeatEdt).equals(getText(newPsEdt))) {
                 ToastUtils.show(getString(R.string.mine_resetPasswordActivity2));
                 return;
             }
-            if (isEmpty(ps_code_edt)) {
+            if (isEmptyShow(ps_code_edt)) {
                 return;
             }
             mPresenter.resetLoginPs(getText(psEdt), getText(newPsEdt), getText(psRepeatEdt), getText(ps_code_edt));
-
         });
     }
 

@@ -11,11 +11,12 @@
     <com.sskj.common.view.ToolBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title_color="@color/common_white"
         app:background_color="@color/common_action_bar"
-        app:title="@string/mine_verify2" />
+        app:title="@string/mine_verify2"
+        app:title_color="@color/common_text" />
 
     <LinearLayout
+        android:id="@+id/ll_check_number"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"

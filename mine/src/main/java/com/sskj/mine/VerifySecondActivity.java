@@ -35,7 +35,6 @@ import butterknife.ButterKnife;
  * Create at  2019/09/04 21:11:12
  */
 public class VerifySecondActivity extends BaseActivity<VerifySecondPresenter> {
-
     @BindView(R2.id.verify_photo_a)
     ImageView verifyPhotoA;
     @BindView(R2.id.verify_photo_b)
@@ -47,8 +46,6 @@ public class VerifySecondActivity extends BaseActivity<VerifySecondPresenter> {
     private final int SELECT_HAND = 1000;
     private final int SELECT_FRONT = 1001;
     private final int SELECT_BACK = 1002;
-
-    private String path1, path2, path3;
     private int position = 1;
     private String imgFirst;
     private String imgSecond;
@@ -67,17 +64,16 @@ public class VerifySecondActivity extends BaseActivity<VerifySecondPresenter> {
     @Override
     public void initView() {
 
-       }
+    }
 
-
-    public static void start(Context context){
-        Intent intent=new Intent(context,VerifySecondActivity.class);
+    public static void start(Context context) {
+        Intent intent = new Intent(context, VerifySecondActivity.class);
         context.startActivity(intent);
     }
 
     @Override
     public void initEvent() {
-        ClickUtil.click(verifyPhotoHand, view ->  selectImage(SELECT_HAND));
+        ClickUtil.click(verifyPhotoHand, view -> selectImage(SELECT_HAND));
         ClickUtil.click(verifyPhotoA, view -> selectImage(SELECT_FRONT));
         ClickUtil.click(verifyPhotoB, view -> selectImage(SELECT_BACK));
         ClickUtil.click(verifySubmit, view -> {
@@ -94,8 +90,6 @@ public class VerifySecondActivity extends BaseActivity<VerifySecondPresenter> {
                 return;
             }
             mPresenter.verifySecond(imgFirst, imgSecond, imgThrid);
-//            CertificationResultActivity.start(this,"fail");
-//            finish();
         });
     }
 
@@ -103,6 +97,7 @@ public class VerifySecondActivity extends BaseActivity<VerifySecondPresenter> {
     public void initData() {
 
     }
+
     @SuppressLint("CheckResult")
     private void selectImage(int requestCode) {
         new RxPermissions(this)

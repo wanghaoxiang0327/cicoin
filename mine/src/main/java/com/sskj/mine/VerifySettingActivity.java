@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sskj.common.base.BaseActivity;
@@ -29,6 +30,8 @@ public class VerifySettingActivity extends BaseActivity<VerifySettingPresenter> 
     Verify verify;
     @BindView(R2.id.verify_name)
     TextView verifyName;
+    @BindView(R2.id.ll_check_number)
+    LinearLayout llCheckNumber;
     @BindView(R2.id.verify_account)
     TextView verifyAccount;
     @BindView(R2.id.verify_status)
@@ -54,7 +57,7 @@ public class VerifySettingActivity extends BaseActivity<VerifySettingPresenter> 
 
     @Override
     public void initView() {
-        verify = (Verify) getIntent().getSerializableExtra("type");
+         verify = (Verify) getIntent().getSerializableExtra("type");
         verifyName.setText(verify.getName());
         verifyCheckText.setText(verify.getType());
         switch (verify) {
@@ -80,23 +83,23 @@ public class VerifySettingActivity extends BaseActivity<VerifySettingPresenter> 
                 if (verify == Verify.SMS) {
                     if (TextUtils.isEmpty(user.getMobile())) {
                         verifyStatus.setText(getString(R.string.mine_verifySettingActivity1));
-                        ClickUtil.click(verifyStatus, view -> {
+                        ClickUtil.click(llCheckNumber, view -> {
                             BindMobileOrEmailActivity.start(this, verify);
                         });
                     } else {
                         verifyStatus.setText(getString(R.string.mine_verifySettingActivity2));
-                        ClickUtil.click(verifyStatus, view -> {
+                        ClickUtil.click(llCheckNumber, view -> {
 
                         });
                     }
                     verifyCheck.setChecked(user.getIsStartSms() == 1);
                 } else if (verify == Verify.EMAIL) {
                     if (user.getIsBindMail() == 1) {
-                        ClickUtil.click(verifyStatus, view -> {
+                        ClickUtil.click(llCheckNumber, view -> {
                         });
                         verifyStatus.setText(getString(R.string.mine_verifySettingActivity2));
                     } else {
-                        ClickUtil.click(verifyStatus, view -> {
+                        ClickUtil.click(llCheckNumber, view -> {
                             BindMobileOrEmailActivity.start(this, verify);
                         });
                         verifyStatus.setText(getString(R.string.mine_verifySettingActivity1));

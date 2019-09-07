@@ -2,21 +2,17 @@ package com.sskj.mine;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.utils.CapUtils;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.PatternUtils;
-import com.sskj.common.utils.SpUtil;
 import com.sskj.mine.data.Verify;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 绑定手机号或邮箱
@@ -25,8 +21,6 @@ import butterknife.ButterKnife;
  * Create at  2019/06/25
  */
 public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPresenter> {
-
-
     @BindView(R2.id.verify_name)
     TextView verifyName;
     @BindView(R2.id.verify_account_edt)
@@ -89,11 +83,12 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
                     return;
                 }
             }
-
             if (isEmptyShow(edtVerifyCode)) {
                 return;
             }
-
+            if (isEmptyShow(verify_money_edt)) {
+                return;
+            }
             if (verify == Verify.EMAIL) {
                 mPresenter.bindEmail(getText(verifyAccountEdt), getText(edtVerifyCode), getText(verify_money_edt));
             } else {
@@ -116,27 +111,23 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
             }
             CapUtils.registerCheck(this, validate -> {
                 if (verify == Verify.EMAIL) {
-                    mPresenter.sendEmail(getText(verifyAccountEdt),validate);
+                    mPresenter.sendEmail(getText(verifyAccountEdt), validate);
                 } else {
                     mPresenter.sendSms(getText(verifyAccountEdt), validate);
                 }
 
             });
-
-
         });
     }
 
     public static void start(Context context, Verify verify) {
         Intent intent = new Intent(context, BindMobileOrEmailActivity.class);
         intent.putExtra("type", verify);
-
         context.startActivity(intent);
     }
 
 
     public void bindSuccess(Object data) {
-
         finish();
     }
 
@@ -144,6 +135,4 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
     public void sendVerifyCodeSuccess() {
         startTimeDown(getCode);
     }
-
-
 }

@@ -103,14 +103,23 @@
 
             <TextView
                 android:id="@+id/tv_recharge_review"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
+                android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/common_text"
                 android:textSize="@dimen/sp_14"
                 tools:text="wewqewqwqe" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/common_action_text"
+                android:textSize="@dimen/sp_14"
+                tools:text="审核成功" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

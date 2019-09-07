@@ -42,17 +42,12 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
     TextView gradle;
     @BindView(R2.id.jb)
     ProgressBar jb;
-
     private boolean setPayPs;
-
     private boolean startGoogle;
-    private boolean startSms;
-
     private boolean bindEmail;
     //是否绑定手机号码
     private boolean bindSMS;
     private boolean bindGoogle;
-    private String emailAddress;
 
     @Override
     public int getLayoutId() {
@@ -66,7 +61,6 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
 
     @Override
     public void initView() {
-
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
                 //资金密码
@@ -77,14 +71,12 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
                     menuPayPs.setRightString(getString(R.string.mine_change));
                 }
                 if (!TextUtils.isEmpty(userBean.getEmail())) {
-                    emailAddress = userBean.getMail();
                     menuEmailVerify.setRightString(getString(R.string.mine_securityActivity2));
                     bindEmail = true;
                 } else {
                     bindEmail = false;
                     menuEmailVerify.setRightString(getString(R.string.mine_securityActivity1));
                 }
-
                 if (userBean.getIsStartGoogle() == 1) {
                     startGoogle = true;
                     bindGoogle = true;
@@ -197,7 +189,6 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
 
     public void switchSuccess() {
         userViewModel.getUser().observe(this, userBean -> {
-
             assert userBean != null;
             if (userBean.getIsStartGoogle() == 1) {
                 startGoogle = true;

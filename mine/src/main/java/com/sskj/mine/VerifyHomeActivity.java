@@ -27,13 +27,10 @@ import butterknife.ButterKnife;
  */
 @Route(path = RoutePath.VERIFY_HOME)
 public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
-
-
     @BindView(R2.id.ll_realName)
     LinearLayout ll_realName;
     @BindView(R2.id.ll_high)
     LinearLayout ll_high;
-
     @BindView(R2.id.ll_realName_drz)
     LinearLayout ll_realName_drz;
     @BindView(R2.id.ll_realName_yrz)
@@ -50,8 +47,6 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
     TextView tv_name;
     @BindView(R2.id.tv_idcard)
     TextView tv_idcard;
-
-
     @BindView(R2.id.state1)
     ImageView state1;
     @BindView(R2.id.state2)
@@ -60,9 +55,6 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
     ImageView state3;
     @BindView(R2.id.state4)
     TextView state4;
-
-    private boolean firstVerify;
-
     public static final int CODE = 1;
     private UserBean mUserInfo;
 
@@ -100,8 +92,6 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
                     assert bean != null;
                     tv_name.setText(bean.getRealname());
                     tv_idcard.setText(bean.getIdcard());
-//                    tv_name.setText(SpUtil.getString("mine_name", "****"));
-//                    tv_idcard.setText(SpUtil.getString("mine_idno", "****"));
                     break;
                 case 4:
                     state2.setText(getString(R.string.mine_decertification_fail));
@@ -138,19 +128,14 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
             switch (mUserInfo.getStatus()) {  // 实名认证状态   1 未认证 2 待审核 3 已通过  4拒绝
                 case 1:
                     VerifyFirstActivity.start(this);
-
                     break;
                 case 2:
                     ToastUtils.show(App.INSTANCE.getString(R.string.mine_verifyHomeActivity2));
                     break;
                 case 3:
                     ToastUtils.show(App.INSTANCE.getString(R.string.mine_verifyFirstActivity23));
-//                    ARouter.getInstance().build(RConfig.MINE_VERIFY_RESULT)
-//                            .withBoolean("isSuccess", true)
-//                            .navigation();
                     break;
                 case 4:
-//                    ToastUtils.show(App.INSTANCE.getString(R.string.mine_verifyHomeActivity3));
                     startActivityForResult(new Intent(this, VerifyFirstActivity.class), CODE);
                     break;
             }
@@ -171,84 +156,17 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
                     break;
                 case 3:
                     ToastUtils.show(App.INSTANCE.getString(R.string.mine_verifyHomeActivity51));
-//                    ARouter.getInstance().build(RConfig.MINE_VERIFY_RESULT)
-//                            .withBoolean("isSuccess", true)
-//                            .navigation();
                     break;
                 case 4:
                     VerifySecondActivity.start(this);
-//                    TipUtil.getSureTip(this, App.INSTANCE.getString(R.string.mine_verifyFirstActivity11), App.INSTANCE.getString(R.string.mine_verifyFirstActivity12) + mUserInfo.getReason(), App.INSTANCE.getString(R.string.mine_verifyFirstActivity13), () -> {
-//                        VerifySecondActivity.start(this);
-//                    });
-//                    VerifySecondActivity.start(this);
-//
-//                    ARouter.getInstance().build(RConfig.MINE_VERIFY_RESULT)
-//                            .withBoolean("isSuccess", false)
-//                            .navigation();
                     break;
             }
         });
-
     }
 
     public static void start(Context context) {
         Intent intent = new Intent(context, VerifyHomeActivity.class);
         context.startActivity(intent);
-    }
-
-    public void updateUi(UserBean user) {
-        switch (user.getStatus()) {  // 实名认证状态
-            case 0:
-//                verifyFirst.setRightString(App.INSTANCE.getString(R.string.mine_verifyHomeActivity6));
-                ll_realName_drz.setVisibility(View.VISIBLE);
-                ll_realName_yrz.setVisibility(View.GONE);
-                break;
-            case 2:
-//                verifyFirst.setRightString(App.INSTANCE.getString(R.string.mine_verifyHomeActivity7));
-                ll_realName_drz.setVisibility(View.VISIBLE);
-                ll_realName_yrz.setVisibility(View.GONE);
-                tv_state.setText(App.INSTANCE.getString(R.string.mine_verifyHomeActivity7));
-                break;
-            case 1:
-//                verifyFirst.setRightString(App.INSTANCE.getString(R.string.mine_verifyHomeActivity8));
-                ll_realName_drz.setVisibility(View.GONE);
-                ll_realName_yrz.setVisibility(View.VISIBLE);
-//                tv_name.setText(user.getUsername());
-//                tv_idcard.setText(user.getIdCard());
-                switch (user.getAuth_status()) {  // 高级实名认证
-                    case 1:
-//                        verifySecond.setRightString(App.INSTANCE.getString(R.string.mine_verifyHomeActivity6));
-                        ll_high_drz.setVisibility(View.VISIBLE);
-                        ll_high_yrz.setVisibility(View.GONE);
-                        tv_high_state.setText(App.INSTANCE.getString(R.string.mine_verifyHomeActivity6));
-                        break;
-                    case 2:
-//                        verifySecond.setRightString(App.INSTANCE.getString(R.string.mine_verifyHomeActivity7));
-                        ll_high_drz.setVisibility(View.VISIBLE);
-                        ll_high_yrz.setVisibility(View.GONE);
-                        tv_high_state.setText(App.INSTANCE.getString(R.string.mine_verifyHomeActivity7));
-                        break;
-                    case 3:
-//                        verifySecond.setRightString(App.INSTANCE.getString(R.string.mine_verifyHomeActivity8));
-                        ll_high_drz.setVisibility(View.GONE);
-                        ll_high_yrz.setVisibility(View.VISIBLE);
-                        break;
-                    case 4:
-//                        verifySecond.setRightString(App.INSTANCE.getString(R.string.mine_assetFragment3));
-                        ll_high_drz.setVisibility(View.VISIBLE);
-                        ll_high_yrz.setVisibility(View.GONE);
-                        tv_high_state.setText(App.INSTANCE.getString(R.string.mine_assetFragment3));
-
-                        break;
-                }
-                break;
-            case 4:
-//                verifyFirst.setRightString(App.INSTANCE.getString(R.string.mine_assetFragment3));
-                tv_state.setText(App.INSTANCE.getString(R.string.mine_assetFragment3));
-                ll_realName_drz.setVisibility(View.VISIBLE);
-                ll_realName_yrz.setVisibility(View.GONE);
-                break;
-        }
     }
 
     @Override

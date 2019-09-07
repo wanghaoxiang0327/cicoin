@@ -32,7 +32,6 @@ import butterknife.ButterKnife;
  */
 @Route(path = RoutePath.TPWD)
 public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresenter> {
-
     @BindView(R2.id.ps_edt)
     EditText psEdt;
     @BindView(R2.id.show_ps_img)
@@ -47,8 +46,6 @@ public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresent
     ImageView showRepeatPsImg;
     @BindView(R2.id.submit)
     Button submit;
-
-
     private String mobile, email;
 
     @Override
@@ -66,23 +63,26 @@ public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresent
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
                 mobile = SpUtil.getString(CommonConfig.MOBILE, "");
-                email =  SpUtil.getString(CommonConfig.EMAIL, "");
+                email = SpUtil.getString(CommonConfig.EMAIL, "");
             }
         });
     }
 
     @Override
     public void initData() {
-
         showPsImg.setOnClickListener(v -> {
             EditUtil.togglePs(psEdt, showPsImg);
         });
-
         showRepeatPsImg.setOnClickListener(v -> {
             EditUtil.togglePs(psRepeatEdt, showRepeatPsImg);
         });
-
         ClickUtil.click(tvCode, view -> {
+            if (isEmptyShow(psEdt)) {
+                return;
+            }
+            if (isEmptyShow(psRepeatEdt)) {
+                return;
+            }
             CapUtils.registerCheck(this, validate -> {
                 startTimeDown(tvCode);
                 if (TextUtils.isEmpty(mobile)) {
@@ -93,20 +93,16 @@ public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresent
                 }
             });
         });
-
         ClickUtil.click(submit, view -> {
             if (isEmptyShow(psEdt)) {
                 return;
             }
-
             if (isEmptyShow(psRepeatEdt)) {
                 return;
             }
-
             if (!PatternUtils.isLoginPs(getText(psEdt))) {
                 return;
             }
-
             if (!getText(psRepeatEdt).equals(getText(psEdt))) {
                 ToastUtils.show(getString(R.string.mine_resetPasswordActivity2));
                 return;
