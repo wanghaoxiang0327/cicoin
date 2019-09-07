@@ -94,6 +94,7 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
 
     @Override
     public void initData() {
+
         ClickUtil.click(tvRuleMiner, view -> mPresenter.getRule());
         ClickUtil.click(tvJyMiner, view -> {
             //交易
@@ -122,6 +123,12 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
 
     @Override
     public void loadData() {
+
+    }
+
+    @Override
+    public void lazyLoad() {
+        super.lazyLoad();
         mPresenter.getNotices();
         userViewModel.getUser().observe(this, new Observer<UserBean>() {
             @Override
@@ -134,12 +141,6 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
         });
     }
 
-
-    @Override
-    public void lazyLoad() {
-        super.lazyLoad();
-
-    }
 
     public static MinerFragment newInstance() {
         MinerFragment fragment = new MinerFragment();

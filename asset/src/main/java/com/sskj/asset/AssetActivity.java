@@ -81,7 +81,8 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
         assetAdapter = new BaseAdapter<AllAssetEntity.Asset>(R.layout.asset_item_asset, null, assetList) {
             @Override
             public void bind(ViewHolder holder, AllAssetEntity.Asset item) {
-                holder.setText(R.id.asset_useful, NumberUtils.keepMaxDown(item.usable, 4)).setText(R.id.asset_frost, NumberUtils.keepMaxDown(item.frost, 4))
+                holder.setText(R.id.asset_useful, NumberUtils.keepMaxDown(item.frost, 4))
+                        .setText(R.id.asset_frost, NumberUtils.keepMaxDown(item.usable, 4))
                         .setText(R.id.coin_name, item.pname)
                         .setText(R.id.tv_asset_equivalent, NumberUtils.keep2(item.cny));
                 holder.setImageResource(R.id.coin_icon, CoinIcon.getIcon(item.mark));

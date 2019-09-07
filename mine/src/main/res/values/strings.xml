@@ -157,7 +157,7 @@
     <string name="mine_feedbackActivity2">请输入反馈内容</string>
     <string name="mine_setting">设置</string>
     <string name="mine_logout">退出登录</string>
-    <string name="mine_settingActivity41">当前版本号V%s</string>
+    <string name="mine_settingActivity41">V %s</string>
     <string name="mine_mine_activity_bind_googl_everify10">手机或邮箱验证码</string>
     <string name="mine_mine_activity_bind_googl_everify19">请输入手机或邮箱验证码</string>
     <string name="mine_advanced_certification">高级认证</string>
@@ -191,7 +191,8 @@
     <string name="mine_sign_in">签到</string>
     <string name="mine_no_sign_in">已签到</string>
     <string name="mine_confirm">确定</string>
-    <string name="mine_sign_des">签到成成，恭喜您获得 +5原力</string>
+    <string name="mine_sign_des">签到成成，恭喜您获得 +</string>
+    <string name="mine_sign_des1">%s原力</string>
     <string name="mine_to_complete_task">去完成任务</string>
     <string name="mine_account_asset">账户资产</string>
     <string name="mine_account_all_asset">总资产折合(USDT)</string>
@@ -205,4 +206,8 @@
     <string name="mine_high">高</string>
     <string name="mine_version_manger">版本管理</string>
     <string name="mine_lang">语言</string>
+    <string name="mine_logout_ensure">是否确认退出该账户？</string>
+    <string name="mine_logout_ensure_btn">退出</string>
+    <string name="mine_kf">在线客服</string>
+
 </resources>

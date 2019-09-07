@@ -6,10 +6,9 @@ import com.sskj.common.DividerLineItemDecoration;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseActivity;
+import com.sskj.common.view.EmptyView;
 import com.sskj.miner.R2;
-import com.sskj.miner.bean.ForceBean;
 import com.sskj.miner.bean.UsdtBean;
-import com.sskj.miner.ui.activity.SyPresenter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -93,14 +92,20 @@ public class SyActivity extends BaseActivity<SyPresenter> {
 
     public void setUsdt(UsdtBean data) {
 
+        mRefreshLayout.finishLoadMore();
+        mRefreshLayout.finishRefresh();
         if (page == 1) {
             teamAdapter.setNewData(data.getData());
+            teamAdapter.notifyDataSetChanged();
         } else {
             teamAdapter.addData(data.getData());
+            teamAdapter.notifyDataSetChanged();
         }
 
         if (data.getData() == null || data.getData().isEmpty()) {
             mRefreshLayout.setNoMoreData(true);
+            teamAdapter.setEmptyView(new EmptyView(this));
+            teamAdapter.notifyDataSetChanged();
         }
 
     }

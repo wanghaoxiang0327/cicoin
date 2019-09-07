@@ -13,11 +13,15 @@
         app:title="@string/miner_ylmx"
         app:title_color="@color/common_text_sun" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/common_background" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle"
-        android:background="@color/white"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:background="@color/common_action_bar" />
 
 </LinearLayout>

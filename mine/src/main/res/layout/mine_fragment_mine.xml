@@ -92,12 +92,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:text="蓝鲸mer"
                 android:textColor="@color/center_text_color"
                 android:textSize="21sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/view_info_center"
-                app:layout_constraintTop_toTopOf="@+id/view_info_center" />
+                app:layout_constraintTop_toTopOf="@+id/view_info_center"
+                tools:text="蓝鲸mer" />
 
             <TextView
                 android:id="@+id/tv_qd"

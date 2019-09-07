@@ -18,7 +18,7 @@ class SyPresenter extends BasePresenter<SyActivity> {
     public void getUsdt(int page, int size) {
         OkGo.<HttpResult<UsdtBean>>get(BaseHttpConfig.BASE_URL + HttpConfig.USDT)
                 .params("P", page)
-                .params("s", size)
+                .params("size", size)
                 .execute(new JsonCallBack<HttpResult<UsdtBean>>() {
                     @Override
                     protected void onNext(HttpResult<UsdtBean> result) {

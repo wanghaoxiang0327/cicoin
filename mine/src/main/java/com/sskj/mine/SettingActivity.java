@@ -17,6 +17,7 @@ import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.LanguageType;
 import com.sskj.common.data.VersionBean;
 import com.sskj.common.dialog.SelectLanguageDialog;
+import com.sskj.common.dialog.TipsNewDialog;
 import com.sskj.common.dialog.VersionUpdateDialog;
 import com.sskj.common.http.HttpResult;
 import com.sskj.common.language.LanguageSPUtil;
@@ -86,16 +87,22 @@ public class SettingActivity extends BaseActivity<SettingPresenter> {
 
         ClickUtil.click(submit, view -> {
 
-            SpUtil.clear();
-            HttpHeaders httpHeaders = OkGo.getInstance().getCommonHeaders();
-            OkGo.getInstance().getCommonParams().clear();
-            httpHeaders.clear();
+            new TipsNewDialog(this)
+                    .setTitle(App.INSTANCE.getString(R.string.mine_logout))
+                    .setContent(App.INSTANCE.getString(R.string.mine_logout_ensure))
+                    .setConfirmText(App.INSTANCE.getString(R.string.mine_logout_ensure_btn))
+                    .setConfirmListener(dialog -> {
+                        SpUtil.clear();
+                        HttpHeaders httpHeaders = OkGo.getInstance().getCommonHeaders();
+                        OkGo.getInstance().getCommonParams().clear();
+                        httpHeaders.clear();
 
-            OkGo.getInstance().addCommonHeaders(httpHeaders);
-            userViewModel.clear();
+                        OkGo.getInstance().addCommonHeaders(httpHeaders);
+                        userViewModel.clear();
 
-            AppManager.getInstance().finishAllLogin();
-            ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
+                        AppManager.getInstance().finishAllLogin();
+                        ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
+                    }).show();
         });
     }
 

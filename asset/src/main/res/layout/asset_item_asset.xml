@@ -99,7 +99,7 @@
                 android:maxLines="1"
                 android:textColor="@color/common_text"
                 android:textSize="13sp"
-                tools:text="0.0031" />
+                tools:text="0.003dd1" />
         </LinearLayout>
 
         <LinearLayout

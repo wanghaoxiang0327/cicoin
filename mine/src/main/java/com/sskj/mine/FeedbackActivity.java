@@ -11,6 +11,7 @@ import com.hjq.toast.ToastUtils;
 import com.sskj.common.App;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.utils.ClickUtil;
+import com.sskj.common.utils.PatternUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,14 +49,15 @@ public class FeedbackActivity extends BaseActivity<FeedbackPresenter> {
     public void initData() {
 
         ClickUtil.click(submit, view -> {
-            if (TextUtils.isEmpty(etContent.getText().toString())) {
-                ToastUtils.show(App.INSTANCE.getString(R.string.mine_feedbackActivity2));
-                return;
-            }
             if (TextUtils.isEmpty(etContact.getText().toString())) {
                 ToastUtils.show(App.INSTANCE.getString(R.string.mine_feedbackActivity3));
                 return;
             }
+            if (TextUtils.isEmpty(etContent.getText().toString())) {
+                ToastUtils.show(App.INSTANCE.getString(R.string.mine_feedbackActivity2));
+                return;
+            }
+
             mPresenter.sendRequest(etContent.getText().toString(), etContact.getText().toString());
         });
     }

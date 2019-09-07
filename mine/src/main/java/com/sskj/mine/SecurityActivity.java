@@ -107,7 +107,7 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
                 }
                 String jb = getString(R.string.mine_low);
                 int proress = 33;
-                switch (userBean.getUserLevel()) {
+                switch (TextUtils.isEmpty(userBean.getUserLevel())?"":userBean.getUserLevel()) {
                     case "1":
                         jb = "";
                         proress = 33;

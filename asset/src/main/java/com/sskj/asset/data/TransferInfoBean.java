@@ -10,6 +10,7 @@ public class TransferInfoBean {
      * ex_name : USDT
      * ex_coin : usdt_usdt
      * ex_rate : 6000
+     * ex_coin_actprice
      * ex_pid : 10
      * status : 1
      * addtime : 0
@@ -24,6 +25,7 @@ public class TransferInfoBean {
     private String ex_pid;
     private String status;
     private String addtime;
+
 
     public String getId() {
         return id;

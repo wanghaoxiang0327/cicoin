@@ -1,5 +1,7 @@
 package com.sskj.mine;
 
+import android.util.Log;
+
 import com.lzy.okgo.OkGo;
 import com.sskj.common.base.BasePresenter;
 import com.sskj.common.http.BaseHttpConfig;
@@ -10,6 +12,7 @@ import com.sskj.common.user.data.UserBean;
 import com.sskj.mine.MineFragment;
 import com.sskj.mine.data.MIneBean;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -41,11 +44,11 @@ public class MinePresenter extends BasePresenter<MineFragment> {
 
 
     public void qd() {
-        OkGo.<HttpResult<Object>>get(BaseHttpConfig.BASE_URL + HttpConfig.QD)
-                .execute(new JsonCallBack<HttpResult<Object>>() {
+        OkGo.<HttpResult<List<String>>>get(BaseHttpConfig.BASE_URL + HttpConfig.QD)
+                .execute(new JsonCallBack<HttpResult<List<String>>>() {
                     @Override
-                    protected void onNext(HttpResult<Object> result) {
-                        mView.qd();
+                    protected void onNext(HttpResult<List<String>> result) {
+                        mView.qd(result.getData().size() > 0 ? result.getData().get(0) : "0");
                     }
                 });
     }

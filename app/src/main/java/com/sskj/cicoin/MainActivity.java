@@ -19,6 +19,7 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.HttpHeaders;
 import com.sskj.common.App;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinBean;
@@ -126,6 +127,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         mainTabLayout.setOnTabSelectListener(new TabSelectListener() {
             @Override
             public boolean onTabSelect(int position) {
+//
                 if (position == 0 || position == 1) {
                     ImmersionBar.with(MainActivity.this).fitsSystemWindows(true).statusBarColor(R.color.white).statusBarDarkFont(true, 0.2f).init();
                 } else {

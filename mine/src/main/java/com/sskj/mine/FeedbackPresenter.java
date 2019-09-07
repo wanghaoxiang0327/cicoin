@@ -1,5 +1,6 @@
 package com.sskj.mine;
 
+import com.hjq.toast.ToastUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.sskj.common.base.BasePresenter;
@@ -25,6 +26,7 @@ class FeedbackPresenter extends BasePresenter<FeedbackActivity> {
                     protected void onNext(HttpResult<Object> result) {
                         if (result.getStatus() == BaseHttpConfig.OK) {
                             mView.success();
+                            ToastUtils.show(result.getMsg());
                         }
                     }
                 });

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.sskj.common.App;
 import com.sskj.common.BaseApplication;
 import com.sskj.common.CommonConfig;
 import com.sskj.common.WebViewActivity;
@@ -19,6 +20,7 @@ import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.dialog.TipsNewDialog;
+import com.sskj.common.http.BaseHttpConfig;
 import com.sskj.common.router.RoutePath;
 import com.sskj.common.rxbus.BusCode;
 import com.sskj.common.rxbus.RxBus;
@@ -26,6 +28,7 @@ import com.sskj.common.user.data.UserBean;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.ItemDivider;
 import com.sskj.common.utils.NumberUtils;
+import com.sskj.common.utils.PatternUtils;
 import com.sskj.common.utils.SpUtil;
 import com.sskj.mine.data.CentenItemBean;
 
@@ -95,7 +98,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
         data.add(new CentenItemBean(R.drawable.center_gywm, getString(R.string.mine_about_us)));
         data.add(new CentenItemBean(R.drawable.center_yjfk, getString(R.string.mine_yjfk)));
         data.add(new CentenItemBean(R.drawable.center_bzzx, getString(R.string.mine_helper_center)));
-        data.add(new CentenItemBean(R.drawable.center_bzzx, getString(R.string.mine_mine_fragment_mine190)));
+        data.add(new CentenItemBean(R.drawable.center_lxkf, getString(R.string.mine_mine_fragment_mine190)));
         data.add(new CentenItemBean(R.drawable.center_shezhi, getString(R.string.mine_setting)));
         rlContent.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         rlContent.addItemDecoration(new ItemDivider().setDividerColor(ContextCompat.getColor(getActivity(), R.color.common_background)).setDividerWith(2));
@@ -132,10 +135,10 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                     FeedbackActivity.start(getContext());
                     break;
                 case 5:
-//                    WebViewActivity.start(this,);
+                    WebViewActivity.start(getContext(), BaseHttpConfig.BASE_URL + "/wap/help/index.html",App.INSTANCE.getString(R.string.mine_helper_center));
                     break;
                 case 6:
-                    WebViewActivity.start(getContext(), "https://dwz.cn/gkmdm2c9");
+                    WebViewActivity.start(getContext(), "https://dwz.cn/gkmdm2c9",App.INSTANCE.getString(R.string.mine_kf));
                     break;
                 case 7:
                     SettingActivity.start(getActivity());
@@ -152,7 +155,10 @@ public class MineFragment extends BaseFragment<MinePresenter> {
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
                 this.userBean = userBean;
-                tvName.setText(userBean.getName());
+
+                tvName.setText(PatternUtils.isMobile(BaseApplication.getMobile()) ?
+                        BaseApplication.getMobile().replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2")
+                        : BaseApplication.getMobile());
                 tvQd.setText(userBean.getQd() == 0 ? getString(R.string.mine_sign_in) : getString(R.string.mine_no_sign_in));
                 tvUid.setText("uid:" + userBean.getUid());
                 groupLogin.setVisibility(View.VISIBLE);
@@ -218,11 +224,11 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 .show();
     }
 
-    public void qd() {
+    public void qd(String yl) {
         tvQd.setText(getString(R.string.mine_no_sign_in));
         new TipsNewDialog(getActivity())
                 .setTitle(getString(R.string.mine_sign_in))
-                .setContent(getString(R.string.mine_sign_des))
+                .setContent(App.INSTANCE.getString(R.string.mine_sign_des) + String.format(App.INSTANCE.getString(R.string.mine_sign_des1), yl))
                 .setConfirmText(getString(R.string.mine_to_complete_task))
                 .setConfirmListener(dialog -> {
                     RxBus.getDefault().send(BusCode.SECOND);

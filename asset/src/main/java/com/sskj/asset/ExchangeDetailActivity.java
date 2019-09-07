@@ -50,7 +50,10 @@ public class ExchangeDetailActivity extends BaseActivity<ExchangeDetailPresenter
         newsAdapter = new BaseAdapter<ExchangeListEntity.Exchange>(R.layout.asset_item_exchange_detail, null, recyclerView) {
             @Override
             public void bind(ViewHolder holder, ExchangeListEntity.Exchange item) {
-                holder.setText(R.id.tv_exchange_asset, item.memo).setText(R.id.tv_exchange_count, item.exnum).setText(R.id.tv_daozhang_count, item.num).setText(R.id.tv_exchange_time, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.addtime) * 1000));
+                holder.setText(R.id.tv_exchange_asset, item.memo).
+                        setText(R.id.tv_exchange_count, item.num)
+                        .setText(R.id.tv_daozhang_count, item.exnum)
+                        .setText(R.id.tv_exchange_time, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.addtime) * 1000));
             }
 
         };

@@ -12,6 +12,7 @@ import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.utils.TimeFormatUtil;
+import com.sskj.common.view.EmptyView;
 import com.sskj.miner.R;
 import com.sskj.miner.R2;
 import com.sskj.miner.bean.ForceBean;
@@ -109,6 +110,8 @@ public class ForceActivity extends BaseActivity<ForcePresenter> {
 
 
     public void setForce(ForceBean data) {
+        mRefreshLayout.finishRefresh();
+        mRefreshLayout.finishLoadMore();
         if (page == 1) {
             teamAdapter.setNewData(data.getData());
             teamAdapter.notifyDataSetChanged();
@@ -119,6 +122,7 @@ public class ForceActivity extends BaseActivity<ForcePresenter> {
 
         if (data.getData() == null || data.getData().isEmpty()) {
             mRefreshLayout.setNoMoreData(true);
+            teamAdapter.setEmptyView(new EmptyView(this));
             teamAdapter.notifyDataSetChanged();
         }
 
