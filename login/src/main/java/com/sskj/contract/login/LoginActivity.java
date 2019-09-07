@@ -23,6 +23,7 @@ import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.dialog.VerifyPasswordDialog;
 import com.sskj.common.router.RoutePath;
+import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.tab.TabItem;
 import com.sskj.common.user.model.UserViewModel;
 import com.sskj.common.utils.ClickUtil;

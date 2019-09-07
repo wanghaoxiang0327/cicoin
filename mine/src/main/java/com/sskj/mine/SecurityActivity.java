@@ -181,7 +181,7 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
     @Override
     protected void onResume() {
         super.onResume();
-        userViewModel.update();
+//        userViewModel.update();
     }
 
     public static void start(Context context) {

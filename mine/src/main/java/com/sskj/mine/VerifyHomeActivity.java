@@ -79,7 +79,7 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
     @Override
     protected void onResume() {
         super.onResume();
-        userViewModel.update();
+//        userViewModel.update();
     }
 
     @Override

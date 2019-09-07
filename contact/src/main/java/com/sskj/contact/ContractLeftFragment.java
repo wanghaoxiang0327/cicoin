@@ -22,7 +22,6 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.hey.lib.HeySpinner;
 import com.hjq.toast.ToastUtils;
 import com.sskj.common.App;
-import com.sskj.common.BaseApplication;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.event.ContactChangeCoin;
@@ -273,18 +272,18 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
 
     private void initPriceType() {
-        priceItems.add(getString(R.string.contact_contractLeftFragment5));
         priceItems.add(getString(R.string.contact_contractLeftFragment6));
+        priceItems.add(getString(R.string.contact_contractLeftFragment5));
         priceTypeSpinner.setOnSelectListener(position -> {
             if (position == 0) {
-                priceType = Price.MARKET;
-                limitPriceLayout.setVisibility(View.GONE);
-                tvMarketPrice.setVisibility(View.VISIBLE);
-            } else {
                 priceType = Price.LIMIT;
                 limitPriceLayout.setVisibility(View.VISIBLE);
                 edtPrice.setText(NumberUtils.keep(price, 4));
                 tvMarketPrice.setVisibility(View.GONE);
+            } else {
+                priceType = Price.MARKET;
+                limitPriceLayout.setVisibility(View.GONE);
+                tvMarketPrice.setVisibility(View.VISIBLE);
             }
         });
         priceTypeSpinner.attachData(priceItems);
@@ -364,11 +363,15 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
     @Override
     public void loadData() {
-        if (BaseApplication.isLogin()) {
-            mPresenter.getBalance();
-        }
+        userViewModel.getUser().observe(this, new Observer<UserBean>() {
+            @Override
+            public void onChanged(@Nullable UserBean userBean) {
+                if (userBean != null) {
+                    mPresenter.getBalance();
+                }
+            }
+        });
     }
-
 
     /**
      * 计算保证金
@@ -492,6 +495,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     public void updatePrice(CoinBean coinBean) {
         if (code.equals(coinBean.getCode())) {
             price = new BigDecimal(coinBean.getPrice());
+            edtPrice.setText(NumberUtils.keep(price, 4));
         }
     }
 

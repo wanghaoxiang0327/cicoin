@@ -160,7 +160,7 @@ public class VerifySettingActivity extends BaseActivity<VerifySettingPresenter> 
     @Override
     protected void onResume() {
         super.onResume();
-        userViewModel.update();
+//        userViewModel.update();
     }
 
     public static void start(Context context, Verify verify) {

@@ -36,8 +36,8 @@
     <string name="login_register">注册</string>
     <string name="login_phone_register">手机注册</string>
     <string name="login_email_register">邮箱注册</string>
-    <string name="login_no_account">还没有CICOIN账号,</string>
-    <string name="login_has_account">已有CICOIN账号,</string>
+    <string name="login_no_account">还没有CICOIN账号，</string>
+    <string name="login_has_account">已有CICOIN账号，</string>
     <string name="login_register_phone_number">手机号  </string>
     <string name="login_phone">手机</string>
     <string name="login_confirm">确定</string>

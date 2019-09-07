@@ -184,12 +184,6 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
     @Override
     public void loadData() {
-        userViewModel.update();
-    }
-
-    @Override
-    public void onVisible() {
-        userViewModel.update();
     }
 
     public static MineFragment newInstance() {
@@ -197,11 +191,6 @@ public class MineFragment extends BaseFragment<MinePresenter> {
         Bundle bundle = new Bundle();
         fragment.setArguments(bundle);
         return fragment;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
 

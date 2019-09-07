@@ -98,6 +98,8 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
     public void initView() {
         edtLoss.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(orderData.getCode()))});
         edtWin.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(orderData.getCode()))});
+        edtWin.setText(NumberUtils.keepMaxDown(orderData.getPoit_win(), 4));
+        edtLoss.setText(NumberUtils.keepMaxDown(orderData.getPoit_loss(), 4));
         tvType.setText(orderData.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));
         tvPrice.setText(NumberUtils.keepMaxDown(orderData.getNewprice(), 4));
         btnCancel.setOnClickListener(v -> {

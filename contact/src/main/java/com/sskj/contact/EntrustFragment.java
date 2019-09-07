@@ -1,24 +1,23 @@
 package com.sskj.contact;
 
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.sskj.common.BaseApplication;
 import com.sskj.common.DividerLineItemDecoration;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
-import com.sskj.common.data.CoinBean;
 import com.sskj.common.helper.DataSource;
 import com.sskj.common.helper.SmartRefreshHelper;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
+import com.sskj.common.user.data.UserBean;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.ScreenUtil;
@@ -29,13 +28,10 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * 委托订单
@@ -44,11 +40,8 @@ import io.reactivex.schedulers.Schedulers;
  * Create at  2019/08/26 16:58:03
  */
 public class EntrustFragment extends BaseFragment<EntrustPresenter> {
-
-
     @BindView(R2.id.order_list)
     RecyclerView orderList;
-
     BaseAdapter<EntrustOrder> adapter;
     Disposable disposable;
     int size = 10;
@@ -105,25 +98,31 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
 
     @Override
     public void loadData() {
-        if (BaseApplication.isLogin()) {
-            smartRefreshHelper.setDataSource(new DataSource<EntrustOrder>() {
-                @Override
-                public Flowable<List<EntrustOrder>> loadData(int page) {
-                    return mPresenter.getEntrustOrder(page, size);
+        userViewModel.getUser().observe(this, new Observer<UserBean>() {
+            @Override
+            public void onChanged(@Nullable UserBean userBean) {
+                if (userBean != null) {
+                    smartRefreshHelper.setDataSource(new DataSource<EntrustOrder>() {
+                        @Override
+                        public Flowable<List<EntrustOrder>> loadData(int page) {
+                            return mPresenter.getEntrustOrder(page, size);
+                        }
+                    });
+                    disposable = Flowable.interval(2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
+                        @Override
+                        public void accept(Long aLong) throws Exception {
+                            if (smartRefreshHelper != null) {
+                                smartRefreshHelper.loadData(false);
+                            }
+                        }
+                    });
                 }
-            });
-            disposable = Flowable.interval(2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
-                @Override
-                public void accept(Long aLong) throws Exception {
-                    smartRefreshHelper.loadData(false);
-                }
-            });
-        }
+            }
+        });
     }
 
     @Override
     public void lazyLoad() {
-
     }
 
     public static EntrustFragment newInstance() {

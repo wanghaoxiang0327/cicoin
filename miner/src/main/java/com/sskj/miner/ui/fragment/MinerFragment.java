@@ -2,6 +2,7 @@ package com.sskj.miner.ui.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -14,12 +15,12 @@ import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 import com.sskj.common.App;
-import com.sskj.common.BaseApplication;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.WaterBean;
 import com.sskj.common.dialog.TipsNewDialog;
 import com.sskj.common.rxbus.BusCode;
 import com.sskj.common.rxbus.RxBus;
+import com.sskj.common.user.data.UserBean;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.view.WaterView;
 import com.sskj.miner.R;
@@ -79,7 +80,6 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
 
     @Override
     public void initView() {
-
         tvMsgMiner.setFactory(() -> {
             TextView textView = new TextView(getActivity());
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
@@ -90,7 +90,6 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
             textView.setTextColor(ContextCompat.getColor(App.INSTANCE, R.color.common_white));
             return textView;
         });
-
     }
 
     @Override
@@ -124,11 +123,17 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
     @Override
     public void loadData() {
         mPresenter.getNotices();
-        if (BaseApplication.isLogin()) {
-            mPresenter.getAsset();
-            mPresenter.getPao();
-        }
+        userViewModel.getUser().observe(this, new Observer<UserBean>() {
+            @Override
+            public void onChanged(@Nullable UserBean userBean) {
+                if (userBean != null) {
+                    mPresenter.getAsset();
+                    mPresenter.getPao();
+                }
+            }
+        });
     }
+
 
     @Override
     public void lazyLoad() {

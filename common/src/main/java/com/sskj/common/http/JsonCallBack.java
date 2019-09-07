@@ -24,16 +24,17 @@ import okhttp3.ResponseBody;
 
 public abstract class JsonCallBack<T> extends AbsCallback<T> {
 
-    private  boolean showLoading;
+    private boolean showLoading;
     private BasePresenter presenter;
 
-    public JsonCallBack(BasePresenter presenter,boolean showLoading) {
+    public JsonCallBack(BasePresenter presenter, boolean showLoading) {
         this.presenter = presenter;
-        this.showLoading=showLoading;
+        this.showLoading = showLoading;
     }
+
     public JsonCallBack(BasePresenter presenter) {
         this.presenter = presenter;
-        this.showLoading=true;
+        this.showLoading = true;
     }
 
     public JsonCallBack() {
@@ -50,13 +51,13 @@ public abstract class JsonCallBack<T> extends AbsCallback<T> {
             if (name.contains("pwd")) {
                 List<String> values = map.get(name);
                 for (int i = 0; i < values.size(); i++) {
-                    String value=values.get(i);
-                    String encodeValue= MD5Util.encry5(value);
+                    String value = values.get(i);
+                    String encodeValue = MD5Util.encry5(value);
                     values.set(i, encodeValue);
                 }
             }
         }
-        if (presenter != null&&showLoading) {
+        if (presenter != null && showLoading) {
             presenter.showLoading();
         }
     }
@@ -97,7 +98,7 @@ public abstract class JsonCallBack<T> extends AbsCallback<T> {
                     } else if (result.getStatus() == BaseHttpConfig.LOGOUT) {
                         throw new LogoutException(result.getMsg());
                     } else {
-                        throw new ApiException(result.getMsg());
+                        throw new ApiException(result.getStatus(), result.getMsg());
                     }
                 }
             }
