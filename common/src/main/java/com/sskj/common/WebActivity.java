@@ -86,11 +86,5 @@ public class WebActivity extends BaseActivity<WebPresenter> {
         }
     }
 
-    @Override
-    public void initImmersionBar() {
-        ImmersionBar.with(this)
-                .statusBarDarkFont(true)
-                .fitsSystemWindows(true)
-                .init();
-    }
+
 }

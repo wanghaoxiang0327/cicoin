@@ -2,4 +2,7 @@
 <resources>
 
 
+    <style name="login_check" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/login_check_bg</item>
+    </style>
 </resources>

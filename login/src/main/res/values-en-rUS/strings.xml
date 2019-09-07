@@ -25,7 +25,7 @@
     <string name="login_login_activity_forget_ps470">Submit</string>
     <string name="login_loginActivity1">Mobile login</string>
     <string name="login_login_activity_login350">No account yet? Register immediately</string>
-    <string name="login_login_activity_forget_ps40">Forget the password</string>
+    <string name="login_login_activity_forget_ps40">Forget the password?</string>
     <string name="login_tvcode">Get Message Code</string>
     <string name="login_login_cicoin">Log in to CICOIN</string>
     <string name="login_phone_des">Please enter your mobile number or email address</string>

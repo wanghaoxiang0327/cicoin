@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="login_input_mobile">请输入手机号</string>
-    <string name="login_input_email">请输入邮箱地址</string>
-    <string name="login_get_verify_code">@string/mine_tvcode</string>
+    <string name="login_input_mobile">请输入手机号码</string>
+    <string name="login_input_email">请输入邮箱账户</string>
+    <string name="login_get_verify_code">获取验证码</string>
     <string name="login_get_code_retry">S后重新发送</string>
     <string name="login_input_loagin_ps">请输入登录密码</string>
     <string name="login_input_pwd">请输入8-20位密码(包含数字和字母)</string>
@@ -26,7 +26,7 @@
     <string name="login_login_activity_forget_ps470">提交</string>
     <string name="login_loginActivity1">手机号登录</string>
     <string name="login_login_activity_login350">还没有账号?立即注册</string>
-    <string name="login_login_activity_forget_ps40">忘记密码</string>
+    <string name="login_login_activity_forget_ps40">忘记密码？</string>
     <string name="login_tvcode">点击获取验证码</string>
     <string name="login_login_cicoin">登录CICOIN</string>
     <string name="login_register_cicoin">注册CICOIN</string>

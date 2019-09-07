@@ -135,9 +135,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
         ClickUtil.click(login, view -> finish());
         ClickUtil.click(ivClose, view -> etNum.getText().clear());
         //显示密码
-        ClickUtil.click(ivPwd1, view -> EditUtil.togglePs(etPwd1, ivPwd1));
+        ClickUtil.click(10,ivPwd1, view -> EditUtil.togglePs(etPwd1, ivPwd1));
         //再次显示密码
-        ClickUtil.click(ivPwd2, view -> EditUtil.togglePs(etPwd2, ivPwd2));
+        ClickUtil.click(10,ivPwd2, view -> EditUtil.togglePs(etPwd2, ivPwd2));
         SpannableString reg = new SpannableString(getString(R.string.login_registerActivity3));
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override

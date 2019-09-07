@@ -122,9 +122,9 @@ public class ForgetPsActivity extends BaseActivity<ForgetPsPresenter> {
         ClickUtil.click(register, view -> finish());
         ClickUtil.click(ivClose, view -> etNum.getText().clear());
         //显示密码
-        ClickUtil.click(ivPwd1, view -> EditUtil.togglePs(etPwd1, ivPwd1));
+        ClickUtil.click(1,ivPwd1, view -> EditUtil.togglePs(etPwd1, ivPwd1));
         //再次显示密码
-        ClickUtil.click(ivPwd2, view -> EditUtil.togglePs(etPwd2, ivPwd2));
+        ClickUtil.click(1,ivPwd2, view -> EditUtil.togglePs(etPwd2, ivPwd2));
 
         Disposable text = RxTextView.textChangeEvents(etNum)
                 .map(textViewTextChangeEvent -> textViewTextChangeEvent.getText().toString())
