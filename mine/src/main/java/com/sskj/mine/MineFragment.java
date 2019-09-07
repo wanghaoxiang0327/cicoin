@@ -7,6 +7,7 @@ import android.support.constraint.Group;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -76,7 +77,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     @BindView(R2.id.rl_content)
     RecyclerView rlContent;
     UserBean userBean;
-    private boolean showAsset;
+    private boolean showAsset = false;
     private List<CentenItemBean> data = new ArrayList<>();
     private double usdrt, money;
 
@@ -135,10 +136,10 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                     FeedbackActivity.start(getContext());
                     break;
                 case 5:
-                    WebViewActivity.start(getContext(), BaseHttpConfig.BASE_URL + "/wap/help/index.html",App.INSTANCE.getString(R.string.mine_helper_center));
+                    WebViewActivity.start(getContext(), BaseHttpConfig.BASE_URL + "/wap/help/index.html", App.INSTANCE.getString(R.string.mine_helper_center));
                     break;
                 case 6:
-                    WebViewActivity.start(getContext(), "https://dwz.cn/gkmdm2c9",App.INSTANCE.getString(R.string.mine_kf));
+                    WebViewActivity.start(getContext(), "https://dwz.cn/gkmdm2c9", App.INSTANCE.getString(R.string.mine_kf));
                     break;
                 case 7:
                     SettingActivity.start(getActivity());
@@ -152,13 +153,17 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
     @Override
     public void initData() {
+        userViewModel.update();
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
                 this.userBean = userBean;
 
-                tvName.setText(PatternUtils.isMobile(BaseApplication.getMobile()) ?
-                        BaseApplication.getMobile().replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2")
-                        : BaseApplication.getMobile());
+                if (TextUtils.isEmpty(SpUtil.getString(CommonConfig.MOBILE, ""))) {
+                    tvName.setText(BaseApplication.getMobile());
+                } else {
+                    tvName.setText(BaseApplication.getMobile().replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2"));
+                }
+
                 tvQd.setText(userBean.getQd() == 0 ? getString(R.string.mine_sign_in) : getString(R.string.mine_no_sign_in));
                 tvUid.setText("uid:" + userBean.getUid());
                 groupLogin.setVisibility(View.VISIBLE);
@@ -175,8 +180,8 @@ public class MineFragment extends BaseFragment<MinePresenter> {
             mPresenter.qd();
         });
         ClickUtil.click(50, imgKj, view -> {
-            SpUtil.put(CommonConfig.SHOWASSET, !SpUtil.getBoolean(CommonConfig.SHOWASSET, true));
-            if (SpUtil.getBoolean(CommonConfig.SHOWASSET, true)) {
+            SpUtil.put(CommonConfig.SHOWASSET, !SpUtil.getBoolean(CommonConfig.SHOWASSET, false));
+            if (SpUtil.getBoolean(CommonConfig.SHOWASSET, false)) {
                 tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
                 tvCny.setText("≈" + money + "CNY");
                 imgKj.setImageResource(R.mipmap.mine_icon_show);
@@ -204,7 +209,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     public void getSuccess(double usdrt, double money) {
         this.usdrt = usdrt;
         this.money = money;
-        showAsset = SpUtil.getBoolean(CommonConfig.SHOWASSET, true);
+        showAsset = SpUtil.getBoolean(CommonConfig.SHOWASSET, false);
         if (showAsset) {
             tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
             tvCny.setText("≈" + money + "CNY");

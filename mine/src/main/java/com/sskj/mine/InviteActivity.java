@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.azhon.appupdate.utils.SharePreUtil;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.sskj.common.WebActivity;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.utils.ClickUtil;
@@ -31,7 +32,6 @@ public class InviteActivity extends BaseActivity<InvitePresenter> {
     TextView nu;
     @BindView(R2.id.copy)
     TextView copy;
-    private ShareInfo shareInfo;
 
     @Override
     public int getLayoutId() {
@@ -45,9 +45,7 @@ public class InviteActivity extends BaseActivity<InvitePresenter> {
 
     @Override
     public void initView() {
-        mToolBarLayout.setRightButtonOnClickListener(v -> {
-            WebActivity.start(this, 2);
-        });
+
     }
 
     @Override
@@ -71,10 +69,10 @@ public class InviteActivity extends BaseActivity<InvitePresenter> {
 
 
     public void setShareInfo(ShareInfo result) {
-        shareInfo = result;
         nu.setText(result.getTgno());
         Glide.with(this)
                 .load(result.getQrc())
+                .apply(RequestOptions.placeholderOf(R.drawable.mine_scan_blue))
                 .into(code);
     }
 

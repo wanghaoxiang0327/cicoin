@@ -3,6 +3,7 @@ package com.sskj.mine;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -69,13 +70,13 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
                 //资金密码
-                setPayPs = userBean.getTpwd().equals("false");
+                setPayPs = TextUtils.isEmpty(userBean.getTpwd());
                 if (setPayPs) {
                     menuPayPs.setRightString(getString(R.string.mine_securityActivity1));
                 } else {
                     menuPayPs.setRightString(getString(R.string.mine_change));
                 }
-                if (userBean.getIsBindMail() == 1) {
+                if (!TextUtils.isEmpty(userBean.getEmail())) {
                     emailAddress = userBean.getMail();
                     menuEmailVerify.setRightString(getString(R.string.mine_securityActivity2));
                     bindEmail = true;
@@ -107,9 +108,9 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
                 }
                 String jb = getString(R.string.mine_low);
                 int proress = 33;
-                switch (TextUtils.isEmpty(userBean.getUserLevel())?"":userBean.getUserLevel()) {
+                switch (TextUtils.isEmpty(userBean.getUserLevel()) ? "" : userBean.getUserLevel()) {
                     case "1":
-                        jb = "";
+                        jb = getString(R.string.mine_low);
                         proress = 33;
                         break;
                     case "2":
@@ -155,7 +156,7 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
             if (!bindGoogle) {
                 mPresenter.getGoogleInfo();
             } else {
-                new TipsGogleDialog(this,startGoogle)
+                new TipsGogleDialog(this, startGoogle)
                         .setOnConfirmListener((dialog, gogole, mobile, code) -> {
                             mPresenter.switchGogle(gogole, BaseApplication.getMobile(), code, startGoogle ? "0" : "1", userViewModel);
                             dialog.dismiss();
@@ -181,7 +182,7 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
     @Override
     protected void onResume() {
         super.onResume();
-//        userViewModel.update();
+        userViewModel.update();
     }
 
     public static void start(Context context) {

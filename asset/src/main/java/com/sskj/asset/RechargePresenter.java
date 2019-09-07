@@ -30,7 +30,7 @@ public class RechargePresenter extends BasePresenter<RechargeActivity> {
      */
     public void getCoinAsset(boolean showDialog) {
         OkGo.<HttpResult<List<CoinAsset>>>get(BaseHttpConfig.BASE_URL + HttpConfig.COINASSET)
-                .execute(new JsonCallBack<HttpResult<List<CoinAsset>>>() {
+                .execute(new JsonCallBack<HttpResult<List<CoinAsset>>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<List<CoinAsset>> result) {
                         if (!showDialog) {
@@ -49,7 +49,7 @@ public class RechargePresenter extends BasePresenter<RechargeActivity> {
     public void getRechargeInfo(String pid) {
         OkGo.<HttpResult<Map<String, String>>>get(BaseHttpConfig.BASE_URL + HttpConfig.RECHARGE_INFO)
                 .params("pid", pid)
-                .execute(new JsonCallBack<HttpResult<Map<String, String>>>(this) {
+                .execute(new JsonCallBack<HttpResult<Map<String, String>>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<Map<String, String>> result) {
                         mView.setRechargeInfo(result.getData());

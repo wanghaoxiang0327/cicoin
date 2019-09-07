@@ -98,7 +98,15 @@ public class UserBean {
 
     //是否是董事
     private int is_ds;
+    private String idcard;
 
+    public String getIdcard() {
+        return idcard;
+    }
+
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
+    }
 
     public String getEmail() {
         return email;

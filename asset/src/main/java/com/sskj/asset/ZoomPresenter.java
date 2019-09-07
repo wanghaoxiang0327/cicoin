@@ -28,7 +28,7 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
                 .params("ex_coin", ex_coin)
                 .params("num", num)
                 .params("tpwd", tpwd)
-                .execute(new JsonCallBack<HttpResult>(this) {
+                .execute(new JsonCallBack<HttpResult>(this, false) {
                     @Override
                     protected void onNext(HttpResult result) {
                         mView.transeSuceesss();
@@ -39,7 +39,7 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
 
     public void getExchangeInfo() {
         OkGo.<HttpResult<List<CoinListEntity>>>post(BaseHttpConfig.BASE_URL + HttpConfig.GET_COINLIST)
-                .execute(new JsonCallBack<HttpResult<List<CoinListEntity>>>(this) {
+                .execute(new JsonCallBack<HttpResult<List<CoinListEntity>>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<List<CoinListEntity>> result) {
                         mView.setCoinList(result.getData());
@@ -51,7 +51,7 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
     public void Transfer(String code) {
         OkGo.<HttpResult<List<TransferInfoBean>>>post(BaseHttpConfig.BASE_URL + HttpConfig.GET_TRANSFER)
                 .params("coin", code)
-                .execute(new JsonCallBack<HttpResult<List<TransferInfoBean>>>(this) {
+                .execute(new JsonCallBack<HttpResult<List<TransferInfoBean>>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<List<TransferInfoBean>> result) {
                         if (result.getStatus() == 200) {
@@ -70,10 +70,10 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
     public void getMax(String id) {
         OkGo.<HttpResult<MaxCountBean>>get(BaseHttpConfig.BASE_URL + HttpConfig.MAX)
                 .params("id", id)
-                .execute(new JsonCallBack<HttpResult<MaxCountBean>>() {
+                .execute(new JsonCallBack<HttpResult<MaxCountBean>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<MaxCountBean> result) {
-                        mView.max(Double.parseDouble(result.getData().getTb_maxnum()));
+                        mView.max(Double.parseDouble(result.getData().getBalance()));
                     }
                 });
     }

@@ -114,7 +114,6 @@ public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresent
             if (isEmpty(ps_code_edt)) {
                 return;
             }
-            //todo 这个有问题
             mPresenter.resetLoginPs(getText(psEdt), getText(psRepeatEdt), getText(ps_code_edt), TextUtils.isEmpty(mobile) ? email : mobile);
         });
     }

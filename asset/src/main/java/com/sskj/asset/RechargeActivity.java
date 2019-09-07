@@ -14,6 +14,8 @@ import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinAsset;
 import com.sskj.common.dialog.SelectCoinDialog;
 import com.sskj.common.http.BaseHttpConfig;
+import com.sskj.common.utils.ClickUtil;
+import com.sskj.common.utils.CopyUtils;
 import com.sskj.common.view.ToolBarLayout;
 
 import java.util.List;
@@ -69,6 +71,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter> {
     @Override
     public void initData() {
         mPresenter.getCoinAsset(false);
+        ClickUtil.click(copy,view -> CopyUtils.copy(this,getText(rechargeAddressTv)));
 
     }
 

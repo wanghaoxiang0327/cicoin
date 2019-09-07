@@ -90,12 +90,7 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
             }
         };
         ClickUtil.click(llRecharge, view -> {
-            if (isFirstCheck) {
-                RechargeActivity.start(this);
-            } else {
-                ARouter.getInstance().build(RoutePath.VERIFY_HOME).navigation();
-                ToastUtils.show("请先完成初级验证");
-            }
+            RechargeActivity.start(this);
         });
         ClickUtil.click(ivEye, view -> {
             if (isOpen) {

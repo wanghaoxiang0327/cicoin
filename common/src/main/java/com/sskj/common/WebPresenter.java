@@ -17,10 +17,11 @@ import com.sskj.common.http.JsonCallBack;
 public class WebPresenter extends BasePresenter<WebActivity> {
 
 
-    public void getOrderDetail(String language) {
+    public void getOrderDetail(String language, String type) {
         OkGo.<HttpResult<WebData>>post(BaseHttpConfig.BASE_URL + HttpConfig.WEB_AGGREE)
                 .params("lang", language)
-                .execute(new JsonCallBack<HttpResult<WebData>>(this){
+                .params("type", type)
+                .execute(new JsonCallBack<HttpResult<WebData>>(this) {
                     @Override
                     protected void onNext(HttpResult<WebData> result) {
 

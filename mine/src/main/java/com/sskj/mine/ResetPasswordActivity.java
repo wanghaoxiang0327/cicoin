@@ -69,7 +69,7 @@ public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> 
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
                 mobile = SpUtil.getString(CommonConfig.MOBILE, "");
-                email =  SpUtil.getString(CommonConfig.EMAIL, "");
+                email = SpUtil.getString(CommonConfig.EMAIL, "");
             }
         });
     }
@@ -86,6 +86,15 @@ public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> 
         });
 
         ClickUtil.click(tvCode, view -> {
+            if (isEmpty(ps_code_edt)) {
+                return;
+            }
+            if (isEmpty(psEdt)) {
+                return;
+            }
+            if (isEmpty(psRepeatEdt)) {
+                return;
+            }
             CapUtils.registerCheck(this, validate -> {
                 startTimeDown(tvCode);
                 if (TextUtils.isEmpty(mobile)) {
@@ -98,9 +107,6 @@ public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> 
         });
         ClickUtil.click(submit, view -> {
 
-            if (isEmptyShow(psEdt)) {
-                return;
-            }
 
             if (isEmpty(newPsEdt)) {
                 ToastUtils.show(getString(R.string.mine_resetPasswordActivity1));
@@ -128,7 +134,7 @@ public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> 
 
     @Override
     public void loadData() {
-//        userViewModel.update();
+        userViewModel.update();
     }
 
     public static void start(Context context) {

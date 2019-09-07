@@ -26,7 +26,7 @@
     <string name="common_common_dialog_verify_password390">Please enter Google verification code</string>
     <string name="common_common_dialog_verify_password230">Verify phone</string>
     <string name="common_common_dialog_verify_password450">confirm</string>
-    <string name="common_copyUtils1">Has been copied to the clipboard</string>
+    <string name="common_copyUtils1">Copy success</string>
     <string name="common_common_dialog_verify_password130">Fund password</string>
     <string name="common_common_dialog_verify_password350">Google verification code</string>
     <string name="common_patternUtils2">Phone number format is incorrect</string>

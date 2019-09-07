@@ -79,7 +79,7 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
     @Override
     protected void onResume() {
         super.onResume();
-//        userViewModel.update();
+        userViewModel.update();
     }
 
     @Override
@@ -97,8 +97,11 @@ public class VerifyHomeActivity extends BaseActivity<VerifyHomePresenter> {
                 case 3:
                     state1.setVisibility(View.VISIBLE);
                     state2.setText(getString(R.string.mine_decertification_success));
-                    tv_name.setText(SpUtil.getString("mine_name", "****"));
-                    tv_idcard.setText(SpUtil.getString("mine_idno", "****"));
+                    assert bean != null;
+                    tv_name.setText(bean.getRealname());
+                    tv_idcard.setText(bean.getIdcard());
+//                    tv_name.setText(SpUtil.getString("mine_name", "****"));
+//                    tv_idcard.setText(SpUtil.getString("mine_idno", "****"));
                     break;
                 case 4:
                     state2.setText(getString(R.string.mine_decertification_fail));

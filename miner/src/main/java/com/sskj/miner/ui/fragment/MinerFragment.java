@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.sskj.common.App;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.WaterBean;
 import com.sskj.common.dialog.TipsNewDialog;
@@ -103,10 +104,28 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
             ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore", 1).navigation();
         });
         ClickUtil.click(tvYlMiner, view -> {
-            ForceActivity.start(getActivity());
+            if (BaseApplication.isLogin()) {
+                ForceActivity.start(getActivity());
+            } else {
+                ARouter.getInstance().build(RoutePath.LOGIN_LOGIN)
+                        .navigation();
+            }
         });
-        ClickUtil.click(tvDetailsMiner, view -> SyActivity.start(getActivity()));
+        ClickUtil.click(tvDetailsMiner, view -> {
+                    if (BaseApplication.isLogin()) {
+                        SyActivity.start(getActivity());
+                    } else {
+                        ARouter.getInstance().build(RoutePath.LOGIN_LOGIN)
+                                .navigation();
+                    }
+                }
+        );
         viewWaterMiner.setOnWaterViewClick((waterData, view) -> {
+            if (!BaseApplication.isLogin()) {
+                ARouter.getInstance().build(RoutePath.LOGIN_LOGIN)
+                        .navigation();
+                return;
+            }
             if (Integer.parseInt(waterData.getStatus()) > 3) {
                 new TipsNewDialog(getActivity())
                         .setTitle(App.INSTANCE.getString(R.string.miner_tixing))
@@ -132,13 +151,11 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
     public void lazyLoad() {
         super.lazyLoad();
         mPresenter.getNotices();
-        userViewModel.getUser().observe(this, new Observer<UserBean>() {
-            @Override
-            public void onChanged(@Nullable UserBean userBean) {
-                if (userBean != null) {
-                    mPresenter.getAsset();
-                    mPresenter.getPao();
-                }
+
+        userViewModel.getUser().observe(this, userBean -> {
+            if (userBean != null) {
+                mPresenter.getAsset();
+                mPresenter.getPao();
             }
         });
     }

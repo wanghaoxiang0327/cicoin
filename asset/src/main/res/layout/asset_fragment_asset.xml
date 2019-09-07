@@ -52,8 +52,9 @@
 
                     <ImageView
                         android:id="@+id/iv_eye"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
+                        android:layout_width="30dp"
+                        android:scaleType="centerInside"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="31dp"
                         android:src="@mipmap/asset_icon_eye_open"
                         android:tint="@color/common_dark" />

@@ -17,7 +17,7 @@ import com.sskj.mine.data.ShareInfo;
 public class InvitePresenter extends BasePresenter<InviteActivity> {
     public void getShareInfo(){
         OkGo.<HttpResult<ShareInfo>>get(BaseHttpConfig.BASE_URL+ HttpConfig.SHARE_INFO)
-                .execute(new JsonCallBack<HttpResult<ShareInfo>>(this) {
+                .execute(new JsonCallBack<HttpResult<ShareInfo>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<ShareInfo> result) {
                             mView.setShareInfo(result.getData());

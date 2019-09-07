@@ -1,5 +1,6 @@
 package com.sskj.mine;
 
+import com.hjq.toast.ToastUtils;
 import com.lzy.okgo.OkGo;
 import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BasePresenter;
@@ -21,12 +22,13 @@ public class BindMobileOrEmailPresenter extends BasePresenter<BindMobileOrEmailA
 
     public void bindEmail(String email, String code, String tpwd) {
         OkGo.<HttpResult<Object>>post(BaseHttpConfig.BASE_URL + HttpConfig.BIND_EMAIL)
-                .params("mobile", email)
+                .params("email", email)
                 .params("code", code)
                 .params("tpwd", tpwd)
                 .execute(new JsonCallBack<HttpResult<Object>>(this) {
                     @Override
                     protected void onNext(HttpResult<Object> result) {
+                        ToastUtils.show(result.getMsg());
                         mView.bindSuccess(result.getData());
 
                     }
@@ -43,6 +45,7 @@ public class BindMobileOrEmailPresenter extends BasePresenter<BindMobileOrEmailA
                     @Override
                     protected void onNext(HttpResult<Object> result) {
                         mView.bindSuccess(result.getData());
+                        ToastUtils.show(result.getMsg());
                         SpUtil.put(CommonConfig.MOBILE, mobile);
                     }
                 });
@@ -61,17 +64,21 @@ public class BindMobileOrEmailPresenter extends BasePresenter<BindMobileOrEmailA
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
                     protected void onNext(HttpResult result) {
+                        ToastUtils.show(result.getMsg());
                         mView.sendVerifyCodeSuccess();
                     }
                 });
     }
 
-    public void sendEmail(String email) {
+    public void sendEmail(String email,String validate) {
         OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
                 .params("email", email)
+                .params("type", 3)
+                .params("validate", validate)
                 .execute(new JsonCallBack<HttpResult>(this) {
                     @Override
                     protected void onNext(HttpResult result) {
+                        ToastUtils.show(result.getMsg());
                         mView.sendVerifyCodeSuccess();
                     }
                 });

@@ -25,7 +25,15 @@ public class TransferInfoBean {
     private String ex_pid;
     private String status;
     private String addtime;
+    private String ex_coin_actprice;
 
+    public String getEx_coin_actprice() {
+        return ex_coin_actprice;
+    }
+
+    public void setEx_coin_actprice(String ex_coin_actprice) {
+        this.ex_coin_actprice = ex_coin_actprice;
+    }
 
     public String getId() {
         return id;

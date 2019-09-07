@@ -55,7 +55,7 @@ public class HttpConfig {
     public static final String SYSINFO_DETAIL = "/home/Resource/msgDetail";
 
 
-    public static final String WEB_AGGREE = "/Home/ajax/get_web_agree";
+    public static final String WEB_AGGREE = "/home/qbw/agree";
 
     //=======================交易==============================
     //充币
@@ -86,7 +86,7 @@ public class HttpConfig {
 
     public static final String ASSET_RECORS = "/home/users/finance_list";
 
-    public static final String BIND_EMAIL = "/home/qbw/binding_mobile";
+    public static final String BIND_EMAIL = "/home/qbw/binding_email";
 
     public static final String BIND_MOBILE = "/home/qbw/binding_mobile";
 

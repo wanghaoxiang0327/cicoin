@@ -25,6 +25,7 @@ public class WebActivity extends BaseActivity<WebPresenter> {
     TextView text;
 
     private int type;
+    private String ss;
 
     @Override
     public int getLayoutId() {
@@ -42,21 +43,24 @@ public class WebActivity extends BaseActivity<WebPresenter> {
         switch (type) {
             case 1:
                 mToolBarLayout.setTitle(getString(R.string.common_webActivity1));
+                ss = "reg_agree";
                 break;
             case 2:
                 mToolBarLayout.setTitle(R.string.common_invite_rules);
                 break;
             case 3:
                 mToolBarLayout.setTitle(R.string.common_director_rules);
+                ss = "";
                 break;
             default:
+                ss = "";
                 break;
         }
     }
 
     @Override
     public void initData() {
-        mPresenter.getOrderDetail(LocalManageUtil.getLanguage(this));
+        mPresenter.getOrderDetail(LocalManageUtil.getLanguage(this), ss);
     }
 
     /**
@@ -64,6 +68,12 @@ public class WebActivity extends BaseActivity<WebPresenter> {
      * @param type    1 注册协议 2 邀请规则 3董事分红规则
      */
     public static void start(Context context, int type) {
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra("type", type);
+        context.startActivity(intent);
+    }
+
+    public static void start(Context context, int type, String types) {
         Intent intent = new Intent(context, WebActivity.class);
         intent.putExtra("type", type);
         context.startActivity(intent);

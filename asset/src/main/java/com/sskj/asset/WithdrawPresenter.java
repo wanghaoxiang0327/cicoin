@@ -22,7 +22,7 @@ import java.util.List;
 public class WithdrawPresenter extends BasePresenter<WithdrawActivity> {
     public void getCoinAsset(boolean showDialog) {
         OkGo.<HttpResult<List<CoinAsset>>>get(BaseHttpConfig.BASE_URL + HttpConfig.COINASSET)
-                .execute(new JsonCallBack<HttpResult<List<CoinAsset>>>(this) {
+                .execute(new JsonCallBack<HttpResult<List<CoinAsset>>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<List<CoinAsset>> result) {
                         if (!showDialog) {
@@ -41,7 +41,7 @@ public class WithdrawPresenter extends BasePresenter<WithdrawActivity> {
     public void getWithdrawInfo(String pid) {
         OkGo.<HttpResult<WithdrawInfo>>post(BaseHttpConfig.BASE_URL + HttpConfig.GET_BALANCE)
                 .params("type", pid)
-                .execute(new JsonCallBack<HttpResult<WithdrawInfo>>(this){
+                .execute(new JsonCallBack<HttpResult<WithdrawInfo>>(this,false){
                     @Override
                     protected void onNext(HttpResult<WithdrawInfo> result) {
                         mView.setWithDrawInfo(result.getData());

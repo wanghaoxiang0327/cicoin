@@ -177,8 +177,8 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
         super.loadData();
         mPresenter.getExchangeInfo();
         mPresenter.getMax(pid);
-//        inter = Flowable.interval(2, TimeUnit.SECONDS)
-//                .subscribe(aLong -> mPresenter.getExchangeInfo());
+        inter = Flowable.interval(2, TimeUnit.SECONDS)
+                .subscribe(aLong -> mPresenter.getExchangeInfo());
     }
 
     public static void start(Context context, int type) {
@@ -225,14 +225,14 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
         rightData = da;
         rightCode = da.get(rSelect).getEx_coin();
         tvNewCoin.setText(da.get(rSelect).getEx_name());
-        currentY = Double.parseDouble(da.get(rSelect).getEx_rate());
+        currentY = Double.parseDouble(da.get(rSelect).getEx_coin_actprice());
         tvNewAmount.setText(currentY + "");
-        if (Double.parseDouble(da.get(rSelect).getEx_rate()) > currentY) {
+        if (Double.parseDouble(da.get(rSelect).getEx_coin_actprice()) > currentY) {
             //张
             tvNewAmount.setTextColor(ContextCompat.getColor(App.INSTANCE, R.color.common_red));
             die.setImageResource(R.mipmap.asset_zhang);
             die.setVisibility(View.VISIBLE);
-        } else if (Double.parseDouble(da.get(rSelect).getEx_rate()) < currentY) {
+        } else if (Double.parseDouble(da.get(rSelect).getEx_coin_actprice()) < currentY) {
             //die
             tvNewAmount.setTextColor(ContextCompat.getColor(App.INSTANCE, R.color.common_green));
             die.setImageResource(R.mipmap.asset_die);
@@ -243,7 +243,7 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
         }
         Flowable.fromIterable(da)
                 .map(coinListEntity -> new CoinAsset(coinListEntity.getEx_pid(), coinListEntity.getEx_name(),
-                        coinListEntity.getEx_rate(), coinListEntity.getEx_coin())).toList()
+                        coinListEntity.getEx_coin_actprice(), coinListEntity.getEx_coin())).toList()
                 .subscribe(coinAssets -> {
                     rightCoin = coinAssets;
                 });

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.hjq.toast.ToastUtils;
 import com.sskj.common.AppManager;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.dialog.VerifyPasswordDialog;
@@ -68,7 +70,7 @@ public class ResetPayPasswordActivity extends BaseActivity<ResetPayPasswordPrese
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
                 mobile = SpUtil.getString(CommonConfig.MOBILE, "");
-                email =  SpUtil.getString(CommonConfig.EMAIL, "");
+                email = SpUtil.getString(CommonConfig.EMAIL, "");
             }
         });
     }
@@ -83,6 +85,13 @@ public class ResetPayPasswordActivity extends BaseActivity<ResetPayPasswordPrese
             EditUtil.togglePs(psRepeatEdt, showRepeatPsImg);
         });
         ClickUtil.click(tvCode, view -> {
+            if (isEmpty(newPsEdt)) {
+                return;
+            }
+            if (isEmpty(psRepeatEdt)) {
+                return;
+            }
+
             CapUtils.registerCheck(this, validate -> {
                 startTimeDown(tvCode);
                 if (TextUtils.isEmpty(mobile)) {
@@ -95,9 +104,6 @@ public class ResetPayPasswordActivity extends BaseActivity<ResetPayPasswordPrese
         });
         ClickUtil.click(submit, view -> {
 
-            if (isEmptyShow(psEdt)) {
-                return;
-            }
 
             if (isEmpty(newPsEdt)) {
                 ToastUtils.show(getString(R.string.mine_resetPayPasswordActivity1));
@@ -115,8 +121,7 @@ public class ResetPayPasswordActivity extends BaseActivity<ResetPayPasswordPrese
                 ToastUtils.show(getString(R.string.mine_resetPasswordActivity2));
                 return;
             }
-//todo
-            mPresenter.resetLoginPs(getText(psEdt), getText(newPsEdt), getText(psRepeatEdt), "", "");
+            mPresenter.resetLoginPs(getText(newPsEdt), getText(psRepeatEdt), getText(ps_code_edt), BaseApplication.getMobile());
 
         });
     }

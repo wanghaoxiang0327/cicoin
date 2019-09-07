@@ -116,11 +116,11 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
             }
             CapUtils.registerCheck(this, validate -> {
                 if (verify == Verify.EMAIL) {
-                    mPresenter.sendEmail(getText(verifyAccountEdt));
+                    mPresenter.sendEmail(getText(verifyAccountEdt),validate);
                 } else {
                     mPresenter.sendSms(getText(verifyAccountEdt), validate);
                 }
-                startTimeDown(getCode);
+
             });
 
 
@@ -142,7 +142,7 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
 
 
     public void sendVerifyCodeSuccess() {
-
+        startTimeDown(getCode);
     }
 
 
