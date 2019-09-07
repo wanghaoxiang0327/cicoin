@@ -16,6 +16,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.lwj.widget.viewpagerindicator.ViewPagerIndicator;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.sskj.cicoin.data.BannerBean;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.glide.GlideImageLoader;
@@ -143,7 +144,12 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         wrapRefresh(homeContent);
         setEnableLoadMore(false);
         ClickUtil.click(llInvite, view -> {
-            ARouter.getInstance().build(RoutePath.INVITE_HOME).navigation();
+            if (BaseApplication.isLogin()) {
+                ARouter.getInstance().build(RoutePath.INVITE_HOME).navigation();
+            } else {
+                ARouter.getInstance().build(RoutePath.LOGIN_LOGIN)
+                        .navigation();
+            }
         });
         ClickUtil.click(llTradingGuide, view -> {
             TradingGuideActivity.start(getContext());

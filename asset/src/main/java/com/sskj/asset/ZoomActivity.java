@@ -177,8 +177,8 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
         super.loadData();
         mPresenter.getExchangeInfo();
         mPresenter.getMax(pid);
-        inter = Flowable.interval(2, TimeUnit.SECONDS)
-                .subscribe(aLong -> mPresenter.getExchangeInfo());
+//        inter = Flowable.interval(2, TimeUnit.SECONDS)
+//                .subscribe(aLong -> mPresenter.getExchangeInfo());
     }
 
     public static void start(Context context, int type) {
@@ -193,9 +193,8 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
             this.data = data;
             tvOldCoin.setText(data.get(lSelect).getPname());
             leftCode = data.get(lSelect).getCode();
-            currentX = Double.parseDouble(data.get(lSelect).getActprice());
             tvOldAmount.setText(currentX + "");
-            if (Double.parseDouble(data.get(lSelect).getActprice()) > currentX) {
+            if (Double.parseDouble(data.get(lSelect).getActprice()) >= currentX) {
                 //张
                 tvOldAmount.setTextColor(ContextCompat.getColor(App.INSTANCE, R.color.common_red));
                 zhang.setImageResource(R.mipmap.asset_zhang);
@@ -209,6 +208,7 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
                 tvOldAmount.setTextColor(ContextCompat.getColor(App.INSTANCE, R.color.common_text));
                 zhang.setVisibility(View.GONE);
             }
+            currentX = Double.parseDouble(data.get(lSelect).getActprice());
             Flowable.fromIterable(data)
                     .map(coinListEntity -> new CoinAsset(coinListEntity.getPid(), coinListEntity.getPname(),
                             coinListEntity.getActprice(), coinListEntity.getCode())).toList()
@@ -225,7 +225,7 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
         rightData = da;
         rightCode = da.get(rSelect).getEx_coin();
         tvNewCoin.setText(da.get(rSelect).getEx_name());
-        currentY = Double.parseDouble(da.get(rSelect).getEx_coin_actprice());
+
         tvNewAmount.setText(currentY + "");
         if (Double.parseDouble(da.get(rSelect).getEx_coin_actprice()) > currentY) {
             //张
@@ -241,6 +241,7 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
             tvNewAmount.setTextColor(ContextCompat.getColor(App.INSTANCE, R.color.common_text));
             die.setVisibility(View.GONE);
         }
+        currentY = Double.parseDouble(da.get(rSelect).getEx_coin_actprice());
         Flowable.fromIterable(da)
                 .map(coinListEntity -> new CoinAsset(coinListEntity.getEx_pid(), coinListEntity.getEx_name(),
                         coinListEntity.getEx_coin_actprice(), coinListEntity.getEx_coin())).toList()

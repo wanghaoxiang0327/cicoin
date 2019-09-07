@@ -72,6 +72,7 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
                 }
                 if (!TextUtils.isEmpty(userBean.getEmail())) {
                     menuEmailVerify.setRightString(getString(R.string.mine_securityActivity2));
+                    menuEmailVerify.setRightString(getString(R.string.mine_verifySettingActivity2));
                     bindEmail = true;
                 } else {
                     bindEmail = false;
@@ -135,7 +136,8 @@ public class SecurityActivity extends BaseActivity<SecurityPresenter> {
         });
         ClickUtil.click(menuEmailVerify, view -> {
             if (bindEmail) {
-                VerifySettingActivity.start(this, Verify.EMAIL);
+//                VerifySettingActivity.start(this, Verify.EMAIL);
+                ToastUtils.show(getString(R.string.mine_verifySettingActivity2));
             } else {
                 BindMobileOrEmailActivity.start(this, Verify.EMAIL);
             }

@@ -20,5 +20,4 @@ public class WithDrawEntity implements Serializable {
     public String ti_id;
     public String tpath;
     public String pid;
-    public String reason;
-}
+    public String reason;}

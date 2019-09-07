@@ -31,6 +31,7 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
                 .execute(new JsonCallBack<HttpResult>(this, false) {
                     @Override
                     protected void onNext(HttpResult result) {
+                        ToastUtils.show(result.getMsg());
                         mView.transeSuceesss();
                     }
                 });

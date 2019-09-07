@@ -118,6 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/common_action_text"
+                android:visibility="gone"
                 android:textSize="@dimen/sp_14"
                 tools:text="审核成功" />
         </LinearLayout>

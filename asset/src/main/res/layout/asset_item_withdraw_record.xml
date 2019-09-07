@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="15dp">
 
@@ -95,7 +96,8 @@
 
         <TextView
             android:id="@+id/tv_recharge_review"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:ellipsize="end"
@@ -103,6 +105,13 @@
             android:textColor="@color/common_text"
             android:textSize="@dimen/sp_14"
             tools:text="wewqewqwqe" />
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_action_text"
+            android:textSize="@dimen/sp_14"
+            tools:text="审核成功" />
     </LinearLayout>
 
 </LinearLayout>

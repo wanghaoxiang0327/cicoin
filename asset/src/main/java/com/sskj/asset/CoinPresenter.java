@@ -1,5 +1,7 @@
 package com.sskj.asset;
 
+import android.util.Log;
+
 import com.lzy.okgo.OkGo;
 import com.lzy.okrx2.adapter.FlowableBody;
 import com.sskj.asset.data.WithDrawEntity;
@@ -48,6 +50,7 @@ class CoinPresenter extends BasePresenter<CoinFragment> {
                 .adapt(new FlowableBody<>())
                 .map(pageHttpResult -> {
                     return pageHttpResult.getData().getRes();
+
                 });
 
     }
