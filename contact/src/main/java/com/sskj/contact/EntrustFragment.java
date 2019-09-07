@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sskj.common.BaseApplication;
 import com.sskj.common.DividerLineItemDecoration;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
@@ -104,23 +105,25 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
 
     @Override
     public void loadData() {
-
+        if (BaseApplication.isLogin()) {
+            smartRefreshHelper.setDataSource(new DataSource<EntrustOrder>() {
+                @Override
+                public Flowable<List<EntrustOrder>> loadData(int page) {
+                    return mPresenter.getEntrustOrder(page, size);
+                }
+            });
+            disposable = Flowable.interval(2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
+                @Override
+                public void accept(Long aLong) throws Exception {
+                    smartRefreshHelper.loadData(false);
+                }
+            });
+        }
     }
 
     @Override
     public void lazyLoad() {
-        smartRefreshHelper.setDataSource(new DataSource<EntrustOrder>() {
-            @Override
-            public Flowable<List<EntrustOrder>> loadData(int page) {
-                return mPresenter.getEntrustOrder(page, size);
-            }
-        });
-        disposable = Flowable.interval(2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
-            @Override
-            public void accept(Long aLong) throws Exception {
-                smartRefreshHelper.loadData(false);
-            }
-        });
+
     }
 
     public static EntrustFragment newInstance() {

@@ -14,9 +14,11 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.allen.library.SuperButton;
 import com.gyf.barlibrary.ImmersionBar;
+import com.hjq.toast.ToastUtils;
 import com.jakewharton.rxbinding3.widget.RxTextView;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.HttpHeaders;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.CommonConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.dialog.VerifyPasswordDialog;
@@ -43,8 +45,6 @@ import io.reactivex.disposables.Disposable;
  */
 @Route(path = RoutePath.LOGIN_LOGIN)
 public class LoginActivity extends BaseActivity<LoginPresenter> {
-
-
     @BindView(R2.id.back)
     ImageView back;
     @BindView(R2.id.title)
@@ -66,8 +66,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     @BindView(R2.id.register)
     TextView register;
     private RegisterType registerType = RegisterType.MOBILE;
-
-
     VerifyPasswordDialog verifyPasswordDialog;
 
     @Override
@@ -91,29 +89,29 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
                     } else {
                         ivClose.setVisibility(View.VISIBLE);
                         login.setShapeSolidColor(Color.parseColor("#255bfc")).setUseShape();
-
                     }
                 });
-//
     }
 
     @Override
     public void initData() {
         ClickUtil.click(back, view -> finish());
-
+        ClickUtil.click(ivClose, view -> etNum.getText().clear());
         ClickUtil.click(register, view -> RegisterActivity.start(this));
         ClickUtil.click(forget, view -> ForgetPsActivity.start(this));
         ClickUtil.click(ivPwd, view -> EditUtil.togglePs(etPwd, ivPwd));
-//
 //        //登录
         ClickUtil.click(login, view -> {
             if (isEmptyShow(etNum)) {
+                ToastUtils.show(getString(R.string.login_phone_des));
+                return;
+            }
+            if (isEmptyShow(etPwd)) {
+                ToastUtils.show(getString(R.string.login_input_pwd));
                 return;
             }
             mPresenter.login(etNum.getText().toString(), etPwd.getText().toString());
         });
-
-
     }
 
 
@@ -143,17 +141,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
                             .setOnConfirmListener((dialog, ps, sms, google) -> {
                                 mPresenter.isGoogleCheck(etNum.getText().toString(), google);
                             });
-                if (!pa.isShowing()){
-                    pa.show();
-                }
+                    if (!pa.isShowing()) {
+                        pa.show();
+                    }
                 } else {
                     if (userBean.getIsStartGoogle() == 0) {
                         ARouter.getInstance().build(RoutePath.MAIN).navigation();
                         finish();
                     }
                 }
-
-
             }
         });
 

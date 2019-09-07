@@ -9,7 +9,8 @@
     <string name="login_login_btn">立即登录</string>
     <string name="login_ps_format">8-20位字符且字母数字组合</string>
     <string name="login_repeat_ps">请输入确认密码</string>
-    <string name="login_registerActivity5">请先阅读并同意《用户注册协议》</string>
+    <string name="login_registerActivity5">我已阅读并同意</string>
+    <string name="login_registeragreement">《用户注册协议》</string>
     <string name="login_login_activity_login40">登录</string>
     <string name="login_registerActivity1">手机号注册</string>
     <string name="login_registerActivity2">邮箱注册</string>
@@ -27,7 +28,7 @@
     <string name="login_loginActivity1">手机号登录</string>
     <string name="login_login_activity_login350">还没有账号?立即注册</string>
     <string name="login_login_activity_forget_ps40">忘记密码？</string>
-    <string name="login_tvcode">点击获取验证码</string>
+    <string name="login_tvcode">获取验证码</string>
     <string name="login_login_cicoin">登录CICOIN</string>
     <string name="login_register_cicoin">注册CICOIN</string>
     <string name="login_phone_des">请输入手机号或邮箱</string>
