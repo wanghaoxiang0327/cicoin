@@ -70,7 +70,7 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
         tabItems.add(new TabItem(getString(R.string.contact_orderRecordsActivity2)));
         tabItems.add(new TabItem(getString(R.string.contact_orderRecordsActivity3)));
         fragments.add(HoldFragment.newInstance(code));
-        fragments.add(EntrustFragment.newInstance());
+        fragments.add(EntrustFragment.newInstance(code));
         fragments.add(DealFragment.newInstance(code));
         tabLayout.setTabData(tabItems, getSupportFragmentManager(), R.id.order_content, fragments);
         ClickUtil.click(tvCloseAll, view -> {
@@ -113,7 +113,7 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
 
     @Override
     public void loadData() {
-        disposable = Flowable.interval(0, 5, TimeUnit.SECONDS).subscribe(new Consumer<Long>() {
+        disposable = Flowable.interval(0, 2, TimeUnit.SECONDS).subscribe(new Consumer<Long>() {
             @Override
             public void accept(Long aLong) throws Exception {
                 mPresenter.getDetailInfo(code);

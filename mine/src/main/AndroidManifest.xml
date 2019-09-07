@@ -5,7 +5,6 @@
         <activity android:name=".SecurityActivity"/>
         <activity android:name="com.sskj.mine.LanguageActivity"/>
         <activity android:name="com.sskj.mine.MyTeamActivity"/>
-        <activity android:name="com.sskj.mine.CommissionActivity"/>
         <activity android:name="com.sskj.mine.DirectorActivity"/>
         <activity android:name="com.sskj.mine.InviteActivity"/>
         <activity android:name="com.sskj.mine.ShareImgActivity"/>

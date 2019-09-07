@@ -36,6 +36,7 @@ class RechargeListPresenter extends BasePresenter<RechargeListActivity> {
 
     /**
      * 币种分类
+     *
      * @return
      */
     public void getCoinAsset(boolean showDialog) {
@@ -43,10 +44,12 @@ class RechargeListPresenter extends BasePresenter<RechargeListActivity> {
                 .execute(new JsonCallBack<HttpResult<List<CoinAsset>>>() {
                     @Override
                     protected void onNext(HttpResult<List<CoinAsset>> result) {
-                        if (!showDialog) {
-                            mView.setCoinList(result.getData());
-                        } else {
-                            mView.showCoinDialog(result.getData());
+                        if (result != null && result.getData() != null) {
+                            if (!showDialog) {
+                                mView.setCoinList(result.getData());
+                            } else {
+                                mView.showCoinDialog(result.getData());
+                            }
                         }
                     }
                 });

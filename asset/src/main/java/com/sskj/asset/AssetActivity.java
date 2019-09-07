@@ -125,7 +125,6 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
                 ToastUtils.show("请先完成高级验证");
                 return;
             }
-//
             WithdrawActivity.start(this);
         });
         ClickUtil.click(llTransfer, view -> {

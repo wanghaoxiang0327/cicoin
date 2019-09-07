@@ -67,7 +67,6 @@ public class CoinFragment extends BaseFragment<CoinPresenter> {
                 holder.setText(R.id.tv_recharge_address, item.qianbao_url).setText(R.id.tv_recharge_count, item.account).setText(R.id.tv_recharge_submit, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.addtime) * 1000)).setText(R.id.tv_recharge_review, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.check_time) * 1000));
             }
         };
-
     }
 
 

@@ -190,6 +190,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
     @Override
     public void loadData() {
+        userViewModel.update();
     }
 
     public static MineFragment newInstance() {

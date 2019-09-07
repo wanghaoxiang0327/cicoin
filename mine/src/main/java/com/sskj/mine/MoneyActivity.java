@@ -1,39 +1,34 @@
 package com.sskj.mine;
 
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.sskj.common.DividerLineItemDecoration;
-import com.sskj.common.adapter.BaseAdapter;
-import com.sskj.common.adapter.ViewHolder;
-import com.sskj.common.base.BaseActivity;
-import com.sskj.common.utils.NumberUtils;
-import com.sskj.common.utils.TimeFormatUtil;
-import com.sskj.mine.MoneyPresenter;
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.sskj.mine.R;
+import com.sskj.common.DividerLineItemDecoration;
+import com.sskj.common.adapter.BaseAdapter;
+import com.sskj.common.adapter.ViewHolder;
+import com.sskj.common.base.BaseActivity;
+import com.sskj.common.helper.DataSource;
+import com.sskj.common.helper.SmartRefreshHelper;
+import com.sskj.common.utils.TimeFormatUtil;
 import com.sskj.mine.data.CommissionBean;
-import com.sskj.mine.data.CommissionDetailBean;
+
+import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Flowable;
 
 /**
  * @author Hey
  * Create at  2019/09/05 09:37:33
  */
 public class MoneyActivity extends BaseActivity<MoneyPresenter> {
-
-
     @BindView(R2.id.list)
     RecyclerView detailList;
-    BaseAdapter<CommissionDetailBean> commissionDetailAdapter;
-
     private int size = 15;
-    private int page = 1;
-
+    BaseAdapter<CommissionBean> commissionDetailAdapter;
+    SmartRefreshHelper<CommissionBean> smartRefreshHelper;
 
     @Override
     public int getLayoutId() {
@@ -52,56 +47,33 @@ public class MoneyActivity extends BaseActivity<MoneyPresenter> {
                 .setLastDraw(false)
                 .setFirstDraw(false));
         detailList.setLayoutManager(new LinearLayoutManager(this));
-        commissionDetailAdapter = new BaseAdapter<CommissionDetailBean>(R.layout.mine_item_comission_detail, null, detailList) {
+        commissionDetailAdapter = new BaseAdapter<CommissionBean>(R.layout.mine_item_comission_detail, null, detailList) {
             @Override
-            public void bind(ViewHolder holder, CommissionDetailBean item) {
-                holder.setText(R.id.user_id, item.getDown_account())
-                        .setText(R.id.count, item.getFee() + item.getPname())
-                        .setText(R.id.time, TimeFormatUtil.SF_FORMAT_E.format(item.getAddtime() * 1000));
+            public void bind(ViewHolder holder, CommissionBean item) {
+                holder.setText(R.id.user_id, item.realname)
+                        .setText(R.id.count, item.nums)
+                        .setText(R.id.time, TimeFormatUtil.SF_FORMAT_E.format(item.time * 1000));
             }
         };
     }
 
-
     @Override
     public void initData() {
-        wrapRefresh(detailList);
+        smartRefreshHelper = new SmartRefreshHelper<>(this, commissionDetailAdapter);
     }
 
     @Override
     public void loadData() {
-        mPresenter.getCommsion(page, size);
+        smartRefreshHelper.setDataSource(new DataSource<CommissionBean>() {
+            @Override
+            public Flowable<List<CommissionBean>> loadData(int page) {
+                return mPresenter.getCommsion(page, size);
+            }
+        });
     }
 
     public static void start(Context context) {
         Intent intent = new Intent(context, MoneyActivity.class);
         context.startActivity(intent);
     }
-
-
-    @Override
-    public void onRefresh(RefreshLayout refreshLayout) {
-        page = 1;
-        mPresenter.getCommsion(page, size);
-    }
-
-    @Override
-    public void onLoadMore(RefreshLayout refreshLayout) {
-        page++;
-        mPresenter.getCommsion(page, size);
-    }
-
-
-    public void setCommission(CommissionBean data) {
-        if (page == 1) {
-            commissionDetailAdapter.setNewData(data.getData().getList());
-        } else {
-            commissionDetailAdapter.addData(data.getData().getList());
-        }
-
-        if (data.getData().getList() == null || data.getData().getList().isEmpty()) {
-            mRefreshLayout.setNoMoreData(true);
-        }
-    }
-
 }

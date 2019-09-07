@@ -94,14 +94,11 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         int isOpenMore = intent.getIntExtra("isOpenMore", 0);
         if (isOpenMore == 1) {
             mainTabLayout.setCurrentTab(1);
+            ImmersionBar.with(MainActivity.this).fitsSystemWindows(true).statusBarColor(R.color.white).statusBarDarkFont(true, 0.2f).init();
         } else if (isOpenMore == 2) {
             mainTabLayout.setCurrentTab(2);
+            initImmersionBar();
         }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN, code = BusCode.SECOND)
-    public void showCurrent() {
-        mainTabLayout.setCurrentTab(1);
     }
 
     @Override
@@ -200,7 +197,6 @@ public class MainActivity extends BaseActivity<MainPresenter> {
     public void changeLanguage() {
         HttpHeaders httpHeaders = OkGo.getInstance().getCommonHeaders();
         httpHeaders.put("lang", LocalManageUtil.getSetLanguageLocale(App.INSTANCE) == Locale.ENGLISH ? "eu" : "cn");
-
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

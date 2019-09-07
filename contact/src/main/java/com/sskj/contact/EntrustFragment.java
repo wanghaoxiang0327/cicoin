@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.sskj.common.BaseApplication;
 import com.sskj.common.DividerLineItemDecoration;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
@@ -45,7 +44,7 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
     BaseAdapter<EntrustOrder> adapter;
     Disposable disposable;
     int size = 10;
-
+    String code;
     private SmartRefreshHelper<EntrustOrder> smartRefreshHelper;
 
     @Override
@@ -65,6 +64,9 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
 
     @Override
     public void initView() {
+        if (getArguments() != null) {
+            code = getArguments().getString("code");
+        }
         RxBus.getDefault().register(this);
         orderList.setLayoutManager(new LinearLayoutManager(getContext()));
         orderList.addItemDecoration(new DividerLineItemDecoration(getContext())
@@ -105,7 +107,7 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
                     smartRefreshHelper.setDataSource(new DataSource<EntrustOrder>() {
                         @Override
                         public Flowable<List<EntrustOrder>> loadData(int page) {
-                            return mPresenter.getEntrustOrder(page, size);
+                            return mPresenter.getEntrustOrder(page, size, code);
                         }
                     });
                     disposable = Flowable.interval(2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
@@ -125,9 +127,10 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
     public void lazyLoad() {
     }
 
-    public static EntrustFragment newInstance() {
+    public static EntrustFragment newInstance(String code) {
         EntrustFragment fragment = new EntrustFragment();
         Bundle bundle = new Bundle();
+        bundle.putString("code", code);
         fragment.setArguments(bundle);
         return fragment;
     }

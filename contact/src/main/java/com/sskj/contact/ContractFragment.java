@@ -80,7 +80,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
                 .add(R.id.contact_left, ContractLeftFragment.newInstance(code))
                 .add(R.id.contact_right, PankouFragment.newInstance(code))
                 .add(R.id.contact_depth, (Fragment) ARouter.getInstance().build(RoutePath.DEPTH_FRAGMENT).withString("code", code).navigation())
-                .add(R.id.contact_order, EntrustFragment.newInstance())
+                .add(R.id.contact_order, EntrustFragment.newInstance(code))
                 .commit();
         initDrawLayout();
     }

@@ -10,6 +10,8 @@ import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.helper.DataSource;
 import com.sskj.common.helper.SmartRefreshHelper;
+import com.sskj.common.utils.NumberUtils;
+import com.sskj.common.utils.TimeFormatUtil;
 
 import java.util.List;
 
@@ -42,10 +44,10 @@ public class OtherFragment extends BaseFragment<OtherPresenter> {
     public void initView() {
         pid = getArguments().getString("pid");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        newsAdapter = new BaseAdapter<OtherRecordEntity>(R.layout.asset_item_recharge_record, null, recyclerView) {
+        newsAdapter = new BaseAdapter<OtherRecordEntity>(R.layout.asset_item_other_record, null, recyclerView) {
             @Override
             public void bind(ViewHolder holder, OtherRecordEntity item) {
-//                holder.setText(R.id.tv_recharge_address, item.chongzhi_url).setText(R.id.tv_recharge_count, item.account).setText(R.id.tv_recharge_submit, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.addtime) * 1000)).setText(R.id.tv_recharge_review, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.check_time) * 1000));
+                holder.setText(R.id.tv_recharge_submit, item.type).setText(R.id.tv_recharge_count, NumberUtils.keepMaxDown(item.price, 4) + "USDT").setText(R.id.tv_recharge_address, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.addtime) * 1000));
             }
         };
     }

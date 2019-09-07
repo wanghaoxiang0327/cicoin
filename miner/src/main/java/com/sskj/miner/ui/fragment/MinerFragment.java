@@ -14,10 +14,12 @@ import android.widget.FrameLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.sskj.common.App;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.WaterBean;
 import com.sskj.common.dialog.TipsNewDialog;
+import com.sskj.common.router.RoutePath;
 import com.sskj.common.rxbus.BusCode;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.user.data.UserBean;
@@ -98,7 +100,7 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
         ClickUtil.click(tvRuleMiner, view -> mPresenter.getRule());
         ClickUtil.click(tvJyMiner, view -> {
             //交易
-            RxBus.getDefault().send(BusCode.SECOND);
+            ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore", 1).navigation();
         });
         ClickUtil.click(tvYlMiner, view -> {
             ForceActivity.start(getActivity());
