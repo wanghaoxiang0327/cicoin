@@ -45,8 +45,6 @@ import io.reactivex.disposables.Disposable;
  * Create at  2019/06/21
  */
 public class ForgetPsActivity extends BaseActivity<ForgetPsPresenter> {
-
-
     @BindView(R2.id.back)
     ImageView back;
     @BindView(R2.id.title)
@@ -110,7 +108,6 @@ public class ForgetPsActivity extends BaseActivity<ForgetPsPresenter> {
         ClickUtil.click(back, view -> finish());
         //手机号
         ClickUtil.click(mobile, view -> {
-
             registerType = RegisterType.MOBILE;
             changeType();
         });
@@ -175,8 +172,6 @@ public class ForgetPsActivity extends BaseActivity<ForgetPsPresenter> {
                 ToastUtils.show(getString(R.string.login_forgetPsActivity3));
                 return;
             }
-
-
             mPresenter.forgetPs(etNum.getText().toString(),
                     etCode.getText().toString(),
                     etPwd1.getText().toString(),
@@ -195,7 +190,6 @@ public class ForgetPsActivity extends BaseActivity<ForgetPsPresenter> {
                     return;
                 }
             }
-
             registerCheck();
         });
     }
@@ -304,19 +298,11 @@ public class ForgetPsActivity extends BaseActivity<ForgetPsPresenter> {
 
     }
 
-
     public void registerSuccess(String mobile) {
         Intent intent = new Intent();
         intent.putExtra(CommonConfig.MOBILE, mobile);
         setResult(RESULT_OK, intent);
         finish();
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
     }
 
     public static void start(Context context) {

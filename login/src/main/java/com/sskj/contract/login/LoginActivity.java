@@ -103,11 +103,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
 //        //登录
         ClickUtil.click(login, view -> {
             if (isEmptyShow(etNum)) {
-                ToastUtils.show(getString(R.string.login_phone_des));
                 return;
             }
             if (isEmptyShow(etPwd)) {
-                ToastUtils.show(getString(R.string.login_input_pwd));
                 return;
             }
             mPresenter.login(etNum.getText().toString(), etPwd.getText().toString());

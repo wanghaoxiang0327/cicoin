@@ -14,6 +14,7 @@ import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 import com.sskj.common.App;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.WaterBean;
 import com.sskj.common.dialog.TipsNewDialog;
@@ -122,16 +123,17 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
 
     @Override
     public void loadData() {
-
-
+        mPresenter.getNotices();
+        if (BaseApplication.isLogin()) {
+            mPresenter.getAsset();
+            mPresenter.getPao();
+        }
     }
 
     @Override
     public void lazyLoad() {
         super.lazyLoad();
-        mPresenter.getNotices();
-        mPresenter.getAsset();
-        mPresenter.getPao();
+
     }
 
     public static MinerFragment newInstance() {

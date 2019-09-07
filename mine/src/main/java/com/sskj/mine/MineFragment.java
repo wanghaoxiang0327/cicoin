@@ -7,18 +7,11 @@ import android.support.constraint.Group;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.gyf.barlibrary.BarHide;
-import com.gyf.barlibrary.ImmersionBar;
-import com.hjq.toast.ToastUtils;
 import com.sskj.common.BaseApplication;
 import com.sskj.common.CommonConfig;
 import com.sskj.common.WebViewActivity;
@@ -40,15 +33,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Create at  2019/06/24
  */
 public class MineFragment extends BaseFragment<MinePresenter> {
-
-
     @BindView(R2.id.view_top)
     View viewTop;
     @BindView(R2.id.view_barrier)
@@ -83,7 +72,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     TextView tvCny;
     @BindView(R2.id.rl_content)
     RecyclerView rlContent;
-
+    UserBean userBean;
     private boolean showAsset;
     private List<CentenItemBean> data = new ArrayList<>();
     private double usdrt, money;
@@ -143,7 +132,6 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                     FeedbackActivity.start(getContext());
                     break;
                 case 5:
-
 //                    WebViewActivity.start(this,);
                     break;
                 case 6:
@@ -163,10 +151,13 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     public void initData() {
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
+                this.userBean = userBean;
+                tvName.setText(userBean.getName());
+                tvQd.setText(userBean.getQd() == 0 ? getString(R.string.mine_sign_in) : getString(R.string.mine_no_sign_in));
+                tvUid.setText("uid:" + userBean.getUid());
                 groupLogin.setVisibility(View.VISIBLE);
                 groupUnLogin.setVisibility(View.GONE);
-                mPresenter.getMoney(userBean);
-
+                mPresenter.getMoney();
             } else {
                 groupLogin.setVisibility(View.GONE);
                 groupUnLogin.setVisibility(View.VISIBLE);
@@ -214,10 +205,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     }
 
 
-    public void getSuccess(UserBean bean, double usdrt, double money) {
-        tvName.setText(bean.getName());
-        tvQd.setText(bean.getQd() == 0 ? getString(R.string.mine_sign_in) : getString(R.string.mine_no_sign_in));
-        tvUid.setText("uid:" + bean.getUid());
+    public void getSuccess(double usdrt, double money) {
         this.usdrt = usdrt;
         this.money = money;
         showAsset = SpUtil.getBoolean(CommonConfig.SHOWASSET, true);

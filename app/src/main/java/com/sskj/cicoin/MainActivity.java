@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
 
     @Override
     public void initData() {
-        ImmersionBar.with(MainActivity.this).fitsSystemWindows(true).statusBarColor(R.color.white).init();
+        ImmersionBar.with(MainActivity.this).fitsSystemWindows(true).statusBarColor(R.color.white).statusBarDarkFont(true, 0.2f).init();
         JSONObject message = new JSONObject();
         message.put("code", "all");
         marketWebSocket = new WebSocket(BaseHttpConfig.WS_URL, "market", message.toString());
@@ -127,7 +127,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
             @Override
             public boolean onTabSelect(int position) {
                 if (position == 0 || position == 1) {
-                    ImmersionBar.with(MainActivity.this).fitsSystemWindows(true).statusBarColor(R.color.white).init();
+                    ImmersionBar.with(MainActivity.this).fitsSystemWindows(true).statusBarColor(R.color.white).statusBarDarkFont(true, 0.2f).init();
                 } else {
                     initImmersionBar();
                 }

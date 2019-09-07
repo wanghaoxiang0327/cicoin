@@ -364,7 +364,9 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
     @Override
     public void loadData() {
-        mPresenter.getBalance();
+        if (BaseApplication.isLogin()) {
+            mPresenter.getBalance();
+        }
     }
 
 

@@ -19,12 +19,12 @@ import java.util.Map;
  */
 public class MinePresenter extends BasePresenter<MineFragment> {
 
-    public void getMoney(UserBean bean) {
+    public void getMoney() {
         OkGo.<HttpResult<MIneBean>>get(BaseHttpConfig.BASE_URL + HttpConfig.ASSET)
                 .execute(new JsonCallBack<HttpResult<MIneBean>>() {
                     @Override
                     protected void onNext(HttpResult<MIneBean> result) {
-                        mView.getSuccess(bean, result.getData().getTtl_money(), result.getData().getTtl_cnymoney());
+                        mView.getSuccess(result.getData().getTtl_money(), result.getData().getTtl_cnymoney());
                     }
                 });
     }
