@@ -17,7 +17,7 @@ public class NewsDetailPresenter extends BasePresenter<NewsDetailActivity> {
     public void getNoticeDetail(String id) {
         OkGo.<HttpResult<NewsBean>>post(HttpConfig.BASE_URL + HttpConfig.NOTICE_DETAIL)
                 .params("id", id)
-                .execute(new JsonCallBack<HttpResult<NewsBean>>(this) {
+                .execute(new JsonCallBack<HttpResult<NewsBean>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<NewsBean> result) {
                         mView.setNoticeDetail(result.getData());
@@ -29,7 +29,7 @@ public class NewsDetailPresenter extends BasePresenter<NewsDetailActivity> {
     public void getSysInfoDetial(String id) {
         OkGo.<HttpResult<NewsBean>>post(HttpConfig.BASE_URL + HttpConfig.SYSINFO_DETAIL)
                 .params("id", id)
-                .execute(new JsonCallBack<HttpResult<NewsBean>>(this) {
+                .execute(new JsonCallBack<HttpResult<NewsBean>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<NewsBean> result) {
                         mView.setNoticeDetail(result.getData());

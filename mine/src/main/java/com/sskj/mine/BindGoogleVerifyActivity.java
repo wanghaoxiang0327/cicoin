@@ -80,14 +80,7 @@ public class BindGoogleVerifyActivity extends BaseActivity<BindGoogleVerifyPrese
             if (isEmptyShow(edtVerifyCode)) {
                 return;
             }
-            CapUtils.registerCheck(this, validate -> {
-                startTimeDown(getCodeTv);
-                if (TextUtils.isEmpty(SpUtil.getString(CommonConfig.MOBILE, ""))) {
-                    mPresenter.sendEmail(SpUtil.getString(CommonConfig.EMAIL, ""), validate);
-                } else {
-                    mPresenter.sendSms(SpUtil.getString(CommonConfig.MOBILE, ""), validate);
-                }
-            });
+            CapUtils.registerCheck(this,"7",()-> startTimeDown(getCodeTv));
         });
         qrCodeImg.setOnLongClickListener(v -> true);
 

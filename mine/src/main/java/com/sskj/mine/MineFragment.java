@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -157,7 +158,6 @@ public class MineFragment extends BaseFragment<MinePresenter> {
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
                 this.userBean = userBean;
-
                 if (TextUtils.isEmpty(SpUtil.getString(CommonConfig.MOBILE, ""))) {
                     tvName.setText(BaseApplication.getMobile());
                 } else {
@@ -168,7 +168,6 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 tvUid.setText("uid:" + userBean.getUid());
                 groupLogin.setVisibility(View.VISIBLE);
                 groupUnLogin.setVisibility(View.GONE);
-                mPresenter.getMoney();
             } else {
                 groupLogin.setVisibility(View.GONE);
                 groupUnLogin.setVisibility(View.VISIBLE);
@@ -198,6 +197,14 @@ public class MineFragment extends BaseFragment<MinePresenter> {
         userViewModel.update();
     }
 
+    @Override
+    public void lazyLoad() {
+        super.lazyLoad();
+        if (userBean != null) {
+            mPresenter.getMoney();
+        }
+    }
+
     public static MineFragment newInstance() {
         MineFragment fragment = new MineFragment();
         Bundle bundle = new Bundle();
@@ -210,15 +217,27 @@ public class MineFragment extends BaseFragment<MinePresenter> {
         this.usdrt = usdrt;
         this.money = money;
         showAsset = SpUtil.getBoolean(CommonConfig.SHOWASSET, false);
+        Log.d("yds", "11111111111111111111111");
         if (showAsset) {
             tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
-            tvCny.setText("≈" + money + "CNY");
+            tvCny.setText("≈" + NumberUtils.keep2(money) + "CNY");
             imgKj.setImageResource(R.mipmap.mine_icon_show);
+            Log.d("yds", "11111111111111111111111");
         } else {
             tvPrice.setText("****");
             tvCny.setText("≈****");
             imgKj.setImageResource(R.mipmap.mine_icon_hide);
+            Log.d("yds", "11111111111111111111111");
         }
+    }
+
+    public void getFailed(int s1, int s2) {
+        Log.d("yds","这个抵港");
+        usdrt = s1;
+        money = s2;
+        tvPrice.setText("****");
+        tvCny.setText("≈****");
+        imgKj.setImageResource(R.mipmap.mine_icon_hide);
     }
 
     public void about(String s) {
@@ -236,10 +255,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 .setTitle(getString(R.string.mine_sign_in))
                 .setContent(App.INSTANCE.getString(R.string.mine_sign_des) + String.format(App.INSTANCE.getString(R.string.mine_sign_des1), yl))
                 .setConfirmText(getString(R.string.mine_to_complete_task))
-                .setConfirmListener(dialog -> {
-                    RxBus.getDefault().send(BusCode.SECOND);
-                    dialog.dismiss();
-                }).show();
+                .setConfirmListener(Dialog::dismiss).show();
         userViewModel.update();
     }
 }

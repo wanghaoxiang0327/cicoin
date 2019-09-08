@@ -99,33 +99,7 @@ public class TipsGogleDialog extends AlertDialog {
         });
         //发送验证码
         ClickUtil.click(getCode, view -> {
-            if (TextUtils.isEmpty(SpUtil.getString(CommonConfig.MOBILE, null))) {
-                mobile = SpUtil.getString(CommonConfig.EMAIL, "");
-                CapUtils.registerCheck(context, str -> OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
-                        .params("email", mobile)
-                        .params("validate", str)
-                        .params("type", "7")
-                        .execute(new JsonCallBack<HttpResult>() {
-                            @Override
-                            protected void onNext(HttpResult result) {
-                                startTimeDown(getCode);
-                            }
-                        }));
-            } else {
-                CapUtils.registerCheck(context, dialog -> {
-                    mobile = SpUtil.getString(CommonConfig.MOBILE, "");
-                    OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
-                            .params("mobile", mobile)
-                            .params("type", "7")
-                            .params("validate", dialog)
-                            .execute(new JsonCallBack<HttpResult>() {
-                                @Override
-                                protected void onNext(HttpResult result) {
-                                    startTimeDown(getCode);
-                                }
-                            });
-                });
-            }
+            CapUtils.registerCheck(context,"7",()-> startTimeDown(getCode));
         });
 
     }

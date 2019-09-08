@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Flowable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * @author Hey
@@ -112,11 +115,14 @@ public class CoinFragment extends BaseFragment<CoinPresenter> {
     }
 
     public void setData(List<CoinBean> data) {
-        if (page == 1) {
-            topAdapter.setNewData(data.subList(0, 3));
-        } else if (page == 2) {
-            topAdapter.setNewData(data.subList(3, data.size()));
-        }
+        Disposable disposable = Flowable.fromIterable(data)
+                .filter(coinBean -> coinBean.getName().equals("BTC") || coinBean.getName().equals("ETH") || coinBean.getName().equals("XRP")).toList()
+                .subscribe(coinBeans -> topAdapter.setNewData(coinBeans));
+//        if (page == 1) {
+//            topAdapter.setNewData(data.subList(0, 3));
+//        } else if (page == 2) {
+//            topAdapter.setNewData(data.subList(3, data.size()));
+//        }
     }
 
 

@@ -43,6 +43,8 @@ public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> 
     EditText psRepeatEdt;
     @BindView(R2.id.show_repeat_ps_img)
     ImageView showRepeatPsImg;
+    @BindView(R2.id.show_ps_edt_img)
+    ImageView show_ps_edt_img;
     @BindView(R2.id.submit)
     Button submit;
     @BindView(R2.id.ps_code_edt)
@@ -79,6 +81,7 @@ public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> 
         showRepeatPsImg.setOnClickListener(v -> {
             EditUtil.togglePs(psRepeatEdt, showRepeatPsImg);
         });
+        show_ps_edt_img.setOnClickListener(v -> EditUtil.togglePs(psEdt,show_ps_edt_img));
         ClickUtil.click(tvCode, view -> {
             if (isEmptyShow(psEdt)) {
                 return;
@@ -89,15 +92,8 @@ public class ResetPasswordActivity extends BaseActivity<ResetPasswordPresenter> 
             if (isEmptyShow(psRepeatEdt)) {
                 return;
             }
-            CapUtils.registerCheck(this, validate -> {
-                startTimeDown(tvCode);
-                if (TextUtils.isEmpty(mobile)) {
-                    //只能发送邮件
-                    mPresenter.sendEmail(email, validate);
-                } else {
-                    mPresenter.sendSms(mobile, validate);
-                }
-            });
+            CapUtils.registerCheck(this, "2", () -> startTimeDown(tvCode));
+
         });
         ClickUtil.click(submit, view -> {
             if (isEmptyShow(psEdt)) {

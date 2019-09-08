@@ -3,13 +3,21 @@ package com.sskj.common.utils;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import com.hjq.toast.ToastUtils;
+import com.lzy.okgo.OkGo;
 import com.netease.nis.captcha.Captcha;
 import com.netease.nis.captcha.CaptchaConfiguration;
 import com.netease.nis.captcha.CaptchaListener;
 import com.sskj.common.App;
+import com.sskj.common.BaseApplication;
 import com.sskj.common.BuildConfig;
+import com.sskj.common.CommonConfig;
+import com.sskj.common.http.HttpConfig;
+import com.sskj.common.http.HttpResult;
+import com.sskj.common.http.JsonCallBack;
 
 /**
  * 项目包名：com.sskj.common.utils
@@ -22,7 +30,7 @@ import com.sskj.common.BuildConfig;
 public class CapUtils {
 
 
-    public static void registerCheck(Context context, validateInterface validateInterface) {
+    public static void registerCheck(Context context, String type,  validateInterface validateInterface) {
         CaptchaConfiguration configuration = new CaptchaConfiguration.Builder()
                 .captchaId(BuildConfig.captchaId)
                 // 验证码业务id
@@ -38,7 +46,40 @@ public class CapUtils {
 
                         if (!TextUtils.isEmpty(validate)) {
                             if (validateInterface != null) {
-                                validateInterface.validateSuccess(validate);
+                                validateInterface.validateSuccess();
+                                Log.d("yds", SpUtil.getString(CommonConfig.MOBILE, "") + "-----" +
+                                        SpUtil.getString(CommonConfig.EMAIL, ""));
+                                if (TextUtils.isEmpty(SpUtil.getString(CommonConfig.MOBILE, ""))) {
+                                    Log.d("yds", BaseApplication.getMobile() + "-------邮箱--------");
+                                    //发送邮箱验证码
+                                    OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
+                                            .params("email", BaseApplication.getMobile())
+                                            .params("validate", validate)
+                                            .params("type", type)
+                                            .execute(new JsonCallBack<HttpResult>() {
+                                                @Override
+                                                protected void onNext(HttpResult result) {
+                                                    ToastUtils.show(result.getMsg());
+
+
+                                                }
+                                            });
+                                } else {
+                                    Log.d("yds", BaseApplication.getMobile() + "--------------手机--");
+                                    //发送手机验证码
+                                    OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
+                                            .params("mobile", BaseApplication.getMobile())
+                                            .params("type", type)
+                                            .params("validate", validate)
+                                            .execute(new JsonCallBack<HttpResult>() {
+                                                @Override
+                                                protected void onNext(HttpResult result) {
+                                                    ToastUtils.show(result.getMsg());
+                                                }
+                                            });
+                                }
+//                                validateInterface.validateSuccess(validate);
+
                             }
                         } else {
                             Toast.makeText(context, "验证失败", Toast.LENGTH_LONG).show();
@@ -73,7 +114,9 @@ public class CapUtils {
 
     }
 
+
     public interface validateInterface {
-        void validateSuccess(String validate);
+
+        void validateSuccess();
     }
 }

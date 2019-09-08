@@ -27,7 +27,7 @@ public class MinerPresenter extends BasePresenter<MinerFragment> {
     //获取佣金详情
     public void getAsset() {
         OkGo.<HttpResult<TotalAsset>>get(BaseHttpConfig.BASE_URL + HttpConfig.GET_ASSET)
-                .execute(new JsonCallBack<HttpResult<TotalAsset>>() {
+                .execute(new JsonCallBack<HttpResult<TotalAsset>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<TotalAsset> result) {
                         if (result.getStatus() == BaseHttpConfig.OK) {
@@ -42,7 +42,7 @@ public class MinerPresenter extends BasePresenter<MinerFragment> {
      */
     public void getNotices() {
         OkGo.<HttpResult<List<String>>>get(BaseHttpConfig.BASE_URL + HttpConfig.NOTICE)
-                .execute(new JsonCallBack<HttpResult<List<String>>>() {
+                .execute(new JsonCallBack<HttpResult<List<String>>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<List<String>> result) {
                         if (result.getStatus() == BaseHttpConfig.OK) {
@@ -59,7 +59,7 @@ public class MinerPresenter extends BasePresenter<MinerFragment> {
     public void getRule() {
         OkGo.<HttpResult<String>>post(BaseHttpConfig.BASE_URL + HttpConfig.GET_RULE)
                 .params("type", "wkgz")
-                .execute(new JsonCallBack<HttpResult<String>>(this) {
+                .execute(new JsonCallBack<HttpResult<String>>(this,false) {
 
                     @Override
                     protected void onNext(HttpResult<String> result) {
@@ -75,7 +75,7 @@ public class MinerPresenter extends BasePresenter<MinerFragment> {
      */
     public void getPao() {
         OkGo.<HttpResult<List<WaterBean>>>get(BaseHttpConfig.BASE_URL + HttpConfig.GET_PAO)
-                .execute(new JsonCallBack<HttpResult<List<WaterBean>>>() {
+                .execute(new JsonCallBack<HttpResult<List<WaterBean>>>(this,false) {
 
 
                     @Override
@@ -96,7 +96,7 @@ public class MinerPresenter extends BasePresenter<MinerFragment> {
         OkGo.<HttpResult>post(BaseHttpConfig.BASE_URL + HttpConfig.RECEIVE_PAO)
                 .params("pid", id)
                 .params("type", "usdt")
-                .execute(new JsonCallBack<HttpResult>(this) {
+                .execute(new JsonCallBack<HttpResult>(this,false) {
                     @Override
                     protected void onNext(HttpResult result) {
                         if (result.getStatus() == BaseHttpConfig.OK) {

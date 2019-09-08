@@ -164,31 +164,16 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
             googleCodeEdt.setText(CopyUtils.getTextFromClip(getContext()));
         });
         //发送验证码
+
         ClickUtil.click(getCodeTv, view -> {
-            CapUtils.registerCheck(context, dialog -> {
-                OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
-                        .params("mobile", BaseApplication.getMobile())
-                        .params("type", smsType)
-                        .params("validate", dialog)
-                        .execute(new JsonCallBack<HttpResult>() {
-                            @Override
-                            protected void onNext(HttpResult result) {
-                                startTimeDown(getCodeTv);
-                            }
-                        });
+            CapUtils.registerCheck(context, smsType + "", () -> {
+                startTimeDown(getCodeTv);
             });
+
         });
         //发送邮箱验证码
         ClickUtil.click(getEmailCodeTv, view -> {
-            CapUtils.registerCheck(context, str -> OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
-                    .params("email", emailAddress)
-                    .params("validate", str)
-                    .execute(new JsonCallBack<HttpResult>() {
-                        @Override
-                        protected void onNext(HttpResult result) {
-                            startTimeDown(getEmailCodeTv);
-                        }
-                    }));
+            CapUtils.registerCheck(context,""+smsType,()->startTimeDown(getEmailCodeTv));
         });
     }
 

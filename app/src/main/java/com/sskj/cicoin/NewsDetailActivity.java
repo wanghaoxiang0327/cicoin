@@ -32,6 +32,7 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
     LinearLayout topLayout;
     private int type;//1 公告 2行业资讯 3交易指南
     private NewsBean newsBean;
+    boolean isLogin = false;
 
     @Override
     public int getLayoutId() {
@@ -47,23 +48,36 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
     public void initView() {
         newsBean = (NewsBean) getIntent().getSerializableExtra("newsBean");
         type = getIntent().getIntExtra("type", 0);
+        userViewModel.getUser().observe(this,user -> {
+            if (user != null) {
+                isLogin = true;
+            }
+
+        });
     }
 
     @Override
     public void initData() {
+
         if (type == 1) {
-            mPresenter.getNoticeDetail(newsBean.getId());
+            if (isLogin) {
+                mPresenter.getNoticeDetail(newsBean.getId());
+            }
             linearLayout.setVisibility(View.GONE);
             topLayout.setVisibility(View.VISIBLE);
             toolbar.setTitle(getString(R.string.app_notice_detail));
         } else if (type == 2) {
             toolbar.setTitle(getString(R.string.app_infomation_detail));
-            mPresenter.getSysInfoDetial(newsBean.getId());
+            if (isLogin) {
+                mPresenter.getSysInfoDetial(newsBean.getId());
+            }
             linearLayout.setVisibility(View.GONE);
             topLayout.setVisibility(View.VISIBLE);
         } else if (type == 3) {
             toolbar.setTitle(getString(R.string.app_trading_guide));
-            mPresenter.getSysInfoDetial(newsBean.getId());
+            if (isLogin) {
+                mPresenter.getSysInfoDetial(newsBean.getId());
+            }
             linearLayout.setVisibility(View.GONE);
             topLayout.setVisibility(View.VISIBLE);
         } else {
@@ -87,8 +101,12 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
 
 
     public void setNoticeDetail(NewsBean data) {
-        setText(titleTv, data.getTitle());
-        setText(timeTv, data.getDate());
-        RichText.fromHtml(data.getContent()).into(contentTv);
+        try {
+            setText(titleTv, data.getTitle());
+            setText(timeTv, data.getDate());
+            RichText.fromHtml(data.getContent()).into(contentTv);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

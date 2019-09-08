@@ -92,7 +92,7 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
         ClickUtil.click(llRecharge, view -> {
             RechargeActivity.start(this);
         });
-        ClickUtil.click(ivEye, view -> {
+        ClickUtil.click(10,ivEye, view -> {
             if (isOpen) {
                 tvAllAsset.setText(NumberUtils.keepMaxDown(data.ttl_money, 4));
                 tvAssetRnb.setText("≈" + NumberUtils.keep2(data.ttl_cnymoney) + "CNY");

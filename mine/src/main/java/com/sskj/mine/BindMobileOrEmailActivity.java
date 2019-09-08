@@ -2,10 +2,17 @@ package com.sskj.mine;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.netease.nis.captcha.Captcha;
+import com.netease.nis.captcha.CaptchaConfiguration;
+import com.netease.nis.captcha.CaptchaListener;
+import com.sskj.common.App;
+import com.sskj.common.BuildConfig;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.utils.CapUtils;
 import com.sskj.common.utils.ClickUtil;
@@ -109,17 +116,64 @@ public class BindMobileOrEmailActivity extends BaseActivity<BindMobileOrEmailPre
                     return;
                 }
             }
-            CapUtils.registerCheck(this, validate -> {
-                if (verify == Verify.EMAIL) {
-                    mPresenter.sendEmail(getText(verifyAccountEdt), validate);
-                } else {
-                    mPresenter.sendSms(getText(verifyAccountEdt), validate);
-                }
+            registerCheck();
 
-            });
         });
     }
 
+
+    public  void registerCheck() {
+        CaptchaConfiguration configuration = new CaptchaConfiguration.Builder()
+                .captchaId(BuildConfig.captchaId)
+                // 验证码业务id
+//                    .mode(CaptchaConfiguration.ModeType.MODE_INTELLIGENT_NO_SENSE) // 验证码类型，默认为普通验证码，如果要使用无感知请设置该类型，否则无需设置
+                .listener(new CaptchaListener() {
+                    @Override
+                    public void onReady() {
+
+                    }
+
+                    @Override
+                    public void onValidate(String result, String validate, String msg) {
+
+                        if (!TextUtils.isEmpty(validate)) {
+                            if (verify == Verify.EMAIL) {
+                                mPresenter.sendEmail(getText(verifyAccountEdt), validate);
+                            } else {
+                                mPresenter.sendSms(getText(verifyAccountEdt), validate);
+                            }
+                        } else {
+                            Toast.makeText(App.INSTANCE, "验证失败", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        Toast.makeText(App.INSTANCE, "验证出错：" + msg, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                    }
+
+                    @Override
+                    public void onClose() {
+
+                    }
+                })
+                // 验证码回调监听器
+                .timeout(1000 * 20)
+                // 超时时间，一般无需设置
+                .debug(true)
+                // 是否启用debug模式，一般无需设置
+                .position(-1, -1, 0, 0)
+                // 设置验证码框的位置和宽度，一般无需设置，不推荐设置宽高，后面将会将逐步废弃该接口
+                .build(this);
+        // Context，请使用Activity实例的Context
+        Captcha captcha = Captcha.getInstance().init(configuration);
+        captcha.validate();
+
+    }
     public static void start(Context context, Verify verify) {
         Intent intent = new Intent(context, BindMobileOrEmailActivity.class);
         intent.putExtra("type", verify);

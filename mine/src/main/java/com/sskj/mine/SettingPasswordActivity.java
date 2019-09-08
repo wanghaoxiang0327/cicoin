@@ -83,15 +83,10 @@ public class SettingPasswordActivity extends BaseActivity<SettingPasswordPresent
             if (isEmptyShow(psRepeatEdt)) {
                 return;
             }
-            CapUtils.registerCheck(this, validate -> {
+            CapUtils.registerCheck(this,"4",()->{
                 startTimeDown(tvCode);
-                if (TextUtils.isEmpty(mobile)) {
-                    //只能发送邮件
-                    mPresenter.sendEmail(email, validate);
-                } else {
-                    mPresenter.sendSms(mobile, validate);
-                }
             });
+
         });
         ClickUtil.click(submit, view -> {
             if (isEmptyShow(psEdt)) {

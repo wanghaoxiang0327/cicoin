@@ -132,8 +132,9 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
                         .setContent(App.INSTANCE.getString(R.string.miner_tips_heyue))
                         .setConfirmText(App.INSTANCE.getString(R.string.miner_confirm_tips))
                         .setConfirmListener(dialog -> {
-                            RxBus.getDefault().send(BusCode.SECOND);
+                            ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore", 1).navigation();
                             dialog.dismiss();
+
                         })
                         .show();
                 return;

@@ -117,13 +117,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     public void loginSuccess(LoginBean loginBean) {
         SpUtil.put(CommonConfig.ACCOUNT, loginBean.getAccount());
         SpUtil.put(CommonConfig.TOKEN, loginBean.getToken());
-        if (etPwd.getText().toString().contains("@")) {
+        String regex = "^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+        if (getText(etNum).matches(regex)) {
             SpUtil.put(CommonConfig.EMAIL, etNum.getText().toString());
         } else {
             SpUtil.put(CommonConfig.MOBILE, etNum.getText().toString());
-        }
-        if (registerType == RegisterType.MOBILE) {
-            SpUtil.put(CommonConfig.MOBILE, getText(etNum));
         }
         SpUtil.put(CommonConfig.LOGIN, true);
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -175,15 +173,5 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         finish();
     }
 
-    /**
-     * 显示谷歌验证
-     */
-    public void showCheckGoogle(String mobile, String opwd) {
-        verifyPasswordDialog = new VerifyPasswordDialog(this, false, true, false, 0);
-        verifyPasswordDialog.setOnConfirmListener((dialog, ps, sms, google) -> {
-            mPresenter.login(mobile, opwd, google);
-        });
-        verifyPasswordDialog.show();
-    }
 
 }

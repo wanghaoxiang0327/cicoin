@@ -3,6 +3,7 @@ package com.sskj.mine;
 import android.util.Log;
 
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 import com.sskj.common.base.BasePresenter;
 import com.sskj.common.http.BaseHttpConfig;
 import com.sskj.common.http.HttpConfig;
@@ -27,7 +28,14 @@ public class MinePresenter extends BasePresenter<MineFragment> {
                 .execute(new JsonCallBack<HttpResult<MIneBean>>() {
                     @Override
                     protected void onNext(HttpResult<MIneBean> result) {
+                        Log.d("yds", "走了这");
                         mView.getSuccess(result.getData().getTtl_money(), result.getData().getTtl_cnymoney());
+                    }
+
+                    @Override
+                    public void onError(Response<HttpResult<MIneBean>> response) {
+                        super.onError(response);
+                        mView.getFailed(0, 0);
                     }
                 });
     }

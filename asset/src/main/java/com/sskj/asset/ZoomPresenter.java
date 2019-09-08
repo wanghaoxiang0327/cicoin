@@ -70,7 +70,7 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
 
     public void getMax(String id) {
         OkGo.<HttpResult<MaxCountBean>>get(BaseHttpConfig.BASE_URL + HttpConfig.MAX)
-                .params("id", id)
+                .params("type", id)
                 .execute(new JsonCallBack<HttpResult<MaxCountBean>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<MaxCountBean> result) {

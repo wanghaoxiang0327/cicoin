@@ -88,15 +88,8 @@ public class ResetPayPasswordActivity extends BaseActivity<ResetPayPasswordPrese
             if (isEmptyShow(psRepeatEdt)) {
                 return;
             }
-            CapUtils.registerCheck(this, validate -> {
-                startTimeDown(tvCode);
-                if (TextUtils.isEmpty(mobile)) {
-                    //只能发送邮件
-                    mPresenter.sendEmail(email, validate);
-                } else {
-                    mPresenter.sendSms(mobile, validate);
-                }
-            });
+
+            CapUtils.registerCheck(this,"4",()->startTimeDown(tvCode));
         });
         ClickUtil.click(submit, view -> {
             if (isEmptyShow(newPsEdt)) {

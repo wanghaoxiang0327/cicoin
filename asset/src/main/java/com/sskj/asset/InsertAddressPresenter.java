@@ -21,7 +21,7 @@ public class InsertAddressPresenter extends BasePresenter<InsertAddressActivity>
                 .params("qiaobao_url", qiaobao_url)
                 .params("notes", notes)
                 .params("type", type)
-                .execute(new JsonCallBack<HttpResult<Object>>(this) {
+                .execute(new JsonCallBack<HttpResult<Object>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<Object> result) {
                         mView.insertSuccess();
