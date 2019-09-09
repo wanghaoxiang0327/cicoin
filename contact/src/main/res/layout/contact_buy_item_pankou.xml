@@ -34,7 +34,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:ellipsize="end"
             android:gravity="center"
+            android:maxLines="1"
             android:text="@string/contact_contact_dialog_create_order190"
             android:textColor="@color/common_hint" />
 
@@ -43,7 +45,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:ellipsize="end"
             android:gravity="right"
+            android:maxLines="1"
             android:text="@string/contact_contact_dialog_create_order230"
             android:textColor="@color/common_hint" />
     </LinearLayout>

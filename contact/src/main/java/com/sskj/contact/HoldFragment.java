@@ -77,9 +77,9 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
         orderAdapter = new BaseAdapter<HoldOrder>(R.layout.contact_item_hold, null, orderList) {
             @Override
             public void bind(ViewHolder holder, HoldOrder item) {
-                holder.setText(R.id.tv_order_type, item.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty))
-                        .setTextColor(R.id.tv_order_type, item.getType() == 1 ? color(R.color.common_red) : color(R.color.common_green))
-                        .setText(R.id.tv_price_type, item.getOtype() == 1 ? getString(R.string.contact_dealFragment7) : getString(R.string.contact_dealFragment8))
+                holder.setText(R.id.tv_order_type, "1".equals(item.getOtype()) ? getString(R.string.common_make_more) : getString(R.string.common_make_empty))
+                        .setTextColor(R.id.tv_order_type, "1".equals(item.getOtype()) ? color(R.color.common_red) : color(R.color.common_green))
+                        .setText(R.id.tv_price_type, "1".equals(item.getType()) ? getString(R.string.contact_dealFragment7) : getString(R.string.contact_dealFragment8))
                         .setText(R.id.tv_coin_name, item.getCode().replace("_", "/").toUpperCase())
                         .setText(R.id.tv_create_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
                         .setText(R.id.tv_order_lever, item.getLeverage())

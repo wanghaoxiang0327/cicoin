@@ -24,6 +24,7 @@ import com.hjq.toast.ToastUtils;
 import com.sskj.common.App;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.CoinBean;
+import com.sskj.common.dialog.TipsNewDialog;
 import com.sskj.common.event.ContactChangeCoin;
 import com.sskj.common.router.RoutePath;
 import com.sskj.common.rxbus.RxBus;
@@ -184,6 +185,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
             public void onChanged(@Nullable UserBean userBean) {
                 if (userBean == null) {
                     btnSubmit.setText(getString(R.string.contact_please_login));
+                    btnSubmit.setBackgroundResource(R.drawable.contact_red_bg_50);
                 } else {
                     btnSubmit.setText(getString(R.string.common_make_more));
                     btnSubmit.setBackgroundResource(R.drawable.contact_red_bg_50);
@@ -196,7 +198,12 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
                 return;
             }
             if (mUserInfo.getStatus() == 1) {
-                ToastUtils.show(App.INSTANCE.getString(R.string.contact_verifyHomeActivity4));
+                new TipsNewDialog(getContext()).setContent(getString(R.string.contact_verifyHomeActivity4)).setConfirmText(getString(R.string.common_common_tip_dialog80)).setConfirmListener(new TipsNewDialog.OnConfirmListener() {
+                    @Override
+                    public void onConfirm(TipsNewDialog dialog) {
+                        ARouter.getInstance().build(RoutePath.VERIFYFIRST).navigation();
+                    }
+                }).show();
                 return;
             }
             if (priceType == Price.LIMIT) {
@@ -293,16 +300,27 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
     private void initTradeType() {
         tradeTypeGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.radio_up) {
-                tradeType = Trade.UP;
-                btnSubmit.setBackgroundResource(R.drawable.contact_red_bg_50);
-                pointTabLayout.setIndicatorColor(getResources().getColor(R.color.common_red));
-            } else {
-                tradeType = Trade.DOWN;
-                btnSubmit.setBackgroundResource(R.drawable.contact_green_bg_50);
-                pointTabLayout.setIndicatorColor(getResources().getColor(R.color.common_green));
-            }
-            btnSubmit.setText(tradeType.name);
+            userViewModel.getUser().observe(this, new Observer<UserBean>() {
+                @Override
+                public void onChanged(@Nullable UserBean userBean) {
+                    if (userBean == null) {
+                        btnSubmit.setText(getString(R.string.contact_please_login));
+                        btnSubmit.setBackgroundResource(R.drawable.contact_red_bg_50);
+                    } else {
+                        if (checkedId == R.id.radio_up) {
+                            tradeType = Trade.UP;
+                            btnSubmit.setBackgroundResource(R.drawable.contact_red_bg_50);
+                            pointTabLayout.setIndicatorColor(getResources().getColor(R.color.common_red));
+                        } else {
+                            tradeType = Trade.DOWN;
+                            btnSubmit.setBackgroundResource(R.drawable.contact_green_bg_50);
+                            pointTabLayout.setIndicatorColor(getResources().getColor(R.color.common_green));
+                        }
+                        btnSubmit.setText(tradeType.name);
+                    }
+                }
+            });
+
         });
     }
 

@@ -93,12 +93,7 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
                         .setText(R.id.tv_total_money, NumberUtils.keepMaxDown(item.getTotalprice(), 4))
                         .setText(R.id.tv_fee, NumberUtils.keepMaxDown(item.getSxfee(), 4));
                 ClickUtil.click(holder.getView(R.id.btn_cancel), view -> {
-                    new TipsNewDialog(mContext).setContent(getString(R.string.contact_confirm_cancle_order)).setConfirmText(getString(R.string.common_common_tip_dialog80)).setCancelVisible(View.GONE).setConfirmListener(new TipsNewDialog.OnConfirmListener() {
-                        @Override
-                        public void onConfirm(TipsNewDialog dialog) {
-                            mPresenter.cancelOrder(item.getEn_id());
-                        }
-                    }).show();
+                    mPresenter.cancelOrder(item.getEn_id());
                 });
             }
         };

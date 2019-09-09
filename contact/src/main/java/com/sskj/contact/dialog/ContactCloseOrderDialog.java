@@ -76,12 +76,12 @@ public class ContactCloseOrderDialog extends DialogFragment {
     }
 
     private void initView() {
-        tvType.setText(orderData.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));
-        tvType.setTextColor(orderData.getType() == 1 ? getResources().getColor(R.color.common_red) : getResources().getColor(R.color.common_green));
+        tvType.setText("1".equals(orderData.getOtype()) ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));
+        tvType.setTextColor("1".equals(orderData.getOtype()) ? getResources().getColor(R.color.common_red) : getResources().getColor(R.color.common_green));
         tvPrice.setText(orderData.getNewprice());
         tvNum.setText(orderData.getBuynum());
         edtNum.setFilters(new InputFilter[]{new MoneyValueFilter(2)});
-        edtNum.setText(orderData.getBuynum());
+        edtNum.setText(NumberUtils.keep(orderData.getBuynum(), 2));
         btnCancel.setOnClickListener(v -> {
             getDialog().dismiss();
         });

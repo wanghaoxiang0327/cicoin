@@ -18,17 +18,14 @@ import com.sskj.mine.data.FirstBean;
 class VerifyFirstPresenter extends BasePresenter<VerifyFirstActivity> {
 
     public void firstVerify(String name, String idcard) {
-        OkGo.<HttpResult<FirstBean>>post(BaseHttpConfig.BASE_URL + HttpConfig.VERIFY_FIRST)
+        OkGo.<HttpResult>post(BaseHttpConfig.BASE_URL + HttpConfig.VERIFY_FIRST)
                 .params("realname", name)
                 .params("idcard", idcard)
-                .params("type","1")
-                .execute(new JsonCallBack<HttpResult<FirstBean>>() {
+                .params("type", "1")
+                .execute(new JsonCallBack<HttpResult>() {
                     @Override
-                    protected void onNext(HttpResult<FirstBean> result) {
-                        SpUtil.put("mine_name", result.getData().getName());
-                        SpUtil.put("mine_idno", result.getData().getIdcard());
+                    protected void onNext(HttpResult result) {
                         mView.verifySuccess();
-
                     }
                 });
     }

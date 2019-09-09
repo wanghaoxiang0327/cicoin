@@ -36,6 +36,8 @@ import com.sskj.contact.data.HoldOrder;
 import com.sskj.contact.data.PointInfo;
 import com.sskj.contact.type.Price;
 
+import java.math.BigDecimal;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -61,7 +63,14 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
     Button btnCancel;
     @BindView(R2.id.btn_confirm)
     Button btnConfirm;
-
+    @BindView(R2.id.tv_zy_decrease_price)
+    TextView tvZyDecreaseNum;
+    @BindView(R2.id.tv_zy_increase_price)
+    TextView tvZyINDecreaseNum;
+    @BindView(R2.id.tv_zs_decrease_price)
+    TextView tvZsDecreaseNum;
+    @BindView(R2.id.tv_zs_increase_price)
+    TextView tvZsINDecreaseNum;
     Unbinder unbinder;
 
     private HoldOrder orderData;
@@ -69,7 +78,7 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
 
 
     private double minZy;
-    private double maxZs;
+    private double minZs;
 
 
     @Override
@@ -101,16 +110,27 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
 
     @Override
     public void initView() {
-        edtLoss.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(orderData.getCode()))});
-        edtWin.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(orderData.getCode()))});
-        edtWin.setText(NumberUtils.keepMaxDown(orderData.getPoit_win(), 4));
-        edtLoss.setText(NumberUtils.keepMaxDown(orderData.getPoit_loss(), 4));
-        tvType.setText(orderData.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));
+        edtLoss.setFilters(new InputFilter[]{new MoneyValueFilter(4)});
+        edtWin.setFilters(new InputFilter[]{new MoneyValueFilter(4)});
+        edtWin.setText(NumberUtils.keep(orderData.getPoit_win(), 4));
+        edtLoss.setText(NumberUtils.keep(orderData.getPoit_loss(), 4));
+        tvType.setText("1".equals(orderData.getOtype()) ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));
         tvPrice.setText(NumberUtils.keepMaxDown(orderData.getNewprice(), 4));
         btnCancel.setOnClickListener(v -> {
             getDialog().dismiss();
         });
-
+        ClickUtil.click(tvZyDecreaseNum, view -> {
+            changeNum(edtWin, false);
+        });
+        ClickUtil.click(tvZyINDecreaseNum, view -> {
+            changeNum(edtWin, true);
+        });
+        ClickUtil.click(tvZsDecreaseNum, view -> {
+            changeNum(edtLoss, false);
+        });
+        ClickUtil.click(tvZsINDecreaseNum, view -> {
+            changeNum(edtLoss, true);
+        });
         ClickUtil.click(btnConfirm, view -> {
             if (isEmptyShow(edtWin)) {
                 return;
@@ -121,21 +141,68 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
             double win = Double.parseDouble(getText(edtWin));
             double loss = Double.parseDouble(getText(edtLoss));
 
-            if (win < minZy) {
-                ToastUtils.show(getString(R.string.contact_contactOrderSettingDialog3) + minZy);
-                return;
+
+            if ("1".equals(orderData.getOtype())) {
+                if (win < minZy) {
+                    ToastUtils.show(getString(R.string.contact_contactOrderSettingDialog3) + minZy);
+                    return;
+                }
+                if (loss > minZs) {
+                    ToastUtils.show(getString(R.string.contact_contactOrderSettingDialog4) + minZs);
+                    return;
+                }
+            } else {
+                if (win > minZy) {
+                    ToastUtils.show(getString(R.string.contact_contactOrderSettingDialog30) + minZy);
+                    return;
+                }
+                if (loss < minZs) {
+                    ToastUtils.show(getString(R.string.contact_contactOrderSettingDialog40) + minZs);
+                    return;
+                }
             }
 
-            if (loss > maxZs) {
-                ToastUtils.show(getString(R.string.contact_contactOrderSettingDialog4) + maxZs);
-                return;
-            }
 
             if (confirmListener != null) {
                 mPresenter.setPoint(orderData.getHold_id(), getText(edtWin), getText(edtLoss));
             }
         });
 
+    }
+
+
+    public void changeNum(EditText editText, boolean increase) {
+        String text = editText.getText().toString();
+        int digit = 0;
+        BigDecimal num;
+        BigDecimal minChange = new BigDecimal("0.1");
+        int digitIndex = 0;
+        if (TextUtils.isEmpty(text)) {
+            num = new BigDecimal("0");
+        } else {
+            num = new BigDecimal(text);
+        }
+        if (text.contains(".")) {
+            digitIndex = editText.getText().toString().indexOf(".");
+            int length = text.length() - digitIndex;
+            digitIndex = length - 1;
+            for (int i = 0; i < digitIndex - 1; i++) {
+                minChange = minChange.multiply(new BigDecimal("0.1"));
+            }
+            digit = digitIndex;
+        } else {
+            minChange = new BigDecimal("1");
+        }
+        if (increase) {
+            num = num.add(minChange);
+        } else {
+            num = num.subtract(minChange);
+        }
+        if (num.doubleValue() < 0) {
+            num = new BigDecimal("0");
+        }
+        editText.setText(NumberUtils.keep(num, digit));
+        editText.setSelection(editText.getText().length());
     }
 
     @Override
@@ -160,15 +227,17 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
 
     public void setPointInfo(PointInfo result, String newPrice) {
         Double price = Double.parseDouble(newPrice);
-        if (orderData.getType() == 1) {
+        if ("1".equals(orderData.getOtype())) {
             minZy = price + Double.parseDouble(result.getMin_zy());
-            maxZs = price - Double.parseDouble(result.getMin_zs());
+            minZs = price - Double.parseDouble(result.getMin_zs());
+            tvWinMin.setText("≥" + NumberUtils.keep(minZy, 4));
+            tvLossMax.setText("≤" + NumberUtils.keep(minZs, 4));
         } else {
             minZy = price - Double.parseDouble(result.getMin_zy());
-            maxZs = price + Double.parseDouble(result.getMin_zs());
+            minZs = price + Double.parseDouble(result.getMin_zs());
+            tvWinMin.setText("≤" + NumberUtils.keep(minZy, 4));
+            tvLossMax.setText("≥" + NumberUtils.keep(minZs, 4));
         }
-        tvWinMin.setText("≥" + NumberUtils.keepMaxDown(minZy, 4));
-        tvLossMax.setText("≤" + NumberUtils.keepMaxDown(maxZs, 4));
     }
 
     public void setPointSuccess() {

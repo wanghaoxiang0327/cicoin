@@ -58,9 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -92,6 +90,30 @@
                 android:textColor="@color/common_hint"
                 android:textColorHint="@color/common_hint"
                 android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_zy_decrease_price"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="－"
+                android:textColor="@color/common_hint"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_zy_increase_price"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="＋"
+                android:textColor="@color/common_hint"
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
@@ -111,9 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -145,6 +165,30 @@
                 android:textColor="@color/common_hint"
                 android:textColorHint="@color/common_hint"
                 android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_zs_decrease_price"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="－"
+                android:textColor="@color/common_hint"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_zs_increase_price"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="＋"
+                android:textColor="@color/common_hint"
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView

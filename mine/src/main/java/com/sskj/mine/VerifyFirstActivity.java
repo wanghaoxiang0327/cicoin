@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.sskj.common.base.BaseActivity;
+import com.sskj.common.router.RoutePath;
 import com.sskj.common.utils.ClickUtil;
 
 import butterknife.BindView;
@@ -16,6 +18,7 @@ import butterknife.ButterKnife;
  * @author Hey
  * Create at  2019/09/04 21:11:04
  */
+@Route(path = RoutePath.VERIFYFIRST)
 public class VerifyFirstActivity extends BaseActivity<VerifyFirstPresenter> {
     @BindView(R2.id.et_name)
     EditText etName;
@@ -41,14 +44,14 @@ public class VerifyFirstActivity extends BaseActivity<VerifyFirstPresenter> {
 
     @Override
     public void initData() {
-        ClickUtil.click(submit,view -> {
+        ClickUtil.click(submit, view -> {
             if (isEmptyShow(etName)) {
                 return;
             }
             if (isEmptyShow(psEdt)) {
                 return;
             }
-            mPresenter.firstVerify(getText(etName),getText(psEdt));
+            mPresenter.firstVerify(getText(etName), getText(psEdt));
         });
     }
 

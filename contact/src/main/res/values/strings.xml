@@ -66,7 +66,9 @@
     <string name="contact_contact_dialog_close_order80">类型：</string>
     <string name="contact_contact_item_entrust100">撤单</string>
     <string name="contact_contactOrderSettingDialog4">最大止损价为</string>
+    <string name="contact_contactOrderSettingDialog40">最小止损价为</string>
     <string name="contact_contactOrderSettingDialog3">最小止盈价为</string>
+    <string name="contact_contactOrderSettingDialog30">最大止盈价为</string>
     <string name="contact_contact_dialog_setting_order290">止损价格</string>
     <string name="contact_contact_item_hold770">修改</string>
     <string name="contact_contact_activity_order_records240">冻结USDT</string>

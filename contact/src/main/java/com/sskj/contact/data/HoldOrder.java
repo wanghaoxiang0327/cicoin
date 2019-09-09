@@ -50,7 +50,7 @@ public class HoldOrder implements Serializable {
     private String price;
     private String totalprice;
     private String leverage;
-    private int otype;
+    private String otype;
     private String stopwin;
     private String stoploss;
     private long addtime;
@@ -64,7 +64,7 @@ public class HoldOrder implements Serializable {
     private String is_free;
     private String free_rate;
     private String totalnum;
-    private int type;
+    private String type;
     private String newprice;
     private String code;
     private String fdyk;
@@ -270,19 +270,19 @@ public class HoldOrder implements Serializable {
         this.totalnum = totalnum;
     }
 
-    public int getOtype() {
+    public String getOtype() {
         return otype;
     }
 
-    public void setOtype(int otype) {
+    public void setOtype(String otype) {
         this.otype = otype;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
