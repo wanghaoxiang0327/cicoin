@@ -104,9 +104,9 @@
     <string name="asset_cbsl">Quantity of money charged</string>
     <string name="asset_tjsj">Submission time</string>
     <string name="asset_shsj">Audit time</string>
-    <string name="asset_mine_assetFragment1">in review</string>
-    <string name="asset_mine_assetFragment4">In the confirmation</string>
-    <string name="asset_mine_assetFragment5">Charge money successfully</string>
+    <string name="asset_mine_assetFragment1">check pending</string>
+    <string name="asset_mine_assetFragment4">In the account</string>
+    <string name="asset_mine_assetFragment5">Refused</string>
     <string name="asset_mine_assetFragment2">payment has been received</string>
-    <string name="asset_mine_assetFragment3">Refused</string>
+    <string name="asset_mine_assetFragment3">Revoke</string>
 </resources>

@@ -54,9 +54,11 @@ public class CoinFragment extends BaseFragment<CoinPresenter> {
     @Override
     public void initView() {
         HashMap<Integer, String> tibiMap = new HashMap<>();
-        tibiMap.put(0, App.INSTANCE.getString(R.string.asset_mine_assetFragment1));
-        tibiMap.put(1, App.INSTANCE.getString(R.string.asset_mine_assetFragment2));
-        tibiMap.put(2, App.INSTANCE.getString(R.string.asset_mine_assetFragment3));
+        tibiMap.put(1, App.INSTANCE.getString(R.string.asset_mine_assetFragment1));
+        tibiMap.put(2, App.INSTANCE.getString(R.string.asset_mine_assetFragment2));
+        tibiMap.put(3, App.INSTANCE.getString(R.string.asset_mine_assetFragment3));
+        tibiMap.put(4, App.INSTANCE.getString(R.string.asset_mine_assetFragment4));
+        tibiMap.put(5, App.INSTANCE.getString(R.string.asset_mine_assetFragment5));
 
         type = getArguments().getInt("type");
         pid = getArguments().getString("pid");

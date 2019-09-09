@@ -104,9 +104,9 @@
     <string name="asset_cbsl">充币数量</string>
     <string name="asset_tjsj">提交时间</string>
     <string name="asset_shsj">审核时间</string>
-    <string name="asset_mine_assetFragment1">审核中</string>
-    <string name="asset_mine_assetFragment4">确认中</string>
-    <string name="asset_mine_assetFragment5">充币成功</string>
+    <string name="asset_mine_assetFragment1">待审核</string>
+    <string name="asset_mine_assetFragment4">到账中</string>
+    <string name="asset_mine_assetFragment5">已拒绝</string>
     <string name="asset_mine_assetFragment2">已到账</string>
-    <string name="asset_mine_assetFragment3">已拒绝</string>
+    <string name="asset_mine_assetFragment3">撤单</string>
 </resources>

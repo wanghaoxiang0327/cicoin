@@ -80,7 +80,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     UserBean userBean;
     private boolean showAsset = false;
     private List<CentenItemBean> data = new ArrayList<>();
-    private double usdrt, money;
+    private String usdrt, money;
 
     @Override
     public int getLayoutId() {
@@ -115,7 +115,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
         adapter.setOnItemClickListener((adapter1, view, position) ->
         {
-            if (!BaseApplication.isLogin() && position <= 5) {
+            if (!BaseApplication.isLogin() && position < 3) {
                 ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
                 return;
             }
@@ -134,6 +134,9 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                     mPresenter.about();
                     break;
                 case 4:
+                    if (!BaseApplication.isLogin()) {
+                        ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
+                    }
                     FeedbackActivity.start(getContext());
                     break;
                 case 5:
@@ -179,10 +182,10 @@ public class MineFragment extends BaseFragment<MinePresenter> {
             mPresenter.qd();
         });
         ClickUtil.click(50, imgKj, view -> {
-            SpUtil.put(CommonConfig.SHOWASSET, !SpUtil.getBoolean(CommonConfig.SHOWASSET, false));
-            if (SpUtil.getBoolean(CommonConfig.SHOWASSET, false)) {
+            showAsset = !showAsset;
+            if (showAsset) {
                 tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
-                tvCny.setText("≈" + money + "CNY");
+                tvCny.setText("≈" + NumberUtils.keepDown(money, 2) + "CNY");
                 imgKj.setImageResource(R.mipmap.mine_icon_show);
             } else {
                 tvPrice.setText("****");
@@ -213,28 +216,24 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     }
 
 
-    public void getSuccess(double usdrt, double money) {
+    public void getSuccess(String usdrt, String money) {
         this.usdrt = usdrt;
         this.money = money;
-        showAsset = SpUtil.getBoolean(CommonConfig.SHOWASSET, false);
-        Log.d("yds", "11111111111111111111111");
-        if (showAsset) {
-            tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
-            tvCny.setText("≈" + NumberUtils.keep2(money) + "CNY");
-            imgKj.setImageResource(R.mipmap.mine_icon_show);
-            Log.d("yds", "11111111111111111111111");
-        } else {
-            tvPrice.setText("****");
-            tvCny.setText("≈****");
-            imgKj.setImageResource(R.mipmap.mine_icon_hide);
-            Log.d("yds", "11111111111111111111111");
-        }
+//        if (showAsset) {
+//            tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
+//            tvCny.setText("≈" + NumberUtils.keepDown(money, 2) + "CNY");
+//            imgKj.setImageResource(R.mipmap.mine_icon_show);
+//        } else {
+//            tvPrice.setText("****");
+//            tvCny.setText("≈****");
+//            imgKj.setImageResource(R.mipmap.mine_icon_hide);
+//        }
     }
 
     public void getFailed(int s1, int s2) {
-        Log.d("yds","这个抵港");
-        usdrt = s1;
-        money = s2;
+        Log.d("yds", "这个抵港");
+        usdrt = "0";
+        money = "0";
         tvPrice.setText("****");
         tvCny.setText("≈****");
         imgKj.setImageResource(R.mipmap.mine_icon_hide);

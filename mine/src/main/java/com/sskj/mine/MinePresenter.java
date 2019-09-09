@@ -28,7 +28,7 @@ public class MinePresenter extends BasePresenter<MineFragment> {
                 .execute(new JsonCallBack<HttpResult<MIneBean>>() {
                     @Override
                     protected void onNext(HttpResult<MIneBean> result) {
-                        Log.d("yds", "走了这");
+                        Log.d("yds", "走了这"+result.getData().getTtl_money()+"-----------------"+result.getData().getTtl_cnymoney());
                         mView.getSuccess(result.getData().getTtl_money(), result.getData().getTtl_cnymoney());
                     }
 
@@ -42,7 +42,7 @@ public class MinePresenter extends BasePresenter<MineFragment> {
 
     public void about() {
         OkGo.<HttpResult<Map<String, String>>>get(BaseHttpConfig.BASE_URL + HttpConfig.ABOUT_US)
-                .execute(new JsonCallBack<HttpResult<Map<String, String>>>() {
+                .execute(new JsonCallBack<HttpResult<Map<String, String>>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<Map<String, String>> result) {
                         mView.about(result.getData().get("value"));
@@ -53,7 +53,7 @@ public class MinePresenter extends BasePresenter<MineFragment> {
 
     public void qd() {
         OkGo.<HttpResult<List<String>>>get(BaseHttpConfig.BASE_URL + HttpConfig.QD)
-                .execute(new JsonCallBack<HttpResult<List<String>>>() {
+                .execute(new JsonCallBack<HttpResult<List<String>>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<List<String>> result) {
                         mView.qd(result.getData().size() > 0 ? result.getData().get(0) : "0");
