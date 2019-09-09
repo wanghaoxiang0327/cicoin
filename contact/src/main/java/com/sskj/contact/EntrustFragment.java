@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.sskj.common.DividerLineItemDecoration;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
+import com.sskj.common.dialog.TipsNewDialog;
 import com.sskj.common.helper.DataSource;
 import com.sskj.common.helper.SmartRefreshHelper;
 import com.sskj.common.rxbus.RxBus;
@@ -91,7 +93,12 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
                         .setText(R.id.tv_total_money, NumberUtils.keepMaxDown(item.getTotalprice(), 4))
                         .setText(R.id.tv_fee, NumberUtils.keepMaxDown(item.getSxfee(), 4));
                 ClickUtil.click(holder.getView(R.id.btn_cancel), view -> {
-                    mPresenter.cancelOrder(item.getEn_id());
+                    new TipsNewDialog(mContext).setContent(getString(R.string.contact_confirm_cancle_order)).setConfirmText(getString(R.string.common_common_tip_dialog80)).setCancelVisible(View.GONE).setConfirmListener(new TipsNewDialog.OnConfirmListener() {
+                        @Override
+                        public void onConfirm(TipsNewDialog dialog) {
+                            mPresenter.cancelOrder(item.getEn_id());
+                        }
+                    }).show();
                 });
             }
         };

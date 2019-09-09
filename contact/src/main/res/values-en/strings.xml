@@ -27,7 +27,7 @@
     <string name="contact_contact_activity_order_records170">Available</string>
     <string name="contact_contact_dialog_close_order390">cancel</string>
     <string name="contact_orderRecordsActivity2">Entrust</string>
-    <string name="contact_contact_fragment_contract130">Explosion rate: -</string>
+    <string name="contact_contact_fragment_contract130">Explosion rate: </string>
     <string name="contact_contact_item_deal520">N-Fee</string>
     <string name="contact_contact_dialog_close_order20">Warehouse closing confirmation</string>
     <string name="contact_contact_activity_order_records340">Floating P/L</string>
@@ -89,4 +89,5 @@
     <string name="contact_tips">remind</string>
     <string name="contact_close_all_order_des">Do you want to confirm closing?</string>
     <string name="contact_verifyHomeActivity4">Please complete the primary real-name certification first</string>
+    <string name="contact_confirm_cancle_order">Are you sure you want to cancel the order?</string>
 </resources>

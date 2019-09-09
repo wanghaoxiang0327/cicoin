@@ -28,6 +28,7 @@ import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.view.WaterView;
 import com.sskj.miner.R;
 import com.sskj.miner.R2;
+import com.sskj.miner.bean.ForceDescriptionBean;
 import com.sskj.miner.bean.TotalAsset;
 import com.sskj.miner.presenter.MinerPresenter;
 import com.sskj.miner.ui.activity.ForceActivity;
@@ -182,10 +183,10 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
     }
 
 
-    public void showNotice(String content) {
+    public void showNotice(ForceDescriptionBean content) {
         new TipsNewDialog(getContext())
                 .setTitle(App.INSTANCE.getString(R.string.miner_miningActivity1))
-                .setContent(content)
+                .setContent(content.store_force)
                 .setConfirmText(App.INSTANCE.getString(R.string.miner_miningActivity2))
                 .setConfirmListener(Dialog::dismiss).show();
     }

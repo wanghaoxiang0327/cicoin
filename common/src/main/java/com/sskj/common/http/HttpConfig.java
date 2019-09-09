@@ -245,4 +245,5 @@ public class HttpConfig {
     public static final String GET_WITHDRAW_RECORD = "/Home/Api/tb_record";
     public static final String GET_OTHER_RECORD = "/Home/Qbw/caiwu";
     public static final String GET_PANKOU = "/Home/Ajax/getdepth";
+    public static final String FORCE_DESCRIPTION = "/Home/Qbw/force_tips";
 }

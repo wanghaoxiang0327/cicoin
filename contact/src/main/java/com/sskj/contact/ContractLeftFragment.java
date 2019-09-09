@@ -31,6 +31,7 @@ import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.simple.SimpleTextWatcher;
 import com.sskj.common.user.data.UserBean;
+import com.sskj.common.utils.BigDecimalUtils;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.MoneyValueFilter;
@@ -418,32 +419,32 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     public void changeNum(EditText editText, boolean increase) {
         String text = editText.getText().toString();
         int digit = 0;
-        double num;
-        double minChange = 0.1;
+        BigDecimal num;
+        BigDecimal minChange = new BigDecimal("0.1");
         int digitIndex = 0;
         if (TextUtils.isEmpty(text)) {
-            num = 0;
+            num = new BigDecimal("0");
         } else {
-            num = Double.parseDouble(text);
+            num = new BigDecimal(text);
         }
         if (text.contains(".")) {
             digitIndex = editText.getText().toString().indexOf(".");
             int length = text.length() - digitIndex;
             digitIndex = length - 1;
             for (int i = 0; i < digitIndex - 1; i++) {
-                minChange = 0.1 * minChange;
+                minChange = minChange.multiply(new BigDecimal("0.1"));
             }
             digit = digitIndex;
         } else {
-            minChange = 1;
+            minChange = new BigDecimal("1");
         }
         if (increase) {
-            num = num + minChange;
+            num = num.add(minChange);
         } else {
-            num = num - minChange;
+            num = num.subtract(minChange);
         }
-        if (num < 0) {
-            num = 0;
+        if (num.doubleValue() < 0) {
+            num = new BigDecimal("0");
         }
         editText.setText(NumberUtils.keep(num, digit));
         editText.setSelection(editText.getText().length());

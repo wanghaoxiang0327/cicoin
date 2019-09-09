@@ -2,23 +2,23 @@ package com.sskj.common.data;
 
 public class DepthData {
 
-    private float totalSize;
+    private String totalSize;
     private float price;
 
 
     public DepthData() {
     }
 
-    public DepthData(float totalSize, float price) {
+    public DepthData(String totalSize, float price) {
         this.totalSize = totalSize;
         this.price = price;
     }
 
-    public float getTotalSize() {
+    public String getTotalSize() {
         return totalSize;
     }
 
-    public void setTotalSize(float totalSize) {
+    public void setTotalSize(String totalSize) {
         this.totalSize = totalSize;
     }
 
@@ -30,7 +30,7 @@ public class DepthData {
         this.price = price;
     }
 
-    public float getVolume() {
+    public String getVolume() {
         return totalSize;
     }
 }

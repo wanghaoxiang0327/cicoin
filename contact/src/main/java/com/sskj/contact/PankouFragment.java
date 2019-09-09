@@ -85,7 +85,7 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
                         .setText(R.id.tv_no, holder.getLayoutPosition() + 1 + "")
                         .setProgress(R.id.progress, item.getProgressRate())
                         .setText(R.id.tv_price, NumberUtils.keep(item.getPrice(), DigitUtils.getDigit(code)))
-                        .setText(R.id.tv_num, NumberUtils.keep(item.getTotalSize(), 0));
+                        .setText(R.id.tv_num, item.getTotalSize());
             }
         };
         buyAdapter = new BaseAdapter<Pankou>(R.layout.contact_buy_item_pankou, null, buyList) {
@@ -95,7 +95,7 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
                         .setProgress(R.id.progress, item.getProgressRate())
                         .setText(R.id.tv_no, holder.getLayoutPosition() + 1 + "")
                         .setText(R.id.tv_price, NumberUtils.keep(item.getPrice(), DigitUtils.getDigit(code)))
-                        .setText(R.id.tv_num, NumberUtils.keep(item.getTotalSize(), 0));
+                        .setText(R.id.tv_num, item.getTotalSize());
             }
         };
 
@@ -148,7 +148,6 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
 
     public List<Pankou> formatList(List<DepthData> data) {
         List<Pankou> list = new ArrayList<>();
-        List<Float> totalSize = new ArrayList<>();
         if (data == null) {
             data = new ArrayList<>();
         }
@@ -157,7 +156,6 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
         }
         for (int i = 0; i < pankouSize; i++) {
             list.add(new Pankou(String.valueOf(data.get(i).getPrice()), String.valueOf(data.get(i).getTotalSize())));
-            totalSize.add(data.get(i).getTotalSize());
         }
         Double full = 0d;
         for (Pankou bid : list) {
