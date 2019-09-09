@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.hjq.toast.ToastUtils;
 import com.jakewharton.rxbinding3.view.RxView;
 import com.jakewharton.rxbinding3.widget.RxTextView;
 import com.jakewharton.rxbinding3.widget.TextViewAfterTextChangeEvent;
@@ -156,16 +157,18 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
                     Double ee = (isEmpty(tvOldAmount) ? 0d : Double.parseDouble(getText(tvOldAmount))) * dd /
                             (isEmpty(tvNewAmount) ? 1 : Double.parseDouble(getText(tvNewAmount)));
 
-                    etArrivalNum.setText(NumberUtils.keepDown(ee,4));
+                    etArrivalNum.setText(NumberUtils.keepDown(ee, 4));
 
                 });
 
 
         ClickUtil.click(submit, view -> {
-            if (isEmpty(etInputExchangeNum)) {
+            if (TextUtils.isEmpty(getText(etInputExchangeNum))) {
+                ToastUtils.show(etInputExchangeNum.getHint().toString());
                 return;
             }
-            if (isEmpty(etAssetPwd)) {
+            if (TextUtils.isEmpty(getText(etAssetPwd))) {
+                ToastUtils.show(etAssetPwd.getHint().toString());
                 return;
             }
             mPresenter.getTransfer(leftCoin.get(lSelect).getMark(), rightCoin.get(rSelect).getMark(), getText(etInputExchangeNum), getText(etAssetPwd));
@@ -216,7 +219,7 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
                 zhang.setVisibility(View.GONE);
             }
             currentX = Double.parseDouble(data.get(lSelect).getActprice());
-            tvOldAmount.setText(DigitUtils.getDigits(leftCode,currentX));
+            tvOldAmount.setText(DigitUtils.getDigits(leftCode, currentX));
             Flowable.fromIterable(data)
                     .map(coinListEntity -> new CoinAsset(coinListEntity.getPid(), coinListEntity.getPname(),
                             coinListEntity.getActprice(), coinListEntity.getCode())).toList()
@@ -254,7 +257,7 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
             die.setVisibility(View.GONE);
         }
         currentY = Double.parseDouble(da.get(rSelect).getEx_coin_actprice());
-        tvNewAmount.setText(DigitUtils.getDigits(rightCode,currentY));
+        tvNewAmount.setText(DigitUtils.getDigits(rightCode, currentY));
         Flowable.fromIterable(da)
                 .map(coinListEntity -> new CoinAsset(coinListEntity.getEx_pid(), coinListEntity.getEx_name(),
                         coinListEntity.getEx_coin_actprice(), coinListEntity.getEx_coin())).toList()

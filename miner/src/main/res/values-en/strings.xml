@@ -3,7 +3,7 @@
     <string name="miner_title">Digging every day</string>
     <string name="miner_rules">rule</string>
     <string name="miner_yl">Force</string>
-    <string name="miner_jy">transaction</string>
+    <string name="miner_jy">deal</string>
     <string name="miner_details"><![CDATA[Check the details >>]]></string>
     <string name="miner_money">0.0000</string>
     <string name="miner_miningActivity1">rule</string>
@@ -14,5 +14,5 @@
     <string name="miner_symx">Income details</string>
     <string name="miner_tixing">remind</string>
     <string name="miner_tips_heyue">The USDT bubbles can only be collected after three contract transactions have been completed.</string>
-    <string name="miner_confirm_tips">ToAccomplishTheTask</string>
+    <string name="miner_confirm_tips">ToCompleteTask</string>
 </resources>

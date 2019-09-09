@@ -190,7 +190,7 @@
     <string name="mine_sign_des1"> %s Force</string>
     <string name="mine_to_complete_task">To accomplish the task</string>
     <string name="mine_account_asset">AccountAssets</string>
-    <string name="mine_account_all_asset">ConversionAllAssets(USDT)</string>
+    <string name="mine_account_all_asset">ConvertAll(USDT)</string>
     <string name="mine_security_level">Security Level: Low</string>
     <string name="mine_verification_Des">Open at least two security validations</string>
     <string name="mine_phone">phone</string>

@@ -231,7 +231,6 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     }
 
     public void getFailed(int s1, int s2) {
-        Log.d("yds", "这个抵港");
         usdrt = "0";
         money = "0";
         tvPrice.setText("****");

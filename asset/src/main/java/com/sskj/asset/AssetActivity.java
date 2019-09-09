@@ -150,6 +150,12 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
 
     @Override
     public void loadData() {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         mPresenter.getAllAsset();
     }
 
