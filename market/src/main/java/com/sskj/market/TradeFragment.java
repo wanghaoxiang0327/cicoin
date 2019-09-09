@@ -3,6 +3,7 @@ package com.sskj.market;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sskj.common.adapter.BaseAdapter;
@@ -45,6 +46,8 @@ import io.reactivex.schedulers.Schedulers;
 public class TradeFragment extends BaseFragment<TradePresenter> {
     @BindView(R2.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R2.id.tvNum)
+    TextView tvNum;
     private String code;
     private BaseAdapter<TradePushBean.TradePush> adapter;
     WebSocket webSocket;
@@ -65,6 +68,7 @@ public class TradeFragment extends BaseFragment<TradePresenter> {
         if (getArguments() != null) {
             code = getArguments().getString("code");
         }
+        tvNum.setText(String.format(getString(R.string.market_count), code.split("_")[0].toUpperCase()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new BaseAdapter<TradePushBean.TradePush>(R.layout.market_item_trade, null, recyclerView) {
             @Override

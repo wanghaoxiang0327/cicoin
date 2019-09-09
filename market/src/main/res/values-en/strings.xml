@@ -59,7 +59,7 @@
     <string name="market_quote_change">Up and down</string>
     <string name="market_buy">Bid</string>
     <string name="market_sale">Selling</string>
-    <string name="market_count">Number(BTC)</string>
+    <string name="market_count">Number%s</string>
     <string name="market_price">Price(USDT)</string>
     <string name="market_data">time</string>
     <string name="market_direction">direction</string>

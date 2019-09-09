@@ -40,6 +40,8 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
     TextView tvProfit;
     @BindView(R2.id.tv_burst_rate)
     TextView tvBurstRate;
+    @BindView(R2.id.tv_burst_rate_des)
+    TextView tvBurstRateDes;
     @BindView(R2.id.layout_profit)
     LinearLayout layoutProfit;
     @BindView(R2.id.tabLayout)
@@ -135,8 +137,12 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
         setText(tvBurstRate, data.getRisk());
         if (data.getYingkui().contains("-")) {
             layoutProfit.setBackgroundResource(R.drawable.common_green_bg_5);
+            tvBurstRate.setTextColor(color(R.color.common_green));
+            tvBurstRateDes.setTextColor(color(R.color.common_green));
         } else {
             layoutProfit.setBackgroundResource(R.drawable.common_red_bg_5);
+            tvBurstRate.setTextColor(color(R.color.common_red));
+            tvBurstRateDes.setTextColor(color(R.color.common_red));
         }
     }
 

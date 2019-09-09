@@ -17,6 +17,9 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.router.RoutePath;
+import com.sskj.common.rxbus.RxBus;
+import com.sskj.common.rxbus.Subscribe;
+import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.view.ToolBarLayout;
 import com.sskj.market.adapter.MarketDetailAdapter;
@@ -60,13 +63,14 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void initView() {
+        RxBus.getDefault().register(this);
         toolbar.mLeftButton.setCompoundDrawableTintList(ColorStateList.valueOf(getResources().getColor(R.color.common_white)));
         ARouter.getInstance().inject(this);
         coinBean = (CoinBean) getIntent().getSerializableExtra("coinBean");
         if (coinBean.getName().contains("_")) {
-            toolbar.setTitle(coinBean.getName());
+            toolbar.setTitle(coinBean.getName().replace("_", "_"));
         } else {
-            toolbar.setTitle(coinBean.getName() + "_USDT");
+            toolbar.setTitle(coinBean.getName() + "/USDT");
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         detailAdapter = new MarketDetailAdapter(null, getSupportFragmentManager());
@@ -91,6 +95,24 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
         detailAdapter.setNewData(data);
     }
 
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updatePrice(CoinBean newcoinBean) {
+        if (newcoinBean.getCode().equals(coinBean.getCode())) {
+            updateData(newcoinBean);
+        }
+    }
+
+    public void updateData(CoinBean coinBean) {
+        List<MarketDetail> detailData = new ArrayList<>();
+        MarketDetail topData = new MarketDetail(MarketDetail.TOP);
+        topData.setTopData(coinBean);
+        detailData.add(topData);
+        detailData.add(new MarketDetail(MarketDetail.CHART));
+        detailData.add(new MarketDetail(MarketDetail.BOTTOM));
+        detailAdapter.setNewData(detailData);
+    }
+
     public static void start(Context context, CoinBean coinBean) {
         Intent intent = new Intent(context, NewMarketDetailActivity.class);
         intent.putExtra("coinBean", coinBean);
@@ -101,6 +123,7 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
     protected void onDestroy() {
         super.onDestroy();
         detailAdapter = null;
+        RxBus.getDefault().unregister(this);
     }
 
     @Override

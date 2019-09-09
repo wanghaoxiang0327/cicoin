@@ -190,7 +190,7 @@ public class DepthMapView extends View {
                 }
             }
             //修改底部买入价格展示
-            mBottomPrice[0] = mBuyData.get(0).getPrice();
+                mBottomPrice[0] = mBuyData.get(0).getPrice();
             mBottomPrice[1] = mBuyData.get(mBuyData.size() > 1 ? mBuyData.size() - 1 : 0).getPrice();
         }
 

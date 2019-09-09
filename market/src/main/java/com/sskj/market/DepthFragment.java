@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.fastjson.JSONObject;
@@ -48,6 +49,10 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
     LinearLayout llDepth;
     @BindView(R2.id.frameLayout)
     FrameLayout frameLayout;
+    @BindView(R2.id.tv_buy_count_des)
+    TextView tvBuycountDes;
+    @BindView(R2.id.tv_sale_count_des)
+    TextView tvSaleCoutDes;
     private BaseAdapter<DeepData> deepListAdapter;
     private String code;
     private Disposable disposable;
@@ -70,6 +75,8 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
             code = getArguments().getString("code");
             isBig = getArguments().getBoolean("isBig");
         }
+        tvBuycountDes.setText(String.format(getString(R.string.market_count), code.split("_")[0].toUpperCase()));
+        tvSaleCoutDes.setText(String.format(getString(R.string.market_count), code.split("_")[0].toUpperCase()));
         if (isBig) {
             llDepth.setBackgroundResource(R.color.common_background_dark);
             frameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.sp2px(getContext(), 200)));
