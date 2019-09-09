@@ -26,7 +26,7 @@ class OtherPresenter extends BasePresenter<OtherFragment> {
         return OkGo.<HttpResult<Page<OtherRecordEntity>>>post(HttpConfig.BASE_URL + HttpConfig.GET_OTHER_RECORD)
                 .params("p", page)
                 .params("pid", pid)
-                .params("s", size)
+                .params("size", size)
                 .params("lang", LocalManageUtil.getLanguage(App.INSTANCE))
                 .converter(new JsonConvert<HttpResult<Page<OtherRecordEntity>>>() {
                 })

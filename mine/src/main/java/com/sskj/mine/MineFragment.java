@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -186,6 +187,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
             mPresenter.qd();
         });
         ClickUtil.click(50, imgKj, view -> {
+            mPresenter.getMoney();
             showAsset = !showAsset;
             if (showAsset) {
                 tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
@@ -212,6 +214,14 @@ public class MineFragment extends BaseFragment<MinePresenter> {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (userBean != null) {
+            mPresenter.getMoney();
+        }
+    }
+
     public static MineFragment newInstance() {
         MineFragment fragment = new MineFragment();
         Bundle bundle = new Bundle();
@@ -223,15 +233,16 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     public void getSuccess(String usdrt, String money) {
         this.usdrt = usdrt;
         this.money = money;
-//        if (showAsset) {
-//            tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
-//            tvCny.setText("≈" + NumberUtils.keepDown(money, 2) + "CNY");
-//            imgKj.setImageResource(R.mipmap.mine_icon_show);
-//        } else {
-//            tvPrice.setText("****");
-//            tvCny.setText("≈****");
-//            imgKj.setImageResource(R.mipmap.mine_icon_hide);
-//        }
+        Log.d("yds",DateUtils.formatDateTime(getContext(),System.currentTimeMillis(),0) + "------------------------" + usdrt);
+        if (showAsset) {
+            tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
+            tvCny.setText("≈" + NumberUtils.keepDown(money, 2) + "CNY");
+            imgKj.setImageResource(R.mipmap.mine_icon_show);
+        } else {
+            tvPrice.setText("****");
+            tvCny.setText("≈****");
+            imgKj.setImageResource(R.mipmap.mine_icon_hide);
+        }
     }
 
     public void getFailed(int s1, int s2) {

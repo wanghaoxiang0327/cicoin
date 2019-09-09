@@ -28,7 +28,6 @@ public class MinePresenter extends BasePresenter<MineFragment> {
                 .execute(new JsonCallBack<HttpResult<MIneBean>>() {
                     @Override
                     protected void onNext(HttpResult<MIneBean> result) {
-                        Log.d("yds", "走了这"+result.getData().getTtl_money()+"-----------------"+result.getData().getTtl_cnymoney());
                         mView.getSuccess(result.getData().getTtl_money(), result.getData().getTtl_cnymoney());
                     }
 

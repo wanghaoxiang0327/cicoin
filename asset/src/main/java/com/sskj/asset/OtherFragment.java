@@ -43,11 +43,15 @@ public class OtherFragment extends BaseFragment<OtherPresenter> {
     @Override
     public void initView() {
         pid = getArguments().getString("pid");
+        String name = getArguments().getString("code");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         newsAdapter = new BaseAdapter<OtherRecordEntity>(R.layout.asset_item_other_record, null, recyclerView) {
             @Override
             public void bind(ViewHolder holder, OtherRecordEntity item) {
-                holder.setText(R.id.tv_recharge_submit, item.type).setText(R.id.tv_recharge_count, NumberUtils.keepMaxDown(item.price, 4) + "USDT").setText(R.id.tv_recharge_address, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.addtime) * 1000));
+                holder.setText(R.id.tv_recharge_submit, pid.equals("0") ? item.type : item.memo)
+                        .setText(R.id.tv_recharge_count,
+                                NumberUtils.keepMaxDown(item.price, 4) + name)
+                        .setText(R.id.tv_recharge_address, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.addtime) * 1000));
             }
         };
     }
@@ -60,6 +64,12 @@ public class OtherFragment extends BaseFragment<OtherPresenter> {
 
     @Override
     public void loadData() {
+
+    }
+
+    @Override
+    public void lazyLoad() {
+        super.lazyLoad();
         rechargesmartRefreshHelper = new SmartRefreshHelper<>(getContext(), newsAdapter);
         rechargesmartRefreshHelper.setDataSource(new DataSource<OtherRecordEntity>() {
             @Override
@@ -69,10 +79,11 @@ public class OtherFragment extends BaseFragment<OtherPresenter> {
         });
     }
 
-    public static OtherFragment newInstance(String pid) {
+    public static OtherFragment newInstance(String pid, String code) {
         OtherFragment fragment = new OtherFragment();
         Bundle bundle = new Bundle();
         bundle.putString("pid", pid);
+        bundle.putString("code", code);
         fragment.setArguments(bundle);
         return fragment;
     }

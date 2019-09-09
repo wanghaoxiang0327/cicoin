@@ -6,6 +6,7 @@ import com.sskj.asset.BillDetailPresenter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -46,12 +47,13 @@ public class BillDetailActivity extends BaseActivity<BillDetailPresenter> {
     @Override
     public void initView() {
         pid = getIntent().getStringExtra("pid");
+        String code = getIntent().getStringExtra("code");
         tabs.add(new TabItem(getString(R.string.asset_asset_activity_recharge20)));
         tabs.add(new TabItem(getString(R.string.asset_asset_activity_insert_address200)));
         tabs.add(new TabItem(getString(R.string.asset_exchange_other)));
         fragments.add(CoinFragment.newInstance(0, pid));
         fragments.add(CoinFragment.newInstance(1, pid));
-        fragments.add(OtherFragment.newInstance(pid));
+        fragments.add(OtherFragment.newInstance(pid, code));
         tabLayout.setTextSelectColor(getResources().getColor(R.color.common_tip));
         tabLayout.setTabData(tabs, getSupportFragmentManager(), R.id.content, fragments);
         ClickUtil.click(leftImg, view -> {
@@ -64,9 +66,10 @@ public class BillDetailActivity extends BaseActivity<BillDetailPresenter> {
 
     }
 
-    public static void start(Context context, String pid) {
+    public static void start(Context context, String pid, String code) {
         Intent intent = new Intent(context, BillDetailActivity.class);
         intent.putExtra("pid", pid);
+        intent.putExtra("code", code);
         context.startActivity(intent);
     }
 

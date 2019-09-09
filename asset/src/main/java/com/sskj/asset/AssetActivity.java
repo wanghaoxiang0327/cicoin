@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.hjq.toast.ToastUtils;
+import com.sskj.common.App;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseActivity;
@@ -81,12 +82,12 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
         assetAdapter = new BaseAdapter<AllAssetEntity.Asset>(R.layout.asset_item_asset, null, assetList) {
             @Override
             public void bind(ViewHolder holder, AllAssetEntity.Asset item) {
-                holder.setText(R.id.asset_useful, NumberUtils.keepMaxDown(item.frost, 4))
-                        .setText(R.id.asset_frost, NumberUtils.keepMaxDown(item.usable, 4))
+                holder.setText(R.id.asset_useful, NumberUtils.keepMaxDown(item.frost, 8))
+                        .setText(R.id.asset_frost, NumberUtils.keepMaxDown(item.usable, 8))
                         .setText(R.id.coin_name, item.pname)
                         .setText(R.id.tv_asset_equivalent, NumberUtils.keep2(item.cny));
                 holder.setImageResource(R.id.coin_icon, CoinIcon.getIcon(item.mark));
-                holder.itemView.setOnClickListener(v -> BillDetailActivity.start(AssetActivity.this, item.pid));
+                holder.itemView.setOnClickListener(v -> BillDetailActivity.start(AssetActivity.this, item.pid,item.pname));
             }
         };
         ClickUtil.click(llRecharge, view -> {
@@ -106,6 +107,18 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
             }
         });
         ClickUtil.click(llCashOut, view -> {
+            if (!isSecondCheck) {
+                new TipDialog(this)
+                        .setContent(App.INSTANCE.getString(R.string.asset_gjrz))
+                        .setCancelVisible(View.GONE)
+                        .setConfirmListener(dialog -> {
+                            dialog.dismiss();
+                            ARouter.getInstance().build(RoutePath.VERIFY_HOME).navigation();
+                        })
+                        .show();
+
+                return;
+            }
             if (!setPs) {
                 new TipDialog(this)
                         .setContent(getString(R.string.asset_assetFragment2))
@@ -117,11 +130,7 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
                         .show();
                 return;
             }
-            if (!isSecondCheck) {
-                ARouter.getInstance().build(RoutePath.VERIFY_HOME).navigation();
-                ToastUtils.show("请先完成高级验证");
-                return;
-            }
+
             WithdrawActivity.start(this);
         });
         ClickUtil.click(llTransfer, view -> {

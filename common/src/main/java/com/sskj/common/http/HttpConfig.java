@@ -155,7 +155,7 @@ public class HttpConfig {
 
     public static final String ASSET = "/Home/Api/asset";
 
-    public static final String ASSETLIST = "/Home/users/get_asset";
+    public static final String ASSETLIST = "/Home/Api/asset";
 
     public static final String ASSET_RECORDS = "/home/users/finance_list";
 
@@ -243,6 +243,7 @@ public class HttpConfig {
     //=================Depth======================================
     public static final String GET_RECHARGE_RECORD = "/Home/Api/cz_record";
     public static final String GET_WITHDRAW_RECORD = "/Home/Api/tb_record";
-    public static final String GET_OTHER_RECORD = "/Home/Qbw/caiwu";
+    public static final String GET_USDT_RECORD = "/Home/Qbw/caiwu";
+    public static final String GET_OTHER_RECORD = "/Home/qbw/re_asset";
     public static final String GET_PANKOU = "/Home/Ajax/getdepth";
 }

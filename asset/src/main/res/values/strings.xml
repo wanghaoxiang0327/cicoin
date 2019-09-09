@@ -109,4 +109,5 @@
     <string name="asset_mine_assetFragment5">已拒绝</string>
     <string name="asset_mine_assetFragment2">已到账</string>
     <string name="asset_mine_assetFragment3">撤单</string>
+    <string name="asset_gjrz">您还未完成高级实名认证，去完成?</string>
 </resources>
