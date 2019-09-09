@@ -41,7 +41,11 @@ public class SelectCoinDialog extends BottomSheetDialog {
         coinAdapter = new BaseAdapter<CoinAsset>(R.layout.common_item_coind, null, coinList) {
             @Override
             public void bind(ViewHolder holder, CoinAsset item) {
-                holder.setText(R.id.name, item.getPname());
+                if (item.getPname().contains("_")) {
+                    holder.setText(R.id.name, item.getPname().substring(0, item.getPname().indexOf("_")));
+                } else {
+                    holder.setText(R.id.name, item.getPname());
+                }
                 holder.itemView.setOnClickListener(view -> {
                     if (onSelectListener != null) {
                         onSelectListener.onSelect(SelectCoinDialog.this, item, holder.getLayoutPosition());
@@ -49,7 +53,7 @@ public class SelectCoinDialog extends BottomSheetDialog {
                 });
             }
         };
-        ClickUtil.click(tvCancel,view -> dismiss());
+        ClickUtil.click(tvCancel, view -> dismiss());
     }
 
 

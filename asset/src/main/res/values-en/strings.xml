@@ -110,4 +110,6 @@
     <string name="asset_mine_assetFragment2">payment has been received</string>
     <string name="asset_mine_assetFragment3">Revoke</string>
     <string name="asset_gjrz">You have not completed the advanced real-name authentication, to complete?</string>
+    <string name="asset_ky">usable：%s</string>
+    <string name="asset_sxf">usable：%s/Order</string>
 </resources>

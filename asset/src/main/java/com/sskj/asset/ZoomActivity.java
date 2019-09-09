@@ -84,6 +84,10 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
     ImageView zhang;
     @BindView(R2.id.die)
     ImageView die;
+    @BindView(R2.id.ky)
+    TextView ky;
+    @BindView(R2.id.sxf)
+    TextView sxf;
 
     private String leftCode = "", rightCode = "";
     //左边数据
@@ -128,6 +132,7 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
                 lSelect = position;
                 leftCode = coin.getMark();
                 mPresenter.Transfer(leftCode);
+                rSelect = 0;
                 dialog.dismiss();
             }).setData(leftCoin);
 
@@ -188,7 +193,8 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
         mPresenter.getExchangeInfo();
 
         inter = Flowable.interval(2, TimeUnit.SECONDS)
-                .subscribe(aLong -> mPresenter.getExchangeInfo());
+                .subscribe(aLong ->
+                        mPresenter.getExchangeInfo());
     }
 
     public static void start(Context context, int type) {
@@ -232,7 +238,6 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
     }
 
     public void setRCoinList(List<TransferInfoBean> da) {
-        rSelect = 0;
         right.setEnabled(true);
         die.setVisibility(View.VISIBLE);
         tvNewAmount.setVisibility(View.VISIBLE);
@@ -274,8 +279,10 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
         right.setEnabled(false);
     }
 
-    public void max(double max) {
+    public void max(double max, String fee) {
         maxCount = max;
+        ky.setText(String.format(getString(R.string.asset_ky), max + ""));
+        sxf.setText(String.format(getString(R.string.asset_sxf), fee));
     }
 
     @Override

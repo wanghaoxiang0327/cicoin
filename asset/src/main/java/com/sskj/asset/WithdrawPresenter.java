@@ -1,5 +1,7 @@
 package com.sskj.asset;
 
+import android.util.Log;
+
 import com.hjq.toast.ToastUtils;
 import com.lzy.okgo.OkGo;
 import com.sskj.asset.data.TransferInfo;
@@ -14,6 +16,8 @@ import com.sskj.common.http.JsonCallBack;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
+
 
 /**
  * @author Hey
@@ -27,6 +31,7 @@ public class WithdrawPresenter extends BasePresenter<WithdrawActivity> {
                     protected void onNext(HttpResult<List<CoinAsset>> result) {
                         if (!showDialog) {
                             mView.setCoinList(result.getData());
+
                         } else {
                             mView.showCoinDialog(result.getData());
                         }

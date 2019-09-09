@@ -103,6 +103,16 @@ public class RechargeActivity extends BaseActivity<RechargePresenter> {
             codeOrigin = data.get(0).getPname();
             Flowable.fromIterable(data)
                     .filter(coinAsset -> coinAsset.getPname().equals(codeOrigin))
+                    .map(coinAsset -> {
+                        String name;
+                        if (coinAsset.getPname().contains("_")) {
+                            name = coinAsset.getPname().substring(0, coinAsset.getPname().indexOf("_"));
+                        } else {
+                            name = coinAsset.getPname();
+                        }
+                        coinAsset.setPname(name);
+                        return coinAsset;
+                    })
                     .subscribe(coinAsset -> {
                         changeCoin(coinAsset);
                     });

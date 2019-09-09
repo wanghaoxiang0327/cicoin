@@ -23,11 +23,11 @@ public class CoinAsset {
     public CoinAsset() {
     }
 
-    public CoinAsset(String pid, String name, String price,String mark) {
+    public CoinAsset(String pid, String name, String price, String mark) {
         this.pid = pid;
         this.pname = name;
         this.price = price;
-        this.mark=mark;
+        this.mark = mark;
     }
 
     public String getPrice() {
@@ -58,6 +58,9 @@ public class CoinAsset {
     }
 
     public String getPname() {
+        if (pname.contains("_")) {
+            return pname.substring(0, pname.indexOf("_"));
+        }
         return pname;
     }
 

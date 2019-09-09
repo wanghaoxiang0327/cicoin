@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
@@ -61,6 +62,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     LinearLayout llTradingGuide;
     @BindView(R.id.ll_notice)
     LinearLayout llNotice;
+    @BindView(R.id.ivNotice)
+    ImageView ivNotice;
+    @BindView(R.id.ivNotice1)
+    ImageView ivNotice1;
     @BindView(R.id.bannerView)
     Banner bannerView;
     @BindView(R.id.indicator_line)
@@ -158,6 +163,9 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         ClickUtil.click(llMining, view -> {
             ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore", 2).navigation();
         });
+        ClickUtil.click(ivNotice, view -> NoticeListActivity.start(getContext()));
+
+        ClickUtil.click(ivNotice1, view -> NoticeListActivity.start(getContext()));
     }
 
     @Override
@@ -217,8 +225,11 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                             int position = (int) (i % data.getRes().size());
                             String text = data.getRes().get(position).getTitle();
                             tvNotice.setText(text);
-                            ClickUtil.click(llNotice, view -> {
-                                NoticeListActivity.start(getContext());
+                            ClickUtil.click(tvNotice, view -> {
+                                NewsBean newsBean = new NewsBean();
+                                newsBean.setId(data.getRes().get(position).getId());
+                                newsBean.setTitle(data.getRes().get(position).getTitle());
+                                NewsDetailActivity.start(getContext(), newsBean, 1);
                             });
                         }
                     }, throwable -> {

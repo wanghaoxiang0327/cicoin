@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -71,7 +72,8 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
     private List<CoinAsset> coinList;
     private String pid;
     private String code;
-    double minCount;;
+    double minCount;
+    ;
     double fee;
     double useful;
     private String codeOrigin;
@@ -91,7 +93,7 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
     public void initView() {
         userViewModel.getUser().observe(this, userBean -> {
             if (userBean != null) {
-                hasTbpwd= !TextUtils.isEmpty(userBean.getTpwd());
+                hasTbpwd = !TextUtils.isEmpty(userBean.getTpwd());
             }
 
         });
@@ -113,7 +115,7 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
             }
         });
         ClickUtil.click(submit, view -> {
-            if (!hasTbpwd){
+            if (!hasTbpwd) {
                 ARouter.getInstance().build(RoutePath.TPWD).navigation();
                 ToastUtils.show("请先设置支付密码");
             }
@@ -195,6 +197,7 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
     }
 
     public void showCoinDialog(List<CoinAsset> data) {
+
         if (selectCoinDialog == null) {
             selectCoinDialog = new SelectCoinDialog(this, (dialog, coin, position) -> {
                 changeCoin(coin);

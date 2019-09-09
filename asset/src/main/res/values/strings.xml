@@ -110,4 +110,6 @@
     <string name="asset_mine_assetFragment2">已到账</string>
     <string name="asset_mine_assetFragment3">撤单</string>
     <string name="asset_gjrz">您还未完成高级实名认证，去完成?</string>
+    <string name="asset_ky">可用：%s</string>
+    <string name="asset_sxf">手续费：%s/次</string>
 </resources>

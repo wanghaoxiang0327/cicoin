@@ -43,7 +43,11 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
                 .execute(new JsonCallBack<HttpResult<List<CoinListEntity>>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<List<CoinListEntity>> result) {
-                        mView.setCoinList(result.getData());
+                        try {
+                            mView.setCoinList(result.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 });
@@ -74,7 +78,7 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
                 .execute(new JsonCallBack<HttpResult<MaxCountBean>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<MaxCountBean> result) {
-                        mView.max(Double.parseDouble(result.getData().getBalance()));
+                        mView.max(Double.parseDouble(result.getData().getBalance()),result.getData().getTb_fee());
                     }
                 });
     }
