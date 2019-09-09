@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -40,6 +41,7 @@ import butterknife.BindView;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -126,20 +128,9 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
                         .navigation();
                 return;
             }
-            if (Integer.parseInt(waterData.getStatus()) > 3) {
-                new TipsNewDialog(getActivity())
-                        .setTitle(App.INSTANCE.getString(R.string.miner_tixing))
-                        .setContent(App.INSTANCE.getString(R.string.miner_tips_heyue))
-                        .setConfirmText(App.INSTANCE.getString(R.string.miner_confirm_tips))
-                        .setConfirmListener(dialog -> {
-                            ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore", 1).navigation();
-                            dialog.dismiss();
-
-                        })
-                        .show();
-                return;
-            }
             mPresenter.receivePao(waterData.getId(), view);
+
+
         });
     }
 
@@ -177,8 +168,54 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
     }
 
 
-    public void removeWaterView(View view) {
-        viewWaterMiner.removeWater(view);
+    public void removeWaterView(View view, int code, String msg) {
+        Log.d("yds",code+"--------------");
+        switch (code) {
+            case 301:
+            case 302:
+            case 303:
+                //充值
+                new TipsNewDialog(getActivity())
+                        .setTitle(App.INSTANCE.getString(R.string.miner_tixing))
+                        .setContent(msg)
+                        .setConfirmText(App.INSTANCE.getString(R.string.miner_confirm_tips))
+                        .setConfirmListener(dialog -> {
+                            ARouter.getInstance().build(RoutePath.CB).navigation();
+                            dialog.dismiss();
+                        })
+                        .show();
+                break;
+            case 304:
+                new TipsNewDialog(getActivity())
+                        .setTitle(App.INSTANCE.getString(R.string.miner_tixing))
+                        .setContent(msg)
+                        .setConfirmText(App.INSTANCE.getString(R.string.miner_confirm_tips))
+                        .setConfirmListener(dialog -> {
+                            ARouter.getInstance().build(RoutePath.INVITE_HOME).navigation();
+                            dialog.dismiss();
+                        })
+                        .show();
+                break;
+            case 400:
+                new TipsNewDialog(getActivity())
+                        .setTitle(App.INSTANCE.getString(R.string.miner_tixing))
+                        .setContent(msg)
+                        .setConfirmText(App.INSTANCE.getString(R.string.miner_confirm_tips))
+                        .setConfirmListener(dialog -> {
+                            ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore", 1).navigation();
+                            dialog.dismiss();
+                        })
+                        .show();
+                break;
+            case 200:
+                viewWaterMiner.removeWater(view);
+                break;
+            default:
+                viewWaterMiner.removeWater(view);
+                break;
+        }
+
+
     }
 
 
@@ -195,7 +232,11 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
         if (data.size() == 0) {
             return;
         }
-        viewWaterMiner.setWaters(data);
+        Flowable.fromIterable(data)
+                .filter(waterBean -> Double.parseDouble(waterBean.getUsdt_num()) > 0)
+                .toList()
+                .subscribe(waterBeans -> viewWaterMiner.setWaters(waterBeans));
+
 
     }
 

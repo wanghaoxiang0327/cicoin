@@ -8,12 +8,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.allen.library.SuperTextView;
 import com.bumptech.glide.Glide;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinAsset;
 import com.sskj.common.dialog.SelectCoinDialog;
 import com.sskj.common.http.BaseHttpConfig;
+import com.sskj.common.router.RoutePath;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.CopyUtils;
 import com.sskj.common.view.ToolBarLayout;
@@ -30,6 +32,7 @@ import io.reactivex.Flowable;
  * @author Hey
  * Create at  2019/06/26
  */
+@Route(path = RoutePath.CB)
 public class RechargeActivity extends BaseActivity<RechargePresenter> {
 
     @BindView(R2.id.select_coin)

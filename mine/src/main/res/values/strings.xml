@@ -193,7 +193,7 @@
     <string name="mine_confirm">确定</string>
     <string name="mine_sign_des">签到成成，恭喜您获得 +</string>
     <string name="mine_sign_des1">%s原力</string>
-    <string name="mine_to_complete_task">去完成任务</string>
+    <string name="mine_to_complete_task">确定</string>
     <string name="mine_account_asset">账户资产</string>
     <string name="mine_account_all_asset">总资产折合(USDT)</string>
     <string name="mine_security_level">安全级别：</string>

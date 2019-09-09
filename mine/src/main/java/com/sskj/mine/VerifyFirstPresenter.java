@@ -21,11 +21,12 @@ class VerifyFirstPresenter extends BasePresenter<VerifyFirstActivity> {
         OkGo.<HttpResult>post(BaseHttpConfig.BASE_URL + HttpConfig.VERIFY_FIRST)
                 .params("realname", name)
                 .params("idcard", idcard)
-                .params("type", "1")
+                .params("type","1")
                 .execute(new JsonCallBack<HttpResult>() {
                     @Override
                     protected void onNext(HttpResult result) {
                         mView.verifySuccess();
+
                     }
                 });
     }

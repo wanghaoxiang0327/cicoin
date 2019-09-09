@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.sskj.common.App;
 import com.sskj.common.BaseApplication;
 import com.sskj.common.CommonConfig;
@@ -43,6 +44,8 @@ import butterknife.BindView;
  * Create at  2019/06/24
  */
 public class MineFragment extends BaseFragment<MinePresenter> {
+    @BindView(R2.id.refresh)
+    SmartRefreshLayout refresh;
     @BindView(R2.id.view_top)
     View viewTop;
     @BindView(R2.id.view_barrier)
@@ -153,6 +156,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                     break;
             }
         });
+        refresh.setEnableLoadMore(false);
     }
 
     @Override
