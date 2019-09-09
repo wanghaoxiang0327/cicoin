@@ -85,7 +85,7 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
                         .setText(R.id.tv_order_lever, item.getLeverage())
                         .setText(R.id.tv_hold_price, NumberUtils.keepMaxDown(item.getBuyprice(), 4))
                         .setText(R.id.tv_new_price, NumberUtils.keepMaxDown(item.getNewprice(), 4))
-                        .setText(R.id.tv_hold_num, item.getBuynum())
+                        .setText(R.id.tv_hold_num, NumberUtils.keepMaxDown(item.getBuynum(), 2))
                         .setText(R.id.tv_total_money, NumberUtils.keepMaxDown(item.getTotalprice(), 4))
                         .setText(R.id.tv_fee, NumberUtils.keepMaxDown(item.getSxfee(), 4))
 //                        .setText(R.id.tv_night_fee, item.getDayfee())

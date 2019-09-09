@@ -222,7 +222,7 @@
 
             <Button
                 android:id="@+id/btn_cancel"
-                android:layout_width="50dp"
+                android:layout_width="55dp"
                 android:layout_height="26dp"
                 android:background="@drawable/common_tip_border_gray_50"
                 android:text="@string/contact_contact_item_entrust100"

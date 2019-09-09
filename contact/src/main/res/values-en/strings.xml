@@ -63,7 +63,7 @@
     <string name="contact_contact_dialog_create_order230">Count</string>
     <string name="contact_contact_item_deal260">Holding price</string>
     <string name="contact_contact_dialog_close_order80">Type:</string>
-    <string name="contact_contact_item_entrust100">Cancel the order</string>
+    <string name="contact_contact_item_entrust100">Cancel</string>
     <string name="contact_contactOrderSettingDialog4">Maximum stop price is</string>
     <string name="contact_contactOrderSettingDialog3">The minimum stop price is</string>
     <string name="contact_contact_dialog_setting_order290">Stop price</string>
@@ -90,4 +90,7 @@
     <string name="contact_close_all_order_des">Do you want to confirm closing?</string>
     <string name="contact_verifyHomeActivity4">Please complete the primary real-name certification first</string>
     <string name="contact_confirm_cancle_order">Are you sure you want to cancel the order?</string>
+    <string name="contact_contactOrderSettingDialog30">The maximum take profit price is</string>
+    <string name="contact_contactOrderSettingDialog40">Minimum stop price is</string>
+    <string name="contact_burst_rate_des">When the risk rate is lower than %s, the system will automatically flatten</string>
 </resources>

@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.sskj.common.DividerLineItemDecoration;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
-import com.sskj.common.dialog.TipsNewDialog;
 import com.sskj.common.helper.DataSource;
 import com.sskj.common.helper.SmartRefreshHelper;
 import com.sskj.common.rxbus.RxBus;

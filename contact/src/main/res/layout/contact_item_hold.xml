@@ -40,7 +40,7 @@
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:gravity="right|center_vertical"
-            android:textColor="@color/common_text"
+            android:textColor="@color/common_hint"
             android:textSize="12sp"
             tools:text="11-05 15:25" />
 

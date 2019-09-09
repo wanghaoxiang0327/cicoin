@@ -28,7 +28,7 @@
     <string name="contact_contact_activity_order_records170">可用USDT</string>
     <string name="contact_contact_dialog_close_order390">取消</string>
     <string name="contact_orderRecordsActivity2">委托</string>
-    <string name="contact_contact_fragment_contract130">爆仓率:</string>
+    <string name="contact_contact_fragment_contract130">风险率:</string>
     <string name="contact_contact_item_deal520">过夜费</string>
     <string name="contact_contact_dialog_close_order20">平仓确认</string>
     <string name="contact_contact_activity_order_records340">浮动盈亏</string>

@@ -230,7 +230,11 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
             orderBean.setLever(lever.toString());
             orderBean.setFee(feeMoney + "");
             orderBean.setNum(num.toString());
-            orderBean.setPrice(NumberUtils.keepDown(price, DigitUtils.getDigit(code)));
+            if (priceType == Price.LIMIT) {//限价
+                orderBean.setPrice(getText(edtPrice));
+            } else {
+                orderBean.setPrice(NumberUtils.keepDown(price, DigitUtils.getDigit(code)));
+            }
             orderBean.setPriceType(priceType);
             orderBean.setTradeType(tradeType);
             orderBean.setTotal(getText(tvTotalMoney));

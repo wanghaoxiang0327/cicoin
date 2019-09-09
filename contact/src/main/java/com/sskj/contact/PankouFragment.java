@@ -23,7 +23,9 @@ import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.contact.data.Pankou;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -81,7 +83,7 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
         sellAdapter = new BaseAdapter<Pankou>(R.layout.contact_item_pankou, null, sellList) {
             @Override
             public void bind(ViewHolder holder, Pankou item) {
-                holder.setTextColor(R.id.tv_price, color(R.color.common_red))
+                holder.setTextColor(R.id.tv_price, color(R.color.common_green))
                         .setText(R.id.tv_no, holder.getLayoutPosition() + 1 + "")
                         .setProgress(R.id.progress, item.getProgressRate())
                         .setText(R.id.tv_price, NumberUtils.keep(item.getPrice(), DigitUtils.getDigit(code)))
@@ -91,7 +93,7 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
         buyAdapter = new BaseAdapter<Pankou>(R.layout.contact_buy_item_pankou, null, buyList) {
             @Override
             public void bind(ViewHolder holder, Pankou item) {
-                holder.setTextColor(R.id.tv_price, color(R.color.common_green))
+                holder.setTextColor(R.id.tv_price, color(R.color.common_red))
                         .setProgress(R.id.progress, item.getProgressRate())
                         .setText(R.id.tv_no, holder.getLayoutPosition() + 1 + "")
                         .setText(R.id.tv_price, NumberUtils.keep(item.getPrice(), DigitUtils.getDigit(code)))
@@ -174,6 +176,13 @@ public class PankouFragment extends BaseFragment<PankouPresenter> {
                 bid.setRate(0);
             }
         }
+        Collections.sort(list, (o1, o2) -> {
+            try {
+                return new BigDecimal(o1.getPrice()).doubleValue() > new BigDecimal(o2.getPrice()).doubleValue() ? -1 : 1;
+            } catch (Exception e) {
+                return 1;
+            }
+        });
         return list;
     }
 

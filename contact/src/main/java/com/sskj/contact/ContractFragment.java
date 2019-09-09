@@ -3,6 +3,7 @@ package com.sskj.contact;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.sskj.common.BaseApplication;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
@@ -45,6 +47,8 @@ import butterknife.BindView;
 public class ContractFragment extends BaseFragment<ContractPresenter> {
     @BindView(R2.id.drawLayout)
     DrawerLayout drawLayout;
+    @BindView(R2.id.scrollView)
+    NestedScrollView scrollView;
     @BindView(R2.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R2.id.tv_burst_rate)
@@ -74,6 +78,8 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
 
     @Override
     public void initView() {
+        wrapRefresh(scrollView);
+        setEnableLoadMore(false);
         RxBus.getDefault().register(this);
         //设置菜单内容之外其他区域的背景色
         drawLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//禁止滑动开启
@@ -171,6 +177,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
 
     @Override
     public void loadData() {
+        mPresenter.getMarketList();
         mPresenter.getCoinInfo(code);
     }
 
@@ -195,7 +202,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
 
     @Override
     public void lazyLoad() {
-        mPresenter.getMarketList();
+
     }
 
     public static ContractFragment newInstance() {
@@ -205,6 +212,12 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
         return fragment;
     }
 
+    @Override
+    public void onRefresh(RefreshLayout refreshLayout) {
+        super.onRefresh(refreshLayout);
+        loadData();
+        RxBus.getDefault().post("LimitPriceSuccess");
+    }
 
     public void setCoinList(List<CoinBean> data) {
         //选择币种
