@@ -51,7 +51,7 @@ public class TeamActivity extends BaseActivity<TeamPresenter> {
             @Override
             public void bind(ViewHolder holder, CommissionBean item) {
                 holder.setText(R.id.name_tv, item.realname)
-//                        .setText(R.id.mobile_tv, item.getAccount())
+                        .setText(R.id.mobile_tv, item.mobile)
                         .setText(R.id.time_tv, TimeFormatUtil.SF_FORMAT_E.format(item.time * 1000));
             }
         };

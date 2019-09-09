@@ -7,5 +7,6 @@ public class CommissionBean {
     public String type;
     public String from_userid;
     public String realname;
+    public String mobile;
     public long time;
 }
