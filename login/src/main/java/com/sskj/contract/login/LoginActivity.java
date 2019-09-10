@@ -1,5 +1,6 @@
 package com.sskj.contract.login;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -96,7 +97,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
 
     @Override
     public void initData() {
-        ClickUtil.click(back, view -> finish());
+        ClickUtil.click(back, view -> {
+            ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore",0).navigation();
+            finish();
+        });
         ClickUtil.click(ivClose, view -> etNum.getText().clear());
         ClickUtil.click(register, view -> RegisterActivity.start(this));
         ClickUtil.click(forget, view -> ForgetPsActivity.start(this));

@@ -49,10 +49,12 @@ public class FeedbackActivity extends BaseActivity<FeedbackPresenter> {
     public void initData() {
 
         ClickUtil.click(submit, view -> {
+
             if (TextUtils.isEmpty(etContact.getText().toString())) {
                 ToastUtils.show(App.INSTANCE.getString(R.string.mine_feedbackActivity3));
                 return;
             }
+
             if (TextUtils.isEmpty(etContent.getText().toString())) {
                 ToastUtils.show(App.INSTANCE.getString(R.string.mine_feedbackActivity2));
                 return;

@@ -3,6 +3,7 @@ package com.sskj.mine;
 import com.hjq.toast.ToastUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
+import com.sskj.common.App;
 import com.sskj.common.base.BasePresenter;
 import com.sskj.common.http.BaseHttpConfig;
 import com.sskj.common.http.HttpConfig;
@@ -26,7 +27,7 @@ class FeedbackPresenter extends BasePresenter<FeedbackActivity> {
                     protected void onNext(HttpResult<Object> result) {
                         if (result.getStatus() == BaseHttpConfig.OK) {
                             mView.success();
-                            ToastUtils.show(result.getMsg());
+                            ToastUtils.show(App.INSTANCE.getString(R.string.mine_czcgaa));
                         }
                     }
                 });

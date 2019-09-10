@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="UID"
-        android:textColor="@color/common_hint" />
+        android:textColor="@color/common_text" />
 
     <TextView
         android:id="@+id/count"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/mine_mine_activity_commission140"
-        android:textColor="@color/common_hint" />
+        android:textColor="@color/common_text" />
 
     <TextView
         android:id="@+id/time"
@@ -31,5 +31,5 @@
         android:layout_weight="1"
         android:gravity="right"
         android:text="@string/mine_mine_activity_commission160"
-        android:textColor="@color/common_hint" />
+        android:textColor="@color/common_text" />
 </LinearLayout>

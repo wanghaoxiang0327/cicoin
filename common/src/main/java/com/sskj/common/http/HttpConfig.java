@@ -161,7 +161,7 @@ public class HttpConfig {
 
     public static final String ASSET_TYPE = "/Home/users/caiwu_type";
 
-    public static final String RECHARGE_INFO = "/home/order/bpay";
+    public static final String RECHARGE_INFO = "/Home/Order/bpay";
 
     public static final String TRANSFER_INFO = "/home/users/bTranfer";
 

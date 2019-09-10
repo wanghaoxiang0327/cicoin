@@ -3,7 +3,7 @@
     <item android:state_pressed="true">
         <shape>
             <solid android:color="@color/common_hint" />
-            <corners android:radius="150dp" />
+            <corners android:radius="10dp" />
         </shape>
     </item>
     <item android:state_enabled="false">
@@ -14,7 +14,7 @@
     <item>
         <shape>
             <solid android:color="@color/common_action_text" />
-            <corners android:radius="150dp" />
+            <corners android:radius="10dp" />
         </shape>
     </item>
 </selector>

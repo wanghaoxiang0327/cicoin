@@ -2,6 +2,7 @@ package com.sskj.asset;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,6 +12,8 @@ import android.widget.Toolbar;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.allen.library.SuperTextView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinAsset;
 import com.sskj.common.dialog.SelectCoinDialog;
@@ -74,7 +77,7 @@ public class RechargeActivity extends BaseActivity<RechargePresenter> {
     @Override
     public void initData() {
         mPresenter.getCoinAsset(false);
-        ClickUtil.click(copy,view -> CopyUtils.copy(this,getText(rechargeAddressTv)));
+        ClickUtil.click(copy, view -> CopyUtils.copy(this, getText(rechargeAddressTv)));
 
     }
 
@@ -129,7 +132,14 @@ public class RechargeActivity extends BaseActivity<RechargePresenter> {
 
 
     public void setRechargeInfo(Map<String, String> result) {
-        Glide.with(this).load(BaseHttpConfig.BASE_URL + "/" + result.get("qrc")).into(qrCodeImg);
+        Glide.with(this)
+//                .skipMemoryCache(true) // 不使用内存缓存
+//                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .load(BaseHttpConfig.BASE_URL + "/" + result.get("qrc"))
+                .apply(new RequestOptions()
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE))
+                .into(qrCodeImg);
         rechargeAddressTv.setText(result.get("url"));
     }
 }

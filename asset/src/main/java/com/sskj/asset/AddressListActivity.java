@@ -9,10 +9,12 @@ import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.sskj.asset.data.AddressBean;
+import com.sskj.common.App;
 import com.sskj.common.DividerLineItemDecoration;
 import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseActivity;
+import com.sskj.common.dialog.TipsNewDialog;
 import com.sskj.common.utils.ClickUtil;
 
 import butterknife.BindView;
@@ -62,7 +64,14 @@ public class AddressListActivity extends BaseActivity<AddressListPresenter> {
                 holder.setText(R.id.name_tv, item.getNotes())
                         .setText(R.id.address, item.getQiaobao_url());
                 ClickUtil.click(holder.getView(R.id.delete), view -> {
-                    mPresenter.deleteAddress(item.getQiaobao_url());
+                    new TipsNewDialog(AddressListActivity.this)
+                            .setContent(App.INSTANCE.getString(R.string.asset_sctsy))
+                            .setConfirmListener(dialog -> {
+                                mPresenter.deleteAddress(item.getQiaobao_url(),item.getId());
+                                dialog.dismiss();
+                            })
+                            .show();
+
                 });
                 ClickUtil.click(holder.itemView, view -> {
                     if (select) {
@@ -81,7 +90,14 @@ public class AddressListActivity extends BaseActivity<AddressListPresenter> {
                 holder.setText(R.id.name_tv, item.getNotes())
                         .setText(R.id.address, item.getQiaobao_url());
                 ClickUtil.click(holder.getView(R.id.delete), view -> {
-                    mPresenter.deleteAddress(item.getQiaobao_url());
+                    new TipsNewDialog(AddressListActivity.this)
+                            .setContent(App.INSTANCE.getString(R.string.asset_sctsy))
+                            .setConfirmListener(dialog -> {
+                                mPresenter.deleteAddress(item.getQiaobao_url(),item.getId());
+                                dialog.dismiss();
+                            })
+                            .show();
+
                 });
 
                 ClickUtil.click(holder.itemView, view -> {
@@ -126,7 +142,7 @@ public class AddressListActivity extends BaseActivity<AddressListPresenter> {
         }
     }
 
-    public void deleteSuccess(Object data) {
+    public void deleteSuccess() {
         mPresenter.getAddressList();
     }
 }

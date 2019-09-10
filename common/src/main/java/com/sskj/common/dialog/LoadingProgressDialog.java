@@ -40,7 +40,6 @@ public class LoadingProgressDialog extends AlertDialog {
         layoutParams.width = width;
         layoutParams.height = height;
         getWindow().setAttributes(layoutParams);
-        Log.d("yds", "gif加载");
     }
 
     @Override

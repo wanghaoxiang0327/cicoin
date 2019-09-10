@@ -18,6 +18,7 @@ import com.allen.library.SuperTextView;
 import com.hjq.toast.ToastUtils;
 import com.sskj.asset.data.TransferInfo;
 import com.sskj.asset.data.WithdrawInfo;
+import com.sskj.common.App;
 import com.sskj.common.BaseApplication;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.data.CoinAsset;
@@ -117,7 +118,7 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
         ClickUtil.click(submit, view -> {
             if (!hasTbpwd) {
                 ARouter.getInstance().build(RoutePath.TPWD).navigation();
-                ToastUtils.show("请先设置支付密码");
+                ToastUtils.show(App.INSTANCE.getString(R.string.asset_please_pay));
             }
             if (isEmpty(countEdt)) {
                 ToastUtils.show(getString(R.string.asset_transferActivity1));

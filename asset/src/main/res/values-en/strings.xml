@@ -112,4 +112,6 @@
     <string name="asset_gjrz">You have not completed the advanced real-name authentication, to complete?</string>
     <string name="asset_ky">available balance：%s</string>
     <string name="asset_sxf">usable：%s/Order</string>
+    <string name="asset_please_pay">Please set the payment password first</string>
+    <string name="asset_sctsy">Are you sure to delete the address?</string>
 </resources>

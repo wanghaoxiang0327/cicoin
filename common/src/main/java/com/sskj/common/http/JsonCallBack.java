@@ -1,6 +1,7 @@
 package com.sskj.common.http;
 
 import android.support.annotation.CallSuper;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.hjq.toast.ToastUtils;
@@ -87,6 +88,7 @@ public abstract class JsonCallBack<T> extends AbsCallback<T> {
         if (body != null) {
             Type genericSuperclass = getClass().getGenericSuperclass();
             Type type = ((ParameterizedType) genericSuperclass).getActualTypeArguments()[0];
+
             data = JSON.parseObject(body.string(), type);
             if (data == null) {
                 throw new ApiException("数据解析失败");

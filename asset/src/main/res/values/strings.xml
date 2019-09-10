@@ -112,4 +112,6 @@
     <string name="asset_gjrz">您还未完成高级实名认证，去完成?</string>
     <string name="asset_ky">可用余额：%s</string>
     <string name="asset_sxf">手续费：%s/次</string>
+    <string name="asset_please_pay">请先设置支付密码</string>
+    <string name="asset_sctsy">确认删除该地址么？</string>
 </resources>

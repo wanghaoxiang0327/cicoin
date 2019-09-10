@@ -209,9 +209,11 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
                 break;
             case 200:
                 viewWaterMiner.removeWater(view);
+                mPresenter.getAsset();
                 break;
             default:
                 viewWaterMiner.removeWater(view);
+                mPresenter.getAsset();
                 break;
         }
 

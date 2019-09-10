@@ -120,7 +120,7 @@
     <string name="mine_wdtg">My promotion</string>
     <string name="mine_wdkf">My client</string>
     <string name="mine_mine_activity_team310">Name</string>
-    <string name="mine_mine_activity_teamleavl">Cell-phone number</string>
+    <string name="mine_mine_activity_teamleavl">Account number</string>
     <string name="mine_mine_activity_team330">Registration time</string>
     <string name="mine_wdkf_title">My client</string>
     <string name="mine_mine_activity_yj">Commission</string>
@@ -205,5 +205,6 @@
     <string name="mine_logout_ensure">Confirm logging out of the account？</string>
     <string name="mine_logout_ensure_btn">Exit</string>
     <string name="mine_kf">online customer service</string>
+    <string name="mine_czcgaa">operate successfully</string>
 
 </resources>

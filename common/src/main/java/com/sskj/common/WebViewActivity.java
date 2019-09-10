@@ -64,6 +64,13 @@ public class WebViewActivity extends BaseActivity<WebViewPresenter> {
 
     @Override
     public void initData() {
+        mToolBarLayout.setLeftButtonOnClickListener(v -> {
+            if (content.canGoBack()){
+                content.goBack();
+            }else {
+                finish();
+            }
+        });
 
     }
 

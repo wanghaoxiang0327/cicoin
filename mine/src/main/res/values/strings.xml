@@ -137,7 +137,7 @@
     <string name="mine_wdtg">我的推广</string>
     <string name="mine_wdkf">我的客户</string>
     <string name="mine_mine_activity_team310">名称</string>
-    <string name="mine_mine_activity_teamleavl">手机号</string>
+    <string name="mine_mine_activity_teamleavl">账号</string>
     <string name="mine_mine_activity_team330">注册时间</string>
     <string name="mine_wdkf_title">我的客户</string>
     <string name="mine_helper_center">帮助中心</string>
@@ -209,5 +209,6 @@
     <string name="mine_logout_ensure">是否确认退出该账户？</string>
     <string name="mine_logout_ensure_btn">退出</string>
     <string name="mine_kf">在线客服</string>
+    <string name="mine_czcgaa">操作成功</string>
 
 </resources>

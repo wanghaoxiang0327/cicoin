@@ -76,6 +76,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         checkPermission();
     }
 
+
     @Override
     public void initView() {
         mainTabs.add(new TabItem(getString(R.string.app_mainActivity1), R.mipmap.tab_home, R.mipmap.tab_home_p));
