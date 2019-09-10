@@ -23,7 +23,21 @@ class DeepthPresenter extends BasePresenter<DepthFragment> {
                 .execute(new JsonCallBack<HttpResult<List<BuySellData>>>(this) {
                     @Override
                     protected void onNext(HttpResult<List<BuySellData>> result) {
-                        if (result.getData()!=null&&result.getData().size()>0){
+                        if (result.getData() != null && result.getData().size() > 0) {
+                            mView.setDeepMap(result.getData().get(0));
+                        }
+                    }
+                });
+    }
+
+    public void getPankouData(String code) {
+        OkGo.<HttpResult<List<BuySellData>>>get(HttpConfig.BASE_URL + HttpConfig.GET_PANKOU)
+                .params("code", code)
+                .tag(this)
+                .execute(new JsonCallBack<HttpResult<List<BuySellData>>>(this) {
+                    @Override
+                    protected void onNext(HttpResult<List<BuySellData>> result) {
+                        if (result.getData() != null && result.getData().size() > 0) {
                             mView.setDeepData(result.getData().get(0));
                         }
                     }

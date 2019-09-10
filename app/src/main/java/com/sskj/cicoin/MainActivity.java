@@ -27,6 +27,7 @@ import com.sskj.common.data.VersionBean;
 import com.sskj.common.dialog.TipDialog;
 import com.sskj.common.dialog.VersionUpdateDialog;
 import com.sskj.common.http.BaseHttpConfig;
+import com.sskj.common.http.HttpConfig;
 import com.sskj.common.http.HttpResult;
 import com.sskj.common.language.LocalManageUtil;
 import com.sskj.common.router.RoutePath;
@@ -106,7 +107,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         ImmersionBar.with(MainActivity.this).fitsSystemWindows(true).statusBarColor(R.color.white).statusBarDarkFont(true, 0.2f).init();
         JSONObject message = new JSONObject();
         message.put("code", "all");
-        marketWebSocket = new WebSocket(BaseHttpConfig.WS_URL, "market", message.toString());
+        marketWebSocket = new WebSocket(HttpConfig.WS_URL, "market", message.toString());
         marketWebSocket.setListener(message1 -> {
             try {
                 CoinBean coinBean = JSON.parseObject(message1, CoinBean.class);

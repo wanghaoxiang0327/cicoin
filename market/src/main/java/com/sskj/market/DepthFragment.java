@@ -24,6 +24,7 @@ import com.sskj.depthlib.view.DepthMapView;
 import com.sskj.market.data.BuySellData;
 import com.sskj.market.data.DeepData;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
     private String code;
     private Disposable disposable;
     private WebSocket webSocket;
+    private WebSocket pankouWebSocket;
     private boolean isBig;
 
     @Override
@@ -101,13 +103,12 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
             public void bind(ViewHolder holder, DeepData item) {
                 holder.setText(R.id.buy_position, holder.getLayoutPosition() + 1 + "")
                         .setText(R.id.sell_position, holder.getLayoutPosition() + 1 + "")
-                        .setText(R.id.buy_count, NumberUtils.keepDown(item.getBuyCount(), 0))
+                        .setText(R.id.buy_count, NumberUtils.keepMaxDown(item.getBuyCount(), 4))
                         .setText(R.id.buy_price, NumberUtils.keepDown(item.getBuyPrice(), 4))
-                        .setText(R.id.sell_count, NumberUtils.keepDown(item.getSellCount(), 0))
+                        .setText(R.id.sell_count, NumberUtils.keepMaxDown(item.getSellCount(), 4))
                         .setText(R.id.sell_price, NumberUtils.keepDown(item.getSellPrice(), 4));
             }
         };
-        deepListAdapter.openLoadAnimation();
     }
 
 
@@ -119,6 +120,7 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
     @Override
     public void loadData() {
         mPresenter.getDeepData(code);
+        mPresenter.getPankouData(code);
     }
 
     @Override
@@ -145,9 +147,6 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(buySellData1 -> {
                     if (buySellData1.getAsks() != null && buySellData1.getBids() != null) {
-                        //设置深度图数据
-                        depthMapView.setData(buySellData.getBids(), buySellData.getAsks());
-                        depthMapTip.setVisibility(View.VISIBLE);
                         List<DeepData> data = new ArrayList<>();
                         //使买盘和买盘数据量保持一致
                         while (buySellData1.getAsks().size() > buySellData1.getBids().size()) {
@@ -175,7 +174,7 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
                     return null;
                 })
                 .subscribe(data -> {
-                    deepListAdapter.setNewData(data.subList(0, 30));
+                    deepListAdapter.setNewData(data);
                 }, Throwable::printStackTrace);
     }
 
@@ -188,29 +187,38 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
         if (webSocket != null) {
             webSocket.closeWebSocket();
         }
-    }
-
-    @Override
-    public void onInVisible() {
-        super.onInVisible();
-        if (webSocket != null) {
-            webSocket.disposeByTag(getClass().getSimpleName());
+        if (pankouWebSocket != null) {
+            pankouWebSocket.closeWebSocket();
         }
     }
 
-    @Override
-    public void onVisible() {
-        super.onVisible();
-        setSocketListener();
+    //设置深度图数据
+    public void setDeepMap(BuySellData data) {
+        depthMapView.setData(data.getBids(), data.getAsks());
+        depthMapTip.setVisibility(View.VISIBLE);
     }
 
     public void startWebSocket() {
         JSONObject message = new JSONObject();
-        message.put("code", code);
-        webSocket = new WebSocket(HttpConfig.WS_DEPTH, "deep", message.toString());
-        setSocketListener();
-    }
+        try {
+            message.put("code", code);
+            if (webSocket == null) {
+                webSocket = new WebSocket(HttpConfig.WS_DEPTH, "depth", message.toString());
+                setSocketListener();
+            } else {
+                webSocket.sendMessage(message.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (pankouWebSocket == null) {
+            pankouWebSocket = new WebSocket(HttpConfig.WS_PANKOU, "pankou", message.toString());
+            setPankouSocketListener();
+        } else {
+            pankouWebSocket.sendMessage(message.toString());
+        }
 
+    }
 
     public void setSocketListener() {
         if (webSocket != null) {
@@ -219,15 +227,28 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
                 public void onNext(String s) {
                     try {
                         BuySellData data = JSONObject.parseObject(s, BuySellData.class);
-                        if (data != null) {
-                            setDeepData(data);
-                        }
+                        setDeepMap(data);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             });
         }
+    }
 
+    public void setPankouSocketListener() {
+        if (pankouWebSocket != null) {
+            pankouWebSocket.observer(getClass().getSimpleName(), new WebSocketObserver() {
+                @Override
+                public void onNext(String s) {
+                    try {
+                        BuySellData data = JSONObject.parseObject(s, BuySellData.class);
+                        setDeepData(data);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 }

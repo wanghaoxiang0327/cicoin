@@ -18,7 +18,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.lwj.widget.viewpagerindicator.ViewPagerIndicator;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.sskj.cicoin.data.BannerBean;
+import com.sskj.common.App;
 import com.sskj.common.BaseApplication;
+import com.sskj.common.WebViewActivity;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.data.CoinBean;
 import com.sskj.common.glide.GlideImageLoader;
@@ -34,6 +36,7 @@ import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.market.MarketListFragment;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +88,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     CoinFragmentPager coinFragmentPager;
     private MarketListFragment marketListFragment;
     private Disposable noticeDisposable;
+    List<BannerBean> bannerBeanList;
 
     @Override
     public int getLayoutId() {
@@ -166,6 +170,15 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         ClickUtil.click(ivNotice, view -> NoticeListActivity.start(getContext()));
 
         ClickUtil.click(ivNotice1, view -> NoticeListActivity.start(getContext()));
+        bannerView.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                BannerBean bannerBean = bannerBeanList.get(position);
+                if (!TextUtils.isEmpty(bannerBean.getUrl())) {
+                    WebViewActivity.start(getContext(), bannerBean.getUrl(), bannerBean.getName());
+                }
+            }
+        });
     }
 
     @Override
@@ -207,6 +220,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
 
     public void setBanner(List<BannerBean> data) {
         bannerImages.clear();
+        bannerBeanList = data;
         for (BannerBean bean : data) {
             bannerImages.add(BaseHttpConfig.BASE_URL + bean.getPath());
         }
