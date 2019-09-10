@@ -44,6 +44,11 @@ public class VersionUpdateDialog extends AlertDialog {
 
     private void initView() {
         updateTip.setText(versionBean.getContent());
+        if (versionBean.getUptype() == 1) {
+            cancelBtn.setVisibility(View.GONE);
+        } else {
+            cancelBtn.setVisibility(View.VISIBLE);
+        }
         ClickUtil.click(cancelBtn, view1 -> {
             //强制更新
             if (versionBean.getUptype() == 1) {
