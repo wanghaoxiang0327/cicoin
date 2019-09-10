@@ -16,6 +16,7 @@ import com.sskj.common.adapter.BaseAdapter;
 import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.dialog.TipDialog;
+import com.sskj.common.dialog.TipsNewDialog;
 import com.sskj.common.router.RoutePath;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.CoinIcon;
@@ -108,7 +109,7 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
         });
         ClickUtil.click(llCashOut, view -> {
             if (!isSecondCheck) {
-                new TipDialog(this)
+                new TipsNewDialog(this)
                         .setContent(App.INSTANCE.getString(R.string.asset_gjrz))
                         .setCancelVisible(View.GONE)
                         .setConfirmListener(dialog -> {
@@ -120,7 +121,7 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
                 return;
             }
             if (!setPs) {
-                new TipDialog(this)
+                new TipsNewDialog(this)
                         .setContent(getString(R.string.asset_assetFragment2))
                         .setCancelVisible(View.GONE)
                         .setConfirmListener(dialog -> {
@@ -135,7 +136,7 @@ public class AssetActivity extends BaseActivity<AssetPresenter> {
         });
         ClickUtil.click(llTransfer, view -> {
             if (!setPs) {
-                new TipDialog(this)
+                new TipsNewDialog(this)
                         .setContent(getString(R.string.asset_assetFragment2))
                         .setCancelVisible(View.GONE)
                         .setConfirmListener(dialog -> {

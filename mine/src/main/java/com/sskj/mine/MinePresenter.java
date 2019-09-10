@@ -25,7 +25,7 @@ public class MinePresenter extends BasePresenter<MineFragment> {
 
     public void getMoney() {
         OkGo.<HttpResult<MIneBean>>get(BaseHttpConfig.BASE_URL + HttpConfig.ASSET)
-                .execute(new JsonCallBack<HttpResult<MIneBean>>() {
+                .execute(new JsonCallBack<HttpResult<MIneBean>>(this,false) {
                     @Override
                     protected void onNext(HttpResult<MIneBean> result) {
                         mView.getSuccess(result.getData().getTtl_money(), result.getData().getTtl_cnymoney());

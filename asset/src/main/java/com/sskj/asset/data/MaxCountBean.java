@@ -19,7 +19,7 @@ public class MaxCountBean {
      */
 
     private String balance;
-    private Object rate;
+    private String rate;
     private String tb_fee;
     private String tb_minum;
     private String tb_maxnum;
@@ -32,11 +32,11 @@ public class MaxCountBean {
         this.balance = balance;
     }
 
-    public Object getRate() {
+    public String getRate() {
         return rate;
     }
 
-    public void setRate(Object rate) {
+    public void setRate(String rate) {
         this.rate = rate;
     }
 

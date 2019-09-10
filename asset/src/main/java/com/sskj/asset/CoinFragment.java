@@ -17,6 +17,7 @@ import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseFragment;
 import com.sskj.common.helper.DataSource;
 import com.sskj.common.helper.SmartRefreshHelper;
+import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.TimeFormatUtil;
 
 import java.util.HashMap;
@@ -66,25 +67,33 @@ public class CoinFragment extends BaseFragment<CoinPresenter> {
         newsAdapter = new BaseAdapter<RechargeEntity>(R.layout.asset_item_recharge_record, null, recyclerView) {
             @Override
             public void bind(ViewHolder holder, RechargeEntity item) {
-                holder.setText(R.id.tv_recharge_address, item.chongzhi_url)
-                        .setText(R.id.tv_recharge_count, item.account)
-                        .setText(R.id.tv_recharge_submit, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(TextUtils.isEmpty(item.addtime) ? "0" : item.addtime) * 1000))
-                        .setText(R.id.tv_recharge_review, TextUtils.isEmpty(item.check_time) ? "" : TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.check_time) * 1000));
-                if (type == 1) {
-                    holder.setVisible(R.id.tv_status, true);
-                } else {
-                    holder.setVisible(R.id.tv_status, false);
+                try {
+                    holder.setText(R.id.tv_recharge_address, item.chongzhi_url)
+                            .setText(R.id.tv_recharge_count, NumberUtils.keepDown(item.account,4))
+                            .setText(R.id.tv_recharge_submit, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(TextUtils.isEmpty(item.addtime) ? "0" : item.addtime) * 1000))
+                            .setText(R.id.tv_recharge_review, TextUtils.isEmpty(item.check_time) ? "" : TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.check_time) * 1000));
+                    if (type == 1) {
+                        holder.setVisible(R.id.tv_status, true);
+                    } else {
+                        holder.setVisible(R.id.tv_status, false);
+                    }
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
                 }
             }
         };
         adapter = new BaseAdapter<WithDrawEntity>(R.layout.asset_item_withdraw_record, null, recyclerView) {
             @Override
             public void bind(ViewHolder holder, WithDrawEntity item) {
-                holder.setText(R.id.tv_recharge_address, item.qianbao_url)
-                        .setText(R.id.tv_recharge_count, item.actual)
-                        .setText(R.id.tv_recharge_submit, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(TextUtils.isEmpty(item.addtime) ? "0" : item.addtime) * 1000))
-                        .setText(R.id.tv_recharge_review, TextUtils.isEmpty(item.check_time) ? "" : TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.check_time) * 1000));
-                holder.setText(R.id.tv_status, tibiMap.get(Integer.parseInt(item.state)));
+                try {
+                    holder.setText(R.id.tv_recharge_address, item.qianbao_url)
+                            .setText(R.id.tv_recharge_count,NumberUtils.keepDown( item.actual,4))
+                            .setText(R.id.tv_recharge_submit, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(TextUtils.isEmpty(item.addtime) ? "0" : item.addtime) * 1000))
+                            .setText(R.id.tv_recharge_review, TextUtils.isEmpty(item.check_time) ? "" : TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.check_time) * 1000));
+                    holder.setText(R.id.tv_status, tibiMap.get(Integer.parseInt(item.state)));
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
 
 
             }

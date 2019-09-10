@@ -25,6 +25,7 @@ import com.sskj.common.BaseApplication;
 import com.sskj.common.CommonConfig;
 import com.sskj.common.R;
 import com.sskj.common.dialog.TipDialog;
+import com.sskj.common.dialog.TipsNewDialog;
 import com.sskj.common.exception.BreakException;
 import com.sskj.common.exception.LogoutException;
 import com.sskj.common.language.LocalManageUtil;
@@ -189,7 +190,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends ExtendActivi
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void logout(LogoutException e) {
-        new TipDialog(this)
+        new TipsNewDialog(this)
                 .setContent(e.getMessage())
                 .setCancelVisible(View.GONE)
                 .setConfirmListener(dialog -> {

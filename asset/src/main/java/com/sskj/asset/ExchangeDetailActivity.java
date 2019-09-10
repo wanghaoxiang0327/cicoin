@@ -15,6 +15,7 @@ import com.sskj.common.adapter.ViewHolder;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.helper.DataSource;
 import com.sskj.common.helper.SmartRefreshHelper;
+import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.TimeFormatUtil;
 
 import java.util.List;
@@ -51,8 +52,8 @@ public class ExchangeDetailActivity extends BaseActivity<ExchangeDetailPresenter
             @Override
             public void bind(ViewHolder holder, ExchangeListEntity.Exchange item) {
                 holder.setText(R.id.tv_exchange_asset, item.memo).
-                        setText(R.id.tv_exchange_count, item.num)
-                        .setText(R.id.tv_daozhang_count, item.exnum)
+                        setText(R.id.tv_exchange_count, NumberUtils.keepDown(item.num, 4))
+                        .setText(R.id.tv_daozhang_count, NumberUtils.keepDown(item.exnum, 4))
                         .setText(R.id.tv_exchange_time, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(item.addtime) * 1000));
             }
 

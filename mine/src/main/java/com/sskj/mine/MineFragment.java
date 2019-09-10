@@ -140,6 +140,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 case 4:
                     if (!BaseApplication.isLogin()) {
                         ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
+                        return;
                     }
                     FeedbackActivity.start(getContext());
                     break;
@@ -147,7 +148,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                     WebViewActivity.start(getContext(), BaseHttpConfig.BASE_URL + "/wap/help/index.html", App.INSTANCE.getString(R.string.mine_helper_center));
                     break;
                 case 6:
-                    WebViewActivity.start(getContext(), "https://dwz.cn/gkmdm2c9", App.INSTANCE.getString(R.string.mine_kf));
+                    WebViewActivity.start(getContext(), "https://www.365webcall.com/chat/ChatWin3.aspx?settings=mw76I0wN6Pw0bXz3A7wXP0z3AmwXNXIz3AX6mm7w&LL=0", App.INSTANCE.getString(R.string.mine_kf));
                     break;
                 case 7:
                     SettingActivity.start(getActivity());

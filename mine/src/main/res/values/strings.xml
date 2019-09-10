@@ -191,7 +191,7 @@
     <string name="mine_sign_in">签到</string>
     <string name="mine_no_sign_in">已签到</string>
     <string name="mine_confirm">确定</string>
-    <string name="mine_sign_des">签到成成，恭喜您获得 +</string>
+    <string name="mine_sign_des">签到成功，恭喜您获得 +</string>
     <string name="mine_sign_des1">%s原力</string>
     <string name="mine_to_complete_task">确定</string>
     <string name="mine_account_asset">账户资产</string>

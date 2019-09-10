@@ -78,7 +78,11 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
                 .execute(new JsonCallBack<HttpResult<MaxCountBean>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<MaxCountBean> result) {
-                        mView.max(Double.parseDouble(result.getData().getBalance()),result.getData().getTb_fee());
+                        try {
+                            mView.max(Double.parseDouble(result.getData().getBalance()),result.getData().getRate());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
     }
