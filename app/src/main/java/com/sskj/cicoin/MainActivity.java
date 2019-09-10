@@ -165,7 +165,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
                 .subscribe(aBoolean -> {
                     if (!aBoolean) {
                         new TipDialog(this)
-                                .setContent("请先同意相关权限,以使App正常运行")
+                                .setContent(getString(R.string.app_pleas_agree_permission))
                                 .setConfirmListener(dialog -> {
                                     checkPermission();
                                 })

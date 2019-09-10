@@ -18,6 +18,7 @@ import com.sskj.common.utils.CoinIcon;
 import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.NumberUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,7 +33,7 @@ public class MarketListFragment extends BaseFragment<MarketListPresenter> {
     RecyclerView marketList;
     BaseAdapter<CoinBean> adapter;
     SmartRefreshHelper<CoinBean> smartRefreshHelper;
-
+    List<CoinBean> topList = new ArrayList<>();
     @Override
     public int getLayoutId() {
         return R.layout.market_fragment_market_list;
@@ -118,7 +119,13 @@ public class MarketListFragment extends BaseFragment<MarketListPresenter> {
 
 
     public void setData(List<CoinBean> result) {
-        adapter.setNewData(result);
+        topList.clear();
+        for (CoinBean coinBean : result) {
+            if (coinBean.getCode().equals("btc_usdt") || coinBean.getCode().equals("eth_usdt") || coinBean.getCode().equals("xrp_usdt")) {
+                topList.add(coinBean);
+            }
+        }
+        adapter.setNewData(topList);
     }
 
     @Override

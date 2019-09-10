@@ -309,7 +309,11 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
                 public void onChanged(@Nullable UserBean userBean) {
                     if (userBean == null) {
                         btnSubmit.setText(getString(R.string.contact_please_login));
-                        btnSubmit.setBackgroundResource(R.drawable.contact_red_bg_50);
+                        if (checkedId == R.id.radio_up) {
+                            btnSubmit.setBackgroundResource(R.drawable.contact_red_bg_50);
+                        } else {
+                            btnSubmit.setBackgroundResource(R.drawable.contact_green_bg_50);
+                        }
                     } else {
                         if (checkedId == R.id.radio_up) {
                             tradeType = Trade.UP;

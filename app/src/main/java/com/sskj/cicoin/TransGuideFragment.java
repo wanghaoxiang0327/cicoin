@@ -50,6 +50,9 @@ public class TransGuideFragment extends BaseFragment<TransGuidePresenter> {
                     public void onClick(View v) {
                         NewsBean newsBean = new NewsBean();
                         newsBean.setId(item.id);
+                        newsBean.setContent(item.content);
+                        newsBean.setDate(item.create_time);
+                        newsBean.setTitle(item.title);
                         NewsDetailActivity.start(mContext, newsBean, 3);
                     }
                 });

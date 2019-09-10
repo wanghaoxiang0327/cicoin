@@ -63,9 +63,9 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
             topLayout.setVisibility(View.VISIBLE);
         } else if (type == 3) {
             toolbar.setTitle(getString(R.string.app_trading_guide));
-            mPresenter.getSysInfoDetial(newsBean.getId());
             linearLayout.setVisibility(View.GONE);
             topLayout.setVisibility(View.VISIBLE);
+            setNoticeDetail(newsBean);
         } else {
             linearLayout.setVisibility(View.VISIBLE);
             AgentWeb.with(this)

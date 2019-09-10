@@ -15,4 +15,5 @@
     <string name="app_platform_announcement">Platform announcement</string>
     <string name="app_infomation_detail">Details of information</string>
     <string name="app_notice_detail">Notice</string>
+    <string name="app_pleas_agree_permission">Please agree to the relevant permissions to make the app run normally.</string>
 </resources>

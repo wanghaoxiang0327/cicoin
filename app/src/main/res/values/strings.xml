@@ -14,4 +14,5 @@
     <string name="app_platform_announcement">平台公告</string>
     <string name="app_infomation_detail">资讯详情</string>
     <string name="app_notice_detail">公告</string>
+    <string name="app_pleas_agree_permission">请先同意相关权限,以使App正常运行</string>
 </resources>
