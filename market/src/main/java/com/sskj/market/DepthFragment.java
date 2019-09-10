@@ -3,6 +3,7 @@ package com.sskj.market;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -76,8 +77,15 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
             code = getArguments().getString("code");
             isBig = getArguments().getBoolean("isBig");
         }
-        tvBuycountDes.setText(String.format(getString(R.string.market_count), code.split("_")[0].toUpperCase()));
-        tvSaleCoutDes.setText(String.format(getString(R.string.market_count), code.split("_")[0].toUpperCase()));
+        if (!TextUtils.isEmpty(code)) {
+            if (code.contains("_")) {
+                tvBuycountDes.setText(String.format(getString(R.string.market_count), code.split("_")[0].toUpperCase()));
+                tvSaleCoutDes.setText(String.format(getString(R.string.market_count), code.split("_")[0].toUpperCase()));
+            } else {
+                tvBuycountDes.setText(String.format(getString(R.string.market_count), code.toUpperCase()));
+                tvSaleCoutDes.setText(String.format(getString(R.string.market_count), code.toUpperCase()));
+            }
+        }
         if (isBig) {
             llDepth.setBackgroundResource(R.color.common_background_dark);
             frameLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.sp2px(getContext(), 200)));
