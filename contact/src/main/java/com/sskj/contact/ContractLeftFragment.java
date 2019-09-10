@@ -202,6 +202,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
                     @Override
                     public void onConfirm(TipsNewDialog dialog) {
                         ARouter.getInstance().build(RoutePath.VERIFYFIRST).navigation();
+                        dialog.dismiss();
                     }
                 }).show();
                 return;

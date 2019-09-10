@@ -24,7 +24,6 @@ import com.sskj.depthlib.view.DepthMapView;
 import com.sskj.market.data.BuySellData;
 import com.sskj.market.data.DeepData;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 

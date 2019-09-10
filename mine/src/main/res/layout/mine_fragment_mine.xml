@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_background"
+    android:descendantFocusability="blocksDescendants"
     tools:ignore="MissingDefaultResource">
 
 
@@ -157,9 +158,9 @@
 
             <ImageView
                 android:id="@+id/img_kj"
-                android:scaleType="centerInside"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:scaleType="centerInside"
                 android:src="@mipmap/mine_icon_hide"
                 android:tint="@color/center_id_text"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_zc_info"
@@ -180,24 +181,24 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:maxLength="13"
+                android:text="****"
                 android:textColor="@color/center_text_color"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_zc_info"
                 app:layout_constraintEnd_toEndOf="@+id/line"
-                app:layout_constraintTop_toTopOf="@+id/tv_zc_info"
-                android:text="****" />
+                app:layout_constraintTop_toTopOf="@+id/tv_zc_info" />
 
             <TextView
                 android:id="@+id/tv_cny"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:text="≈****"
                 android:textColor="@color/center_gray"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="@+id/line"
-                app:layout_constraintTop_toBottomOf="@+id/tv_price"
-                android:text="≈****" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_price" />
 
 
             <android.support.v7.widget.RecyclerView

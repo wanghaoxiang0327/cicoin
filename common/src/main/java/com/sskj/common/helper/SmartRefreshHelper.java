@@ -45,7 +45,7 @@ public class SmartRefreshHelper<T> extends BaseHelper<T> implements LoadListener
         wrapRefresh(adapter.getContentView());
         stateView = StateView.inject(mRefreshLayout);
         stateView.setEmptyResource(R.layout.common_empty_view);
-        stateView.setLoadingResource(R.layout.common_loading_view);
+        stateView.setLoadingResource(R.layout.common_loading_dialog);
         stateView.setRetryResource(R.layout.common_error_view);
         stateView.setAnimatorProvider(new FadeAnimatorProvider());
         stateView.setOnRetryClickListener(() -> {

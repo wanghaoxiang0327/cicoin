@@ -101,7 +101,7 @@ public class LoadViewFactory implements ILoadViewFactory {
 
         @Override
         public void showLoading() {
-            View loadingView = LayoutInflater.from(context).inflate(R.layout.common_mvc_loading_view, null);
+            View loadingView = LayoutInflater.from(context).inflate(R.layout.common_loading_dialog, null);
 //            ImageView ivLoading = loadingView.findViewById(R.id.ivLoading);
 //            AnimationDrawable animationDrawable = (AnimationDrawable) ivLoading.getDrawable();
 //            animationDrawable.start();
