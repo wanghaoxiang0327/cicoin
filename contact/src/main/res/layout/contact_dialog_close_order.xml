@@ -114,7 +114,8 @@
         android:layout_marginTop="23dp"
         android:background="@drawable/contact_border_dark_bg"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_less"

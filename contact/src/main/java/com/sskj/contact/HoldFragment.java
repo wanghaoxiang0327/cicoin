@@ -100,7 +100,7 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
                 ClickUtil.click(holder.getView(R.id.btn_close), view -> {
                     ContactCloseOrderDialog.getInstance(item)
                             .setConfirmListener((num, id) -> {
-                                mPresenter.closeOrder(num, id);
+                                mPresenter.closeOrder(item.getBuynum(), id);
                             }).show(getChildFragmentManager(), "ContactCloseOrderDialog");
 
                 });

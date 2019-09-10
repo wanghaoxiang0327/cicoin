@@ -46,30 +46,29 @@ public class VersionUpdateDialog extends AlertDialog {
         updateTip.setText(versionBean.getContent());
         ClickUtil.click(cancelBtn, view1 -> {
             //强制更新
-            if (versionBean.getUptype()==1){
+            if (versionBean.getUptype() == 1) {
                 ToastUtils.show("本次更新很重要，不能取消哦");
                 return;
-            }else {
+            } else {
                 dismiss();
             }
         });
 
         ClickUtil.click(updateBtn, view1 -> {
             DownloadManager manager = DownloadManager.getInstance(getContext());
-            manager.setApkName(App.INSTANCE.getString(R.string.app_name)+".apk")
+            manager.setApkName(App.INSTANCE.getString(R.string.app_name) + ".apk")
                     .setApkUrl(versionBean.getAddr())
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .download();
             dismiss();
         });
-
     }
 
     @Override
     public void show() {
         super.show();
         WindowManager.LayoutParams params = getWindow().getAttributes();
-        params.width = (int) (ScreenUtil.getScreenWidth(getContext()) * 0.8);
+        params.width = (int) (ScreenUtil.getScreenWidth(getContext()) * 0.9);
         getWindow().setAttributes(params);
     }
 }

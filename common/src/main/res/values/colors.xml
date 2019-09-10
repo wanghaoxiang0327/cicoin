@@ -31,4 +31,5 @@
     <color name="common_depth_sell_top">#ff7f7f</color>
     <color name="common_depth_sell_middle">#ffe1e1</color>
     <color name="common_depth_sell_bottom">#ffedec</color>
+    <color name="common_version_cancle">#efeff4</color>
 </resources>

@@ -2,7 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/common_hint"/>
+            <solid android:color="@color/common_version_cancle"/>
+            <stroke android:width="1dp" android:color="@color/common_divider"/>
             <corners android:radius="50dp"/>
         </shape>
     </item>
@@ -13,7 +14,8 @@
     </item>
     <item>
         <shape>
-            <solid android:color="#223249"/>
+            <solid android:color="@color/common_version_cancle"/>
+            <stroke android:width="1dp" android:color="@color/common_divider"/>
             <corners android:radius="50dp"/>
         </shape>
     </item>

@@ -2,33 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/common_version_top" />
+    android:background="@drawable/common_white_corner5"
+    android:orientation="vertical"
+    android:paddingBottom="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/common_dialog"
+        android:layout_height="124dp"
+        android:background="@mipmap/common_version_top"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="@dimen/common_margin">
+        android:paddingLeft="30dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="更新内容"
-            android:textColor="@color/common_text"
+            android:text="@string/common_version_update"
+            android:textColor="@color/common_white"
             android:textSize="18sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="Version Update"
+            android:textColor="@color/common_white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/common_margin">
 
         <TextView
             android:id="@+id/update_tip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:minHeight="80dp"
             android:textColor="@color/common_text"
             android:textSize="14sp" />
@@ -45,22 +60,24 @@
 
             <Button
                 android:id="@+id/cancel_btn"
-                android:layout_width="100dp"
+                android:layout_width="130dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/common_tip_border_50"
-                android:text="取消"
-                android:textColor="@color/common_dark" />
+                android:background="@drawable/common_hint_50"
+                android:text="@string/common_cancle"
+                android:textColor="@color/common_text"
+                android:textSize="@dimen/sp_16" />
 
             <Button
                 android:id="@+id/update_btn"
-                android:layout_width="100dp"
+                android:layout_width="130dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/common_tip_15"
-                android:text="确认更新"
-                android:textColor="@color/common_white" />
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/common_tip_border_radius_50"
+                android:text="@string/common_common_tip_dialog80"
+                android:textColor="@color/common_white"
+                android:textSize="@dimen/sp_16" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

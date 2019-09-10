@@ -55,6 +55,7 @@
     <string name="common_gbgogle">关闭谷歌验证</string>
     <string name="common_tips">提醒</string>
     <string name="common_close">关闭</string>
+    <string name="common_version_update">版本更新</string>
     <string name="common_account_other_device_login">该账号在其他设备登录</string>
 
 
