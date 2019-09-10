@@ -168,6 +168,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
     @Override
     public void initView() {
+        RxBus.getDefault().register(this);
         initPriceType();
         initTradeType();
         initPoint();
@@ -250,9 +251,13 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void makeOrder(String makeOrder) {
-        if ("makeOrderSuccess".equals(makeOrder)) {
+        if ("makeOrderSuccess".equals(makeOrder)) { //下单成功
             loadData();
             edtNum.getText().clear();
+        } else if ("clickMakeMore".equals(makeOrder)) { //做多
+            radioUp.performClick();
+        } else if ("clickMakeEmpty".equals(makeOrder)) {//做空
+            radioDown.performClick();
         }
     }
 
@@ -507,16 +512,9 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         }
     }
 
-
     @Override
-    public void onResume() {
-        super.onResume();
-        RxBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroy() {
+        super.onDestroy();
         RxBus.getDefault().unregister(this);
     }
 

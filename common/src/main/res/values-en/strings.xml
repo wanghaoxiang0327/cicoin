@@ -55,4 +55,5 @@
     <string name="common_make_empty">Short selling</string>
     <string name="common_tips">Tips</string>
     <string name="common_close">Close</string>
+    <string name="common_account_other_device_login">The account is logged in on another device</string>
 </resources>

@@ -191,8 +191,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends ExtendActivi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void logout(LogoutException e) {
         new TipsNewDialog(this)
-                .setContent(e.getMessage())
+                .setContent(getString(R.string.common_account_other_device_login))
                 .setCancelVisible(View.GONE)
+                .setConfirmText(getString(R.string.common_common_tip_dialog80))
                 .setConfirmListener(dialog -> {
                     dialog.dismiss();
                     SpUtil.exit(BaseApplication.getMobile());

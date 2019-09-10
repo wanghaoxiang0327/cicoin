@@ -67,19 +67,23 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
         toolbar.mLeftButton.setCompoundDrawableTintList(ColorStateList.valueOf(getResources().getColor(R.color.common_white)));
         ARouter.getInstance().inject(this);
         coinBean = (CoinBean) getIntent().getSerializableExtra("coinBean");
-        if (coinBean.getName().contains("_")) {
-            toolbar.setTitle(coinBean.getName().replace("_", "_"));
-        } else {
-            toolbar.setTitle(coinBean.getName() + "/USDT");
+        if (coinBean != null) {
+            if (coinBean.getName().contains("_")) {
+                toolbar.setTitle(coinBean.getName().replace("_", "_"));
+            } else {
+                toolbar.setTitle(coinBean.getName() + "/USDT");
+            }
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         detailAdapter = new MarketDetailAdapter(null, getSupportFragmentManager());
         recyclerView.setAdapter(detailAdapter);
         ClickUtil.click(tvMakeMore, view -> {
+            RxBus.getDefault().post("clickMakeMore");
             ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore", 1).navigation();
             finish();
         });
         ClickUtil.click(tvMakeEmpty, view -> {
+            RxBus.getDefault().post("clickMakeEmpty");
             ARouter.getInstance().build(RoutePath.MAIN).withInt("isOpenMore", 1).navigation();
             finish();
         });
@@ -88,8 +92,10 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
     @Override
     public void initData() {
         MarketDetail topData = new MarketDetail(MarketDetail.TOP);
-        topData.setTopData(coinBean);
-        data.add(topData);
+        if (coinBean != null) {
+            topData.setTopData(coinBean);
+            data.add(topData);
+        }
         data.add(new MarketDetail(MarketDetail.CHART));
         data.add(new MarketDetail(MarketDetail.BOTTOM));
         detailAdapter.setNewData(data);
@@ -98,7 +104,7 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void updatePrice(CoinBean newcoinBean) {
-        if (newcoinBean.getCode().equals(coinBean.getCode())) {
+        if (newcoinBean != null && newcoinBean.getCode().equals(coinBean.getCode())) {
             updateData(newcoinBean);
         }
     }

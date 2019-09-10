@@ -95,7 +95,9 @@ public class DealFragment extends BaseFragment<DealPresenter> {
                         .setText(R.id.tv_state, getString(R.string.contact_contact_dialog_close_order80) + typeMap.get(item.getPc_type()));
                 if (item.getProfit().contains("-")) {
                     holder.setBackgroundRes(R.id.tv_profit, R.drawable.common_green_bg_5);
+                    holder.setVisible(R.id.tv_share, false);
                 } else {
+                    holder.setVisible(R.id.tv_share, true);
                     holder.setBackgroundRes(R.id.tv_profit, R.drawable.common_red_bg_5);
                 }
                 holder.setOnClickListener(R.id.tv_share, new View.OnClickListener() {
