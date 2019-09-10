@@ -125,7 +125,7 @@
             android:id="@+id/layout_profit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.7"
             android:background="@drawable/common_green_bg_5"
             android:orientation="vertical"
             android:padding="10dp">

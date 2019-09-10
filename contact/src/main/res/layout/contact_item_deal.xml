@@ -301,7 +301,7 @@
         <TextView
             android:id="@+id/tv_profit"
             android:layout_width="wrap_content"
-            android:layout_height="28dp"
+            android:layout_height="35dp"
             android:background="@drawable/common_green_bg_5"
             android:gravity="center"
             android:paddingLeft="16dp"
