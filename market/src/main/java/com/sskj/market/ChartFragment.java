@@ -1,16 +1,11 @@
 package com.sskj.market;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 
-import com.github.tifezh.kchartlib.chart.DataHelper;
 import com.github.tifezh.kchartlib.chart.KChartView;
-import com.github.tifezh.kchartlib.chart.entity.KHeyueBean;
-import com.sskj.common.BaseApplication;
-import com.sskj.common.ChangeCoinEvent;
 import com.sskj.common.base.BaseFragment;
-import com.sskj.common.http.Page;
+import com.sskj.common.data.CoinBean;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
@@ -19,23 +14,15 @@ import com.sskj.common.utils.ScreenUtil;
 import com.sskj.common.utils.TimeFormatUtil;
 import com.sskj.market.adapter.KChartAdapter;
 import com.sskj.market.data.ChartUtil;
-import com.sskj.market.data.CoinBean;
-import com.sskj.market.data.HoldBean;
 import com.sskj.market.data.Stock;
 
-import java.security.Key;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
 
 
 /**
@@ -56,7 +43,6 @@ public class ChartFragment extends BaseFragment<ChartPresenter> {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        RxBus.getDefault().register(this);
         code = getArguments().getString("code");
         goodsType = getArguments().getString("goodsType");
         mIsMinute = getArguments().getBoolean("isMinute");
@@ -75,6 +61,7 @@ public class ChartFragment extends BaseFragment<ChartPresenter> {
 
     @Override
     public void initView() {
+        RxBus.getDefault().register(this);
         chartView.showLoading();
         chartView.setDrawTabView(true);
         // 设置k线颜色 涨
