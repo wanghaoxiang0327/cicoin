@@ -234,7 +234,6 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     public void getSuccess(String usdrt, String money) {
         this.usdrt = usdrt;
         this.money = money;
-        Log.d("yds",DateUtils.formatDateTime(getContext(),System.currentTimeMillis(),0) + "------------------------" + usdrt);
         if (showAsset) {
             tvPrice.setText(NumberUtils.keepDown(usdrt, 4));
             tvCny.setText("≈" + NumberUtils.keepDown(money, 2) + "CNY");

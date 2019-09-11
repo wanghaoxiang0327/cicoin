@@ -30,7 +30,7 @@ import com.sskj.common.http.JsonCallBack;
 public class CapUtils {
 
 
-    public static void registerCheck(Context context, String type,  validateInterface validateInterface) {
+    public static void registerCheck(Context context, String type, validateInterface validateInterface) {
         CaptchaConfiguration configuration = new CaptchaConfiguration.Builder()
                 .captchaId(BuildConfig.captchaId)
                 // 验证码业务id
@@ -47,10 +47,8 @@ public class CapUtils {
                         if (!TextUtils.isEmpty(validate)) {
                             if (validateInterface != null) {
                                 validateInterface.validateSuccess();
-                                Log.d("yds", SpUtil.getString(CommonConfig.MOBILE, "") + "-----" +
-                                        SpUtil.getString(CommonConfig.EMAIL, ""));
+                                SpUtil.getString(CommonConfig.EMAIL, "");
                                 if (TextUtils.isEmpty(SpUtil.getString(CommonConfig.MOBILE, ""))) {
-                                    Log.d("yds", BaseApplication.getMobile() + "-------邮箱--------");
                                     //发送邮箱验证码
                                     OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_EMAIL)
                                             .params("email", BaseApplication.getMobile())
@@ -65,7 +63,6 @@ public class CapUtils {
                                                 }
                                             });
                                 } else {
-                                    Log.d("yds", BaseApplication.getMobile() + "--------------手机--");
                                     //发送手机验证码
                                     OkGo.<HttpResult>post(HttpConfig.BASE_URL + HttpConfig.SEND_SMS)
                                             .params("mobile", BaseApplication.getMobile())

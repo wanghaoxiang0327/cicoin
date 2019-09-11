@@ -169,7 +169,6 @@ public class MinerFragment extends BaseFragment<MinerPresenter> {
 
 
     public void removeWaterView(View view, int code, String msg) {
-        Log.d("yds",code+"--------------");
         switch (code) {
             case 301:
             case 302:

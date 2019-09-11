@@ -46,7 +46,6 @@ public class AddressListPresenter extends BasePresenter<AddressListActivity> {
                     public void onError(Response<HttpResult<Object>> response) {
                         super.onError(response);
                         ApiException exception = (ApiException) response.getException();
-                        Log.d("yds", exception.getMsg() + "-------------" + exception.getCode());
                     }
                 });
 
