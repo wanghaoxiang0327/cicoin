@@ -83,8 +83,8 @@ public class ChartFragment extends BaseFragment<ChartPresenter> {
         chartView.setMainDownColor(R.color.market_green);
         chartView.setGridRows(4);
         chartView.setGridLineColor(color(R.color.common_item_divider));
-        chartView.getmCurrentPricePaint().setTextSize(ScreenUtil.dp2px(getContext(), 14));
-        chartView.getmCurrentPricePaint().setColor(color(R.color.common_text));
+        chartView.getmCurrentPricePaint().setTextSize(ScreenUtil.dp2px(getContext(), 8));
+        chartView.getmCurrentPricePaint().setColor(color(R.color.common_hint));
         chartView.getmCurrentLinePaint().setColor(color(R.color.common_tip));
         chartView.setGridColumns(4);
         chartView.setVolumeMaGone(true);

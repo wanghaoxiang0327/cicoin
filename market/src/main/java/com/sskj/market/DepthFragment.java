@@ -111,9 +111,9 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
                 holder.setText(R.id.buy_position, holder.getLayoutPosition() + 1 + "")
                         .setText(R.id.sell_position, holder.getLayoutPosition() + 1 + "")
                         .setText(R.id.buy_count, NumberUtils.keepMaxDown(item.getBuyCount(), 4))
-                        .setText(R.id.buy_price, NumberUtils.keepDown(item.getBuyPrice(), 4))
+                        .setText(R.id.buy_price, NumberUtils.keepDown(item.getBuyPrice(), 2))
                         .setText(R.id.sell_count, NumberUtils.keepMaxDown(item.getSellCount(), 4))
-                        .setText(R.id.sell_price, NumberUtils.keepDown(item.getSellPrice(), 4));
+                        .setText(R.id.sell_price, NumberUtils.keepDown(item.getSellPrice(), 2));
             }
         };
     }
