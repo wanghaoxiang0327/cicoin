@@ -78,7 +78,8 @@ public class DealFragment extends BaseFragment<DealPresenter> {
         adapter = new BaseAdapter<DealOrder>(R.layout.contact_item_deal, null, orderList) {
             @Override
             public void bind(ViewHolder holder, DealOrder item) {
-                holder.setText(R.id.tv_order_type, item.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty))
+                holder.setText(R.id.tv_order_type, item.getOtype() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty))
+                        .setTextColor(R.id.tv_order_type, item.getOtype() == 1 ? color(R.color.common_red) : color(R.color.common_green))
                         .setText(R.id.tv_opening_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
                         .setText(R.id.tv_coin_name, item.getPname().replace("_", "/").toUpperCase())
                         .setText(R.id.tv_create_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
