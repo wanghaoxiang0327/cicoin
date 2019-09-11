@@ -38,6 +38,11 @@ public abstract class JsonCallBack<T> extends AbsCallback<T> {
         this.showLoading = true;
     }
 
+
+    public JsonCallBack(boolean b) {
+        this.showLoading = b;
+    }
+
     public JsonCallBack() {
     }
 

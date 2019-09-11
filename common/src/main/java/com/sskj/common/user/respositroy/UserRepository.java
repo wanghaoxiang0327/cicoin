@@ -41,7 +41,7 @@ public class UserRepository {
         if (!TextUtils.isEmpty(SpUtil.getString(CommonConfig.ACCOUNT,""))){
 
             OkGo.<HttpResult<UserBean>>get(BaseHttpConfig.BASE_URL + HttpConfig.USER_INFO)
-                    .execute(new JsonCallBack<HttpResult<UserBean>>() {
+                    .execute(new JsonCallBack<HttpResult<UserBean>>(false) {
                         @Override
                         protected void onNext(HttpResult<UserBean> result) {
                             Schedulers.newThread().scheduleDirect(() -> {
