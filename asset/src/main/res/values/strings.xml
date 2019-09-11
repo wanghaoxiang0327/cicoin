@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="asset_asset_activity_insert_address150">备注</string>
-    <string name="asset_asset_activity_recharge100">长按识别二维码</string>
+    <string name="asset_asset_activity_recharge100">长按保存二维码</string>
     <string name="asset_assetRecordsActivity1">全部</string>
     <string name="asset_asset_item_asset_records60">目标合约交易下单</string>
     <string name="asset_transferActivity2">转账数量不可少于</string>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.sskj.common.WebActivity;
 import com.sskj.common.base.BaseActivity;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.CopyUtils;
+import com.sskj.common.utils.ImgUtil;
 import com.sskj.mine.data.ShareInfo;
 
 import butterknife.BindView;
@@ -54,6 +56,10 @@ public class InviteActivity extends BaseActivity<InvitePresenter> {
         //复制
         ClickUtil.click(copy, view -> {
             CopyUtils.copy(this, getText(nu));
+        });
+        code.setOnLongClickListener(v -> {
+            ImgUtil.saveImageToGallery(InviteActivity.this, code);
+            return true;
         });
     }
 

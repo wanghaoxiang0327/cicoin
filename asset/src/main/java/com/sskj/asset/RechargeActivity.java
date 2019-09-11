@@ -21,6 +21,7 @@ import com.sskj.common.http.BaseHttpConfig;
 import com.sskj.common.router.RoutePath;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.CopyUtils;
+import com.sskj.common.utils.ImgUtil;
 import com.sskj.common.view.ToolBarLayout;
 
 import java.util.List;
@@ -78,7 +79,10 @@ public class RechargeActivity extends BaseActivity<RechargePresenter> {
     public void initData() {
         mPresenter.getCoinAsset(false);
         ClickUtil.click(copy, view -> CopyUtils.copy(this, getText(rechargeAddressTv)));
-
+        qrCodeImg.setOnLongClickListener(v -> {
+            ImgUtil.saveImageToGallery(RechargeActivity.this, qrCodeImg);
+            return true;
+        });
     }
 
 
@@ -137,8 +141,8 @@ public class RechargeActivity extends BaseActivity<RechargePresenter> {
 //                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .load(BaseHttpConfig.BASE_URL + "/" + result.get("qrc"))
                 .apply(new RequestOptions()
-                .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.NONE))
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE))
                 .into(qrCodeImg);
         rechargeAddressTv.setText(result.get("url"));
     }

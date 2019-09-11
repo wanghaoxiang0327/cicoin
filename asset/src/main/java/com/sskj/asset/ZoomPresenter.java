@@ -67,7 +67,11 @@ class ZoomPresenter extends BasePresenter<ZoomActivity> {
                     @Override
                     public void onError(Response<HttpResult<List<TransferInfoBean>>> response) {
                         super.onError(response);
-                        mView.setError();
+                        try {
+                            mView.setError();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
     }

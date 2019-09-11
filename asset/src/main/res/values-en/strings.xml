@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="asset_asset_activity_insert_address150">Remarks</string>
-    <string name="asset_asset_activity_recharge100">Long press to identify the QR code</string>
+    <string name="asset_asset_activity_recharge100">Long press to save the QR code</string>
     <string name="asset_assetRecordsActivity1">All</string>
     <string name="asset_asset_item_asset_records60">Target contract transaction order</string>
     <string name="asset_transferActivity2">The number of transfers must not be less than</string>
