@@ -102,7 +102,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     public void initView() {
         RxBus.getDefault().register(this);
         bannerView.setImageLoader(new GlideImageLoader());
-        bannerView.setOffscreenPageLimit(1);
+        bannerView.setOffscreenPageLimit(4);
         bannerView.setPageTransformer(false, new ZoomOutPageTransformer());
         bannerView.setDelayTime(3000);
         marketListFragment = MarketListFragment.newInstance();

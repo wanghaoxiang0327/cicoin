@@ -478,7 +478,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         if (num.doubleValue() < 0) {
             num = new BigDecimal("0");
         }
-        editText.setText(NumberUtils.keep(num, digit));
+        editText.setText(NumberUtils.keep(num.toString(), digit));
         editText.setSelection(editText.getText().length());
     }
 
