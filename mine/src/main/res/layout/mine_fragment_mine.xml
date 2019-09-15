@@ -177,12 +177,12 @@
 
             <TextView
                 android:id="@+id/tv_price"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:maxLength="13"
                 android:text="****"
                 android:textColor="@color/center_text_color"
+                app:layout_constraintStart_toEndOf="@+id/img_kj"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_zc_info"

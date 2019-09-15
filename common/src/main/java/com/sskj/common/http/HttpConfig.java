@@ -217,10 +217,17 @@ public class HttpConfig {
 
     public static final String GET_ALL_TRADE = "/home/ajax/RealTimeDeal";
 
-    public static String WS_URL = "ws://47.56.161.148:7272";//行情数据
-    public static String WS_PANKOU = "ws://47.56.161.148:7273";//盘口
-    public static String WS_DEPTH = "ws://47.56.161.148:7274";//深度图
-    public static String WS_TRANSACTION = "ws://47.56.161.148:7275";//实时成交数据
+//    public static String WS_URL = "ws://47.56.161.148:7272";//行情数据
+//    public static String WS_PANKOU = "ws://47.56.161.148:7273";//盘口
+//    public static String WS_DEPTH = "ws://47.56.161.148:7274";//深度图
+//    public static String WS_TRANSACTION = "ws://47.56.161.148:7275";//实时成交数据
+     public static String WS_URL = "ws://www.cicoin.xyz";//行情数据
+    public static String WS_PANKOU = "ws://www.cicoin.xyz";//盘口
+    public static String WS_DEPTH = "ws://www.cicoin.xyz";//深度图
+    public static String WS_TRANSACTION = "ws://www.cicoin.xyz";//实时成交数据
+
+
+
     public static final String GET_LEVER = "/Home/api/get_lever";
     public static final String GET_BALANCE = "/Home/Users/get_balance";
 
