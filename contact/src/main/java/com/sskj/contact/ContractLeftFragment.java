@@ -179,7 +179,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
             }
         });
         tvUnit.setText(code.split("_")[0].toUpperCase());
-        edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(4)});
+        edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
         edtNum.setFilters(new InputFilter[]{new MoneyValueFilter(2)});
         userViewModel.getUser().observe(this, new Observer<UserBean>() {
             @Override
@@ -297,7 +297,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
             if (position == 0) {
                 priceType = Price.LIMIT;
                 limitPriceLayout.setVisibility(View.VISIBLE);
-                edtPrice.setText(NumberUtils.keep(price, 4));
+                edtPrice.setText(NumberUtils.keepMaxDown(price, DigitUtils.getDigit(code)));
                 tvMarketPrice.setVisibility(View.GONE);
             } else {
                 priceType = Price.MARKET;
@@ -526,6 +526,13 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
+    public void refresh(String refresh) {
+        if (refresh.equals("refresh")) {
+            loadData();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void updatePrice(CoinInfo coinInfo) {
         if (coinInfo != null) {
             setCoinInfo(coinInfo);
@@ -536,7 +543,8 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     public void updatePrice(EventContact eventContact) {
         if (eventContact.code == 0) {
             edtPrice.getText().clear();
-            edtPrice.setText(NumberUtils.keep(eventContact.content, 4));
+            edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
+            edtPrice.setText(NumberUtils.keepMaxDown(eventContact.content, DigitUtils.getDigit(code)));
         }
     }
 
@@ -545,7 +553,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         code = coinBean.getCode();
         edtNum.getText().clear();
         pointTabLayout.setCurrentTab(-1);
-
+        edtPrice.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(code))});
     }
 
 

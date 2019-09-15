@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.hjq.toast.ToastUtils;
 import com.sskj.common.utils.ClickUtil;
+import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.MoneyValueFilter;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.ScreenUtil;
@@ -78,7 +79,7 @@ public class ContactCloseOrderDialog extends DialogFragment {
     private void initView() {
         tvType.setText("1".equals(orderData.getOtype()) ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));
         tvType.setTextColor("1".equals(orderData.getOtype()) ? getResources().getColor(R.color.common_red) : getResources().getColor(R.color.common_green));
-        tvPrice.setText(orderData.getNewprice());
+        tvPrice.setText(NumberUtils.keepMaxDown(orderData.getNewprice(), DigitUtils.getDigit(orderData.getCode())));
         tvNum.setText(orderData.getBuynum());
         edtNum.setFilters(new InputFilter[]{new MoneyValueFilter(2)});
         edtNum.setText(NumberUtils.keep(orderData.getBuynum(), 2));

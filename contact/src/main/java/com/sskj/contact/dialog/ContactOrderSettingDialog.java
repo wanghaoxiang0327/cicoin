@@ -110,12 +110,12 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
 
     @Override
     public void initView() {
-        edtLoss.setFilters(new InputFilter[]{new MoneyValueFilter(4)});
-        edtWin.setFilters(new InputFilter[]{new MoneyValueFilter(4)});
-        edtWin.setText(NumberUtils.keep(orderData.getPoit_win(), 4));
-        edtLoss.setText(NumberUtils.keep(orderData.getPoit_loss(), 4));
+        edtLoss.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(orderData.getCode()))});
+        edtWin.setFilters(new InputFilter[]{new MoneyValueFilter(DigitUtils.getDigit(orderData.getCode()))});
+        edtWin.setText(NumberUtils.keep(orderData.getPoit_win(), DigitUtils.getDigit(orderData.getCode())));
+        edtLoss.setText(NumberUtils.keep(orderData.getPoit_loss(), DigitUtils.getDigit(orderData.getCode())));
         tvType.setText("1".equals(orderData.getOtype()) ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));
-        tvPrice.setText(NumberUtils.keepMaxDown(orderData.getNewprice(), 4));
+        tvPrice.setText(NumberUtils.keepMaxDown(orderData.getNewprice(), DigitUtils.getDigit(orderData.getCode())));
         btnCancel.setOnClickListener(v -> {
             getDialog().dismiss();
         });
@@ -230,13 +230,13 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
         if ("1".equals(orderData.getOtype())) {
             minZy = price + Double.parseDouble(result.getMin_zy());
             minZs = price - Double.parseDouble(result.getMin_zs());
-            tvWinMin.setText("≥" + NumberUtils.keep(minZy, 4));
-            tvLossMax.setText("≤" + NumberUtils.keep(minZs, 4));
+            tvWinMin.setText("≥" + NumberUtils.keepMaxDown(minZy, DigitUtils.getDigit(orderData.getCode())));
+            tvLossMax.setText("≤" + NumberUtils.keepMaxDown(minZs, DigitUtils.getDigit(orderData.getCode())));
         } else {
             minZy = price - Double.parseDouble(result.getMin_zy());
             minZs = price + Double.parseDouble(result.getMin_zs());
-            tvWinMin.setText("≤" + NumberUtils.keep(minZy, 4));
-            tvLossMax.setText("≥" + NumberUtils.keep(minZs, 4));
+            tvWinMin.setText("≤" + NumberUtils.keepMaxDown(minZy, DigitUtils.getDigit(orderData.getCode())));
+            tvLossMax.setText("≥" + NumberUtils.keepMaxDown(minZs, DigitUtils.getDigit(orderData.getCode())));
         }
     }
 
@@ -282,7 +282,7 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
     public void updateCoin(CoinBean coinBean) {
         if (orderData != null) {
             if (orderData.getCode().equals(coinBean.getCode())) {
-                tvPrice.setText(NumberUtils.keepMaxDown(coinBean.getPrice(), 4));
+                tvPrice.setText(NumberUtils.keepMaxDown(coinBean.getPrice(), DigitUtils.getDigit(orderData.getCode())));
                 setPointInfo(pointInfo, coinBean.getPrice() + "");
             }
         }

@@ -16,6 +16,7 @@ import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.utils.ClickUtil;
+import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.ScreenUtil;
 import com.sskj.common.utils.TimeFormatUtil;
@@ -83,14 +84,14 @@ public class HoldFragment extends BaseFragment<HoldPresenter> {
                         .setText(R.id.tv_coin_name, item.getCode().replace("_", "/").toUpperCase())
                         .setText(R.id.tv_create_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
                         .setText(R.id.tv_order_lever, item.getLeverage())
-                        .setText(R.id.tv_hold_price, NumberUtils.keepMaxDown(item.getBuyprice(), 4))
-                        .setText(R.id.tv_new_price, NumberUtils.keepMaxDown(item.getNewprice(), 4))
+                        .setText(R.id.tv_hold_price, NumberUtils.keepMaxDown(item.getBuyprice(), DigitUtils.getDigit(item.getCode())))
+                        .setText(R.id.tv_new_price, NumberUtils.keepMaxDown(item.getNewprice(), DigitUtils.getDigit(item.getCode())))
                         .setText(R.id.tv_hold_num, NumberUtils.keepMaxDown(item.getBuynum(), 2))
                         .setText(R.id.tv_total_money, NumberUtils.keepMaxDown(item.getTotalprice(), 4))
                         .setText(R.id.tv_fee, NumberUtils.keepMaxDown(item.getSxfee(), 4))
 //                        .setText(R.id.tv_night_fee, item.getDayfee())
-                        .setText(R.id.tv_win_price, NumberUtils.keepMaxDown(item.getPoit_win(), 4))
-                        .setText(R.id.tv_loss_price, NumberUtils.keepMaxDown(item.getPoit_loss(), 4))
+                        .setText(R.id.tv_win_price, NumberUtils.keepMaxDown(item.getPoit_win(), DigitUtils.getDigit(item.getCode())))
+                        .setText(R.id.tv_loss_price, NumberUtils.keepMaxDown(item.getPoit_loss(), DigitUtils.getDigit(item.getCode())))
                         .setText(R.id.tv_profit, getString(R.string.contact_holdFragment5) + item.getFdyk());
                 if (item.getFdyk().contains("-")) {
                     holder.setBackgroundRes(R.id.tv_profit, R.drawable.common_green_bg_5);

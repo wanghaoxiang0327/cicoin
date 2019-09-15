@@ -69,7 +69,7 @@ public class NewMarketDetailActivity extends BaseActivity<NewMarketDetailPresent
         coinBean = (CoinBean) getIntent().getSerializableExtra("coinBean");
         if (coinBean != null) {
             if (coinBean.getName().contains("_")) {
-                toolbar.setTitle(coinBean.getName().replace("_", "_"));
+                toolbar.setTitle(coinBean.getName().replace("_", "/"));
             } else {
                 toolbar.setTitle(coinBean.getName() + "/USDT");
             }

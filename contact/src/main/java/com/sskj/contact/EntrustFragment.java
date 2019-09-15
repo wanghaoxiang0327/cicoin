@@ -18,6 +18,7 @@ import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
 import com.sskj.common.user.data.UserBean;
 import com.sskj.common.utils.ClickUtil;
+import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.ScreenUtil;
 import com.sskj.common.utils.TimeFormatUtil;
@@ -86,7 +87,7 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
                         .setText(R.id.tv_coin_name, item.getPname().replace("_", "/").toUpperCase())
                         .setText(R.id.tv_create_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
                         .setText(R.id.tv_order_num, NumberUtils.keepMaxDown(item.getBuynum(), 4))
-                        .setText(R.id.tv_create_price, NumberUtils.keepMaxDown(item.getBuyprice(), 4))
+                        .setText(R.id.tv_create_price, NumberUtils.keepMaxDown(item.getBuyprice(), DigitUtils.getDigit(item.getPname())))
                         .setText(R.id.tv_leverage_multiple, item.getLeverage())
                         .setText(R.id.tv_total_money, NumberUtils.keepMaxDown(item.getTotalprice(), 4))
                         .setText(R.id.tv_fee, NumberUtils.keepMaxDown(item.getSxfee(), 4));

@@ -217,6 +217,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
         super.onRefresh(refreshLayout);
         loadData();
         RxBus.getDefault().post("LimitPriceSuccess");
+        RxBus.getDefault().post("refresh");
     }
 
     public void setCoinList(List<CoinBean> data) {

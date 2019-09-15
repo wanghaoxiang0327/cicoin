@@ -13,6 +13,7 @@ import com.sskj.common.App;
 import com.sskj.common.tab.TabItem;
 import com.sskj.common.tab.TabLayout;
 import com.sskj.common.utils.ClickUtil;
+import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.market.ChartFragment;
 import com.sskj.market.DepthFragment;
@@ -73,15 +74,15 @@ public class MarketDetailAdapter extends BaseMultiItemQuickAdapter<MarketDetail,
         switch (helper.getItemViewType()) {
             case MarketDetail.TOP:
                 code = item.getTopData().getCode();
-                helper.setText(R.id.tv_price, item.getTopData().getPrice() + "")
+                helper.setText(R.id.tv_price, NumberUtils.keepMaxDown(item.getTopData().getPrice() + "", DigitUtils.getDigit(code)))
                         .setText(R.id.tv_the_amount, NumberUtils.keepDown(item.getTopData().getVolume(), 2))
                         .setTextColor(R.id.tv_price, item.getTopData().getChangeRate().contains("-") ? mContext.getResources().getColor(R.color.market_green) : mContext.getResources().getColor(R.color.market_red))
                         .setText(R.id.tv_change_rate, item.getTopData().getChangeRate())
                         .setTextColor(R.id.tv_change_rate, item.getTopData().getChangeRate().contains("-") ? mContext.getResources().getColor(R.color.market_green) : mContext.getResources().getColor(R.color.market_red))
                         .setImageResource(R.id.iv_status, item.getTopData().getChangeRate().contains("-") ? R.mipmap.market_fall : R.mipmap.market_rise)
                         .setText(R.id.tvCny, "≈" + NumberUtils.keepDown(item.getTopData().getCnyPrice(), 2))
-                        .setText(R.id.tv_high, item.getTopData().getHigh() + "")
-                        .setText(R.id.tv_low, item.getTopData().getLow() + "");
+                        .setText(R.id.tv_high, NumberUtils.keepMaxDown(item.getTopData().getHigh() + "", DigitUtils.getDigit(code)))
+                        .setText(R.id.tv_low, NumberUtils.keepMaxDown(item.getTopData().getLow() + "", DigitUtils.getDigit(code)));
                 break;
             case MarketDetail.CHART:
                 if (chartTabLayout == null) {

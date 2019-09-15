@@ -8,6 +8,7 @@ import java.text.NumberFormat;
 
 /**
  * 数据格式化
+ *
  * @version 1.1  2019年7月15日12:42:13 修改正则表达式，修复负数不能匹配的问题
  */
 public class NumberUtils {
@@ -30,19 +31,17 @@ public class NumberUtils {
 
     public static String keepMaxDown(Object num, int digit) {
 
-        return format(num, 0, digit, RoundingMode.DOWN);
+        return format(num, 0, digit, RoundingMode.HALF_DOWN);
     }
 
 
     public static String keepDown(Object num, int digit) {
-        return format(num, 0, digit, RoundingMode.DOWN);
+        return format(num, 0, digit, RoundingMode.HALF_DOWN);
     }
 
     public static String keep(Object num, int digit) {
-        return format(num, digit, digit, RoundingMode.DOWN);
+        return format(num, digit, digit, RoundingMode.HALF_DOWN);
     }
-
-
 
 
     public static String keepUp(Object num, int digit) {
@@ -59,7 +58,7 @@ public class NumberUtils {
         if (num instanceof String) {
             String str = (String) num;
             if (TextUtils.isEmpty(str)) {
-                str="0";
+                str = "0";
             }
             if (!isNumeric(str)) {
                 return str;
@@ -67,7 +66,7 @@ public class NumberUtils {
             return numberFormat.format(Double.parseDouble(str));
         } else if (num instanceof Double || num instanceof Float || num instanceof Long) {
             return numberFormat.format(num);
-        }else if (num instanceof BigDecimal){
+        } else if (num instanceof BigDecimal) {
             return numberFormat.format(num);
         }
         return "0";

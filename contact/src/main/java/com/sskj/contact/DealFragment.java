@@ -11,6 +11,7 @@ import com.sskj.common.helper.SmartRefreshHelper;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
+import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.ScreenUtil;
 import com.sskj.common.utils.TimeFormatUtil;
@@ -85,13 +86,13 @@ public class DealFragment extends BaseFragment<DealPresenter> {
                         .setText(R.id.tv_create_time, TimeFormatUtil.SF_FORMAT_J.format(item.getAddtime() * 1000))
                         .setText(R.id.tv_order_lever, TimeFormatUtil.SF_FORMAT_J.format(item.getSelltime() * 1000))
                         .setText(R.id.tv_hold_price, NumberUtils.keepMaxDown(item.getBuyprice(), 4))
-                        .setText(R.id.tv_close_price, NumberUtils.keepMaxDown(item.getSellprice(), 4))
+                        .setText(R.id.tv_close_price, NumberUtils.keepMaxDown(item.getSellprice(), DigitUtils.getDigit(item.getPname())))
                         .setText(R.id.tv_hold_num, NumberUtils.keepMaxDown(item.getBuynum(), 4))
                         .setText(R.id.tv_total_money, NumberUtils.keepMaxDown(item.getTotalprice(), 4))
                         .setText(R.id.tv_fee, NumberUtils.keepMaxDown(item.getSxfee(), 4))
                         .setText(R.id.tv_night_fee, item.getLeverage())
-                        .setText(R.id.tv_win_price, NumberUtils.keepMaxDown(item.getPoit_win(), 4))
-                        .setText(R.id.tv_loss_price, NumberUtils.keepMaxDown(item.getPoit_loss(), 4))
+                        .setText(R.id.tv_win_price, NumberUtils.keepMaxDown(item.getPoit_win(),  DigitUtils.getDigit(item.getPname())))
+                        .setText(R.id.tv_loss_price, NumberUtils.keepMaxDown(item.getPoit_loss(),  DigitUtils.getDigit(item.getPname())))
                         .setText(R.id.tv_profit, getString(R.string.contact_dealFragment9) + NumberUtils.keepMaxDown(item.getProfit(), 4))
                         .setText(R.id.tv_state, getString(R.string.contact_contact_dialog_close_order80) + typeMap.get(item.getPc_type()));
                 if (item.getProfit().contains("-")) {

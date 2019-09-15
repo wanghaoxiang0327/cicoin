@@ -22,10 +22,11 @@ import io.reactivex.Flowable;
 public class InformationPresenter extends BasePresenter<InformationFragment> {
     public Flowable<List<NewsEntity>> getNotice(int page, int size) {
         return OkGo.<HttpResult<Page<NewsEntity>>>post(HttpConfig.BASE_URL + HttpConfig.BLICKS_LIST)
-                .params("p", page)
-                .params("s", size)
+                .params("page", page)
+                .params("size", size)
                 .params("lang", LocalManageUtil.getLanguage(App.INSTANCE))
-                .converter(new JsonConvert<HttpResult<Page<NewsEntity>>>() {})
+                .converter(new JsonConvert<HttpResult<Page<NewsEntity>>>() {
+                })
                 .adapt(new FlowableBody<>())
                 .map(pageHttpResult -> {
                     return pageHttpResult.getData().getRes();
@@ -38,7 +39,8 @@ public class InformationPresenter extends BasePresenter<InformationFragment> {
                 .params("page", page)
                 .params("size", size)
                 .params("lang", LocalManageUtil.getLanguage(App.INSTANCE))
-                .converter(new JsonConvert<HttpResult<Page<NewsEntity>>>() {})
+                .converter(new JsonConvert<HttpResult<Page<NewsEntity>>>() {
+                })
                 .adapt(new FlowableBody<>())
                 .map(pageHttpResult -> {
                     return pageHttpResult.getData().getRes();
