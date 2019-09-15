@@ -22,10 +22,10 @@ public class HttpConfig {
     public static final String INV = "/Home/qbw/show_index";
     public static final Object QD = "/Home/Sign/user_sign";
     public static final String ASSET_RECORDLIST = "/Home/Api/cz_record";
-    public static final String HIGH_VERIFY ="/home/qbw/set_img" ;
+    public static final String HIGH_VERIFY = "/home/qbw/set_img";
     public static final String HIGH_VERIFY_IMG = "/Home/Qbw/upload_pic";
-    public static final String MAX ="/Home/Users/get_balance" ;
-    public static final String GOGLE ="/Home/google/set_google_state" ;
+    public static final String MAX = "/Home/Users/get_balance";
+    public static final String GOGLE = "/Home/google/set_google_state";
 
 
     public static String BASE_URL = BuildConfig.IP;
@@ -217,15 +217,14 @@ public class HttpConfig {
 
     public static final String GET_ALL_TRADE = "/home/ajax/RealTimeDeal";
 
-//    public static String WS_URL = "ws://47.56.161.148:7272";//行情数据
+    //    public static String WS_URL = "ws://47.56.161.148:7272";//行情数据
 //    public static String WS_PANKOU = "ws://47.56.161.148:7273";//盘口
 //    public static String WS_DEPTH = "ws://47.56.161.148:7274";//深度图
 //    public static String WS_TRANSACTION = "ws://47.56.161.148:7275";//实时成交数据
-     public static String WS_URL = "ws://www.cicoin.xyz";//行情数据
-    public static String WS_PANKOU = "ws://www.cicoin.xyz";//盘口
-    public static String WS_DEPTH = "ws://www.cicoin.xyz";//深度图
-    public static String WS_TRANSACTION = "ws://www.cicoin.xyz";//实时成交数据
-
+    public static String WS_URL = "ws://7272.cicoin.xyz";//行情数据
+    public static String WS_PANKOU = "ws://7273.cicoin.xyz";//盘口
+    public static String WS_DEPTH = "ws://7274.cicoin.xyz";//深度图
+    public static String WS_TRANSACTION = "ws://7275.cicoin.xyz";//实时成交数据
 
 
     public static final String GET_LEVER = "/Home/api/get_lever";
