@@ -104,7 +104,7 @@ public class ContractFragment extends BaseFragment<ContractPresenter> {
                     holder.setText(R.id.coin_name, item.getName());
                 }
                 holder.setText(R.id.coin_cny_price, "¥" + NumberUtils.keepDown(item.getCnyPrice(), 2));
-                holder.setText(R.id.coin_price, NumberUtils.keepDown(item.getPrice(), DigitUtils.getDigit(item.getCode())))
+                holder.setText(R.id.coin_price, NumberUtils.keepMaxDown(item.getPrice(), DigitUtils.getDigit(item.getCode())))
                         .setText(R.id.coin_change_rate, item.getChange() > 0 ? "+" + item.getChangeRate() : item.getChangeRate());
                 if (item.isUp()) {
                     holder.setTextColor(R.id.coin_price, color(R.color.common_red));
