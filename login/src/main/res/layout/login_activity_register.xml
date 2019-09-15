@@ -400,7 +400,7 @@
                 android:layout_width="0dp"
                 android:layout_height="44dp"
                 android:layout_marginTop="49dp"
-                android:text="@string/login_login"
+                android:text="@string/login_login_activity_forget_ps470"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@id/line1"
