@@ -224,7 +224,6 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
         } else {
             pankouWebSocket.sendMessage(message.toString());
         }
-
     }
 
     public void setSocketListener() {
