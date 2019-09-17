@@ -12,7 +12,7 @@
     <TextView
         android:id="@+id/buy_position"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="0.5"
         android:text="买盘"
         android:textColor="@color/common_white"
@@ -20,7 +20,9 @@
 
     <TextView
         android:id="@+id/buy_count"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1.2"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:text="数量(btc)"
         android:textColor="@color/common_white"
@@ -31,7 +33,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1.2"
-        android:gravity="right"
+        android:gravity="end"
         android:text="价格(USDT)"
         android:textColor="@color/common_white"
         android:textSize="12sp" />
@@ -42,16 +44,17 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_weight="1.2"
-        android:gravity="left"
+        android:gravity="start"
         android:text="价格(USDT)"
         android:textColor="@color/common_white"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/sell_count"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1.2"
         android:layout_height="wrap_content"
-        android:gravity="right"
+        android:gravity="center"
         android:text="数量(btc)"
         android:textColor="@color/common_white"
         android:textSize="12sp" />
@@ -61,7 +64,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
-        android:gravity="right"
+        android:gravity="end"
         android:text="卖盘"
         android:textColor="@color/common_white"
         android:textSize="12sp" />

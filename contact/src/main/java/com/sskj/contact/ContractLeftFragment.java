@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -291,10 +292,10 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
 
 
     private void initPriceType() {
-        priceItems.add(getString(R.string.contact_contractLeftFragment6));
         priceItems.add(getString(R.string.contact_contractLeftFragment5));
+        priceItems.add(getString(R.string.contact_contractLeftFragment6));
         priceTypeSpinner.setOnSelectListener(position -> {
-            if (position == 0) {
+            if (position == 1) {
                 priceType = Price.LIMIT;
                 limitPriceLayout.setVisibility(View.VISIBLE);
                 edtPrice.setText(NumberUtils.keepMaxDown(price, DigitUtils.getDigit(code)));
@@ -383,6 +384,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
                 } else {
                     price = new BigDecimal(s.toString());
                 }
+                Log.d("yds", price + "---------------------------");
                 calculateTotalMoney();
                 calculateMaxTrade();
             }
@@ -416,15 +418,22 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
      * 交易金额=保证金+手续费
      */
     public void calculateTotalMoney() {
+
         BigDecimal createPrice;
         BigDecimal spreadPrice = spread.multiply(minChangePrice);
-        if (tradeType == Trade.UP) {
-            createPrice = price.add(price.multiply(spreadPrice));
+
+        if (priceType == Price.MARKET) {
+            if (tradeType == Trade.UP) {
+                createPrice = price.add(spreadPrice);
+            } else {
+                createPrice = price.subtract((spreadPrice));
+            }
         } else {
-            createPrice = price.subtract(price.multiply(spreadPrice));
+            createPrice = new BigDecimal(TextUtils.isEmpty(edtPrice.getText().toString()) ? "0" : edtPrice.getText().toString());
         }
         feeMoney = createPrice.multiply(num).multiply(unitNum).multiply(fee);
-        BigDecimal total = num.multiply(createPrice).multiply(unitNum).divide(lever, 8, RoundingMode.DOWN).add(feeMoney);
+
+        BigDecimal total = num.multiply(createPrice).divide(lever, 8, RoundingMode.DOWN).add(feeMoney);
         setText(tvTotalMoney, NumberUtils.keep(total, 4));
     }
 
