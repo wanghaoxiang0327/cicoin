@@ -18,6 +18,7 @@ import com.sskj.common.http.HttpConfig;
 import com.sskj.common.router.RoutePath;
 import com.sskj.common.socket.WebSocket;
 import com.sskj.common.socket.WebSocketObserver;
+import com.sskj.common.utils.DigitUtils;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.utils.ScreenUtil;
 import com.sskj.depthlib.data.DepthData;
@@ -111,9 +112,9 @@ public class DepthFragment extends BaseFragment<DeepthPresenter> {
                 holder.setText(R.id.buy_position, holder.getLayoutPosition() + 1 + "")
                         .setText(R.id.sell_position, holder.getLayoutPosition() + 1 + "")
                         .setText(R.id.buy_count, NumberUtils.keepMaxDown(item.getBuyCount(), 4))
-                        .setText(R.id.buy_price, NumberUtils.keepDown(item.getBuyPrice(), 2))
-                        .setText(R.id.sell_count, NumberUtils.keepMaxDown(item.getSellCount(), 4))
-                        .setText(R.id.sell_price, NumberUtils.keepDown(item.getSellPrice(), 2));
+                        .setText(R.id.buy_price, NumberUtils.keepDown(item.getBuyPrice(), DigitUtils.getDigit(code)))
+                        .setText(R.id.sell_count, NumberUtils.keepMaxDown(item.getSellCount(),4))
+                        .setText(R.id.sell_price, NumberUtils.keepDown(item.getSellPrice(),  DigitUtils.getDigit(code)));
             }
         };
     }
