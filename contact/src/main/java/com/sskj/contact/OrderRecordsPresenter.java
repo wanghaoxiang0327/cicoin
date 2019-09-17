@@ -19,7 +19,7 @@ class OrderRecordsPresenter extends BasePresenter<OrderRecordsActivity> {
     public void getDetailInfo(String code) {
         OkGo.<HttpResult<DetailOrder>>get(HttpConfig.BASE_URL + HttpConfig.GET_TONGJI)
                 .tag(this)
-                .params("code", code)
+//                .params("code", code)
                 .execute(new JsonCallBack<HttpResult<DetailOrder>>(this, false) {
                     @Override
                     protected void onNext(HttpResult<DetailOrder> result) {

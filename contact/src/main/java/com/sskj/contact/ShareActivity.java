@@ -94,7 +94,7 @@ public class ShareActivity extends BaseActivity<SharePresenter> {
             }
             tvCoinName.setText(dealOrder.getPname());
             tvCoinCount.setText(NumberUtils.keepMaxDown(dealOrder.getBuynum(), 4));
-            tvOpenPrice.setText(NumberUtils.keepMaxDown(dealOrder.getBuyprice(), 4));
+            tvOpenPrice.setText(NumberUtils.keepMaxDown(dealOrder.getSellprice(), 4));
         }
 
         toolbar.setRightButtonOnClickListener(new View.OnClickListener() {

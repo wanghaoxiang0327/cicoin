@@ -38,6 +38,20 @@ public class EntrustPresenter extends BasePresenter<EntrustFragment> {
 
     }
 
+    public Flowable<List<EntrustOrder>> getNoCodeEntrustOrder(int page, int size) {
+        return OkGo.<HttpResult<Page<EntrustOrder>>>post(HttpConfig.BASE_URL + HttpConfig.GET_ENTRUST_ORDER)
+                .params("p", page)
+                .params("size", size)
+                .tag(this)
+                .converter(new JsonConvert<HttpResult<Page<EntrustOrder>>>() {
+                })
+                .adapt(new FlowableBody<>())
+                .map(pageHttpResult -> {
+                    return pageHttpResult.getData().getRes();
+                });
+
+    }
+
     public void cancelOrder(String order_id) {
         OkGo.<HttpResult<Object>>post(HttpConfig.BASE_URL + HttpConfig.CONTACT_CANCEL_ORDER)
                 .params("order_id", order_id)

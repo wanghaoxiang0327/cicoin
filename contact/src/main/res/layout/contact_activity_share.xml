@@ -150,7 +150,7 @@
                         android:id="@+id/tv_price_des"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/contact_share_opening_price"
+                        android:text="@string/contact_contact_item_deal300"
                         android:textColor="@color/common_green"
                         android:textSize="10sp" />
 

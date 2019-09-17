@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 
 import com.sskj.common.DividerLineItemDecoration;
 import com.sskj.common.adapter.BaseAdapter;
@@ -108,7 +109,11 @@ public class EntrustFragment extends BaseFragment<EntrustPresenter> {
                     smartRefreshHelper.setDataSource(new DataSource<EntrustOrder>() {
                         @Override
                         public Flowable<List<EntrustOrder>> loadData(int page) {
-                            return mPresenter.getEntrustOrder(page, size, code);
+                            if (TextUtils.isEmpty(code)) {
+                                return mPresenter.getNoCodeEntrustOrder(page, size);
+                            } else {
+                                return mPresenter.getEntrustOrder(page, size, code);
+                            }
                         }
                     });
                     disposable = Flowable.interval(2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {

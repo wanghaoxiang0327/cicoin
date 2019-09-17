@@ -25,7 +25,7 @@ class HoldPresenter extends BasePresenter<HoldFragment> {
 
     public Flowable<List<HoldOrder>> getHoldOrder(String code, int page, int size) {
         return OkGo.<HttpResult<Page<HoldOrder>>>post(HttpConfig.BASE_URL + HttpConfig.GET_HOLD_ORDER)
-                .params("code", code)
+//                .params("code", code)
                 .params("p", page)
                 .params("size", size)
                 .tag(this)

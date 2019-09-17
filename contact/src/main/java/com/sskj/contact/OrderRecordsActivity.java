@@ -72,7 +72,7 @@ public class OrderRecordsActivity extends BaseActivity<OrderRecordsPresenter> {
         tabItems.add(new TabItem(getString(R.string.contact_orderRecordsActivity2)));
         tabItems.add(new TabItem(getString(R.string.contact_orderRecordsActivity3)));
         fragments.add(HoldFragment.newInstance(code));
-        fragments.add(EntrustFragment.newInstance(code));
+        fragments.add(EntrustFragment.newInstance(""));
         fragments.add(DealFragment.newInstance(code));
         tabLayout.setTabData(tabItems, getSupportFragmentManager(), R.id.order_content, fragments);
         ClickUtil.click(tvCloseAll, view -> {
