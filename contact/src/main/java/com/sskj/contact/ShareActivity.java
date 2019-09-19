@@ -78,8 +78,8 @@ public class ShareActivity extends BaseActivity<SharePresenter> {
         toolbar.mLeftButton.setCompoundDrawableTintList(ColorStateList.valueOf(color(R.color.common_white)));
         dealOrder = (DealOrder) getIntent().getSerializableExtra("dealOrder");
         if (dealOrder != null) {
-            tvMarketMoreOrEmpty.setText(dealOrder.getType() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));
-            tvMarketMoreOrEmpty.setBackgroundResource(dealOrder.getType() == 1 ? R.drawable.common_red_bg_5 : R.drawable.common_green_bg_5);
+            tvMarketMoreOrEmpty.setText(dealOrder.getOtype() == 1 ? getString(R.string.common_make_more) : getString(R.string.common_make_empty));
+            tvMarketMoreOrEmpty.setBackgroundResource(dealOrder.getOtype() == 1 ? R.drawable.common_red_bg_5 : R.drawable.common_green_bg_5);
             tvCode.setText(NumberUtils.keepMaxDown(dealOrder.getProfit(), 4) + "USDT");
             if (dealOrder.getProfit().contains("-")) {
                 tvCode.setTextColor(color(R.color.common_green));
