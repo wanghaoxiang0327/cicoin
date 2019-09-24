@@ -143,20 +143,20 @@ public class ContactOrderSettingDialog extends BaseDialogFragment<OrderSettingDi
 
 
             if ("1".equals(orderData.getOtype())) {
-                if (win < minZy) {
+                if (win < minZy && win != 0) {
                     ToastUtils.show(getString(R.string.contact_contactOrderSettingDialog3) + minZy);
                     return;
                 }
-                if (loss > minZs) {
+                if (loss > minZs && loss != 0) {
                     ToastUtils.show(getString(R.string.contact_contactOrderSettingDialog4) + minZs);
                     return;
                 }
             } else {
-                if (win > minZy) {
+                if (win > minZy && win != 0) {
                     ToastUtils.show(getString(R.string.contact_contactOrderSettingDialog30) + minZy);
                     return;
                 }
-                if (loss < minZs) {
+                if (loss < minZs && loss != 0) {
                     ToastUtils.show(getString(R.string.contact_contactOrderSettingDialog40) + minZs);
                     return;
                 }
