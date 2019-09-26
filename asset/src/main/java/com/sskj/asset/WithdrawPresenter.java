@@ -31,7 +31,6 @@ public class WithdrawPresenter extends BasePresenter<WithdrawActivity> {
                     protected void onNext(HttpResult<List<CoinAsset>> result) {
                         if (!showDialog) {
                             mView.setCoinList(result.getData());
-
                         } else {
                             mView.showCoinDialog(result.getData());
                         }
@@ -73,6 +72,8 @@ public class WithdrawPresenter extends BasePresenter<WithdrawActivity> {
                 });
 
     }
+
+
 
 
 }

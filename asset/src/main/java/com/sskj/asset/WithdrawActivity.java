@@ -217,7 +217,7 @@ public class WithdrawActivity extends BaseActivity<WithdrawPresenter> {
 
 
     public void setWithDrawInfo(WithdrawInfo data) {
-        usefulTv.setText(NumberUtils.keepDown(data.tb_maxnum, DigitUtils.getAssetDigit(code)) + " " + unit);
+        usefulTv.setText(NumberUtils.keepDown(data.balance, DigitUtils.getAssetDigit(code)) + " " + unit);
         countEdt.setHint(getString(R.string.asset_withdrawActivity4) + data.tb_minum);
         feeTv.setText(getString(R.string.asset_transferActivity4) + data.tb_fee + " " + unit + getString(R.string.asset_transferActivity5));
         fee = Double.valueOf(data.tb_fee);

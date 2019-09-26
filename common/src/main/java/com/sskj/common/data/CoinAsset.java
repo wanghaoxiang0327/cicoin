@@ -100,4 +100,17 @@ public class CoinAsset {
         this.mark = mark;
     }
 
+    @Override
+    public String toString() {
+        return "CoinAsset{" +
+                "pid='" + pid + '\'' +
+                ", pname='" + pname + '\'' +
+                ", name='" + name + '\'' +
+                ", yue=" + yue +
+                ", price='" + price + '\'' +
+                ", cnyPrice='" + cnyPrice + '\'' +
+                ", mark='" + mark + '\'' +
+                ", aim_point=" + aim_point +
+                '}';
+    }
 }
