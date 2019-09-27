@@ -11,4 +11,5 @@ package com.sskj.common.rxbus;
 public class BusCode {
     public static final int SECOND = 2;
     public static final int CHANGE_LANGUAGE =9999 ;
+    public static final int LOGOUT = 10099 ;
 }

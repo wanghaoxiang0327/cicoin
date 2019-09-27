@@ -3,6 +3,7 @@ package com.sskj.common.http;
 import android.support.annotation.CallSuper;
 import android.util.Log;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.fastjson.JSON;
 import com.hjq.toast.ToastUtils;
 import com.lzy.okgo.callback.AbsCallback;
@@ -11,6 +12,8 @@ import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 import com.sskj.common.base.BasePresenter;
 import com.sskj.common.exception.LogoutException;
+import com.sskj.common.router.RoutePath;
+import com.sskj.common.rxbus.BusCode;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.utils.MD5Util;
 
@@ -22,6 +25,7 @@ import java.util.List;
 
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
+import okhttp3.Route;
 
 public abstract class JsonCallBack<T> extends AbsCallback<T> {
 
@@ -79,7 +83,9 @@ public abstract class JsonCallBack<T> extends AbsCallback<T> {
         if (response.getException() instanceof ApiException) {
             ToastUtils.show(((ApiException) response.getException()).getMsg());
         } else if (response.getException() instanceof LogoutException) {
-            RxBus.getDefault().post(response.getException());
+            LogoutException exception = (LogoutException) response.getException();
+            ToastUtils.show(exception.getMessage());
+            RxBus.getDefault().send(BusCode.LOGOUT);
         } else {
             response.getException().printStackTrace();
         }

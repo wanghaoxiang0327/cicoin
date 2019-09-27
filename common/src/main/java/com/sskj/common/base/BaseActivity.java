@@ -30,6 +30,7 @@ import com.sskj.common.exception.BreakException;
 import com.sskj.common.exception.LogoutException;
 import com.sskj.common.language.LocalManageUtil;
 import com.sskj.common.router.RoutePath;
+import com.sskj.common.rxbus.BusCode;
 import com.sskj.common.rxbus.RxBus;
 import com.sskj.common.rxbus.Subscribe;
 import com.sskj.common.rxbus.ThreadMode;
@@ -191,7 +192,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends ExtendActivi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void logout(LogoutException e) {
         new TipsNewDialog(this)
-                .setContent(getString(R.string.common_account_other_device_login))
+                .setContent(e.getMessage())
                 .setCancelVisible(View.GONE)
                 .setConfirmText(getString(R.string.common_common_tip_dialog80))
                 .setConfirmListener(dialog -> {
@@ -202,6 +203,15 @@ public abstract class BaseActivity<P extends BasePresenter> extends ExtendActivi
                     AppManager.getInstance().finishAllLogin();
                 }).show();
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN,code = BusCode.LOGOUT)
+    public void logout() {
+
+        SpUtil.exit(BaseApplication.getMobile());
+        userViewModel.clear();
+        ARouter.getInstance().build(RoutePath.LOGIN_LOGIN).navigation();
+        AppManager.getInstance().finishAllLogin();
     }
 
     public void startTimeDown(TextView getCodeView) {
