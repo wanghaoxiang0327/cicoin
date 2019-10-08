@@ -15,6 +15,7 @@ import com.sskj.common.App;
 import com.sskj.common.BaseApplication;
 import com.sskj.common.BuildConfig;
 import com.sskj.common.CommonConfig;
+import com.sskj.common.base.BaseActivity;
 import com.sskj.common.http.HttpConfig;
 import com.sskj.common.http.HttpResult;
 import com.sskj.common.http.JsonCallBack;
@@ -91,11 +92,12 @@ public class CapUtils {
 
                     @Override
                     public void onCancel() {
+                       ToastUtils.show("验证已取消");
                     }
 
                     @Override
                     public void onClose() {
-
+                        ToastUtils.show("验证已关闭");
                     }
                 })
                 // 验证码回调监听器

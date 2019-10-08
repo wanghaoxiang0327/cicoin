@@ -205,7 +205,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends ExtendActivi
 
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN,code = BusCode.LOGOUT)
+    @Subscribe(threadMode = ThreadMode.MAIN, code = BusCode.LOGOUT)
     public void logout() {
 
         SpUtil.exit(BaseApplication.getMobile());
@@ -215,8 +215,11 @@ public abstract class BaseActivity<P extends BasePresenter> extends ExtendActivi
     }
 
     public void startTimeDown(TextView getCodeView) {
-        getCodeView.setEnabled(false);
-        getCodeView.setTextColor(color(R.color.common_hint));
+        getCodeView.post(() -> {
+            getCodeView.setEnabled(false);
+            getCodeView.setTextColor(color(R.color.common_hint));
+        });
+
         disposableSubscriber = new DisposableSubscriber<Long>() {
             @Override
             public void onNext(Long aLong) {

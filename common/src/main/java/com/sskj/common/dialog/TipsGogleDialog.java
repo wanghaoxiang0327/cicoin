@@ -125,8 +125,10 @@ public class TipsGogleDialog extends AlertDialog {
     }
 
     public void startTimeDown(TextView getCodeView) {
-        getCodeView.setEnabled(false);
-        getCodeView.setTextColor(ContextCompat.getColor(getContext(), R.color.common_hint));
+        getCodeView.post(() -> {
+            getCodeView.setEnabled(false);
+            getCodeView.setTextColor(ContextCompat.getColor(getContext(), R.color.common_hint));
+        });
         disposableSubscriber = new DisposableSubscriber<Long>() {
             @Override
             public void onNext(Long aLong) {
