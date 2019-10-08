@@ -125,7 +125,7 @@ public class TipsGogleDialog extends AlertDialog {
     }
 
     public void startTimeDown(TextView getCodeView) {
-//        getCodeView.setEnabled(false);
+        getCodeView.setEnabled(false);
         getCodeView.setTextColor(ContextCompat.getColor(getContext(), R.color.common_hint));
         disposableSubscriber = new DisposableSubscriber<Long>() {
             @Override
@@ -138,6 +138,7 @@ public class TipsGogleDialog extends AlertDialog {
 
             @Override
             public void onError(Throwable t) {
+                getCodeView.setEnabled(true);
                 System.out.println(t.toString());
                 ToastUtils.show(App.INSTANCE.getString(R.string.common_fssb));
             }

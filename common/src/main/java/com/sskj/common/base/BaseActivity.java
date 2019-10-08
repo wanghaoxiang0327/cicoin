@@ -215,7 +215,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends ExtendActivi
     }
 
     public void startTimeDown(TextView getCodeView) {
-//        getCodeView.setEnabled(false);
+        getCodeView.setEnabled(false);
         getCodeView.setTextColor(color(R.color.common_hint));
         disposableSubscriber = new DisposableSubscriber<Long>() {
             @Override
