@@ -44,11 +44,11 @@
     <string name="common_invite_rules">Invitation rule</string>
     <string name="common_director_rules">Dividend rule</string>
     <string name="common_cancle">Cancel</string>
-    <string name="kqgogle">开启谷歌验证</string>
-    <string name="common_common_dialog_verify_sms">短信验证码</string>
-    <string name="common_getcode">获取验证码</string>
-    <string name="common_ssetpwd">请输入验证码</string>
-    <string name="common_gbgogle">关闭谷歌验证</string>
+    <string name="kqgogle"> enables Google verification</string>
+    <string name="common_common_dialog_verify_sms">message authentication code</string>
+    <string name="common_getcode">get code</string>
+    <string name="common_ssetpwd">please enter the verification code</string>
+    <string name="common_gbgogle">Turn off Google validation</string>
     <string name="common_verify_email">Please enter the mailbox verification code</string>
     <string name="common_input_email_verify">Please enter the mailbox verification code</string>
     <string name="common_make_more">Buy more</string>
@@ -56,4 +56,5 @@
     <string name="common_tips">Tips</string>
     <string name="common_close">Close</string>
     <string name="common_account_other_device_login">The account is logged in on another device</string>
+    <string name="common_fssb">Verification code failed to send, please try again</string>
 </resources>

@@ -183,7 +183,7 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
     }
 
     public void startTimeDown(TextView getCodeView) {
-        getCodeView.setEnabled(false);
+//        getCodeView.setEnabled(false);
         getCodeView.setTextColor(ContextCompat.getColor(getContext(), R.color.common_hint));
         disposableSubscriber = new DisposableSubscriber<Long>() {
             @Override
@@ -197,6 +197,7 @@ public class VerifyPasswordDialog extends BottomSheetDialog {
             @Override
             public void onError(Throwable t) {
                 System.out.println(t.toString());
+                ToastUtils.show(App.INSTANCE.getString(R.string.common_fssb));
             }
 
             @Override

@@ -215,7 +215,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends ExtendActivi
     }
 
     public void startTimeDown(TextView getCodeView) {
-        getCodeView.setEnabled(false);
+//        getCodeView.setEnabled(false);
         getCodeView.setTextColor(color(R.color.common_hint));
         disposableSubscriber = new DisposableSubscriber<Long>() {
             @Override
@@ -229,6 +229,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends ExtendActivi
             @Override
             public void onError(Throwable t) {
                 System.out.println(t.toString());
+                getCodeView.setEnabled(true);
+                ToastUtils.show(getString(R.string.common_fssb));
             }
 
             @Override

@@ -57,6 +57,7 @@
     <string name="common_close">关闭</string>
     <string name="common_version_update">版本更新</string>
     <string name="common_account_other_device_login">该账号在其他设备登录</string>
+    <string name="common_fssb">验证码发送失败，请重试</string>
 
 
 </resources>

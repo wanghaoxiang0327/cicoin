@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.allen.library.SuperButton;
+import com.hjq.toast.ToastUtils;
 import com.lzy.okgo.OkGo;
 import com.sskj.common.App;
 import com.sskj.common.CommonConfig;
@@ -124,7 +125,7 @@ public class TipsGogleDialog extends AlertDialog {
     }
 
     public void startTimeDown(TextView getCodeView) {
-        getCodeView.setEnabled(false);
+//        getCodeView.setEnabled(false);
         getCodeView.setTextColor(ContextCompat.getColor(getContext(), R.color.common_hint));
         disposableSubscriber = new DisposableSubscriber<Long>() {
             @Override
@@ -138,6 +139,7 @@ public class TipsGogleDialog extends AlertDialog {
             @Override
             public void onError(Throwable t) {
                 System.out.println(t.toString());
+                ToastUtils.show(App.INSTANCE.getString(R.string.common_fssb));
             }
 
             @Override

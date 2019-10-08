@@ -79,6 +79,7 @@ public class CapUtils {
 
                             }
                         } else {
+
                             Toast.makeText(context, "验证失败", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -115,5 +116,7 @@ public class CapUtils {
     public interface validateInterface {
 
         void validateSuccess();
+
+
     }
 }
