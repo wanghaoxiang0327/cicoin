@@ -172,7 +172,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:hint="@string/asset_zoom_number_hint"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:padding="15dp"
         android:textSize="@dimen/sp_14" />
 

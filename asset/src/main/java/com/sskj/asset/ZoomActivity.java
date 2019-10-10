@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -30,6 +31,7 @@ import com.sskj.common.router.RoutePath;
 import com.sskj.common.utils.BigDecimalUtils;
 import com.sskj.common.utils.ClickUtil;
 import com.sskj.common.utils.DigitUtils;
+import com.sskj.common.utils.MoneyValueFilter;
 import com.sskj.common.utils.NumberUtils;
 import com.sskj.common.view.ToolBarLayout;
 
@@ -122,8 +124,9 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
     @Override
     public void initData() {
         mPresenter.getExchangeInfo();
-
-
+        etInputExchangeNum.setFilters(new InputFilter[]{
+                new MoneyValueFilter().setDigits(6)
+        });
         ClickUtil.click(left, view -> {
             SelectCoinDialog ss = new SelectCoinDialog(this, (dialog, coin, position) -> {
                 tvOldCoin.setText(coin.getPname());
@@ -162,7 +165,7 @@ public class ZoomActivity extends BaseActivity<ZoomPresenter> {
                     Double ee = (isEmpty(tvOldAmount) ? 0d : Double.parseDouble(getText(tvOldAmount))) * dd /
                             (isEmpty(tvNewAmount) ? 1 : Double.parseDouble(getText(tvNewAmount)));
 
-                    etArrivalNum.setText(NumberUtils.keepDown(ee, 4));
+                    etArrivalNum.setText(NumberUtils.keepDown(ee, 6));
 
                 });
 
