@@ -2,12 +2,14 @@ package com.sskj.cicoin;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.just.agentweb.AgentWeb;
 import com.sskj.common.base.BaseActivity;
+import com.sskj.common.utils.TimeFormatUtil;
 import com.sskj.common.view.ToolBarLayout;
 import com.zzhoujay.richtext.RichText;
 
@@ -65,7 +67,15 @@ public class NewsDetailActivity extends BaseActivity<NewsDetailPresenter> {
             toolbar.setTitle(getString(R.string.app_trading_guide));
             linearLayout.setVisibility(View.GONE);
             topLayout.setVisibility(View.VISIBLE);
-            setNoticeDetail(newsBean);
+            try {
+                setText(titleTv, newsBean.getTitle());
+//                Log.d("yds",)
+                setText(timeTv, TimeFormatUtil.SF_FORMAT_E.format(Long.valueOf(newsBean.getDate())*1000));
+//                setText(timeTv,newsBean.getDate());
+                RichText.fromHtml(newsBean.getContent()).into(contentTv);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
         } else {
             linearLayout.setVisibility(View.VISIBLE);
             AgentWeb.with(this)

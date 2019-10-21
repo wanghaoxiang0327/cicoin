@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.hjq.toast.ToastUtils;
@@ -26,6 +27,8 @@ import com.zzhoujay.richtext.RichText;
 
 import java.util.logging.Level;
 
+import io.reactivex.functions.Consumer;
+import io.reactivex.plugins.RxJavaPlugins;
 import okhttp3.OkHttpClient;
 
 public class BaseApplication extends MultiDexApplication {
@@ -52,6 +55,12 @@ public class BaseApplication extends MultiDexApplication {
                 }
             });
         }
+        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                Log.d("yds", "-----------");
+            }
+        });
         ARouter.init(this);
         RichText.initCacheDir(this);
         LocalManageUtil.setApplicationLanguage(this);
