@@ -273,7 +273,8 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
                         calculateMaxTrade();
                         changeByPosition = true;
                         BigDecimal p = new BigDecimal(percentFormat.parse(pointTabs[position]).floatValue());
-                        edtNum.setText(NumberUtils.keepDown(maxNum.multiply(p), 0));
+                        edtNum.setText(NumberUtils.keepDown(maxNum.multiply(p), 2));
+                        Log.d("yds", p + "----------" + maxNum);
                         edtNum.setSelection(edtNum.getText().length());
                         changeByPosition = false;
                     } catch (ParseException e) {
@@ -379,6 +380,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         edtPrice.addTextChangedListener(new SimpleTextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
+
                 if (TextUtils.isEmpty(s)) {
                     price = new BigDecimal("0");
                 } else {
@@ -433,7 +435,8 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
         }
         feeMoney = createPrice.multiply(num).multiply(unitNum).multiply(fee);
 
-        BigDecimal total = num.multiply(createPrice).divide(lever, 8, RoundingMode.DOWN).add(feeMoney);
+
+        BigDecimal total = num.multiply(createPrice).divide(lever, 8, RoundingMode.DOWN);
         setText(tvTotalMoney, NumberUtils.keep(total, 4));
     }
 
@@ -441,14 +444,19 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
     /**
      * 计算最大交易额
      * 交易额= （价格/杠杆+手续费*价格）*数量*面值
+     * 最大数量=交易额/
      */
     public void calculateMaxTrade() {
         BigDecimal createPrice;
         BigDecimal spreadPrice = spread.multiply(minChangePrice);
-        if (tradeType == Trade.UP) {
-            createPrice = price.add(price.multiply(spreadPrice));
+        if (priceType == Price.MARKET) {
+            if (tradeType == Trade.UP) {
+                createPrice = price.add(spreadPrice);
+            } else {
+                createPrice = price.subtract(spreadPrice);
+            }
         } else {
-            createPrice = price.subtract(price.multiply(spreadPrice));
+            createPrice = new BigDecimal(TextUtils.isEmpty(edtPrice.getText().toString()) ? "0" : edtPrice.getText().toString());
         }
         BigDecimal realPrice = createPrice.divide(lever, 8, RoundingMode.DOWN).add(fee.multiply(createPrice));
         if (realPrice.floatValue() != 0) {
@@ -512,6 +520,7 @@ public class ContractLeftFragment extends BaseFragment<ContractLeftPresenter> {
             minChangePrice = new BigDecimal(data.getVar_price());
             if (!TextUtils.isEmpty(data.getPcs_price())) {
                 unitNum = new BigDecimal(data.getPcs_price());
+                Log.d("yds", unitNum + "****");
             }
             if (!data.getTrans_fee().startsWith("%")) {
                 fee = new BigDecimal(Float.parseFloat(data.getTrans_fee().substring(0, data.getTrans_fee().indexOf("%"))) / 100);
